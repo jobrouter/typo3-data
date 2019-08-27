@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T18:18:42Z" product-name="jobrouter_data">
+		<header/>
+		<body>
+			<trans-unit id="mlang_labels_tablabel">
+				<source><![CDATA[JobRouter Data]]></source>
+			</trans-unit>
+			<trans-unit id="mlang_labels_tabdescr">
+				<source><![CDATA[Manage JobData tables]]></source>
+			</trans-unit>
+			<trans-unit id="mlang_tabs_tab">
+				<source><![CDATA[JobData]]></source>
+			</trans-unit>
+
+			<trans-unit id="heading_text">
+				<source><![CDATA[JobData Tables]]></source>
+			</trans-unit>
+
+			<trans-unit id="tables_not_found.title">
+				<source><![CDATA[No tables found]]></source>
+			</trans-unit>
+			<trans-unit id="tables_not_found.message">
+				<source><![CDATA[There are currently no table records defined.]]></source>
+			</trans-unit>
+			<trans-unit id="table_create">
+				<source><![CDATA[Create new table]]></source>
+			</trans-unit>
+			<trans-unit id="table_check_for">
+				<source><![CDATA[Access check for]]></source>
+			</trans-unit>
+			<trans-unit id="table_check_successful">
+				<source><![CDATA[Table accessed successfully]]></source>
+			</trans-unit>
+
+			<trans-unit id="action.add_table">
+				<source><![CDATA[Add table record]]></source>
+			</trans-unit>
+			<trans-unit id="action.check_table">
+				<source><![CDATA[Check access]]></source>
+			</trans-unit>
+			<trans-unit id="action.edit_table">
+				<source><![CDATA[Edit table record]]></source>
+			</trans-unit>
+			<trans-unit id="action.edit_table_structure">
+				<source><![CDATA[Edit table structure]]></source>
+			</trans-unit>
+
+			<trans-unit id="status.disabled">
+				<source><![CDATA[disabled]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

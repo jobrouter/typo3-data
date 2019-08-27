@@ -1,0 +1,77 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <f:layout name="BackendAdministration" />
+
+    <f:section name="headline">
+        <h1><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:heading_text"/></h1>
+    </f:section>
+
+    <f:section name="content">
+        <f:if condition="{tables -> f:count()}">
+            <f:then>
+                <f:render section="table" arguments="{_all}" />
+            </f:then>
+            <f:else>
+                <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:tables_not_found.title')}">
+                    <p><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:tables_not_found.message"/></p>
+                    <be:link.newRecord class="btn btn-primary" table="tx_jobrouterdata_domain_model_table">
+                        <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:table_create"/>
+                    </be:link.newRecord>
+                </f:be.infobox>
+            </f:else>
+        </f:if>
+    </f:section>
+
+    <f:section name="table">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.name"/></th>
+                    <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.connection"/></th>
+                    <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.table_guid"/></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody id="jobrouter-data-table-list">
+                <f:for each="{tables}" as="table">
+                    <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
+                    <tr>
+                        <td>
+                            {table.name}
+                            <f:if condition="{table.disabled}">
+                                ({f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+                            </f:if>
+                        </td>
+                        <td>
+                            <be:link.editRecord table="tx_jobrouterconnector_domain_model_connection" uid="{table.connection.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_connector/Resources/Private/Language/BackendModule.xlf:action.edit_connection')}">
+                                {table.connection.name}
+                            </be:link.editRecord>
+                        </td>
+                        <td>
+                            <f:link.external uri="{manageJobDataTableLink}" target="_blank" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
+                                {table.tableGuid}
+                            </f:link.external>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <be:link.editRecord class="btn btn-default" table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">
+                                    <core:icon identifier="actions-open"/>
+                                </be:link.editRecord>
+                                <a class="btn btn-default jobrouter-data-table-check" data-table-uid="{table.uid}" data-table-name="{table.name}" href="#" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.check_table')}">
+                                    <core:icon identifier="actions-debug"/>
+                                </a>
+                                <f:link.external class="btn btn-default" uri="{manageJobDataTableLink}" target="_blank" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
+                                    <core:icon identifier="actions-database"/>
+                                </f:link.external>
+                            </div>
+                        </td>
+                    </tr>
+                </f:for>
+            </tbody>
+        </table>
+    </f:section>
+</html>

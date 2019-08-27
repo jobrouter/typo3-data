@@ -1,0 +1,47 @@
+{
+    "name": "brotkrueml/jobrouter-data",
+    "type": "typo3-cms-extension",
+    "description": "Synchronise JobData tables into TYPO3",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Chris Müller",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "brotkrueml/typo3-jobrouter-connector": "^0.2",
+        "typo3/cms-backend": "^9.5",
+        "typo3/cms-core": "^9.5",
+        "typo3/cms-extbase": "^9.5",
+        "typo3/cms-fluid": "^9.5"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Brotkrueml\\JobRouterData\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Brotkrueml\\JobRouterData\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "typo3-ter/typo3-jobrouter-data": "self.version"
+    },
+    "config": {
+        "sort-packages" : true,
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "jobrouter_data",
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "web-dir": ".Build/web"
+        }
+    }
+}
