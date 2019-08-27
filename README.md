@@ -1,4 +1,4 @@
-# Define connections to JobRouter systems from TYPO3 installations
+# Synchronise JobRouter JobData tables into TYPO3 
 
 [![TYPO3](https://img.shields.io/badge/TYPO3-9%20LTS-orange.svg)](https://typo3.org/)
 [![Build Status](https://travis-ci.org/brotkrueml/typo3-jobrouter-data.svg?branch=master)](https://travis-ci.org/brotkrueml/typo3-jobrouter-data)
