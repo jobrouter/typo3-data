@@ -52,7 +52,7 @@
                             </be:link.editRecord>
                         </td>
                         <td>
-                            <f:link.external uri="{manageJobDataTableLink}" target="_blank" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
+                            <f:link.external uri="{manageJobDataTableLink}" target="_blank" rel="noopener noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
                                 {table.tableGuid}
                             </f:link.external>
                         </td>
@@ -64,7 +64,7 @@
                                 <a class="btn btn-default jobrouter-data-table-check" data-table-uid="{table.uid}" data-table-name="{table.name}" href="#" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.check_table')}">
                                     <core:icon identifier="actions-debug"/>
                                 </a>
-                                <f:link.external class="btn btn-default" uri="{manageJobDataTableLink}" target="_blank" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
+                                <f:link.external class="btn btn-default" uri="{manageJobDataTableLink}" target="_blank" rel="noopener noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
                                     <core:icon identifier="actions-database"/>
                                 </f:link.external>
                             </div>
