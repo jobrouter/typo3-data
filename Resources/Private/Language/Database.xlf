@@ -1,16 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T13:32:12Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-09-03T11:29:03Z" product-name="jobrouter_data">
 		<header/>
 		<body>
+			<trans-unit id="tx_jobrouterdata_domain_model_column">
+				<source><![CDATA[JobData Column]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.label">
+				<source><![CDATA[Label]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.name">
+				<source><![CDATA[Name]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.type">
+				<source><![CDATA[Type]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.type.date">
+				<source><![CDATA[Date]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.type.datetime">
+				<source><![CDATA[Date/Time]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.type.decimal">
+				<source><![CDATA[Decimal]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.type.integer">
+				<source><![CDATA[Integer]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.type.text">
+				<source><![CDATA[Text]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table">
 				<source><![CDATA[JobData Table]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.name">
-				<source><![CDATA[Name]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.columns">
+				<source><![CDATA[Columns]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.connection">
 				<source><![CDATA[Connection]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.name">
+				<source><![CDATA[Name]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.table_guid">
 				<source><![CDATA[GUID of the table]]></source>

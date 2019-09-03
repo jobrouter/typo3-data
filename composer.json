@@ -20,6 +20,7 @@
         "typo3/cms-fluid": "^9.5"
     },
     "require-dev": {
+        "mikey179/vfsstream": "^1.6",
         "phpunit/phpunit": "^8.3"
     },
     "autoload": {

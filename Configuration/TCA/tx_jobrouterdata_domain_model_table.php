@@ -15,7 +15,7 @@ return [
         'iconfile' => 'EXT:jobrouter_data/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'disabled, name, connection, table_guid',
+        'showRecordFieldList' => 'disabled, name, connection, table_guid, columns',
     ],
     'columns' => [
         'disabled' => [
@@ -51,7 +51,7 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['' => '']
+                    ['' => ''],
                 ],
                 'foreign_table' => 'tx_jobrouterconnector_domain_model_connection',
                 'foreign_table_where' => ' ORDER BY tx_jobrouterconnector_domain_model_connection.name',
@@ -68,10 +68,34 @@ return [
                 'eval' => 'alphanum_x,required,trim,upper'
             ],
         ],
+        'columns' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.columns',
+            'config' => [
+                'type' => 'inline',
+                'allowed' => 'tx_jobrouterdata_domain_model_column',
+                'foreign_table' => 'tx_jobrouterdata_domain_model_column',
+                'foreign_default_sortby' => 'name',
+                'foreign_field' => 'parent',
+                'minitems' => 1,
+                'maxitems' => 100,
+                'appearance' => [
+                    'collapseAll' => true,
+                    'expandSingle' => true,
+                    'levelLinksPosition' => 'bottom',
+                    'useSortable' => false,
+                    'showPossibleLocalizationRecords' => false,
+                    'showSynchronizationLink' => false,
+                    'enabledControls' => [
+                        'info' => false,
+                    ]
+                ],
+            ],
+        ],
     ],
     'types' => [
         '1' => ['showitem' => '
-            name, connection, table_guid,
+            name, connection, table_guid, columns,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,

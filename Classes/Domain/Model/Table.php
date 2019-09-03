@@ -12,6 +12,7 @@ namespace Brotkrueml\JobRouterData\Domain\Model;
 
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Table model
@@ -27,8 +28,25 @@ class Table extends AbstractEntity
     /** @var string */
     protected $tableGuid = '';
 
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $columns = null;
+
     /** @var bool */
     protected $disabled = false;
+
+    public function __construct()
+    {
+        $this->initStorageObjects();
+    }
+
+    protected function initStorageObjects(): void
+    {
+        $this->columns = new ObjectStorage();
+    }
 
     public function getName(): string
     {
@@ -58,6 +76,39 @@ class Table extends AbstractEntity
     public function setTableGuid(string $tableGuid): void
     {
         $this->tableGuid = $tableGuid;
+    }
+
+    public function addColumn(Column $column): void
+    {
+        $this->columns->attach($column);
+    }
+
+    public function removeColumn(Column $columnToRemove): void
+    {
+        $this->columns->detach($columnToRemove);
+    }
+
+    public function getColumns(): ObjectStorage
+    {
+        return $this->columns;
+    }
+
+    public function getSortedColumns(): array
+    {
+        $sortedColumns = $this->columns->toArray();
+
+        \usort($sortedColumns, function ($a, $b) {
+            /** @var Column $a */
+            /** @var Column $b */
+            return $a->getName() <=> $b->getName();
+        });
+
+        return $sortedColumns;
+    }
+
+    public function setColumns(ObjectStorage $columns)
+    {
+        $this->columns = $columns;
     }
 
     public function isDisabled(): bool
