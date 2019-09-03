@@ -93,19 +93,6 @@ class Table extends AbstractEntity
         return $this->columns;
     }
 
-    public function getSortedColumns(): array
-    {
-        $sortedColumns = $this->columns->toArray();
-
-        \usort($sortedColumns, function ($a, $b) {
-            /** @var Column $a */
-            /** @var Column $b */
-            return $a->getName() <=> $b->getName();
-        });
-
-        return $sortedColumns;
-    }
-
     public function setColumns(ObjectStorage $columns)
     {
         $this->columns = $columns;

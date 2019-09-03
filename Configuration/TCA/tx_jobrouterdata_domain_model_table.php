@@ -75,7 +75,7 @@ return [
                 'type' => 'inline',
                 'allowed' => 'tx_jobrouterdata_domain_model_column',
                 'foreign_table' => 'tx_jobrouterdata_domain_model_column',
-                'foreign_default_sortby' => 'name',
+                'foreign_sortby' => 'sorting',
                 'foreign_field' => 'parent',
                 'minitems' => 1,
                 'maxitems' => 100,
@@ -83,7 +83,7 @@ return [
                     'collapseAll' => true,
                     'expandSingle' => true,
                     'levelLinksPosition' => 'bottom',
-                    'useSortable' => false,
+                    'useSortable' => true,
                     'showPossibleLocalizationRecords' => false,
                     'showSynchronizationLink' => false,
                     'enabledControls' => [
