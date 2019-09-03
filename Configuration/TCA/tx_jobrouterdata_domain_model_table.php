@@ -76,7 +76,7 @@ return [
                 'allowed' => 'tx_jobrouterdata_domain_model_column',
                 'foreign_table' => 'tx_jobrouterdata_domain_model_column',
                 'foreign_sortby' => 'sorting',
-                'foreign_field' => 'parent',
+                'foreign_field' => 'table_uid',
                 'minitems' => 1,
                 'maxitems' => 100,
                 'appearance' => [
