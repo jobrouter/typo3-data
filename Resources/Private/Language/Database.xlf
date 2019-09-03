@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T13:32:12Z" product-name="jobrouter_connector">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T13:32:12Z" product-name="jobrouter_data">
 		<header/>
 		<body>
 			<trans-unit id="tx_jobrouterdata_domain_model_table">
