@@ -12,6 +12,9 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_column.name">
 				<source><![CDATA[Name]]></source>
 			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.decimal_places">
+				<source><![CDATA[Decimal places]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.type">
 				<source><![CDATA[Type]]></source>
 			</trans-unit>
@@ -30,6 +33,15 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_column.type.text">
 				<source><![CDATA[Text]]></source>
 			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_dataset">
+				<source><![CDATA[JobData Dataset]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_dataset.jrid">
+				<source><![CDATA[Record ID]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_dataset.dataset">
+				<source><![CDATA[Dataset]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table">
 				<source><![CDATA[JobData Table]]></source>
 			</trans-unit>
@@ -38,6 +50,9 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.connection">
 				<source><![CDATA[Connection]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.datasets">
+				<source><![CDATA[Datasets]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.name">
 				<source><![CDATA[Name]]></source>

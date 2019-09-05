@@ -4,7 +4,6 @@ declare(strict_types = 1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\ViewHelpers;
 
 use Brotkrueml\JobRouterData\Domain\Model\Column;
-use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3Fluid\Fluid\Core\ViewHelper;
 
 class ColumnLabelViewHelperTest extends ViewHelperTestCase
@@ -44,14 +43,12 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
      */
     public function withLocalisedLabelSetTheLocalisedLabelIsReturned(): void
     {
-        $languageServiceMock = $this->createMock(LanguageService::class);
+        $languageServiceMock = $this->initialiseLanguageServiceMock();
         $languageServiceMock
             ->expects($this->once())
             ->method('sL')
             ->with('LLL:EXT:some_extension/Resources/Private/Language/locallang.xml:some-localised-column-label')
             ->willReturn('the localised column label');
-
-        $GLOBALS['LANG'] = $languageServiceMock;
 
         $column = new Column();
         $column->setName('someColumnLabel');

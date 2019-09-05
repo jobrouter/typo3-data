@@ -11,6 +11,9 @@ namespace Brotkrueml\JobRouterData\Domain\Model;
  */
 
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
+use Brotkrueml\JobRouterData\Domain\Model\Table\Cell;
+use Brotkrueml\JobRouterData\Domain\Model\Table\Row;
+use Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -35,6 +38,13 @@ class Table extends AbstractEntity
      */
     protected $columns = null;
 
+    /**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Dataset>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     */
+    protected $datasets = null;
+
     /** @var bool */
     protected $disabled = false;
 
@@ -46,6 +56,7 @@ class Table extends AbstractEntity
     protected function initStorageObjects(): void
     {
         $this->columns = new ObjectStorage();
+        $this->datasets = new ObjectStorage();
     }
 
     public function getName(): string
@@ -96,6 +107,40 @@ class Table extends AbstractEntity
     public function setColumns(ObjectStorage $columns)
     {
         $this->columns = $columns;
+    }
+
+    public function getCountRows(): int
+    {
+        return count($this->datasets);
+    }
+
+    public function getRows(): array
+    {
+        $rows = [];
+        foreach ($this->datasets as $dataset) {
+            $datasetArray = \json_decode($dataset->getDataset(), true);
+
+            $row = new Row();
+            foreach ($this->columns as $column) {
+                $cell = new Cell();
+                $cell->setName($column->getName());
+
+                if ($column->getName() === 'jrid') {
+                    $cell->setContent($dataset->getJrid());
+                    $cell->setType(ColumnTypeEnumeration::INTEGER);
+                } else {
+                    $cell->setContent($datasetArray[$column->getName() ?? '']);
+                    $cell->setType($column->getType());
+                    $cell->setDecimalPlaces($column->getDecimalPlaces());
+                }
+
+                $row->addCell($cell);
+            }
+
+            $rows[] = $row;
+        }
+
+        return $rows;
     }
 
     public function isDisabled(): bool

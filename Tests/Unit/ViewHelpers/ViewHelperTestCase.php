@@ -6,6 +6,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\ViewHelpers;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3Fluid\Fluid\View\TemplateView;
 
 class ViewHelperTestCase extends TestCase
@@ -24,7 +25,7 @@ class ViewHelperTestCase extends TestCase
         $this->view = new TemplateView();
     }
 
-    protected function renderTemplate(string $template, array $variables = []): string
+    protected function renderTemplate(string $template, array $variables = [])
     {
         \file_put_contents(vfsStream::url('test-dir') . '/template.html', self::VIEWHELPER_NAMESPACE . $template);
 
@@ -35,5 +36,12 @@ class ViewHelperTestCase extends TestCase
         }
 
         return $this->view->render();
+    }
+
+    protected function initialiseLanguageServiceMock()
+    {
+        $GLOBALS['LANG'] = $this->createMock(LanguageService::class);
+
+        return $GLOBALS['LANG'];
     }
 }

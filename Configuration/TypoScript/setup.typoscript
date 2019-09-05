@@ -13,3 +13,19 @@ module.tx_jobrouterdata {
 
     persistence.storagePid = 0
 }
+
+plugin.tx_jobrouterdata_pi {
+    view {
+        templateRootPaths {
+            0 = EXT:jobrouter_data/Resources/Private/Templates/Table/
+        }
+        partialRootPaths {
+            0 = EXT:jobrouter_data/Resources/Private/Partials/Table/
+        }
+        layoutRootPaths {
+            0 = EXT:jobrouter_data/Resources/Private/Layouts/
+        }
+    }
+
+    persistence.storagePid = 0
+}

@@ -119,6 +119,7 @@ class TableSynchroniser
                 unset($dataset['jrid']);
 
                 $data = [
+                    'pid' => 0,
                     'table_uid' => $table->getUid(),
                     'jrid' => $jrid,
                     'dataset' => \json_encode($dataset, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
@@ -128,6 +129,7 @@ class TableSynchroniser
                     'tx_jobrouterdata_domain_model_dataset',
                     $data,
                     [
+                        'pid' => \PDO::PARAM_INT,
                         'table_uid' => \PDO::PARAM_INT,
                         'jrid' => \PDO::PARAM_INT,
                         'dataset' => \PDO::PARAM_STR,

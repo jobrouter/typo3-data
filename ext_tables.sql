@@ -4,6 +4,7 @@ CREATE TABLE tx_jobrouterdata_domain_model_table
     connection int(11) unsigned DEFAULT '0' NOT NULL,
     table_guid varchar(36) DEFAULT '' NOT NULL,
     columns int(11) unsigned DEFAULT '0' NOT NULL,
+    datasets int(11) unsigned DEFAULT '0' NOT NULL,
 
     UNIQUE KEY name (name),
 );
@@ -11,8 +12,9 @@ CREATE TABLE tx_jobrouterdata_domain_model_table
 CREATE TABLE tx_jobrouterdata_domain_model_column (
     table_uid int(11) unsigned DEFAULT '0' NOT NULL,
     name varchar(20) DEFAULT ''  NOT NULL,
-    type smallint(5) unsigned DEFAULT '0' NOT NULL,
     label varchar(255) DEFAULT ''  NOT NULL,
+    type smallint(5) unsigned DEFAULT '0' NOT NULL,
+    decimal_places smallint(5) unsigned DEFAULT '0' NOT NULL,
 
     KEY table_uid (table_uid),
 );
@@ -23,6 +25,6 @@ CREATE TABLE tx_jobrouterdata_domain_model_dataset
     jrid int(11) unsigned DEFAULT '0' NOT NULL,
     dataset text,
 
-    PRIMARY KEY (table_uid, jrid),
+    UNIQUE KEY tableuid_jrid (table_uid, jrid),
     KEY table_uid (table_uid),
 );

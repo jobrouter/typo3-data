@@ -84,8 +84,26 @@ return [
                     'expandSingle' => true,
                     'levelLinksPosition' => 'bottom',
                     'useSortable' => true,
-                    'showPossibleLocalizationRecords' => false,
-                    'showSynchronizationLink' => false,
+                    'enabledControls' => [
+                        'info' => false,
+                    ]
+                ],
+            ],
+        ],
+        'datasets' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.datasets',
+            'config' => [
+                'type' => 'inline',
+                'allowed' => 'tx_jobrouterdata_domain_model_dataset',
+                'foreign_table' => 'tx_jobrouterdata_domain_model_dataset',
+                'foreign_sortby' => 'uid',
+                'foreign_field' => 'table_uid',
+                'appearance' => [
+                    'collapseAll' => true,
+                    'expandSingle' => true,
+                    'levelLinksPosition' => 'bottom',
+                    'useSortable' => true,
                     'enabledControls' => [
                         'info' => false,
                     ]

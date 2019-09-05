@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-09-03T11:29:03Z" product-name="jobrouter_data">
+		<header/>
+		<body>
+			<trans-unit id="decimal_point">
+				<source><![CDATA[.]]></source>
+			</trans-unit>
+			<trans-unit id="thousands_separator">
+				<source><![CDATA[,]]></source>
+			</trans-unit>
+			<trans-unit id="date">
+				<source><![CDATA[Y-m-d]]></source>
+			</trans-unit>
+			<trans-unit id="datetime">
+				<source><![CDATA[Y-m-d H:i:s]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

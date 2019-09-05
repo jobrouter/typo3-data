@@ -1,0 +1,93 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:jobRouterData="http://typo3.org/ns/Brotkrueml/JobRouterData/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <f:section name="DatasetExcerpt">
+        <f:be.pageRenderer includeCssFiles="{0: '{f:uri.resource(extensionName: \'jobrouter_data\', path:\'Css/Backend/PageLayoutView.css\')}'}"/>
+
+        <f:variable name="MAX_ROWS" value="5"/>
+
+        <table class="jobrouter-data-table">
+            <thead>
+                <tr>
+                    <f:for each="{table.columns}" as="column">
+                        <th><jobRouterData:columnLabel column="{column}"/></th>
+                    </f:for>
+                </tr>
+            </thead>
+            <tbody>
+                <f:for each="{table.rows}" as="row" iteration="iterator">
+                    <f:if condition="{iterator.index} < {MAX_ROWS}">
+                        <tr>
+                            <f:for each="{row.cells}" as="cell">
+                                <td><jobRouterData:formatCell cell="{cell}"/></td>
+                            </f:for>
+                        </tr>
+                    </f:if>
+                </f:for>
+                <f:if condition="{table.countRows} > {MAX_ROWS}">
+                    <f:variable name="remainingRows"><jobRouterData:subtract minuend="{table.countRows}" subtrahend="{MAX_ROWS}"/></f:variable>
+                    <tr>
+                        <td colspan="{table.columns -> f:count()}">
+                            <f:if condition="{remainingRows} == 1">
+                                <f:then>
+                                    <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plus_one_more_row"/>
+                                </f:then>
+                                <f:else>
+                                    <f:translate
+                                        key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plus_more_rows"
+                                        arguments="{0: remainingRows}"
+                                    />
+                                </f:else>
+                            </f:if>
+                        </td>
+                    </tr>
+                </f:if>
+            </tbody>
+        </table>
+    </f:section>
+
+
+    <strong><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plugin_title"/></strong>
+    <br>
+
+    <f:if condition="{actionTranslationKey}">
+        <f:then>
+            <strong class="jobrouter-data-plugin-info">
+                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.mode.{actionTranslationKey}"/>
+                <f:if condition="{table.name}">
+                    ({table.name})
+                </f:if>
+            </strong>
+            <br>
+            <br>
+
+            <f:if condition="{table}">
+                <f:then>
+                    <f:if condition="{table.countRows}">
+                        <f:then>
+                            <f:render section="DatasetExcerpt" arguments="{table: table}"/>
+                        </f:then>
+                        <f:else>
+                            <div class="alert alert-info">
+                                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_has_no_rows"/>
+                            </div>
+                        </f:else>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-danger">
+                        <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_not_available"/>
+                    </div>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <br>
+            <div class="alert alert-danger">
+                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.mode_not_configured"/>
+            </div>
+        </f:else>
+    </f:if>
+</html>

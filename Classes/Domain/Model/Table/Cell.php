@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Brotkrueml\JobRouterData\Domain\Model;
+namespace Brotkrueml\JobRouterData\Domain\Model\Table;
 
 /*
  * This file is part of the "jobrouter_data" extension for TYPO3 CMS.
@@ -10,23 +10,11 @@ namespace Brotkrueml\JobRouterData\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
-
-/**
- * Column model
- */
-class Column extends AbstractEntity
+class Cell
 {
-    /** @var string */
     protected $name = '';
-
-    /** @var string */
-    protected $label = '';
-
-    /** @var int */
+    protected $content = null;
     protected $type = 0;
-
-    /** @var int */
     protected $decimalPlaces = 0;
 
     public function getName(): string
@@ -39,14 +27,14 @@ class Column extends AbstractEntity
         $this->name = $name;
     }
 
-    public function getLabel(): string
+    public function getContent()
     {
-        return $this->label;
+        return $this->content;
     }
 
-    public function setLabel(string $label): void
+    public function setContent($content): void
     {
-        $this->label = $label;
+        $this->content = $content;
     }
 
     public function getType(): int

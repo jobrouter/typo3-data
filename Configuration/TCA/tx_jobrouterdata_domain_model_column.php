@@ -14,7 +14,7 @@ return [
         'hideTable' => true,
     ],
     'interface' => [
-        'showRecordFieldList' => 'name, type, label',
+        'showRecordFieldList' => 'name, label, type, decimal_places',
     ],
     'columns' => [
         'pid' => [
@@ -44,6 +44,16 @@ return [
                 'size' => 30,
                 'max' => 20,
                 'eval' => 'required,trim',
+            ],
+        ],
+        'label' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.label',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'max' => 255,
+                'eval' => 'trim'
             ],
         ],
         'type' => [
@@ -78,14 +88,23 @@ return [
                 'eval' => 'required',
             ],
         ],
-        'label' => [
+        'decimal_places' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.label',
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.decimal_places',
+            'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DECIMAL,
             'config' => [
                 'type' => 'input',
-                'size' => 30,
-                'max' => 255,
-                'eval' => 'trim'
+                'size' => 3,
+                'eval' => 'int,trim',
+                'range' => [
+                    'lower' => 1,
+                    'upper' => 10,
+                ],
+                'slider' => [
+                    'step' => 1,
+                    'width' => 200,
+                ],
+                'default' => 2,
             ],
         ],
     ],
@@ -93,7 +112,7 @@ return [
         '0' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                name, type, label,
+                name, label, type, decimal_places,
             '
         ],
     ],

@@ -1,0 +1,26 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:jobRouterData="http://typo3.org/ns/Brotkrueml/JobRouterData/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+    <f:if condition="{table} && {table.countRows}">
+        <table class="ce-table">
+            <thead>
+                <tr>
+                    <f:for each="{table.columns}" as="column">
+                        <th><jobRouterData:columnLabel column="{column}"/></th>
+                    </f:for>
+                </tr>
+            </thead>
+            <tbody>
+                <f:for each="{table.rows}" as="row">
+                    <tr>
+                        <f:for each="{row.cells}" as="cell">
+                            <td><jobRouterData:formatCell cell="{cell}"/></td>
+                        </f:for>
+                    </tr>
+                </f:for>
+            </tbody>
+        </table>
+    </f:if>
+</html>

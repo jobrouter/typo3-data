@@ -1,0 +1,44 @@
+<T3DataStructure>
+    <meta type="array">
+        <langChildren>0</langChildren>
+        <langDisable>1</langDisable>
+    </meta>
+    <ROOT>
+        <type>array</type>
+        <el>
+            <switchableControllerActions>
+                <TCEforms>
+                    <label>LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.mode</label>
+                    <config>
+                        <type>select</type>
+                        <renderType>selectSingle</renderType>
+                        <items>
+                            <numIndex index="0">
+                                <numIndex index="0">LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.mode.table_show</numIndex>
+                                <numIndex index="1">Table->show</numIndex>
+                            </numIndex>
+                        </items>
+                    </config>
+                </TCEforms>
+            </switchableControllerActions>
+            <settings.table>
+                <TCEforms>
+                    <label>LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.table</label>
+                    <config>
+                        <type>select</type>
+                        <renderType>selectSingle</renderType>
+                        <items>
+                            <numIndex index="0">
+                                <numIndex index="0"/>
+                                <numIndex index="1"/>
+                            </numIndex>
+                        </items>
+                        <eval>required</eval>
+                        <foreign_table>tx_jobrouterdata_domain_model_table</foreign_table>
+                        <foreign_table_where>ORDER BY name</foreign_table_where>
+                    </config>
+                </TCEforms>
+            </settings.table>
+        </el>
+    </ROOT>
+</T3DataStructure>
