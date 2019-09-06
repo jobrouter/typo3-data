@@ -19,6 +19,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 final class SyncCommand extends Command
 {
+    private const ARGUMENT_TABLE = 'table';
+
     /** @var SynchronisationRunner */
     private $synchronisationRunner;
 
@@ -27,14 +29,14 @@ final class SyncCommand extends Command
         $this
             ->setDescription('Synchronises JobData tables')
             ->setHelp('This command synchronises JobData tables from JobRouter instances into TYPO3. You can set a specific table name as argument. If the table argument is omitted, all enabled tables are processed.')
-            ->addArgument('table', InputArgument::OPTIONAL, 'The uid of a table (optional)');
+            ->addArgument(static::ARGUMENT_TABLE, InputArgument::OPTIONAL, 'The uid of a table (optional)');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $outputStyle = new SymfonyStyle($input, $output);
 
-        $tableUid = $input->getArgument('table') ? (int)$input->getArgument('table') : null;
+        $tableUid = $input->getArgument(static::ARGUMENT_TABLE) ? (int)$input->getArgument(static::ARGUMENT_TABLE) : null;
 
         try {
             $synchronisationRunner = $this->getSynchronisationRunner();

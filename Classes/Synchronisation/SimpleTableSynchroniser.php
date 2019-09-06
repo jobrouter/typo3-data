@@ -15,6 +15,8 @@ use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 
 class SimpleTableSynchroniser extends AbstractSynchroniser
 {
+    private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
+
     public function synchroniseTable(Table $table): void
     {
         $datasets = $this->retrieveDatasetsFromJobRouter($table);
@@ -23,13 +25,13 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
 
     private function storeDatasets(Table $table, array $datasets): void
     {
-        $connection = $this->connectionPool->getConnectionForTable('tx_jobrouterdata_domain_model_dataset');
+        $connection = $this->connectionPool->getConnectionForTable(static::DATASET_TABLE_NAME);
         $connection->setAutoCommit(false);
         $connection->beginTransaction();
 
         try {
             $connection->delete(
-                'tx_jobrouterdata_domain_model_dataset',
+                static::DATASET_TABLE_NAME,
                 ['table_uid' => $table->getUid()],
                 ['table_uid' => \PDO::PARAM_INT]
             );
@@ -48,7 +50,7 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
                 ];
 
                 $connection->insert(
-                    'tx_jobrouterdata_domain_model_dataset',
+                    static::DATASET_TABLE_NAME,
                     $data,
                     [
                         'pid' => \PDO::PARAM_INT,
