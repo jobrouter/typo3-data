@@ -35,7 +35,7 @@
                         </items>
                         <eval>required</eval>
                         <foreign_table>tx_jobrouterdata_domain_model_table</foreign_table>
-                        <foreign_table_where>ORDER BY name</foreign_table_where>
+                        <foreign_table_where>AND tx_jobrouterdata_domain_model_table.type=1 ORDER BY name</foreign_table_where>
                     </config>
                 </TCEforms>
             </settings.table>
