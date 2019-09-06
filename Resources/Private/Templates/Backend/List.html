@@ -12,9 +12,12 @@
     </f:section>
 
     <f:section name="content">
-        <f:if condition="{tables -> f:count()}">
+        <f:if condition="{simpleTables -> f:count()} || {localTables -> f:count()}">
             <f:then>
-                <f:render section="table" arguments="{_all}" />
+                <div id="jobrouter-data-table-list">
+                    <f:render section="localTables" arguments="{_all}" />
+                    <f:render section="simpleTables" arguments="{_all}" />
+                </div>
             </f:then>
             <f:else>
                 <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:tables_not_found.title')}">
@@ -27,37 +30,44 @@
         </f:if>
     </f:section>
 
-    <f:section name="table">
+    <f:section name="simpleTables">
+        <h2><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.synchronise_in_local_table"/></h2>
         <table class="table table-vertical-top table-striped table-hover">
             <thead>
                 <tr>
-                    <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.name"/></th>
-                    <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.connection"/></th>
-                    <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.table_guid"/></th>
+                    <f:render section="defaultColumnsHeader"/>
+                    <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.local_table"/></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <f:for each="{localTables}" as="table">
+                    <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
+                    <tr>
+                        <f:render section="defaultColumns" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
+                        <td>{table.localTable}</td>
+                        <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
+                    </tr>
+                </f:for>
+            </tbody>
+        </table>
+    </f:section>
+
+    <f:section name="localTables">
+        <h2><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.simple_synchronisation"/></h2>
+        <table class="table table-vertical-top table-striped table-hover">
+            <thead>
+                <tr>
+                    <f:render section="defaultColumnsHeader"/>
                     <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.columns"/></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody id="jobrouter-data-table-list">
-                <f:for each="{tables}" as="table">
+            <tbody>
+                <f:for each="{simpleTables}" as="table">
                     <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
                     <tr>
-                        <td>
-                            {table.name}
-                            <f:if condition="{table.disabled}">
-                                ({f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:status.disabled')})
-                            </f:if>
-                        </td>
-                        <td>
-                            <be:link.editRecord table="tx_jobrouterconnector_domain_model_connection" uid="{table.connection.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_connector/Resources/Private/Language/BackendModule.xlf:action.edit_connection')}">
-                                {table.connection.name}
-                            </be:link.editRecord>
-                        </td>
-                        <td>
-                            <f:link.external uri="{manageJobDataTableLink}" target="_blank" rel="noopener noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
-                                {table.tableGuid}
-                            </f:link.external>
-                        </td>
+                        <f:render section="defaultColumns" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
                         <td>
                             <ul>
                                 <f:for each="{table.columns}" as="column">
@@ -65,22 +75,49 @@
                                 </f:for>
                             </ul>
                         </td>
-                        <td>
-                            <div class="btn-group">
-                                <be:link.editRecord class="btn btn-default" table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">
-                                    <core:icon identifier="actions-open"/>
-                                </be:link.editRecord>
-                                <a class="btn btn-default jobrouter-data-table-check" data-table-uid="{table.uid}" data-table-name="{table.name}" href="#" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.check_table')}">
-                                    <core:icon identifier="actions-debug"/>
-                                </a>
-                                <f:link.external class="btn btn-default" uri="{manageJobDataTableLink}" target="_blank" rel="noopener noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
-                                    <core:icon identifier="actions-database"/>
-                                </f:link.external>
-                            </div>
-                        </td>
+                        <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
                     </tr>
                 </f:for>
             </tbody>
         </table>
+    </f:section>
+
+    <f:section name="defaultColumnsHeader">
+        <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.name"/></th>
+        <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.connection"/></th>
+        <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.table_guid"/></th>
+    </f:section>
+
+    <f:section name="defaultColumns">
+        <td>
+            <be:link.editRecord table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">{table.name}</be:link.editRecord>
+            <f:if condition="{table.disabled}">
+                ({f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+            </f:if>
+        </td>
+        <td>
+            {table.connection.name}
+        </td>
+        <td>
+            <f:link.external uri="{manageJobDataTableLink}" target="_blank" rel="noopener noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
+                {table.tableGuid}
+            </f:link.external>
+        </td>
+    </f:section>
+
+    <f:section name="buttonsColumn">
+        <td>
+            <div class="btn-group">
+                <be:link.editRecord class="btn btn-default" table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">
+                    <core:icon identifier="actions-open"/>
+                </be:link.editRecord>
+                <a class="btn btn-default jobrouter-data-table-check" data-table-uid="{table.uid}" data-table-name="{table.name}" href="#" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.check_table')}">
+                    <core:icon identifier="actions-debug"/>
+                </a>
+                <f:link.external class="btn btn-default" uri="{manageJobDataTableLink}" target="_blank" rel="noopener noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table_structure')}">
+                    <core:icon identifier="actions-database"/>
+                </f:link.external>
+            </div>
+        </td>
     </f:section>
 </html>

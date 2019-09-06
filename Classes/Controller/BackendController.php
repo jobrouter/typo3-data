@@ -9,6 +9,8 @@ namespace Brotkrueml\JobRouterData\Controller;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
@@ -63,9 +65,13 @@ class BackendController extends ActionController
             'TYPO3/CMS/JobrouterData/TableCheck'
         );
 
-        $tables = $this->tableRepository->findAllWithHidden();
+        $simpleTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_SIMPLE);
+        $localTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_LOCAL_TABLE);
 
-        $this->view->assign('tables', $tables);
+        $this->view->assignMultiple([
+            'simpleTables' => $simpleTables,
+            'localTables' => $localTables,
+        ]);
     }
 
     protected function createDocumentHeaderButtons(): void

@@ -54,11 +54,23 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.datasets">
 				<source><![CDATA[Datasets]]></source>
 			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.local_table">
+				<source><![CDATA[Local table]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.name">
 				<source><![CDATA[Name]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.table_guid">
-				<source><![CDATA[GUID of the table]]></source>
+				<source><![CDATA[Table GUID]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type">
+				<source><![CDATA[Type]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.simple_synchronisation">
+				<source><![CDATA[Simple synchronisation]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.synchronise_in_local_table">
+				<source><![CDATA[Synchronise in local table]]></source>
 			</trans-unit>
 		</body>
 	</file>

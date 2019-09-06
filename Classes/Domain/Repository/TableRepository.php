@@ -23,15 +23,16 @@ class TableRepository extends Repository
         'name' => QueryInterface::ORDER_ASCENDING,
     ];
 
-    public function findAllWithHidden()
+    public function findAllByTypeWithHidden(int $type)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->matching($query->equals('type', $type));
 
         return $query->execute();
     }
 
-    public function findByIdentifierWithHidden($identifier)
+    public function findByIdentifierWithHidden(int $identifier)
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setIgnoreEnableFields(true);

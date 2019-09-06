@@ -22,14 +22,23 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Table extends AbstractEntity
 {
+    public const TYPE_SIMPLE = 1;
+    public const TYPE_LOCAL_TABLE = 2;
+
+    /** @var int */
+    protected $type = 0;
+
     /** @var string */
     protected $name = '';
 
-    /** @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection */
-    protected $connection = '';
+    /** @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null */
+    protected $connection = null;
 
     /** @var string */
     protected $tableGuid = '';
+
+    /** @var string */
+    protected $localTable = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column>
@@ -59,6 +68,16 @@ class Table extends AbstractEntity
         $this->datasets = new ObjectStorage();
     }
 
+    public function getType(): int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): void
+    {
+        $this->type = $type;
+    }
+
     public function getName(): string
     {
         return $this->name;
@@ -69,7 +88,7 @@ class Table extends AbstractEntity
         $this->name = $name;
     }
 
-    public function getConnection(): Connection
+    public function getConnection(): ?Connection
     {
         return $this->connection;
     }
@@ -87,6 +106,16 @@ class Table extends AbstractEntity
     public function setTableGuid(string $tableGuid): void
     {
         $this->tableGuid = $tableGuid;
+    }
+
+    public function getLocalTable(): string
+    {
+        return $this->localTable;
+    }
+
+    public function setLocalTable(string $localTable): void
+    {
+        $this->localTable = $localTable;
     }
 
     public function addColumn(Column $column): void
