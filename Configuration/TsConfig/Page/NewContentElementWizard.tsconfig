@@ -1,17 +1,17 @@
 mod.wizards.newContentElement.wizardItems {
-    plugins {
-        elements {
-            jobrouter_data {
-                iconIdentifier = jobrouterdata_pi
-                title = LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plugin_title
-                description = LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plugin_description
-                tt_content_defValues {
-                    CType = list
-                    list_type = jobrouterdata_pi
-                }
-            }
+  plugins {
+    elements {
+      jobrouter_data {
+        iconIdentifier = jobrouterdata_pi
+        title = LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plugin_title
+        description = LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plugin_description
+        tt_content_defValues {
+          CType = list
+          list_type = jobrouterdata_pi
         }
-
-        show := addToList(jobrouter_data)
+      }
     }
+
+    show := addToList(jobrouter_data)
+  }
 }
