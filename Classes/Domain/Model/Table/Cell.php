@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterData\Domain\Model\Table;
 class Cell
 {
     protected $name = '';
-    protected $content = null;
+    protected $content;
     protected $type = 0;
     protected $decimalPlaces = 0;
 

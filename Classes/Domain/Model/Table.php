@@ -32,7 +32,7 @@ class Table extends AbstractEntity
     protected $name = '';
 
     /** @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null */
-    protected $connection = null;
+    protected $connection;
 
     /** @var string */
     protected $tableGuid = '';
@@ -45,14 +45,14 @@ class Table extends AbstractEntity
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $columns = null;
+    protected $columns;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Dataset>
      * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade
      * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
      */
-    protected $datasets = null;
+    protected $datasets;
 
     /** @var bool */
     protected $disabled = false;
