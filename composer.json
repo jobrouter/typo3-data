@@ -1,5 +1,5 @@
 {
-    "name": "brotkrueml/jobrouter-data",
+    "name": "brotkrueml/typo3-jobrouter-data",
     "type": "typo3-cms-extension",
     "description": "Synchronise JobData tables into TYPO3",
     "license": "GPL-2.0-or-later",
