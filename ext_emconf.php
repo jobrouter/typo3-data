@@ -6,11 +6,11 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'Chris Müller',
     'author_email' => 'typo3@krue.ml',
     'state' => 'alpha',
-    'version' => '0.1.0',
+    'version' => '0.2.0',
     'constraints' => [
         'depends' => [
             'typo3' => '9.5.0-9.5.99',
-            'jobrouter_connector' => '0.2.0-0.0.0',
+            'jobrouter_connector' => '0.3.0-0.0.0',
         ],
         'conflicts' => [],
         'suggests' => [],
