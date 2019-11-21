@@ -15,8 +15,12 @@
         <f:if condition="{simpleTables -> f:count()} || {localTables -> f:count()}">
             <f:then>
                 <div id="jobrouter-data-table-list">
-                    <f:render section="localTables" arguments="{_all}" />
-                    <f:render section="simpleTables" arguments="{_all}" />
+                    <f:if condition="{simpleTables -> f:count()}">
+                        <f:render section="localTables" arguments="{_all}"/>
+                    </f:if>
+                    <f:if condition="{localTables -> f:count()}">
+                        <f:render section="simpleTables" arguments="{_all}"/>
+                    </f:if>
                 </div>
             </f:then>
             <f:else>
