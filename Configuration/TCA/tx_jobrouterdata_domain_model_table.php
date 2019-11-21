@@ -70,7 +70,7 @@ return [
             'config' => [
                 'type' => 'input',
                 'size' => 30,
-                'max' => 30,
+                'max' => 255,
                 'eval' => 'required,trim'
             ],
         ],
