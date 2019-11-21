@@ -20,7 +20,7 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['column' => $column]);
 
-        $this->assertSame('someColumnLabel', $actual);
+        self::assertSame('someColumnLabel', $actual);
     }
 
     /**
@@ -34,7 +34,7 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['column' => $column]);
 
-        $this->assertSame('Some column label', $actual);
+        self::assertSame('Some column label', $actual);
     }
 
     /**
@@ -45,7 +45,7 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
     {
         $languageServiceMock = $this->initialiseLanguageServiceMock();
         $languageServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('sL')
             ->with('LLL:EXT:some_extension/Resources/Private/Language/locallang.xml:some-localised-column-label')
             ->willReturn('the localised column label');
@@ -56,7 +56,7 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['column' => $column]);
 
-        $this->assertSame('the localised column label', $actual);
+        self::assertSame('the localised column label', $actual);
     }
 
     /**

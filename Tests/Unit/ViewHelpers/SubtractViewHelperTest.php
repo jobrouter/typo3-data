@@ -21,7 +21,7 @@ class SubtractViewHelperTest extends ViewHelperTestCase
             ['minuend' => $minuend, 'subtrahend' => $subtrahend]
         );
 
-        $this->assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 
     public function dataProvider(): array

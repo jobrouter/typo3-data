@@ -22,7 +22,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
-        $this->assertSame('some text content', $actual);
+        self::assertSame('some text content', $actual);
     }
 
     /**
@@ -36,7 +36,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
-        $this->assertSame('42', $actual);
+        self::assertSame('42', $actual);
     }
 
     /**
@@ -47,12 +47,12 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
     {
         $languageServiceMock = $this->initialiseLanguageServiceMock();
         $languageServiceMock
-            ->expects($this->at(0))
+            ->expects(self::at(0))
             ->method('sL')
             ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:decimal_point')
             ->willReturn('#');
         $languageServiceMock
-            ->expects($this->at(1))
+            ->expects(self::at(1))
             ->method('sL')
             ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:thousands_separator')
             ->willReturn('$');
@@ -64,7 +64,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
-        $this->assertSame('1$234#568', $actual);
+        self::assertSame('1$234#568', $actual);
     }
 
     /**
@@ -75,7 +75,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
     {
         $languageServiceMock = $this->initialiseLanguageServiceMock();
         $languageServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('sL')
             ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:date')
             ->willReturn('d+m+Y');
@@ -86,7 +86,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
-        $this->assertSame('15+05+2019', $actual);
+        self::assertSame('15+05+2019', $actual);
     }
 
     /**
@@ -97,7 +97,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
     {
         $languageServiceMock = $this->initialiseLanguageServiceMock();
         $languageServiceMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('sL')
             ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:datetime')
             ->willReturn('d+m+Y H-i-s');
@@ -108,7 +108,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
-        $this->assertSame('15+05+2019 12-34-56', $actual);
+        self::assertSame('15+05+2019 12-34-56', $actual);
     }
 
     /**
@@ -122,7 +122,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
-        $this->assertSame('some invalid date content', $actual);
+        self::assertSame('some invalid date content', $actual);
     }
 
     /**
@@ -136,7 +136,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
-        $this->assertSame('some invalid datetime content', $actual);
+        self::assertSame('some invalid datetime content', $actual);
     }
 
     /**

@@ -19,7 +19,7 @@ class SyncCommandTest extends TestCase
     /** @var CommandTester */
     private $commandTester;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->synchronisationRunnerMock = $this->createMock(SynchronisationRunner::class);
 
@@ -41,7 +41,7 @@ class SyncCommandTest extends TestCase
 
         $actual = $this->commandTester->getDisplay();
 
-        $this->assertStringStartsWith('[OK]', trim($actual));
+        self::assertStringStartsWith('[OK]', trim($actual));
     }
 
     /**
@@ -58,6 +58,6 @@ class SyncCommandTest extends TestCase
 
         $actual = $this->commandTester->getDisplay();
 
-        $this->assertSame('[ERROR] some synchronisation error', trim($actual));
+        self::assertSame('[ERROR] some synchronisation error', trim($actual));
     }
 }

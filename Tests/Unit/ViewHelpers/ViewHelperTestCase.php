@@ -19,7 +19,7 @@ class ViewHelperTestCase extends TestCase
     /** @var TemplateView */
     protected $view;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->root = vfsStream::setup('test-dir');
         $this->view = new TemplateView();
