@@ -18,10 +18,26 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 class Dataset extends AbstractEntity
 {
     /** @var int */
+    protected $tableUid = 0;
+
+    /** @var int */
     protected $jrid = 0;
 
     /** @var string */
     protected $dataset = '';
+
+    /** @var array */
+    protected $decodedDataset;
+
+    public function getTableUid(): int
+    {
+        return $this->tableUid;
+    }
+
+    public function setTableUid(int $tableUid): void
+    {
+        $this->tableUid = $tableUid;
+    }
 
     public function getJrid(): int
     {
@@ -41,5 +57,15 @@ class Dataset extends AbstractEntity
     public function setDataset(string $dataset): void
     {
         $this->dataset = $dataset;
+        $this->decodedDataset = null;
+    }
+
+    public function getDatasetValue(string $column): ?string
+    {
+        if (\is_null($this->decodedDataset)) {
+            $this->decodedDataset = \json_decode($this->dataset, true);
+        }
+
+        return $this->decodedDataset[$column] ?? null;
     }
 }
