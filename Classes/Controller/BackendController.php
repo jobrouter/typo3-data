@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
@@ -68,9 +69,16 @@ class BackendController extends ActionController
         $simpleTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_SIMPLE);
         $localTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_LOCAL_TABLE);
 
+        if (ExtensionManagementUtility::isLoaded('jobrouter_form')) {
+            $otherTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_OTHER_USAGE);
+        } else {
+            $otherTables = [];
+        }
+
         $this->view->assignMultiple([
             'simpleTables' => $simpleTables,
             'localTables' => $localTables,
+            'otherTables' => $otherTables,
         ]);
     }
 

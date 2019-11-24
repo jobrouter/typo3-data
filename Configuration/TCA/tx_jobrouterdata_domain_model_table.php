@@ -141,13 +141,13 @@ return [
         ],
     ],
     'types' => [
-        '1' => ['showitem' => '
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => ['showitem' => '
             type, connection, name, table_guid, columns,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
         '],
-        '2' => ['showitem' => '
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_LOCAL_TABLE => ['showitem' => '
             type, connection, name, table_guid, local_table,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,

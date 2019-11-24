@@ -24,6 +24,7 @@ class Table extends AbstractEntity
 {
     public const TYPE_SIMPLE = 1;
     public const TYPE_LOCAL_TABLE = 2;
+    public const TYPE_OTHER_USAGE = 3;
 
     /** @var int */
     protected $type = 0;

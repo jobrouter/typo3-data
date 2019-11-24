@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-09-03T11:29:03Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-11-24T10:22:51Z" product-name="jobrouter_data">
 		<header/>
 		<body>
 			<trans-unit id="tx_jobrouterdata_domain_model_column">
@@ -65,6 +65,9 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type">
 				<source><![CDATA[Type]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.other_usage">
+				<source><![CDATA[Other usage (no synchronisation)]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type.simple_synchronisation">
 				<source><![CDATA[Simple synchronisation]]></source>
