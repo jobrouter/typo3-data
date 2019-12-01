@@ -50,6 +50,10 @@ return [
                         'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.synchronise_in_local_table',
                         \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_LOCAL_TABLE
                     ],
+                    [
+                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.other_usage',
+                        \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE
+                    ],
                 ],
             ],
         ],
@@ -149,6 +153,13 @@ return [
         '],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_LOCAL_TABLE => ['showitem' => '
             type, connection, name, table_guid, local_table,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            disabled,
+            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+        '
+        ],
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => ['showitem' => '
+            type, connection, name, table_guid,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
