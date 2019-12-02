@@ -58,4 +58,9 @@ abstract class AbstractSynchroniser
 
         return $responseContent['datasets'];
     }
+
+    protected function hashDatasets(array $datasets): string
+    {
+        return \sha1(\serialize($datasets));
+    }
 }

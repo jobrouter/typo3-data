@@ -17,7 +17,8 @@
         "typo3/cms-backend": "^9.5",
         "typo3/cms-core": "^9.5",
         "typo3/cms-extbase": "^9.5",
-        "typo3/cms-fluid": "^9.5"
+        "typo3/cms-fluid": "^9.5",
+		"typo3/cms-frontend": "^9.5"
     },
     "require-dev": {
         "mikey179/vfsstream": "^1.6",

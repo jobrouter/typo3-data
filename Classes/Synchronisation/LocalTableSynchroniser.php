@@ -38,6 +38,13 @@ class LocalTableSynchroniser extends AbstractSynchroniser
 
     private function storeDatasets(Table $table, array $localTableColumns, array $datasets): void
     {
+        $datasetsHash = $this->hashDatasets($datasets);
+
+        if ($datasetsHash === $table->getDatasetsSyncHash()) {
+            $this->logger->info('Datasets have not changed', ['table_uid' => $table->getUid()]);
+            return;
+        }
+
         $localTable = $table->getLocalTable();
 
         $connection = $this->connectionPool->getConnectionForTable($localTable);
@@ -61,6 +68,14 @@ class LocalTableSynchroniser extends AbstractSynchroniser
                 }
 
                 $connection->insert($localTable, $data);
+
+                $connection->update(
+                    'tx_jobrouterdata_domain_model_table',
+                    ['datasets_sync_hash' => $datasetsHash],
+                    ['uid' => $table->getUid()],
+                    ['datasets_sync_hash' => \PDO::PARAM_STR]
+                );
+
                 $this->logger->debug('Inserted table record in transaction', $data);
             }
         } catch (\Exception $e) {

@@ -10,6 +10,7 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 
@@ -25,6 +26,13 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
 
     private function storeDatasets(Table $table, array $datasets): void
     {
+        $datasetsHash = $this->hashDatasets($datasets);
+
+        if ($datasetsHash === $table->getDatasetsSyncHash()) {
+            $this->logger->info('Datasets have not changed', ['table_uid' => $table->getUid()]);
+            return;
+        }
+
         $connection = $this->connectionPool->getConnectionForTable(static::DATASET_TABLE_NAME);
         $connection->setAutoCommit(false);
         $connection->beginTransaction();
@@ -60,6 +68,13 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
                     ]
                 );
 
+                $connection->update(
+                    'tx_jobrouterdata_domain_model_table',
+                    ['datasets_sync_hash' => $datasetsHash],
+                    ['uid' => $table->getUid()],
+                    ['datasets_sync_hash' => \PDO::PARAM_STR]
+                );
+
                 $this->logger->debug('Inserted table record in transaction', $data);
             }
         } catch (\Exception $e) {
@@ -75,5 +90,7 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
 
         $connection->commit();
         $connection->setAutoCommit(true);
+
+        Cache::clearCacheByTable($table->getUid());
     }
 }

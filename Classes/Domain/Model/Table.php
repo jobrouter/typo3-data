@@ -55,6 +55,9 @@ class Table extends AbstractEntity
      */
     protected $datasets;
 
+    /** @var string */
+    protected $datasetsSyncHash = '';
+
     /** @var bool */
     protected $disabled = false;
 
@@ -181,5 +184,15 @@ class Table extends AbstractEntity
     public function setDisabled(bool $disabled): void
     {
         $this->disabled = $disabled;
+    }
+
+    public function getDatasetsSyncHash(): string
+    {
+        return $this->datasetsSyncHash;
+    }
+
+    public function setDatasetsSyncHash(string $datasetsSyncHash): void
+    {
+        $this->datasetsSyncHash = $datasetsSyncHash;
     }
 }

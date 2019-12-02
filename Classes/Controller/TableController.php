@@ -10,6 +10,7 @@ namespace Brotkrueml\JobRouterData\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -50,5 +51,7 @@ class TableController extends ActionController implements LoggerAwareInterface
             'table' => $table,
             'settings' => $this->settings,
         ]);
+
+        Cache::addCacheTagByTable($tableUid);
     }
 }
