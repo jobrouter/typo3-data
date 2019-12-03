@@ -66,6 +66,11 @@ class SynchronisationRunner
             return;
         }
 
+        if ($table->getType() === Table::TYPE_OTHER_USAGE) {
+            // do nothing
+            return;
+        }
+
         $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
         $this->logger->error($message);
     }
