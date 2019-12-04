@@ -47,4 +47,7 @@ defined('TYPO3_MODE') || die('Access denied.');
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['jobrouterdata_pi'][$extensionKey] =
         \Brotkrueml\JobRouterData\Hooks\PageLayoutView::class . '->getExtensionSummary';
+
+    $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass'][] =
+        \Brotkrueml\JobRouterData\Hooks\TableUpdateHook::class;
 })('jobrouter_data');
