@@ -1,7 +1,7 @@
 <?php
 defined('TYPO3_MODE') || die('Access denied.');
 
-(function ($extensionKey) {
+(function ($extensionKey = 'jobrouter_data') {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
         'Brotkrueml.JobRouterData',
         'jobrouter',
@@ -50,4 +50,4 @@ defined('TYPO3_MODE') || die('Access denied.');
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass'][] =
         \Brotkrueml\JobRouterData\Hooks\TableUpdateHook::class;
-})('jobrouter_data');
+})();
