@@ -32,7 +32,7 @@ class TableUpdateHookTest extends TestCase
      */
     private $subject;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->connectionMock = $this->createMock(Connection::class);
         $this->connectionPoolMock = $this->createMock(ConnectionPool::class);
@@ -47,16 +47,16 @@ class TableUpdateHookTest extends TestCase
     public function tableIsDeletedRemovesDatasets(): void
     {
         $this->connectionMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('delete')
             ->with(
-                $this->equalTo('tx_jobrouterdata_domain_model_dataset'),
-                $this->equalTo(['table_uid' => 42]),
-                $this->equalTo(['table_uid' => Connection::PARAM_INT])
+                self::equalTo('tx_jobrouterdata_domain_model_dataset'),
+                self::equalTo(['table_uid' => 42]),
+                self::equalTo(['table_uid' => Connection::PARAM_INT])
             );
 
         $this->connectionPoolMock
-            ->expects($this->once())
+            ->expects(self::once())
             ->method('getConnectionForTable')
             ->with('tx_jobrouterdata_domain_model_dataset')
             ->willReturn($this->connectionMock);
@@ -76,7 +76,7 @@ class TableUpdateHookTest extends TestCase
     public function otherTableIsProcessedDoesNothing(): void
     {
         $this->connectionPoolMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getConnectionForTable');
 
         $this->subject->processCmdmap_postProcess(
@@ -94,7 +94,7 @@ class TableUpdateHookTest extends TestCase
     public function otherActionThanDeletDoesNothing(): void
     {
         $this->connectionPoolMock
-            ->expects($this->never())
+            ->expects(self::never())
             ->method('getConnectionForTable');
 
         $this->subject->processCmdmap_postProcess(
