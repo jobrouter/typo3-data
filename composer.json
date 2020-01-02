@@ -13,7 +13,7 @@
         "php": "^7.2",
         "ext-json": "*",
         "ext-pdo": "*",
-        "brotkrueml/typo3-jobrouter-connector": "^0.4",
+        "brotkrueml/typo3-jobrouter-connector": "^0.5",
         "typo3/cms-backend": "^9.5",
         "typo3/cms-core": "^9.5",
         "typo3/cms-extbase": "^9.5",
@@ -34,9 +34,6 @@
         "psr-4": {
             "Brotkrueml\\JobRouterData\\Tests\\": "Tests"
         }
-    },
-    "replace": {
-        "typo3-ter/typo3-jobrouter-data": "self.version"
     },
     "config": {
         "sort-packages": true,

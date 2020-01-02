@@ -10,7 +10,7 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterConnector\Service\Rest;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -40,18 +40,19 @@ abstract class AbstractSynchroniser
 
     protected function retrieveDatasetsFromJobRouter(Table $table): array
     {
-        $restClient = (new Rest())->getRestClient($table->getConnection());
+        $restClient = (new RestClientFactory())->create($table->getConnection());
 
         $response = $restClient->request(
-            \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid()),
-            'GET'
+            'GET',
+            \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
         );
 
-        $responseContent = \json_decode($response->getContent(), true);
+        $content = $response->getBody()->getContents();
+        $responseContent = \json_decode($content, true);
 
         if ($responseContent === null) {
             $message = 'Content of response is no valid JSON!';
-            $this->logger->emergency($message, ['received content' => $response->getContent()]);
+            $this->logger->emergency($message, ['received content' => $content]);
 
             throw new SynchronisationException($message, 1567004495);
         }
