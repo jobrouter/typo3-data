@@ -13,7 +13,7 @@
         "php": "^7.2",
         "ext-json": "*",
         "ext-pdo": "*",
-        "brotkrueml/typo3-jobrouter-connector": "^0.5",
+        "brotkrueml/typo3-jobrouter-connector": "^0.6",
         "typo3/cms-backend": "^9.5",
         "typo3/cms-core": "^9.5",
         "typo3/cms-extbase": "^9.5",
