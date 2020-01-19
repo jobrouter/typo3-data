@@ -72,8 +72,8 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type.simple_synchronisation">
 				<source><![CDATA[Simple synchronisation]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.type.synchronise_in_local_table">
-				<source><![CDATA[Synchronise in local table]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table">
+				<source><![CDATA[Synchronisation in own table]]></source>
 			</trans-unit>
 		</body>
 	</file>

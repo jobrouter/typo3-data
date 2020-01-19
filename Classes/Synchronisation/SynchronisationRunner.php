@@ -61,7 +61,7 @@ class SynchronisationRunner
             return;
         }
 
-        if ($table->getType() === Table::TYPE_LOCAL_TABLE) {
+        if ($table->getType() === Table::TYPE_OWN_TABLE) {
             $this->localTableSynchroniser->synchroniseTable($table);
             return;
         }

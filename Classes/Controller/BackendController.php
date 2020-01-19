@@ -67,7 +67,7 @@ class BackendController extends ActionController
         );
 
         $simpleTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_SIMPLE);
-        $localTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_LOCAL_TABLE);
+        $localTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_OWN_TABLE);
 
         if (ExtensionManagementUtility::isLoaded('jobrouter_form')) {
             $otherTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_OTHER_USAGE);

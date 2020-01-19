@@ -47,8 +47,8 @@ return [
                         \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE
                     ],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.synchronise_in_local_table',
-                        \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_LOCAL_TABLE
+                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table',
+                        \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE
                     ],
                     [
                         'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.other_usage',
@@ -90,7 +90,7 @@ return [
         ],
         'local_table' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.local_table',
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.own_table',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -151,7 +151,7 @@ return [
             disabled,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
         '],
-        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_LOCAL_TABLE => ['showitem' => '
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => ['showitem' => '
             type, connection, name, table_guid, local_table,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
