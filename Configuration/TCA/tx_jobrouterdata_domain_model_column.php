@@ -59,6 +59,7 @@ return [
         'type' => [
             'exclude' => true,
             'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.type',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -112,8 +113,13 @@ return [
         '0' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                name, label, type, decimal_places,
+                --palette--;;nameLabel,
+                --palette--;;type,
             '
         ],
+    ],
+    'palettes' => [
+        'nameLabel' => ['showitem' => 'name, label'],
+        'type' => ['showitem' => 'type, decimal_places'],
     ],
 ];
