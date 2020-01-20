@@ -10,14 +10,8 @@
 				<source><![CDATA[Show the content of a synchronised JobData table.]]></source>
 			</trans-unit>
 
-			<trans-unit id="flexform.mode">
-				<source><![CDATA[What to show]]></source>
-			</trans-unit>
-			<trans-unit id="flexform.mode.table_show">
-				<source><![CDATA[Show table]]></source>
-			</trans-unit>
-			<trans-unit id="flexform.table">
-				<source><![CDATA[Table]]></source>
+			<trans-unit id="flexform.table_link">
+				<source><![CDATA[Table Link]]></source>
 			</trans-unit>
 
 			<trans-unit id="plus_one_more_row">
@@ -27,14 +21,11 @@
 				<source><![CDATA[plus %d more rows]]></source>
 			</trans-unit>
 
-			<trans-unit id="error.mode_not_configured">
-				<source><![CDATA[The display mode is not configured!]]></source>
-			</trans-unit>
 			<trans-unit id="error.table_has_no_rows">
 				<source><![CDATA[The table currently has no rows.]]></source>
 			</trans-unit>
 			<trans-unit id="error.table_not_available">
-				<source><![CDATA[The table is not available! Please check, if the table is not disabled and is set in the plugin.]]></source>
+				<source><![CDATA[The table is not available! Please check, if the table is enabled and is configured in the plugin.]]></source>
 			</trans-unit>
 		</body>
 	</file>

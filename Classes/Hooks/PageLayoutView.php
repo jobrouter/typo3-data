@@ -44,19 +44,13 @@ final class PageLayoutView
     {
         $this->flexformData = GeneralUtility::xml2array($params['row']['pi_flexform']);
 
-        $action = $this->getFieldFromFlexform('switchableControllerActions');
-        $actionTranslationKey = strtolower(str_replace('->', '_', $action));
-
         $tableId = (int)$this->getFieldFromFlexform('settings.table');
         $table = null;
         if ($tableId) {
             $table = $this->tableRepository->findByIdentifier($tableId);
         }
 
-        $this->view->assignMultiple([
-            'actionTranslationKey' => $actionTranslationKey,
-            'table' => $table,
-        ]);
+        $this->view->assign('table', $table);
 
         return $this->view->render();
     }

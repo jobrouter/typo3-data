@@ -6,24 +6,9 @@
     <ROOT>
         <type>array</type>
         <el>
-            <switchableControllerActions>
-                <TCEforms>
-                    <label>LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.mode</label>
-                    <config>
-                        <type>select</type>
-                        <renderType>selectSingle</renderType>
-                        <items>
-                            <numIndex index="0">
-                                <numIndex index="0">LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.mode.table_show</numIndex>
-                                <numIndex index="1">Table->show</numIndex>
-                            </numIndex>
-                        </items>
-                    </config>
-                </TCEforms>
-            </switchableControllerActions>
             <settings.table>
                 <TCEforms>
-                    <label>LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.table</label>
+                    <label>LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.table_link</label>
                     <config>
                         <type>select</type>
                         <renderType>selectSingle</renderType>

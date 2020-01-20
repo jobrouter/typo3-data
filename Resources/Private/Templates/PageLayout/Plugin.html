@@ -51,42 +51,28 @@
 
     <strong><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plugin_title"/></strong>
     <br>
+    <strong class="jobrouter-data-plugin-info">
+        <f:if condition="{table.name}">{table.name}</f:if>
+    </strong>
+    <br>
+    <br>
 
-    <f:if condition="{actionTranslationKey}">
+    <f:if condition="{table}">
         <f:then>
-            <strong class="jobrouter-data-plugin-info">
-                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.mode.{actionTranslationKey}"/>
-                <f:if condition="{table.name}">
-                    ({table.name})
-                </f:if>
-            </strong>
-            <br>
-            <br>
-
-            <f:if condition="{table}">
+            <f:if condition="{table.countRows}">
                 <f:then>
-                    <f:if condition="{table.countRows}">
-                        <f:then>
-                            <f:render section="DatasetExcerpt" arguments="{table: table}"/>
-                        </f:then>
-                        <f:else>
-                            <div class="alert alert-info">
-                                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_has_no_rows"/>
-                            </div>
-                        </f:else>
-                    </f:if>
+                    <f:render section="DatasetExcerpt" arguments="{table: table}"/>
                 </f:then>
                 <f:else>
-                    <div class="alert alert-danger">
-                        <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_not_available"/>
+                    <div class="alert alert-info">
+                        <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_has_no_rows"/>
                     </div>
                 </f:else>
             </f:if>
         </f:then>
         <f:else>
-            <br>
             <div class="alert alert-danger">
-                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.mode_not_configured"/>
+                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_not_available"/>
             </div>
         </f:else>
     </f:if>
