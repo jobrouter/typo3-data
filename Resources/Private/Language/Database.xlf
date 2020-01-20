@@ -43,7 +43,7 @@
 				<source><![CDATA[Dataset]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table">
-				<source><![CDATA[JobData Table]]></source>
+				<source><![CDATA[JobData Table Link]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.columns">
 				<source><![CDATA[Columns]]></source>
@@ -52,7 +52,7 @@
 				<source><![CDATA[Connection]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.datasets">
-				<source><![CDATA[Datasets]]></source>
+				<source><![CDATA[Data sets]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.own_table">
 				<source><![CDATA[Own table]]></source>
@@ -61,7 +61,7 @@
 				<source><![CDATA[Name]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.table_guid">
-				<source><![CDATA[Table GUID]]></source>
+				<source><![CDATA[JobData Table GUID]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type">
 				<source><![CDATA[Type]]></source>
