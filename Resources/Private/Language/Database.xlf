@@ -54,8 +54,8 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.datasets">
 				<source><![CDATA[Datasets]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.local_table">
-				<source><![CDATA[Local table]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.own_table">
+				<source><![CDATA[Own table]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.name">
 				<source><![CDATA[Name]]></source>

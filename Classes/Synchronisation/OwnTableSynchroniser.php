@@ -14,29 +14,29 @@ use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 
-class LocalTableSynchroniser extends AbstractSynchroniser
+class OwnTableSynchroniser extends AbstractSynchroniser
 {
     public function synchroniseTable(Table $table): void
     {
         $datasets = $this->retrieveDatasetsFromJobRouter($table);
-        $columns = $this->getLocalTableColumns($table);
+        $columns = $this->getOwnTableColumns($table);
 
         $this->storeDatasets($table, $columns, $datasets);
     }
 
-    private function getLocalTableColumns(Table $table): array
+    private function getOwnTableColumns(Table $table): array
     {
-        $localTable = $table->getLocalTable();
+        $ownTable = $table->getOwnTable();
 
-        $connection = $this->connectionPool->getConnectionForTable($localTable);
+        $connection = $this->connectionPool->getConnectionForTable($ownTable);
 
         /** @var AbstractSchemaManager $schemaManager */
         $schemaManager = $connection->getSchemaManager();
 
-        return \array_keys($schemaManager->listTableColumns($localTable));
+        return \array_keys($schemaManager->listTableColumns($ownTable));
     }
 
-    private function storeDatasets(Table $table, array $localTableColumns, array $datasets): void
+    private function storeDatasets(Table $table, array $ownTableColumns, array $datasets): void
     {
         $datasetsHash = $this->hashDatasets($datasets);
 
@@ -45,29 +45,29 @@ class LocalTableSynchroniser extends AbstractSynchroniser
             return;
         }
 
-        $localTable = $table->getLocalTable();
+        $ownTable = $table->getOwnTable();
 
-        $connection = $this->connectionPool->getConnectionForTable($localTable);
+        $connection = $this->connectionPool->getConnectionForTable($ownTable);
         $connection->setAutoCommit(false);
         $connection->beginTransaction();
 
         try {
-            $connection->truncate($localTable);
-            $this->logger->debug('Truncated table in transaction', ['local table' => $localTable]);
+            $connection->truncate($ownTable);
+            $this->logger->debug('Truncated table in transaction', ['own table' => $ownTable]);
 
             foreach ($datasets as $dataset) {
                 $data = [];
 
                 foreach ($dataset as $column => $content) {
                     $column = \strtolower($column);
-                    if (!\in_array($column, $localTableColumns)) {
+                    if (!\in_array($column, $ownTableColumns)) {
                         continue;
                     }
 
                     $data[$column] = $content;
                 }
 
-                $connection->insert($localTable, $data);
+                $connection->insert($ownTable, $data);
 
                 $connection->update(
                     'tx_jobrouterdata_domain_model_table',
@@ -83,7 +83,7 @@ class LocalTableSynchroniser extends AbstractSynchroniser
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
-                ['table uid' => $table->getUid(), 'local table' => $localTable, 'message' => $e->getMessage()]
+                ['table uid' => $table->getUid(), 'own table' => $ownTable, 'message' => $e->getMessage()]
             );
 
             throw new SynchronisationException($e->getMessage(), 1567799062, $e);

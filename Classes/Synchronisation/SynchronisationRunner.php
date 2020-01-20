@@ -29,8 +29,8 @@ class SynchronisationRunner
     /** @var SimpleTableSynchroniser */
     private $simpleTableSynchroniser;
 
-    /** @var LocalTableSynchroniser */
-    private $localTableSynchroniser;
+    /** @var OwnTableSynchroniser */
+    private $ownTableSynchroniser;
 
     public function __construct()
     {
@@ -38,7 +38,7 @@ class SynchronisationRunner
         $this->tableRepository = $objectManager->get(TableRepository::class);
         $this->logger = $objectManager->get(LogManager::class)->getLogger(__CLASS__);
         $this->simpleTableSynchroniser = $objectManager->get(SimpleTableSynchroniser::class);
-        $this->localTableSynchroniser = $objectManager->get(LocalTableSynchroniser::class);
+        $this->ownTableSynchroniser = $objectManager->get(OwnTableSynchroniser::class);
     }
 
     public function run(?int $tableUid): void
@@ -62,7 +62,7 @@ class SynchronisationRunner
         }
 
         if ($table->getType() === Table::TYPE_OWN_TABLE) {
-            $this->localTableSynchroniser->synchroniseTable($table);
+            $this->ownTableSynchroniser->synchroniseTable($table);
             return;
         }
 

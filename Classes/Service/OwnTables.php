@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-final class LocalSynchronisationTables
+final class OwnTables
 {
     /**
      * @var ConnectionPool
@@ -29,20 +29,20 @@ final class LocalSynchronisationTables
         $this->connectionPool = $objectManager->get(ConnectionPool::class);
     }
 
-    public function getLocalTables(array $config): array
+    public function getTables(array $config): array
     {
         $connection = $this->connectionPool->getConnectionForTable('tx_jobrouterdata_domain_model_table');
 
-        $alreadyAssignedLocalTables = \array_column(
+        $alreadyAssignedTables = \array_column(
             $connection->fetchAll(
-                'SELECT local_table FROM tx_jobrouterdata_domain_model_table WHERE local_table != ""'
+                'SELECT own_table FROM tx_jobrouterdata_domain_model_table WHERE own_table != ""'
             ),
-            'local_table'
+            'own_table'
         );
 
-        $alreadyAssignedLocalTables = \array_diff(
-            $alreadyAssignedLocalTables,
-            [$config['row']['local_table']]
+        $alreadyAssignedTables = \array_diff(
+            $alreadyAssignedTables,
+            [$config['row']['own_table']]
         );
 
         /** @var AbstractSchemaManager $schemaManager */
@@ -58,7 +58,7 @@ final class LocalSynchronisationTables
                 continue;
             }
 
-            if (\in_array($tableName, $alreadyAssignedLocalTables)) {
+            if (\in_array($tableName, $alreadyAssignedTables)) {
                 continue;
             }
 

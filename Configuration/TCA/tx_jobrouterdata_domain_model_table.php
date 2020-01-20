@@ -88,7 +88,7 @@ return [
                 'eval' => 'alphanum_x,required,trim,upper',
             ],
         ],
-        'local_table' => [
+        'own_table' => [
             'exclude' => true,
             'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.own_table',
             'config' => [
@@ -97,7 +97,7 @@ return [
                 'items' => [
                     ['' => ''],
                 ],
-                'itemsProcFunc' => \Brotkrueml\JobRouterData\Service\LocalSynchronisationTables::class . '->getLocalTables',
+                'itemsProcFunc' => \Brotkrueml\JobRouterData\Service\OwnTables::class . '->getTables',
                 'eval' => 'required',
             ],
         ],
@@ -152,7 +152,7 @@ return [
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
         '],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => ['showitem' => '
-            type, connection, name, table_guid, local_table,
+            type, connection, name, table_guid, own_table,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,

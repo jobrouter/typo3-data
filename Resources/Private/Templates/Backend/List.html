@@ -12,14 +12,14 @@
     </f:section>
 
     <f:section name="content">
-        <f:if condition="{simpleTables -> f:count()} || {localTables -> f:count()}">
+        <f:if condition="{simpleTables -> f:count()} || {ownTables -> f:count()}">
             <f:then>
                 <div id="jobrouter-data-table-list">
                     <f:if condition="{simpleTables -> f:count()}">
                         <f:render section="simpleTables" arguments="{_all}"/>
                     </f:if>
-                    <f:if condition="{localTables -> f:count()}">
-                        <f:render section="localTables" arguments="{_all}"/>
+                    <f:if condition="{ownTables -> f:count()}">
+                        <f:render section="ownTables" arguments="{_all}"/>
                     </f:if>
                     <f:if condition="{otherTables -> f:count()}">
                         <f:render section="otherTables" arguments="{_all}"/>
@@ -66,7 +66,7 @@
         </table>
     </f:section>
 
-    <f:section name="localTables">
+    <f:section name="ownTables">
         <h2><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table"/></h2>
         <table class="table table-striped table-hover">
             <thead>
@@ -77,11 +77,11 @@
                 </tr>
             </thead>
             <tbody>
-                <f:for each="{localTables}" as="table">
+                <f:for each="{ownTables}" as="table">
                     <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
                     <tr>
                         <f:render section="defaultColumns" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
-                        <td>{table.localTable}</td>
+                        <td>{table.ownTable}</td>
                         <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
                     </tr>
                 </f:for>

@@ -39,7 +39,7 @@ class Table extends AbstractEntity
     protected $tableGuid = '';
 
     /** @var string */
-    protected $localTable = '';
+    protected $ownTable = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column>
@@ -112,14 +112,14 @@ class Table extends AbstractEntity
         $this->tableGuid = $tableGuid;
     }
 
-    public function getLocalTable(): string
+    public function getOwnTable(): string
     {
-        return $this->localTable;
+        return $this->ownTable;
     }
 
-    public function setLocalTable(string $localTable): void
+    public function setOwnTable(string $ownTable): void
     {
-        $this->localTable = $localTable;
+        $this->ownTable = $ownTable;
     }
 
     public function addColumn(Column $column): void
