@@ -5,7 +5,8 @@ CREATE TABLE tx_jobrouterdata_domain_model_table (
 	table_guid varchar(36) DEFAULT '' NOT NULL,
 	own_table varchar(100) DEFAULT '' NOT NULL,
 	columns int(11) unsigned DEFAULT '0' NOT NULL,
-	datasets int(11) unsigned DEFAULT '0' NOT NULL
+	datasets int(11) unsigned DEFAULT '0' NOT NULL,
+	datasets_sync_hash varchar(40) DEFAULT '' NOT NULL
 );
 
 CREATE TABLE tx_jobrouterdata_domain_model_column (
