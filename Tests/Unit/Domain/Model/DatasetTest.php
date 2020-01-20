@@ -58,38 +58,38 @@ class DatasetTest extends TestCase
     /**
      * @test
      */
-    public function getDatasetValueFromEmptyDataset(): void
+    public function getDatasetContentForColumnFromEmptyDataset(): void
     {
-        $actual = $this->subject->getDatasetValue('someColumn');
+        $actual = $this->subject->getDatasetContentForColumn('someColumn');
         self::assertNull($actual);
     }
 
     /**
      * @test
      */
-    public function getDatasetValueFromDataset(): void
+    public function getDatasetContentForColumnFromDataset(): void
     {
         $this->subject->setDataset(\json_encode(['someColumn' => 'someValue']));
 
-        $actual = $this->subject->getDatasetValue('someColumn');
+        $actual = $this->subject->getDatasetContentForColumn('someColumn');
         self::assertSame('someValue', $actual);
 
-        $actual = $this->subject->getDatasetValue('someOtherColumn');
+        $actual = $this->subject->getDatasetContentForColumn('someOtherColumn');
         self::assertNull($actual);
     }
 
     /**
      * @test
      */
-    public function getDatasetValueAfterSetDataset(): void
+    public function getDatasetContentForColumnAfterSetDataset(): void
     {
         $this->subject->setDataset(\json_encode(['someColumn' => 'someValue']));
         $this->subject->setDataset(\json_encode(['someOtherColumn' => 'someOtherValue']));
 
-        $actual = $this->subject->getDatasetValue('someColumn');
+        $actual = $this->subject->getDatasetContentForColumn('someColumn');
         self::assertNull($actual);
 
-        $actual = $this->subject->getDatasetValue('someOtherColumn');
+        $actual = $this->subject->getDatasetContentForColumn('someOtherColumn');
         self::assertSame('someOtherValue', $actual);
     }
 }
