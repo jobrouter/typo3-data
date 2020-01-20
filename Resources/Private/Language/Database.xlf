@@ -10,7 +10,7 @@
 				<source><![CDATA[Label]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.name">
-				<source><![CDATA[Name]]></source>
+				<source><![CDATA[JobData Column Name]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.decimal_places">
 				<source><![CDATA[Decimal places]]></source>
