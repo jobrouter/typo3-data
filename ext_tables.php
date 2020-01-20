@@ -40,7 +40,7 @@ defined('TYPO3_MODE') || die('Access denied.');
     $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterData']['writerConfiguration'] = [
         \TYPO3\CMS\Core\Log\LogLevel::WARNING => [
             \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
-                'logFile' => \TYPO3\CMS\Core\Core\Environment::getVarPath() . '/log/' . $extensionKey . '.log'
+                'logFileInfix' => $extensionKey,
             ],
         ],
     ];
