@@ -1,0 +1,4 @@
+:aspect:`Connection (required)`
+
+   Choose a connection which was defined previously in the
+   :doc:`Connections <connector:usage>` module.

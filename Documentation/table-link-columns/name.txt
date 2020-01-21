@@ -1,0 +1,5 @@
+:aspect:`Name (required)`
+
+   A descriptive name for the table link. You can also localise the name: Just
+   use the :code:`LLL:EXT:your_extension/Resources/Language/locallang.xlf:name`
+   syntax known from other places in the TYPO3 context.

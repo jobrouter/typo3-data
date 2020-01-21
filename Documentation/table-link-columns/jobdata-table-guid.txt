@@ -1,0 +1,3 @@
+:aspect:`JobData Table GUID (required)`
+
+   The GUID of the JobData table.

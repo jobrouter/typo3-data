@@ -1,0 +1,24 @@
+:aspect:`Columns (required)`
+
+   Define the columns that should be synchronised. Each column has the following
+   fields:
+
+   :aspect:`JobData Column Name (required)`
+
+   The name of the column as defined in the JobData table.
+
+   :aspect:`Label (optional)`
+
+   The label of the column. It will be shown as header of the table when using
+   the plugin.
+
+   :aspect:`Type (required)`
+
+   Select the column type (`Text`, `Integer`, `Decimal`, `Date`, `DateTime`) as
+   defined in the JobData table. If you choose the type `Decimal`, an additional
+   field `Decimal places` is shown after the form is reloaded. Select the number
+   of decimals to be displayed.
+
+   .. important::
+
+      The jrid column must not be defined as it is available by default.
