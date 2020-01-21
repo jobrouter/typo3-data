@@ -1,24 +1,12 @@
-# Synchronise JobRouter JobData tables into TYPO3 
+# Synchronise JobRouter JobData tables into TYPO3
 
-[![TYPO3](https://img.shields.io/badge/TYPO3-9%20LTS-orange.svg)](https://typo3.org/)
 [![Build Status](https://travis-ci.org/brotkrueml/typo3-jobrouter-data.svg?branch=master)](https://travis-ci.org/brotkrueml/typo3-jobrouter-data)
+[![Documentation Status](https://readthedocs.org/projects/typo3-jobrouter-data/badge/?version=latest)](https://typo3-jobrouter.readthedocs.io/projects/data/)
 
+[JobRouter](https://www.jobrouter.com/) is a scalable digitization
+platform which links processes, data and documents.
 
-## Requirements
+The TYPO3 JobRouter Data extension synchronises JobData tables into
+TYPO3.
 
-The extension works with TYPO3 9 LTS.
-
-
-## Introduction
-
-This is an extension for synchronising [JobRouter](https://www.jobrouter.com/) JobData tables into [TYPO3](https://typo3.org/) installations.
-
-The extension is work in progress and for now not production-ready.
-
-## Installation
-
-### Installation With Composer
-
-The recommended way to install this extension is by using Composer. In your Composer-based TYPO3 project root, just type
-
-    composer req brotkrueml/typo3-jobrouter-data
+[Documentation](https://typo3-jobrouter.readthedocs.io/projects/data/)
