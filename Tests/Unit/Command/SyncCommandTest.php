@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 
 use Brotkrueml\JobRouterData\Command\SyncCommand;
-use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -35,7 +34,8 @@ class SyncCommandTest extends TestCase
     public function okIsDisplayedWhenSynchronisationIsSuccessful()
     {
         $this->synchronisationRunnerMock
-            ->method('run');
+            ->method('run')
+            ->willReturn([2, 0]);
 
         $this->commandTester->execute([]);
 
@@ -51,13 +51,12 @@ class SyncCommandTest extends TestCase
     {
         $this->synchronisationRunnerMock
             ->method('run')
-            ->with(null)
-            ->willThrowException(new SynchronisationException('some synchronisation error'));
+            ->willReturn([3, 1]);
 
         $this->commandTester->execute([]);
 
         $actual = $this->commandTester->getDisplay();
 
-        self::assertSame('[ERROR] some synchronisation error', trim($actual));
+        self::assertSame('[ERROR] 1 out of 3 table(s) had errors on synchronisation', trim($actual));
     }
 }

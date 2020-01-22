@@ -32,6 +32,9 @@ class SynchronisationRunner
     /** @var OwnTableSynchroniser */
     private $ownTableSynchroniser;
 
+    private $totalNumberOfTables = 0;
+    private $erroneousNumberOfTables = 0;
+
     public function __construct()
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
@@ -41,7 +44,7 @@ class SynchronisationRunner
         $this->ownTableSynchroniser = $objectManager->get(OwnTableSynchroniser::class);
     }
 
-    public function run(?int $tableUid): void
+    public function run(?int $tableUid): array
     {
         if ($tableUid === null) {
             $tables = $this->tableRepository->findAll();
@@ -52,27 +55,45 @@ class SynchronisationRunner
         } else {
             $this->synchroniseTable($this->getTable($tableUid));
         }
+
+        return [
+            $this->totalNumberOfTables,
+            $this->erroneousNumberOfTables,
+        ];
     }
 
     private function synchroniseTable(Table $table): void
     {
-        if ($table->getType() === Table::TYPE_SIMPLE) {
-            $this->simpleTableSynchroniser->synchroniseTable($table);
-            return;
-        }
+        try {
+            if ($table->getType() === Table::TYPE_SIMPLE) {
+                $this->totalNumberOfTables++;
+                $this->simpleTableSynchroniser->synchroniseTable($table);
+                return;
+            }
 
-        if ($table->getType() === Table::TYPE_OWN_TABLE) {
-            $this->ownTableSynchroniser->synchroniseTable($table);
-            return;
-        }
+            if ($table->getType() === Table::TYPE_OWN_TABLE) {
+                $this->totalNumberOfTables++;
+                $this->ownTableSynchroniser->synchroniseTable($table);
+                return;
+            }
 
-        if ($table->getType() === Table::TYPE_OTHER_USAGE) {
-            // do nothing
+            if ($table->getType() === Table::TYPE_OTHER_USAGE) {
+                // do nothing
+                return;
+            }
+        } catch (\Exception $e) {
+            $message = \sprintf(
+                'Table with uid "%d" cannot be synchronised: %s',
+                $table->getUid(),
+                $e->getMessage()
+            );
+            $this->processError($message);
+
             return;
         }
 
         $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
-        $this->logger->error($message);
+        $this->processError($message);
     }
 
     private function getTable(int $tableUid): Table
@@ -87,5 +108,11 @@ class SynchronisationRunner
         }
 
         return $table;
+    }
+
+    private function processError(string $message): void
+    {
+        $this->logger->error($message);
+        $this->erroneousNumberOfTables++;
     }
 }

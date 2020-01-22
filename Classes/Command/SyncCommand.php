@@ -38,18 +38,20 @@ final class SyncCommand extends Command
 
         $tableUid = $input->getArgument(static::ARGUMENT_TABLE) ? (int)$input->getArgument(static::ARGUMENT_TABLE) : null;
 
-        try {
-            $synchronisationRunner = $this->getSynchronisationRunner();
-            $synchronisationRunner->run($tableUid);
-        } catch (\Exception $e) {
-            $outputStyle->error($e->getMessage());
+        $synchronisationRunner = $this->getSynchronisationRunner();
+        [$total, $errors] = $synchronisationRunner->run($tableUid);
+
+        if ($errors) {
+            $outputStyle->error(
+                \sprintf('%d out of %d table(s) had errors on synchronisation', $errors, $total)
+            );
             return 1;
         }
 
         if ($tableUid) {
             $outputStyle->success(\sprintf('Table with uid "%d" synchronised successfully', $tableUid));
         } else {
-            $outputStyle->success('All tables synchronised successfully');
+            $outputStyle->success(\sprintf('%d table(s) synchronised successfully', $total));
         }
 
         return 0;
