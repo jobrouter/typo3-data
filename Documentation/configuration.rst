@@ -34,6 +34,14 @@ Hopefully you will receive a successful response:
 
    [OK] All tables synchronised successfully
 
+You can also synchronise just one table:
+
+::
+
+   vendor/bin/typo3 jobrouter:data:sync 1
+
+Where `1` is the uid of the table.
+
 Surely you want to execute the command regularly. Just set up a cron job which
 runs the command e.g. once an hour.
 
