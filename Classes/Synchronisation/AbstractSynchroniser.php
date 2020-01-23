@@ -13,27 +13,24 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Log\Logger;
-use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-abstract class AbstractSynchroniser
+abstract class AbstractSynchroniser implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     /** @var ConnectionPool */
     protected $connectionPool;
-
-    /** @var Logger */
-    protected $logger;
 
     public function __construct()
     {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
 
         $this->connectionPool = $objectManager->get(ConnectionPool::class);
-
-        $this->logger = $objectManager->get(LogManager::class)->getLogger(__CLASS__);
     }
 
     abstract public function synchroniseTable(Table $table): void;
