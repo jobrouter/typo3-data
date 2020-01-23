@@ -1,0 +1,8 @@
+# cat=Log; type=boolean; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logIntoFile
+logIntoFile = 1
+
+# cat=Log; type=boolean; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logIntoTable
+logIntoTable = 0
+
+# cat=Log; type=options[emergency=0,alert=1,critical=2,error=3,warning=4,notice=5,info=6,debug=7]; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logLevel
+logLevel = 4

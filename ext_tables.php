@@ -37,14 +37,6 @@ defined('TYPO3_MODE') || die('Access denied.');
         '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $extensionKey . '/Configuration/TsConfig/Page/NewContentElementWizard.tsconfig">'
     );
 
-    $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterData']['writerConfiguration'] = [
-        \TYPO3\CMS\Core\Log\LogLevel::WARNING => [
-            \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
-                'logFileInfix' => $extensionKey,
-            ],
-        ],
-    ];
-
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['list_type_Info']['jobrouterdata_pi'][$extensionKey] =
         \Brotkrueml\JobRouterData\Hooks\PageLayoutView::class . '->getExtensionSummary';
 
