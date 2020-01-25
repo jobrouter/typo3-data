@@ -27,7 +27,7 @@ final class SyncCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Synchronises JobData tables')
+            ->setDescription('Synchronise JobData data sets from JobRouter installations')
             ->setHelp('This command synchronises JobData tables from JobRouter instances into TYPO3. You can set a specific table name as argument. If the table argument is omitted, all enabled tables are processed.')
             ->addArgument(static::ARGUMENT_TABLE, InputArgument::OPTIONAL, 'The uid of a table (optional)');
     }
@@ -42,7 +42,7 @@ final class SyncCommand extends Command
         [$total, $errors] = $synchronisationRunner->run($tableUid);
 
         if ($errors) {
-            $outputStyle->error(
+            $outputStyle->warning(
                 \sprintf('%d out of %d table(s) had errors on synchronisation', $errors, $total)
             );
             return 1;

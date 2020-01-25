@@ -57,6 +57,6 @@ class SyncCommandTest extends TestCase
 
         $actual = $this->commandTester->getDisplay();
 
-        self::assertSame('[ERROR] 1 out of 3 table(s) had errors on synchronisation', trim($actual));
+        self::assertSame('[WARNING] 1 out of 3 table(s) had errors on synchronisation', trim($actual));
     }
 }
