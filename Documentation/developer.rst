@@ -167,3 +167,68 @@ Here is an example to get the table link and initialise the JobRouter Client:
 
 Have a look into the :doc:`JobRouter Client <client:introduction>` documentation
 how to use it. The library eases the access to the JobRouter REST API.
+
+
+.. _developer-transfer-data-sets:
+
+Transfer Data Sets To A JobRouter Installation
+==============================================
+
+Sometimes it is necessary to transfer data sets from TYPO3 to a JobRouter
+installation. An API and a :ref:`transmit command
+<configuration-transmit-command>` are available for this use case.
+
+Data sets are transferred asynchronously, since a JobRouter installation may be
+unavailable or in maintenance mode and to avoid long page loads. Let's take a
+look at the flow:
+
+.. figure:: _images/transfer-flow.png
+   :alt: Transferring data sets
+
+   Transferring data sets
+
+As you can see from the diagram, you can prepare multiple data sets. The
+different data sets can be transmitted to different JobRouter installations –
+depending on the configuration of the table link in the
+:ref:`Data module <usage-module>`.
+
+
+Preparing The Data Sets
+-----------------------
+
+If you want to transfer data sets programmatically to a JobRouter installation,
+you can use the :php:`Preparer` class within TYPO3:
+
+::
+
+   <?php
+   use Brotkrueml\JobRouterData\Exception\PrepareException;
+   use Brotkrueml\JobRouterData\Transfer\Preparer;
+   use TYPO3\CMS\Core\Utility\GeneralUtility;
+
+   // It's important to use the makeInstance method to inject all necessary
+   // dependencies
+   $preparer = GeneralUtility::makeInstance(Preparer::class);
+   try {
+
+      $preparer->store(
+          // The table link uid
+         42,
+         // Some descriptive identifier for the source of the dataset
+         'some identifier',
+         // Your JSON encoded data set
+         '{"your": "data", "to": "transfer"}'
+      );
+   } catch (PrepareException $e) {
+      // In some rare cases an exception can be thrown
+      var_dump($e->getMessage());
+   }
+
+The :ref:`transmit command <configuration-transmit-command>` must be activated
+with a cron job to periodically transmit the data sets to the JobRouter
+installation(s).
+
+.. important::
+
+   Do not insert the data sets directly into the transfer table, as the table
+   schema can be changed without notice. Use the API described above.

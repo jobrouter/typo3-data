@@ -55,6 +55,10 @@ options. :guilabel:`warning` is selected by default.
 Commands
 ========
 
+Surely you want to execute the commands regularly. Simply set up cron jobs that
+will execute the commands regularly, e.g. once an hour or once a day, depending
+on your needs.
+
 .. _configuration-sync-command:
 
 Synchronising tables
@@ -81,11 +85,42 @@ You can also synchronise just one table:
 
 Where `1` is the uid of the table.
 
-Surely you want to execute the command regularly. Simply set up a cron job that
-will execute the command regularly, e.g. once an hour or once a day, depending
-on your needs.
+If an error occurs, the command issues a warning:
 
-If an error occurs, the command issues a warning. Other synchronisations are not
-affected by an error in one synchronisation. According to your :ref:`logging
-configuration <configuration-extension>`, the error is also logged.
+::
 
+   [WARNING] 1 out of 2 table(s) had errors on synchronisation
+
+Other synchronisations are not affected by an error in one synchronisation.
+According to your :ref:`logging configuration <configuration-extension>`, the
+error is also logged.
+
+
+.. _configuration-transmit-command:
+
+Transmitting Data Sets
+----------------------
+
+If you use the :ref:`transfer table <developer-transfer-data-sets>` to transmit
+JobData data sets to a JobRouter installation must also use the transmit
+command:
+
+::
+
+   vendor/bin/typo3 jobrouter:data:transmit
+
+In general you should receive a successful answer:
+
+::
+
+   [OK] 13 transfer(s) transmitted successfully
+
+If an error occurs, the command issues a warning:
+
+::
+
+   [WARNING] 2 out of 6 transfer(s) had errors on transmission
+
+Other transmissions are not affected by an error in one transmission. According
+to your :ref:`logging configuration <configuration-extension>`, the error is
+also logged.

@@ -33,3 +33,13 @@ plugin.tx_jobrouterdata_pi {
 
   persistence.storagePid = 0
 }
+
+config.tx_extbase {
+  persistence.classes {
+    Brotkrueml\JobRouterData\Domain\Model\Transfer {
+      mapping {
+        tableName = tx_jobrouterdata_domain_model_transfer
+      }
+    }
+  }
+}
