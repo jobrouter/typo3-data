@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Report.xlf" date="2020-01-26T15:18:18Z" product-name="jobrouter_data">
+		<header/>
+		<body>
+			<trans-unit id="active_sync_tables.1" resname="active_sync_tables.1">
+				<source><![CDATA[Active simple synchronisation tables]]></source>
+			</trans-unit>
+			<trans-unit id="active_sync_tables.2" resname="active_sync_tables.2">
+				<source><![CDATA[Active own synchronisation tables]]></source>
+			</trans-unit>
+			<trans-unit id="description" resname="description">
+				<source><![CDATA[Get a report about the status of the JobData synchronisers.]]></source>
+			</trans-unit>
+			<trans-unit id="never_run" resname="never_run">
+				<source><![CDATA[never run]]></source>
+			</trans-unit>
+			<trans-unit id="synchronisations" resname="synchronisations">
+				<source><![CDATA[Synchronisations]]></source>
+			</trans-unit>
+			<trans-unit id="title" resname="title">
+				<source><![CDATA[JobRouter Data]]></source>
+			</trans-unit>
+			<trans-unit id="with_errors" resname="with_errors">
+				<source><![CDATA[with errors]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

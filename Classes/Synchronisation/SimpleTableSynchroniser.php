@@ -18,18 +18,37 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
 {
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
-    public function synchroniseTable(Table $table): void
+    public function synchroniseTable(Table $table): bool
     {
-        $datasets = $this->retrieveDatasetsFromJobRouter($table);
-        $this->storeDatasets($table, $datasets);
+        try {
+            $datasets = $this->retrieveDatasetsFromJobRouter($table);
+            $this->storeDatasets($table, $datasets);
+            $this->updateSynchronisationStatus($table);
+        } catch (\Exception $e) {
+            $message = \sprintf(
+                'Table link with uid "%d" cannot be synchronised: %s',
+                $table->getUid(),
+                $e->getMessage()
+            );
+
+            $this->logger->error($message);
+            $this->updateSynchronisationStatus($table, null, $message);
+
+            return false;
+        }
+
+        return true;
     }
 
     private function storeDatasets(Table $table, array $datasets): void
     {
         $datasetsHash = $this->hashDatasets($datasets);
 
+        $this->logger->debug('Data sets hash: ' . $datasetsHash . ' vs existing: ' . $table->getDatasetsSyncHash());
+
         if ($datasetsHash === $table->getDatasetsSyncHash()) {
-            $this->logger->info('Datasets have not changed', ['table_uid' => $table->getUid()]);
+            $this->updateSynchronisationStatus($table);
+            $this->logger->info('Data sets have not changed', ['table_uid' => $table->getUid()]);
             return;
         }
 
@@ -44,7 +63,7 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
                 ['table_uid' => \PDO::PARAM_INT]
             );
 
-            $this->logger->debug('Deleted table records in transaction', ['table_uid' => $table->getUid()]);
+            $this->logger->debug('Deleted existing data sets in transaction', ['table_uid' => $table->getUid()]);
 
             foreach ($datasets as $dataset) {
                 $jrid = $dataset['jrid'];
@@ -68,17 +87,15 @@ class SimpleTableSynchroniser extends AbstractSynchroniser
                     ]
                 );
 
-                $connection->update(
-                    'tx_jobrouterdata_domain_model_table',
-                    ['datasets_sync_hash' => $datasetsHash],
-                    ['uid' => $table->getUid()],
-                    ['datasets_sync_hash' => \PDO::PARAM_STR]
-                );
-
-                $this->logger->debug('Inserted table record in transaction', $data);
+                $this->logger->debug('Inserted data set in transaction', $data);
             }
+
+            $this->updateSynchronisationStatus($table, $datasetsHash);
         } catch (\Exception $e) {
             $connection->rollBack();
+            $connection->setAutoCommit(true);
+
+            $this->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-11-24T10:22:51Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="messages" date="2020-01-26T13:54:24Z" product-name="jobrouter_data">
 		<header/>
 		<body>
+			<trans-unit id="palette.last_synchronisation">
+				<source><![CDATA[Last Synchronisation]]></source>
+			</trans-unit>
+			<trans-unit id="tab.status">
+				<source><![CDATA[Status]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column">
 				<source><![CDATA[JobData Column]]></source>
 			</trans-unit>
@@ -56,6 +62,12 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.own_table">
 				<source><![CDATA[Own table]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.last_sync_date">
+				<source><![CDATA[Date/Time]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.last_sync_error">
+				<source><![CDATA[Error (if occurred)]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.name">
 				<source><![CDATA[Name]]></source>

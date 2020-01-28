@@ -64,36 +64,30 @@ class SynchronisationRunner
 
     private function synchroniseTable(Table $table): void
     {
-        try {
-            if ($table->getType() === Table::TYPE_SIMPLE) {
-                $this->totalNumberOfTables++;
-                $this->simpleTableSynchroniser->synchroniseTable($table);
-                return;
-            }
+        if ($table->getType() === Table::TYPE_SIMPLE) {
+            $this->totalNumberOfTables++;
+            if ($this->simpleTableSynchroniser->synchroniseTable($table) === false) {
+                $this->erroneousNumberOfTables++;
+            };
+            return;
+        }
 
-            if ($table->getType() === Table::TYPE_OWN_TABLE) {
-                $this->totalNumberOfTables++;
-                $this->ownTableSynchroniser->synchroniseTable($table);
-                return;
-            }
+        if ($table->getType() === Table::TYPE_OWN_TABLE) {
+            $this->totalNumberOfTables++;
+            if ($this->ownTableSynchroniser->synchroniseTable($table) === false) {
+                $this->erroneousNumberOfTables++;
+            };
+            return;
+        }
 
-            if ($table->getType() === Table::TYPE_OTHER_USAGE) {
-                // do nothing
-                return;
-            }
-        } catch (\Exception $e) {
-            $message = \sprintf(
-                'Table with uid "%d" cannot be synchronised: %s',
-                $table->getUid(),
-                $e->getMessage()
-            );
-            $this->processError($message);
-
+        if ($table->getType() === Table::TYPE_OTHER_USAGE) {
+            // do nothing
             return;
         }
 
         $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
-        $this->processError($message);
+        $this->logger->error($message);
+        $this->erroneousNumberOfTables++;
     }
 
     private function getTable(int $tableUid): Table
@@ -108,11 +102,5 @@ class SynchronisationRunner
         }
 
         return $table;
-    }
-
-    private function processError(string $message): void
-    {
-        $this->logger->error($message);
-        $this->erroneousNumberOfTables++;
     }
 }

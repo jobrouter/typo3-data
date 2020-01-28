@@ -1,4 +1,4 @@
 :aspect:`Enabled`
 
-   In the :guilabel:`Access` tab you can enable or disable the table link.
-   Disabled table links are not synchronised and cannot be used.
+   You can enable or disable the table link. Disabled table links are not
+   synchronised and cannot be used.

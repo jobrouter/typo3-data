@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
@@ -33,12 +34,31 @@ class BackendController extends ActionController
     /** @var TableRepository */
     private $tableRepository;
 
+    /** @var IconFactory */
+    private $iconFactory;
+
+    /** @var UriBuilder */
+    private $backendUriBuilder;
+
     /** @var ModuleTemplate */
     private $moduleTemplate;
 
-    public function injectTableRepository(TableRepository $tableRepository)
+    /** @var ButtonBar */
+    private $buttonBar;
+
+    public function injectTableRepository(TableRepository $tableRepository): void
     {
         $this->tableRepository = $tableRepository;
+    }
+
+    public function injectIconFactory(IconFactory $iconFactory): void
+    {
+        $this->iconFactory = $iconFactory;
+    }
+
+    public function injectUriBuilder(UriBuilder $uriBuilder): void
+    {
+        $this->backendUriBuilder = $uriBuilder;
     }
 
     /**
@@ -52,7 +72,11 @@ class BackendController extends ActionController
 
         $this->moduleTemplate = $this->view->getModuleTemplate();
 
-        $this->createDocumentHeaderButtons();
+        $this->buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+        $this->createNewHeaderButton();
+        $this->createReportHeaderButton();
+        $this->createRefreshHeaderButton();
+        $this->createShortcutHeaderButton();
     }
 
     public function listAction(): void
@@ -76,43 +100,66 @@ class BackendController extends ActionController
         ]);
     }
 
-    protected function createDocumentHeaderButtons(): void
+    protected function createNewHeaderButton(): void
     {
-        /** @var ButtonBar $buttonBar */
-        $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
-
-        $uriBuilder = $this->objectManager->get(UriBuilder::class);
-        $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
-
         $title = $this->getLanguageService()->sL('LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.add_table');
 
-        $newRecordButton = $buttonBar->makeLinkButton()
-            ->setHref((string)$uriBuilder->buildUriFromRoute(
+        $newRecordButton = $this->buttonBar->makeLinkButton()
+            ->setHref((string)$this->backendUriBuilder->buildUriFromRoute(
                 'record_edit',
                 [
                     'edit' => [
                         'tx_jobrouterdata_domain_model_table' => ['new'],
                     ],
-                    'returnUrl' => (string)$uriBuilder->buildUriFromRoute(self::MODULE_NAME),
+                    'returnUrl' => (string)$this->backendUriBuilder->buildUriFromRoute(self::MODULE_NAME),
                 ]
             ))
             ->setTitle($title)
-            ->setIcon($iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
+            ->setIcon($this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
+        $this->buttonBar->addButton($newRecordButton, ButtonBar::BUTTON_POSITION_LEFT);
+    }
 
-        $buttonBar->addButton($newRecordButton, ButtonBar::BUTTON_POSITION_LEFT);
+    protected function createReportHeaderButton(): void
+    {
+        if (!ExtensionManagementUtility::isLoaded('reports')) {
+            return;
+        }
 
-        $refreshButton = $buttonBar->makeLinkButton()
+        $title = $this->getLanguageService()->sL('LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.report');
+
+        $reportButton = $this->buttonBar->makeLinkButton()
+            ->setHref((string)$this->backendUriBuilder->buildUriFromRoute(
+                'system_reports',
+                [
+                    'action' => 'detail',
+                    'extension' => 'tx_jobrouterdata',
+                    'report' => 'report',
+                ]
+            ))
+            ->setTitle($title)
+            ->setIcon($this->iconFactory->getIcon('jobrouterdata-action-report', Icon::SIZE_SMALL));
+        $this->buttonBar->addButton($reportButton, ButtonBar::BUTTON_POSITION_RIGHT);
+    }
+
+    protected function createRefreshHeaderButton(): void
+    {
+        $title = $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload');
+
+        $refreshButton = $this->buttonBar->makeLinkButton()
             ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
-            ->setTitle($this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload'))
-            ->setIcon($iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
-        $buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
+            ->setTitle($title)
+            ->setIcon($this->iconFactory->getIcon('actions-refresh', Icon::SIZE_SMALL));
+        $this->buttonBar->addButton($refreshButton, ButtonBar::BUTTON_POSITION_RIGHT);
+    }
 
+    protected function createShortcutHeaderButton(): void
+    {
         if ($this->getBackendUser()->mayMakeShortcut()) {
-            $shortcutButton = $buttonBar->makeShortcutButton()
+            $shortcutButton = $this->buttonBar->makeShortcutButton()
                 ->setModuleName(self::MODULE_NAME)
                 ->setGetVariables(['route', 'module', 'id'])
                 ->setDisplayName('Shortcut');
-            $buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
+            $this->buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
         }
     }
 

@@ -33,7 +33,7 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
         $this->connectionPool = $objectManager->get(ConnectionPool::class);
     }
 
-    abstract public function synchroniseTable(Table $table): void;
+    abstract public function synchroniseTable(Table $table): bool;
 
     protected function retrieveDatasetsFromJobRouter(Table $table): array
     {
@@ -60,5 +60,31 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
     protected function hashDatasets(array $datasets): string
     {
         return \sha1(\serialize($datasets));
+    }
+
+    protected function updateSynchronisationStatus(Table $table, ?string $datasetsHash = null, string $error = ''): void
+    {
+        $data = [
+            'last_sync_date' => time(),
+            'last_sync_error' => $error,
+        ];
+        $types = [
+            'last_sync_date' => \PDO::PARAM_INT,
+            'last_sync_error' => \PDO::PARAM_STR,
+        ];
+
+        if ($datasetsHash) {
+            $data['datasets_sync_hash'] = $datasetsHash;
+            $types['datasets_sync_hash'] = \PDO::PARAM_STR;
+        }
+
+        $connection = $this->connectionPool->getConnectionForTable('tx_jobrouterdata_domain_model_table');
+        $connection->update(
+            'tx_jobrouterdata_domain_model_table',
+            $data,
+            ['uid' => $table->getUid()],
+            $types
+        );
+
     }
 }

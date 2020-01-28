@@ -21,6 +21,9 @@
         "typo3/cms-fluid": "^9.5",
         "typo3/cms-frontend": "^9.5"
     },
+    "suggest": {
+        "typo3/cms-reports": "Show reports for JobData synchronisations"
+    },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
         "mikey179/vfsstream": "^1.6",

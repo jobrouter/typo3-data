@@ -18,8 +18,11 @@ Target group: **Administrators**
 Requirements
 ============
 
-The extension has no PHP requirements in addition to TYPO3 and the TYPO3 JobRouter
-Connector extension.
+The extension has no PHP requirements in addition to TYPO3 and the TYPO3
+JobRouter Connector extension.
+
+If you want to use the :ref:`JobRouter Data report <usage-report>`, you have to
+install and activate the Reports system extension.
 
 
 .. _installation-composer:

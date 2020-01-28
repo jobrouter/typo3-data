@@ -16,7 +16,7 @@ return [
         'iconfile' => 'EXT:jobrouter_data/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
     ],
     'interface' => [
-        'showRecordFieldList' => 'disabled, name, connection, table_guid, columns',
+        'showRecordFieldList' => 'disabled, name, connection, table_guid, columns, last_sync_date, last_sync_error',
     ],
     'columns' => [
         'disabled' => [
@@ -143,26 +143,68 @@ return [
                 ],
             ],
         ],
+        'datasets_sync_hash' => [
+            // Not to be shown, relevant for model
+            'label' => 'Data sets sync hash',
+            'config' => [
+                'type' => 'input',
+            ]
+        ],
+        'last_sync_date' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.last_sync_date',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'eval' => 'datetime',
+                'readOnly' => true,
+            ],
+        ],
+        'last_sync_error' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.last_sync_error',
+            'config' => [
+                'type' => 'text',
+                'cols' => 30,
+                'rows' => 5,
+                'readOnly' => true,
+            ],
+        ],
     ],
     'types' => [
-        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => ['showitem' => '
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => [
+            'showitem' => '
             type, connection, name, table_guid, columns,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
+            --div--;LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tab.status,
+            --palette--;;synchronisationStatus,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
-        '],
-        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => ['showitem' => '
+        '
+        ],
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => [
+            'showitem' => '
             type, connection, name, table_guid, own_table,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+            disabled,
+            --div--;LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tab.status,
+            --palette--;;synchronisationStatus,
+            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+        '
+        ],
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => [
+            'showitem' => '
+            type, connection, name, table_guid,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
         '
         ],
-        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => ['showitem' => '
-            type, connection, name, table_guid,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            disabled,
-            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
-        '],
+    ],
+    'palettes' => [
+        'synchronisationStatus' => [
+            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:palette.last_synchronisation',
+            'showitem' => 'last_sync_date, --linebreak--, last_sync_error'
+        ],
     ],
 ];

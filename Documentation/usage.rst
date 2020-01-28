@@ -30,7 +30,7 @@ screen:
 .. _usage-create-table-link:
 
 Create a Table Link
-===================
+-------------------
 
 To create a new table link, click the :guilabel:`+` button on the top menu bar,
 which opens a form. Alternatively, you can use the :guilabel:`Create new table
@@ -40,7 +40,7 @@ link` button.
 .. _usage-create-table-link-types:
 
 Types
------
+~~~~~
 
 Each table link has on of the following types:
 
@@ -53,7 +53,7 @@ Each table link has on of the following types:
 .. _usage-create-table-link-simple:
 
 Simple synchronisation
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 The data sets of the JobData table are synchronised in a table provided by this
 extension. This is the recommended type if you only want to display data,
@@ -69,17 +69,27 @@ how to use it in your code. The synchronisation is done with the available
 
 The following fields are available:
 
+General
+'''''''
 .. include:: table-link-columns/connection.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
 .. include:: table-link-columns/columns.txt
+
+Access
+''''''
 .. include:: table-link-columns/enabled.txt
+
+Status
+''''''
+.. include:: table-link-columns/last-sync-date.txt
+.. include:: table-link-columns/last-sync-error.txt
 
 
 .. _usage-create-table-link-own:
 
 Synchronisation in own table
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You have to define a table yourself in an extension with the needed columns
 from the JobData table. This is the recommended way when you want to display the
@@ -94,17 +104,27 @@ command <configuration-sync-command>`.
 
 The following fields are available:
 
+General
+'''''''
 .. include:: table-link-columns/connection.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
 .. include:: table-link-columns/own-table.txt
+
+Access
+''''''
 .. include:: table-link-columns/enabled.txt
+
+Status
+''''''
+.. include:: table-link-columns/last-sync-date.txt
+.. include:: table-link-columns/last-sync-error.txt
 
 
 .. _usage-create-table-link-other:
 
 Other usage (no synchronisation)
---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You only define the link to a JobData table – there is no automatic
 synchronisation. This type can be used for the TYPO3 JobRouter Form extension to
@@ -112,7 +132,7 @@ push the field values of a submitted form into a JobData table. Also you can
 synchronise data sets yourself and enrich the data with additional information.
 
 .. todo::
-   Add link to TYPO3 JobRouter Form extension
+   Add link to TYPO3 JobRouter Data Form extension
 
 .. figure:: _images/create-table-link-other-usage.png
    :alt: Create a table link of type Other usage
@@ -121,16 +141,21 @@ synchronise data sets yourself and enrich the data with additional information.
 
 The following fields are available:
 
+General
+'''''''
 .. include:: table-link-columns/connection.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
+
+Access
+''''''
 .. include:: table-link-columns/enabled.txt
 
 
 .. _usage-table-links-overview:
 
 Table Links Overview
-====================
+--------------------
 
 After you have created one or more table links, you will see an overview of the
 table links when you open the module:
@@ -160,7 +185,34 @@ also inside the :guilabel:`List` module.
 .. _usage-delete-table:
 
 Delete a Table Link
-===================
+-------------------
 
 To delete a table link, open the edit page of the table link. In the upper
 menu bar you will find the :guilabel:`delete` button.
+
+
+.. _usage-report:
+
+Report
+======
+
+.. note::
+
+   The report is only available if you install and activate the Reports
+   system extension.
+
+A report is available to give an overview about the number of table links and
+potential errors. You find it under :guilabel:`System` > :guilabel:`Reports` >
+:guilabel:`JobRouter Data`. Alternatively, click in the :guilabel:`JobRouter` >
+:guilabel:`Data` module on the |report-module-icon| :guilabel:`Report` icon in the top menu bar.
+
+.. figure:: _images/reports.png
+   :alt: JobRouter Data report
+
+   JobRouter Data report
+
+If errors occurred during the last synchronization run, these are displayed. The
+message is abbreviated, hover over it with the mouse to see it in full.
+
+.. |report-module-icon| image:: ../Resources/Public/Icons/action-report.svg
+                        :width: 18px

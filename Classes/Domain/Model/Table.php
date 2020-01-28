@@ -61,6 +61,12 @@ class Table extends AbstractEntity
     /** @var bool */
     protected $disabled = false;
 
+    /** @var \DateTime */
+    protected $lastSyncDate;
+
+    /** @var string */
+    protected $lastSyncError = '';
+
     public function __construct()
     {
         $this->initStorageObjects();
@@ -142,6 +148,26 @@ class Table extends AbstractEntity
         $this->columns = $columns;
     }
 
+    public function addDataset(Dataset $dataset): void
+    {
+        $this->datasets->attach($dataset);
+    }
+
+    public function removeDataset(Dataset $datasetToRemove): void
+    {
+        $this->datasets->detach($datasetToRemove);
+    }
+
+    public function getDatasets(): ObjectStorage
+    {
+        return $this->datasets;
+    }
+
+    public function setDatasets(ObjectStorage $datasets)
+    {
+        $this->datasets = $datasets;
+    }
+
     public function getCountRows(): int
     {
         return count($this->datasets);
@@ -194,5 +220,25 @@ class Table extends AbstractEntity
     public function setDatasetsSyncHash(string $datasetsSyncHash): void
     {
         $this->datasetsSyncHash = $datasetsSyncHash;
+    }
+
+    public function getLastSyncDate(): ?\DateTime
+    {
+        return $this->lastSyncDate;
+    }
+
+    public function setLastSyncDate(\DateTime $lastSyncDate): void
+    {
+        $this->lastSyncDate = $lastSyncDate;
+    }
+
+    public function getLastSyncError(): string
+    {
+        return $this->lastSyncError;
+    }
+
+    public function setLastSyncError(string $lastSyncError): void
+    {
+        $this->lastSyncError = $lastSyncError;
     }
 }

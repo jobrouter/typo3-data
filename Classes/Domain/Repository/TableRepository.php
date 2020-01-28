@@ -10,6 +10,7 @@ namespace Brotkrueml\JobRouterData\Domain\Repository;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Brotkrueml\JobRouterData\Domain\Model\Table;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
@@ -39,5 +40,18 @@ class TableRepository extends Repository
         $query->matching($query->equals('uid', $identifier));
 
         return $query->execute()->getFirst();
+    }
+
+    public function findAllSyncTables()
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->logicalOr([
+                $query->equals('type', Table::TYPE_SIMPLE),
+                $query->equals('type', Table::TYPE_OWN_TABLE),
+            ])
+        );
+
+        return $query->execute();
     }
 }

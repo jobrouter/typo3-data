@@ -16,12 +16,27 @@ use Doctrine\DBAL\Schema\AbstractSchemaManager;
 
 class OwnTableSynchroniser extends AbstractSynchroniser
 {
-    public function synchroniseTable(Table $table): void
+    public function synchroniseTable(Table $table): bool
     {
-        $datasets = $this->retrieveDatasetsFromJobRouter($table);
-        $columns = $this->getOwnTableColumns($table);
+        try {
+            $datasets = $this->retrieveDatasetsFromJobRouter($table);
+            $columns = $this->getOwnTableColumns($table);
+            $this->storeDatasets($table, $columns, $datasets);
+            $this->updateSynchronisationStatus($table);
+        } catch (\Exception $e) {
+            $message = \sprintf(
+                'Table link with uid "%d" cannot be synchronised: %s',
+                $table->getUid(),
+                $e->getMessage()
+            );
 
-        $this->storeDatasets($table, $columns, $datasets);
+            $this->logger->error($message);
+            $this->updateSynchronisationStatus($table, null, $message);
+
+            return false;
+        }
+
+        return true;
     }
 
     private function getOwnTableColumns(Table $table): array
@@ -41,6 +56,7 @@ class OwnTableSynchroniser extends AbstractSynchroniser
         $datasetsHash = $this->hashDatasets($datasets);
 
         if ($datasetsHash === $table->getDatasetsSyncHash()) {
+            $this->updateSynchronisationStatus($table);
             $this->logger->info('Datasets have not changed', ['table_uid' => $table->getUid()]);
             return;
         }
@@ -69,17 +85,15 @@ class OwnTableSynchroniser extends AbstractSynchroniser
 
                 $connection->insert($ownTable, $data);
 
-                $connection->update(
-                    'tx_jobrouterdata_domain_model_table',
-                    ['datasets_sync_hash' => $datasetsHash],
-                    ['uid' => $table->getUid()],
-                    ['datasets_sync_hash' => \PDO::PARAM_STR]
-                );
-
                 $this->logger->debug('Inserted table record in transaction', $data);
             }
+
+            $this->updateSynchronisationStatus($table, $datasetsHash);
         } catch (\Exception $e) {
             $connection->rollBack();
+            $connection->setAutoCommit(true);
+
+            $this->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
