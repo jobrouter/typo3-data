@@ -42,7 +42,7 @@ link` button.
 Types
 ~~~~~
 
-Each table link has on of the following types:
+Each table link has one of the following types:
 
 .. figure:: _images/table-link-types.png
    :alt: Table link types
