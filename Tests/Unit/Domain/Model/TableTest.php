@@ -16,7 +16,7 @@ class TableTest extends TestCase
     /** @var Table */
     private $subject;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->subject = new Table();
     }

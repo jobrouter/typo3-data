@@ -85,6 +85,5 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
             ['uid' => $table->getUid()],
             $types
         );
-
     }
 }

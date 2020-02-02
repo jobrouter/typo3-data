@@ -68,7 +68,7 @@ class SynchronisationRunner
             $this->totalNumberOfTables++;
             if ($this->simpleTableSynchroniser->synchroniseTable($table) === false) {
                 $this->erroneousNumberOfTables++;
-            };
+            }
             return;
         }
 
@@ -76,7 +76,7 @@ class SynchronisationRunner
             $this->totalNumberOfTables++;
             if ($this->ownTableSynchroniser->synchroniseTable($table) === false) {
                 $this->erroneousNumberOfTables++;
-            };
+            }
             return;
         }
 
