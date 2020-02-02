@@ -3,6 +3,33 @@
     xmlns:jobRouterData="http://typo3.org/ns/Brotkrueml/JobRouterData/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
+    <br>
+    <f:if condition="{table.name}">
+        <strong class="jobrouter-data-ce-info">{table.name -> f:format.case(mode: 'upper')}</strong>
+        <br>
+        <br>
+    </f:if>
+
+    <f:if condition="{table}">
+        <f:then>
+            <f:if condition="{table.countRows}">
+                <f:then>
+                    <f:render section="DatasetExcerpt" arguments="{table: table}"/>
+                </f:then>
+                <f:else>
+                    <div class="alert alert-info">
+                        <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:error.table_has_no_rows"/>
+                    </div>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <div class="alert alert-danger">
+                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:error.table_not_available"/>
+            </div>
+        </f:else>
+    </f:if>
+
     <f:section name="DatasetExcerpt">
         <f:be.pageRenderer includeCssFiles="{0: '{f:uri.resource(extensionName: \'jobrouter_data\', path:\'Css/Backend/PageLayoutView.css\')}'}"/>
 
@@ -32,11 +59,11 @@
                         <td colspan="{table.columns -> f:count()}">
                             <f:if condition="{remainingRows} == 1">
                                 <f:then>
-                                    <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plus_one_more_row"/>
+                                    <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:plus_one_more_row"/>
                                 </f:then>
                                 <f:else>
                                     <f:translate
-                                        key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plus_more_rows"
+                                        key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:plus_more_rows"
                                         arguments="{0: remainingRows}"
                                     />
                                 </f:else>
@@ -47,33 +74,4 @@
             </tbody>
         </table>
     </f:section>
-
-
-    <strong><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:plugin_title"/></strong>
-    <br>
-    <strong class="jobrouter-data-plugin-info">
-        <f:if condition="{table.name}">{table.name}</f:if>
-    </strong>
-    <br>
-    <br>
-
-    <f:if condition="{table}">
-        <f:then>
-            <f:if condition="{table.countRows}">
-                <f:then>
-                    <f:render section="DatasetExcerpt" arguments="{table: table}"/>
-                </f:then>
-                <f:else>
-                    <div class="alert alert-info">
-                        <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_has_no_rows"/>
-                    </div>
-                </f:else>
-            </f:if>
-        </f:then>
-        <f:else>
-            <div class="alert alert-danger">
-                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:error.table_not_available"/>
-            </div>
-        </f:else>
-    </f:if>
 </html>

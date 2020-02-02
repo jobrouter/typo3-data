@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf" date="2020-02-02T11:01:43Z" product-name="jobrouter_data">
+		<header/>
+		<body>
+			<trans-unit id="ce.title">
+				<source><![CDATA[JobData Table]]></source>
+			</trans-unit>
+			<trans-unit id="ce.description">
+				<source><![CDATA[Show the content of a synchronised JobData table.]]></source>
+			</trans-unit>
+			<trans-unit id="error.table_has_no_rows">
+				<source><![CDATA[The table currently has no rows.]]></source>
+			</trans-unit>
+			<trans-unit id="error.table_not_available">
+				<source><![CDATA[The table is not available! Please check, if the table is enabled and configured in the content element.]]></source>
+			</trans-unit>
+			<trans-unit id="plus_one_more_row">
+				<source><![CDATA[plus one more row]]></source>
+			</trans-unit>
+			<trans-unit id="plus_more_rows">
+				<source><![CDATA[plus %d more rows]]></source>
+			</trans-unit>
+			<trans-unit id="table">
+				<source><![CDATA[Table]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -6,9 +6,9 @@
     <ROOT>
         <type>array</type>
         <el>
-            <settings.table>
+            <table>
                 <TCEforms>
-                    <label>LLL:EXT:jobrouter_data/Resources/Private/Language/Plugin.xlf:flexform.table_link</label>
+                    <label>LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:table</label>
                     <config>
                         <type>select</type>
                         <renderType>selectSingle</renderType>
@@ -23,7 +23,7 @@
                         <foreign_table_where>AND tx_jobrouterdata_domain_model_table.type=1 ORDER BY name</foreign_table_where>
                     </config>
                 </TCEforms>
-            </settings.table>
+            </table>
         </el>
     </ROOT>
 </T3DataStructure>

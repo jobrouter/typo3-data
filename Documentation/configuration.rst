@@ -50,6 +50,27 @@ Using the drop down menu you can select the log level for the activated log
 options. :guilabel:`warning` is selected by default.
 
 
+.. _configuration-templates:
+
+Templates
+=========
+
+It is possible to adjust the layout of the :ref:`content element
+<editor-content-element>` table. By default the layout from the
+core content element `Table` is used.
+
+If you want to use other classes, you have to override the template. Just
+copy the template file
+:file:`Resources/Private/Template/ContentElement/Table.html` into your own
+site package extension and add the path via TypoScript, e.g.:
+
+.. code-block:: typoscript
+
+   tt_content.tx_jobrouterdata_table {
+      templateRootPaths.10 = EXT:your_extension/Resources/Private/Template/JobRouterData/
+   }
+
+
 .. _configuration-commands:
 
 Commands

@@ -1,0 +1,17 @@
+mod.wizards.newContentElement.wizardItems {
+  special {
+    elements {
+      tx_jobrouterdata_table {
+        iconIdentifier = jobrouterdata-ce-table
+        title = LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:ce.title
+        description = LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:ce.description
+        tt_content_defValues {
+          CType = list
+          list_type = tx_jobrouterdata_table
+        }
+      }
+    }
+
+    show := addToList(tx_jobrouterdata_table)
+  }
+}

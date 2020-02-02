@@ -16,22 +16,14 @@ module.tx_jobrouterdata {
   persistence.storagePid = 0
 }
 
-plugin.tx_jobrouterdata_pi {
-  view {
-    templateRootPaths {
-      0 = EXT:jobrouter_data/Resources/Private/Templates/Table/
-    }
+tt_content.tx_jobrouterdata_table =< lib.contentElement
+tt_content.tx_jobrouterdata_table {
+  templateName = Table
+  templateRootPaths.0 = EXT:jobrouter_data/Resources/Private/Templates/ContentElement/
 
-    partialRootPaths {
-      0 = EXT:jobrouter_data/Resources/Private/Partials/Table/
-    }
-
-    layoutRootPaths {
-      0 = EXT:jobrouter_data/Resources/Private/Layouts/
-    }
+  dataProcessing {
+    10 = Brotkrueml\JobRouterData\DataProcessing\TableProcessor
   }
-
-  persistence.storagePid = 0
 }
 
 config.tx_extbase {
