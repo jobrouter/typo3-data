@@ -22,7 +22,8 @@
         "typo3/cms-frontend": "^9.5"
     },
     "suggest": {
-        "typo3/cms-reports": "Show reports for JobData synchronisations"
+        "typo3/cms-reports": "Show results of JobData synchronisations",
+        "vertexvaar/logs": "Backend module for displaying logs written into database tables"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
