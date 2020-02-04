@@ -206,13 +206,28 @@ potential errors. You find it under :guilabel:`System` > :guilabel:`Reports` >
 :guilabel:`JobRouter Data`. Alternatively, click in the :guilabel:`JobRouter` >
 :guilabel:`Data` module on the |report-module-icon| :guilabel:`Report` icon in the top menu bar.
 
+.. |report-module-icon| image:: ../Resources/Public/Icons/action-report.svg
+                        :width: 18px
+
 .. figure:: _images/reports.png
    :alt: JobRouter Data report
 
    JobRouter Data report
 
-If errors occurred during the last synchronization run, these are displayed. The
-message is abbreviated, hover over it with the mouse to see it in full.
 
-.. |report-module-icon| image:: ../Resources/Public/Icons/action-report.svg
-                        :width: 18px
+Synchronisations
+----------------
+
+Some statistics about the number of different table link types are shown.
+If errors occurred during the last synchronisation run, these are displayed.
+The message is abbreviated, move the mouse over it to see it in full.
+
+
+Transfers
+---------
+
+You can see some figures on the current state of transfers: How many have been
+created, how many were successful, how many are currently queued and will be
+transmitted on the next run, and how many erroneous transfers. If there are
+transfers with errors, you can find the cause in the :ref:`logs
+<configuration-extension>`.

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Report.xlf" date="2020-01-26T15:18:18Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Report.xlf" date="2020-02-04T18:01:25Z" product-name="jobrouter_data">
 		<header/>
 		<body>
 			<trans-unit id="active_sync_tables.1" resname="active_sync_tables.1">
@@ -12,8 +12,17 @@
 			<trans-unit id="description" resname="description">
 				<source><![CDATA[Get a report about the status of the JobData synchronisers.]]></source>
 			</trans-unit>
+			<trans-unit id="last_synchronisation" resname="last_synchronisation">
+				<source><![CDATA[Last synchronisation]]></source>
+			</trans-unit>
+			<trans-unit id="last_transmission" resname="last_transmission">
+				<source><![CDATA[Last transmission]]></source>
+			</trans-unit>
 			<trans-unit id="never_run" resname="never_run">
 				<source><![CDATA[never run]]></source>
+			</trans-unit>
+			<trans-unit id="since" resname="since">
+				<source><![CDATA[since]]></source>
 			</trans-unit>
 			<trans-unit id="synchronisations" resname="synchronisations">
 				<source><![CDATA[Synchronisations]]></source>
@@ -21,8 +30,23 @@
 			<trans-unit id="title" resname="title">
 				<source><![CDATA[JobRouter Data]]></source>
 			</trans-unit>
+			<trans-unit id="total_transfers" resname="total_transfers">
+				<source><![CDATA[Total transfers]]></source>
+			</trans-unit>
+			<trans-unit id="transfers" resname="transfers">
+				<source><![CDATA[Transfers]]></source>
+			</trans-unit>
+			<trans-unit id="transmissions_erroneous" resname="transmissions_erroneous">
+				<source><![CDATA[erroneous transmissions]]></source>
+			</trans-unit>
+			<trans-unit id="transmissions_in_queue" resname="transmissions_in_queue">
+				<source><![CDATA[in queue for next transmission]]></source>
+			</trans-unit>
+			<trans-unit id="transmissions_successful" resname="transmissions_successful">
+				<source><![CDATA[successful transmissions]]></source>
+			</trans-unit>
 			<trans-unit id="with_errors" resname="with_errors">
-				<source><![CDATA[with errors]]></source>
+				<source><![CDATA[with synchronisation errors]]></source>
 			</trans-unit>
 		</body>
 	</file>

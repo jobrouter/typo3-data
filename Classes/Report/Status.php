@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Report;
 
 /*
- * This file is part of the "jobrouter_daza" extension for TYPO3 CMS.
+ * This file is part of the "jobrouter_data" extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -12,47 +12,70 @@ namespace Brotkrueml\JobRouterData\Report;
 
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Reports\Controller\ReportController;
 use TYPO3\CMS\Reports\ReportInterface;
 
-class Status implements ReportInterface
+final class Status implements ReportInterface
 {
+    private const TEMPLATE = 'EXT:jobrouter_data/Resources/Private/Templates/Report/Status.html';
+
     /** @var TableRepository */
     private $tableRepository;
 
-    public function __construct(ReportController $reportController, TableRepository $tableRepository = null)
-    {
+    /** @var TransferRepository */
+    private $transferRepository;
+
+    /** @var StandaloneView */
+    private $view;
+
+    public function __construct(
+        ReportController $reportController,
+        TableRepository $tableRepository = null,
+        TransferRepository $transferRepository = null,
+        StandaloneView $view = null
+    ) {
         $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
         $this->tableRepository = $tableRepository ?? $objectManager->get(TableRepository::class);
+        $this->transferRepository = $transferRepository ?? $objectManager->get(TransferRepository::class);
+
+        $this->view = $view ?? $objectManager->get(StandaloneView::class);
+        $this->view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(static::TEMPLATE));
     }
 
     public function getReport(): string
     {
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(
-            'EXT:jobrouter_data/Resources/Private/Templates/Report/Status.html'
-        ));
+        $this->assignSettingsToView();
+        $this->assignSynchronisationDetailsToView();
+        $this->assignTransferDetailsToView();
 
+        return $this->view->render();
+    }
+
+    private function assignSettingsToView(): void
+    {
         $settings = [
-            'dateTimeFormat' => \sprintf(
-                '%s %s',
-                $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'],
-                $GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm']
-            ),
+            'dateFormat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'],
+            'timeFormat' => $GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm'],
         ];
 
-        $lastSyncDate = 0;
+        $this->view->assign('settings', $settings);
+    }
+
+    private function assignSynchronisationDetailsToView(): void
+    {
+        $syncLastDate = 0;
         $syncTablesByType = [
             Table::TYPE_SIMPLE => [
                 'totalActive' => 0,
-                'erroneous' =>  [],
+                'erroneous' => [],
             ],
             Table::TYPE_OWN_TABLE => [
                 'totalActive' => 0,
-                'erroneous' =>  [],
+                'erroneous' => [],
             ],
         ];
 
@@ -60,8 +83,8 @@ class Status implements ReportInterface
         $activeTables = $this->tableRepository->findAllSyncTables();
 
         foreach ($activeTables as $table) {
-            if ($lastSyncDate < $table->getLastSyncDate()) {
-                $lastSyncDate = $table->getLastSyncDate();
+            if ($syncLastDate < $table->getLastSyncDate()) {
+                $syncLastDate = $table->getLastSyncDate();
             }
 
             $syncTablesByType[$table->getType()]['totalActive']++;
@@ -71,12 +94,26 @@ class Status implements ReportInterface
             }
         }
 
-        $view->assignMultiple([
-            'lastSyncDate' => $lastSyncDate,
+        $this->view->assignMultiple([
+            'syncLastDate' => $syncLastDate,
             'syncTablesByType' => $syncTablesByType,
-            'settings' => $settings,
         ]);
+    }
 
-        return $view->render();
+    private function assignTransferDetailsToView(): void
+    {
+        $total = $this->transferRepository->countAll();
+        $successful = $this->transferRepository->countByTransmitSuccess(1);
+        $erroneous = $this->transferRepository->countErroneousTransmissions();
+        $inQueue = $total - $successful - $erroneous;
+
+        $this->view->assignMultiple([
+            'transferFirstTransmitDate' => $this->transferRepository->findFirstTransmitDate(),
+            'transferLastTransmitDate' => $this->transferRepository->findLastTransmitDate(),
+            'transferTotal' => $total,
+            'transferTransmitSuccess' => $successful,
+            'transferTransmitErroneous' => $erroneous,
+            'transferInQueue' => $inQueue,
+        ]);
     }
 }
