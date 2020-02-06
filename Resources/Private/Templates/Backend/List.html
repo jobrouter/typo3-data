@@ -12,7 +12,7 @@
     </f:section>
 
     <f:section name="content">
-        <f:if condition="{simpleTables -> f:count()} || {ownTables -> f:count()}">
+        <f:if condition="{simpleTables -> f:count()} || {ownTables -> f:count()} || {otherTables -> f:count()}">
             <f:then>
                 <div id="jobrouter-data-table-list">
                     <f:if condition="{simpleTables -> f:count()}">
