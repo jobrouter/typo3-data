@@ -20,9 +20,13 @@ from JobRouter installations into TYPO3.
 What does it do?
 ================
 
-The TYPO3 JobRouter Data is a TYPO3 extension for synchronising
-`JobData <https://www.jobrouter.com/en/jobdata/>`_ tables into TYPO3. A plugin
-is available to display these data on a web page.
+TYPO3 JobRouter Data is a TYPO3 extension for
+
+* Providing a module to manage JobData table links
+* Synchronising data sets from JobData tables into TYPO3
+* Transmitting data sets from TYPO3 into JobData tables
+
+A content element is available to display synchronised data sets on a web page.
 
 This extension uses the :doc:`JobRouter Client <client:introduction>`
 library and has the
