@@ -18,7 +18,7 @@ defined('TYPO3_MODE') || die('Access denied.');
         $writerConfiguration[\TYPO3\CMS\Core\Log\Writer\FileWriter::class] = ['logFileInfix' => $extensionKey];
     }
     if ($configuration['logIntoTable']) {
-        $writerConfiguration[\TYPO3\CMS\Core\Log\Writer\DatabaseWriter::class] = ['logTable' => 'tx_jobrouterdata_log'];
+        $writerConfiguration[\TYPO3\CMS\Core\Log\Writer\DatabaseWriter::class] = ['logTable' => 'tx_jobrouterconnector_log'];
     }
 
     if (!empty($writerConfiguration)) {

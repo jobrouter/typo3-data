@@ -7,7 +7,7 @@
 				<source><![CDATA[Log into file (typo3_jobrouter_data_<hash>.log)]]></source>
 			</trans-unit>
 			<trans-unit id="logIntoTable">
-				<source><![CDATA[Log into table (tx_jobrouterdata_log)]]></source>
+				<source><![CDATA[Log into table (tx_jobrouterconnector_log)]]></source>
 			</trans-unit>
 			<trans-unit id="logLevel">
 				<source><![CDATA[Log level]]></source>

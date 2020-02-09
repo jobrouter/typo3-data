@@ -35,12 +35,12 @@ installations). It is enabled by default.
 log.logIntoTable
 ----------------
 
-Activate this option to log into the table `tx_jobrouterdata_log`. It is
+Activate this option to log into the table `tx_jobrouterconnector_log`. It is
 disabled by default.
 
 .. hint::
 
-   To see the log entries of this table in the TYPO3 backend, install the
+   To display the log entries of this table in the TYPO3 backend, install the
    extension `vertexvaar/logs <https://github.com/vertexvaar/logs>`_.
 
 log.logLevel
