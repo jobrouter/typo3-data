@@ -2,7 +2,8 @@
 return [
     'ctrl' => [
         'title' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column',
-        'label' => 'name',
+        'label' => 'label',
+        'label_alt' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
