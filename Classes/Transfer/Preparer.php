@@ -55,7 +55,7 @@ final class Preparer implements LoggerAwareInterface
             $this->transferRepository->add($transfer);
             $this->persistenceManager->persistAll();
         } catch (\Exception $e) {
-            $this->logger->error($e->getMessage());
+            $this->logger->critical($e->getMessage());
             throw new PrepareException('Transfer record cannot be written', 1579789397, $e);
         }
     }
