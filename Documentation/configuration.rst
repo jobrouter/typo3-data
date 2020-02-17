@@ -145,3 +145,9 @@ If an error occurs, the command issues a warning:
 Other transmissions are not affected by an error in one transmission. According
 to your :ref:`logging configuration <configuration-extension>`, the error is
 also logged.
+
+.. note::
+
+   Only one transmission can run at a time. If a transmission starts while
+   another is in progress, the second transmission is terminated and a warning
+   is displayed.
