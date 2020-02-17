@@ -46,7 +46,7 @@ class SyncCommandTest extends TestCase
     /**
      * @test
      */
-    public function okIsDisplayedWhenSynchronisationIsSuccessful()
+    public function okIsDisplayedWhenAllSynchronisationsAreSuccessful()
     {
         $this->lockerMock
             ->expects(self::once())
@@ -68,7 +68,36 @@ class SyncCommandTest extends TestCase
 
         self::assertStringContainsString(
             '2 table(s) synchronised successfully',
-            trim($actual)
+            $actual
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function okIsDisplayedWhenSynchronisationForOneTableIsSuccessful()
+    {
+        $this->lockerMock
+            ->expects(self::once())
+            ->method('acquire')
+            ->willReturn(true);
+
+        $this->lockerMock
+            ->expects(self::once())
+            ->method('release');
+
+        $this->synchronisationRunnerMock
+            ->expects(self::once())
+            ->method('run')
+            ->willReturn([1, 0]);
+
+        $this->commandTester->execute(['table' => 42]);
+
+        $actual = $this->commandTester->getDisplay();
+
+        self::assertStringContainsString(
+            'Table with uid "42" synchronised successfully',
+            $actual
         );
     }
 
@@ -125,5 +154,4 @@ class SyncCommandTest extends TestCase
             $this->commandTester->getDisplay()
         );
     }
-
 }
