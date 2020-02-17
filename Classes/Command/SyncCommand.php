@@ -16,10 +16,21 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use TYPO3\CMS\Core\Locking\Exception as LockException;
+use TYPO3\CMS\Core\Locking\LockFactory;
+use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class SyncCommand extends Command
 {
+    public const EXIT_CODE_OK = 0;
+    public const EXIT_CODE_ERRORS_ON_SYNCHRONISATION = 1;
+    public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
+
     private const ARGUMENT_TABLE = 'table';
+
+    /** @var LockingStrategyInterface */
+    private $locker;
 
     /** @var SynchronisationRunner */
     private $synchronisationRunner;
@@ -36,28 +47,54 @@ final class SyncCommand extends Command
     {
         $outputStyle = new SymfonyStyle($input, $output);
 
-        $tableUid = $input->getArgument(static::ARGUMENT_TABLE) ? (int)$input->getArgument(static::ARGUMENT_TABLE) : null;
+        $lockFactory = GeneralUtility::makeInstance(LockFactory::class);
 
+        try {
+            $this->locker = $lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
+            $this->locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
+
+            $tableUid = $input->getArgument(static::ARGUMENT_TABLE) ? (int)$input->getArgument(static::ARGUMENT_TABLE) : null;
+            [$exitCode, $messageType, $message] = $this->runSynchronisation($tableUid);
+            $this->locker->release();
+            $outputStyle->{$messageType}($message);
+
+            return $exitCode;
+        } catch (LockException $e) {
+            $outputStyle->warning('Could not acquire lock, another process is running');
+
+            return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
+        }
+    }
+
+    private function runSynchronisation(?int $tableUid): array
+    {
         $synchronisationRunner = $this->getSynchronisationRunner();
         [$total, $errors] = $synchronisationRunner->run($tableUid);
 
         if ($errors) {
-            $outputStyle->warning(
-                \sprintf('%d out of %d table(s) had errors on synchronisation', $errors, $total)
-            );
-            return 1;
+            $message = \sprintf('%d out of %d table(s) had errors on synchronisation', $errors, $total);
+
+            return [
+                self::EXIT_CODE_ERRORS_ON_SYNCHRONISATION,
+                'warning',
+                $message,
+            ];
         }
 
         if ($tableUid) {
-            $outputStyle->success(\sprintf('Table with uid "%d" synchronised successfully', $tableUid));
+            $message = \sprintf('Table with uid "%d" synchronised successfully', $tableUid);
         } else {
-            $outputStyle->success(\sprintf('%d table(s) synchronised successfully', $total));
+            $message = \sprintf('%d table(s) synchronised successfully', $total);
         }
 
-        return 0;
+        return [
+            self::EXIT_CODE_OK,
+            'success',
+            $message,
+        ];
     }
 
-    protected function getSynchronisationRunner(): SynchronisationRunner
+    private function getSynchronisationRunner(): SynchronisationRunner
     {
         if ($this->synchronisationRunner) {
             return $this->synchronisationRunner;

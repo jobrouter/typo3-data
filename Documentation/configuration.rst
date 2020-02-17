@@ -116,6 +116,12 @@ Other synchronisations are not affected by an error in one synchronisation.
 According to your :ref:`logging configuration <configuration-extension>`, the
 error is also logged.
 
+.. note::
+
+   Only one synchronisation can run at a time. If a synchronisation starts while
+   another is in progress, the second synchronisation is terminated and a
+   warning is displayed.
+
 
 .. _configuration-transmit-command:
 
