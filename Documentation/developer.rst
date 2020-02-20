@@ -21,7 +21,8 @@ When a JobData table is synchronised with the :ref:`Simple synchronisation
 <usage-create-table-link-simple>` type, the data sets are stored in a table
 provided by this extension. This is the simplest type, as no programming
 knowledge is required. The data sets are stored JSON encoded in a provided table
-and can be displayed on the website with a :ref:`plugin <editor-plugin>`.
+and can be displayed on the website with a :ref:`content element
+<editor-content-element>`.
 
 However, you can also retrieve the data sets independently.
 

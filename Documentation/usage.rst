@@ -57,10 +57,10 @@ Simple synchronisation
 
 The data sets of the JobData table are synchronised in a table provided by this
 extension. This is the recommended type if you only want to display data,
-e.g. with the :ref:`plugin <editor-plugin>`. Have a look at the developer
-corner to see the :ref:`schema <developer-simple-sync-table>` of the table and
-how to use it in your code. The synchronisation is done with the available
-:ref:`synchronisation command <configuration-sync-command>`.
+e.g. with the :ref:`content element <editor-content-element>`. Have a look at
+the developer corner to see the :ref:`schema <developer-simple-sync-table>` of
+the table and how to use it in your code. The synchronisation is done with the
+available :ref:`synchronisation command <configuration-sync-command>`.
 
 .. figure:: _images/create-table-link-simple-synchronisation.png
    :alt: Create a table link of type Simple synchronisation
