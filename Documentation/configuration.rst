@@ -157,3 +157,40 @@ also logged.
    Only one transmission can run at a time. If a transmission starts while
    another is in progress, the second transmission is terminated and a warning
    is displayed.
+
+
+.. _configuration-deleteoldtransfers-command:
+
+Delete Old Transfers
+--------------------
+
+After successfully transmitting data sets from the transfer table, these
+transfers are marked as successful. They may contain sensitive data and should
+be deleted regularly. A command is available for this task:
+
+::
+
+   vendor/bin/typo3 jobrouter:data:deleteoldtransfers
+
+In general you should receive a successful answer:
+
+::
+
+   [OK] 23 successful transfers older than 30 days deleted
+
+By default, successful transfer records that are older than 30 days are deleted.
+You can adjust this value by adding an argument to the command:
+
+::
+
+   vendor/bin/typo3 jobrouter:data:deleteoldtransfers 7
+
+Now successful transfer records that are older than seven days are deleted. If
+you use `0` as argument, all successful transfers are deleted.
+
+Erroneous transfers are not deleted and should be handled manually.
+
+.. note::
+
+   If there were deleted successful transfer records, the number of affected
+   rows is logged as *notice*, if there were none it is logged as *info*.

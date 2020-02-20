@@ -8,4 +8,8 @@ return [
         'class' => \Brotkrueml\JobRouterData\Command\TransmitCommand::class,
         'schedulable' => true,
     ],
+    'jobrouter:data:deleteoldtransfers' => [
+        'class' => \Brotkrueml\JobRouterData\Command\DeleteOldTransfersCommand::class,
+        'schedulable' => true,
+    ],
 ];
