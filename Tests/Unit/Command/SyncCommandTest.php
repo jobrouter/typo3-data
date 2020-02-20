@@ -43,6 +43,11 @@ class SyncCommandTest extends TestCase
         $this->commandTester = new CommandTester($command);
     }
 
+    protected function tearDown(): void
+    {
+        GeneralUtility::purgeInstances();
+    }
+
     /**
      * @test
      */

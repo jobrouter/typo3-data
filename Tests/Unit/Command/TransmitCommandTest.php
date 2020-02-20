@@ -41,6 +41,11 @@ class TransmitCommandTest extends TestCase
         $this->commandTester = new CommandTester(new TransmitCommand());
     }
 
+    protected function tearDown(): void
+    {
+        GeneralUtility::purgeInstances();
+    }
+
     /**
      * @test
      */
@@ -148,7 +153,7 @@ class TransmitCommandTest extends TestCase
         self::assertSame(TransmitCommand::EXIT_CODE_CANNOT_ACQUIRE_LOCK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[WARNING] Could not acquire lock, another process is running',
-            \trim($this->commandTester->getDisplay())
+            $this->commandTester->getDisplay()
         );
     }
 }
