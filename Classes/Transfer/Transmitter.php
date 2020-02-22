@@ -10,7 +10,7 @@ namespace Brotkrueml\JobRouterData\Transfer;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterClient\Client\RestClient;
+use Brotkrueml\JobRouterClient\Client\ClientInterface;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
@@ -114,7 +114,7 @@ class Transmitter implements LoggerAwareInterface
         $response = $client->request(
             'POST',
             \sprintf(self::DATASET_RESOURCE_TEMPLATE, $table->getTableGuid()),
-            ['json' => ['dataset' => \json_decode($transfer->getData(), true)]]
+            ['dataset' => \json_decode($transfer->getData(), true)]
         );
 
         $jrid = null;
@@ -144,7 +144,7 @@ class Transmitter implements LoggerAwareInterface
         return $table;
     }
 
-    private function getRestClientForTable(Table $table): RestClient
+    private function getRestClientForTable(Table $table): ClientInterface
     {
         /** @var Connection $connection */
         $connection = $table->getConnection();
