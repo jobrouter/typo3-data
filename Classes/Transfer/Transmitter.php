@@ -12,7 +12,7 @@ namespace Brotkrueml\JobRouterData\Transfer;
 
 use Brotkrueml\JobRouterClient\Client\ClientInterface;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Model\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;

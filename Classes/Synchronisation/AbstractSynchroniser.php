@@ -10,7 +10,7 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Psr\Log\LoggerAwareInterface;
