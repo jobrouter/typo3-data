@@ -122,6 +122,14 @@ error is also logged.
    another is in progress, the second synchronisation is terminated and a
    warning is displayed.
 
+The last run of the command is shown in the system information toolbar
+(:guilabel:`Last Data Sync.`):
+
+.. figure:: _images/system-information-sync.png
+   :alt: System information with last run of the sync command
+
+   System information with last run of the sync command
+
 
 .. _configuration-transmit-command:
 
@@ -157,6 +165,14 @@ also logged.
    Only one transmission can run at a time. If a transmission starts while
    another is in progress, the second transmission is terminated and a warning
    is displayed.
+
+The last run of the command is shown in the system information toolbar
+(:guilabel:`Last Data Transmiss.`):
+
+.. figure:: _images/system-information-transmit.png
+   :alt: System information with last run of the transmit command
+
+   System information with last run of the transmit command
 
 
 .. _configuration-deleteoldtransfers-command:

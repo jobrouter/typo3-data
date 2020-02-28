@@ -11,6 +11,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Locking\Exception\LockAcquireException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
+use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class SyncCommandTest extends TestCase
@@ -24,6 +25,9 @@ class SyncCommandTest extends TestCase
     /** @var MockObject|SynchronisationRunner */
     private $synchronisationRunnerMock;
 
+    /** @var MockObject|Registry */
+    private $registryMock;
+
     protected function setUp(): void
     {
         $this->lockerMock = $this->createMock(LockingStrategyInterface::class);
@@ -34,6 +38,9 @@ class SyncCommandTest extends TestCase
             ->willReturn($this->lockerMock);
 
         GeneralUtility::setSingletonInstance(LockFactory::class, $lockFactoryStub);
+
+        $this->registryMock = $this->createMock(Registry::class);
+        GeneralUtility::setSingletonInstance(Registry::class, $this->registryMock);
 
         $this->synchronisationRunnerMock = $this->createMock(SynchronisationRunner::class);
 
@@ -67,14 +74,23 @@ class SyncCommandTest extends TestCase
             ->method('run')
             ->willReturn([2, 0]);
 
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_data',
+                'syncCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
+                    }
+                )
+            );
+
         $this->commandTester->execute([]);
 
-        $actual = $this->commandTester->getDisplay();
-
-        self::assertStringContainsString(
-            '2 table(s) synchronised successfully',
-            $actual
-        );
+        self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertStringContainsString('2 table(s) synchronised successfully', $this->commandTester->getDisplay());
     }
 
     /**
@@ -96,13 +112,25 @@ class SyncCommandTest extends TestCase
             ->method('run')
             ->willReturn([1, 0]);
 
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_data',
+                'syncCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
+                    }
+                )
+            );
+
         $this->commandTester->execute(['table' => 42]);
 
-        $actual = $this->commandTester->getDisplay();
-
+        self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             'Table with uid "42" synchronised successfully',
-            $actual
+            $this->commandTester->getDisplay()
         );
     }
 
@@ -123,6 +151,19 @@ class SyncCommandTest extends TestCase
         $this->synchronisationRunnerMock
             ->method('run')
             ->willReturn([3, 1]);
+
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_data',
+                'syncCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
+                    }
+                )
+            );
 
         $this->commandTester->execute([]);
 
@@ -150,6 +191,10 @@ class SyncCommandTest extends TestCase
         $this->synchronisationRunnerMock
             ->expects(self::never())
             ->method('run');
+
+        $this->registryMock
+            ->expects(self::never())
+            ->method('set');
 
         $this->commandTester->execute([]);
 

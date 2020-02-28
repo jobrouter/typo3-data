@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Toolbar.xlf" date="2020-02-28T20:47:06Z" product-name="jobrouter_data">
+		<header/>
+		<body>
+			<trans-unit id="status.overdue">
+				<source><![CDATA[overdue]]></source>
+			</trans-unit>
+			<trans-unit id="status.success">
+				<source><![CDATA[success]]></source>
+			</trans-unit>
+			<trans-unit id="status.warning">
+				<source><![CDATA[warnings]]></source>
+			</trans-unit>
+			<trans-unit id="syncCommand.lastRunLabel">
+				<source><![CDATA[Last Data Sync.]]></source>
+			</trans-unit>
+			<trans-unit id="syncCommand.lastRunMessage">
+				<source><![CDATA[%s at %s (%s)]]></source>
+			</trans-unit>
+			<trans-unit id="syncCommand.neverRun">
+				<source><![CDATA[The sync command has never been executed.]]></source>
+			</trans-unit>
+			<trans-unit id="transmitCommand.lastRunLabel">
+				<source><![CDATA[Last Data Transmiss.]]></source>
+			</trans-unit>
+			<trans-unit id="transmitCommand.lastRunMessage">
+				<source><![CDATA[%s at %s (%s)]]></source>
+			</trans-unit>
+			<trans-unit id="transmitCommand.neverRun">
+				<source><![CDATA[The transmit command has never been executed.]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 
+use Brotkrueml\JobRouterData\Command\SyncCommand;
 use Brotkrueml\JobRouterData\Command\TransmitCommand;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -11,6 +12,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Locking\Exception\LockAcquireException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
+use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class TransmitCommandTest extends TestCase
@@ -23,6 +25,9 @@ class TransmitCommandTest extends TestCase
 
     /** @var Transmitter|MockObject */
     private $transmitterMock;
+
+    /** @var MockObject|Registry */
+    private $registryMock;
 
     protected function setUp(): void
     {
@@ -37,6 +42,9 @@ class TransmitCommandTest extends TestCase
 
         $this->transmitterMock = $this->createMock(Transmitter::class);
         GeneralUtility::addInstance(Transmitter::class, $this->transmitterMock);
+
+        $this->registryMock = $this->createMock(Registry::class);
+        GeneralUtility::setSingletonInstance(Registry::class, $this->registryMock);
 
         $this->commandTester = new CommandTester(new TransmitCommand());
     }
@@ -64,6 +72,19 @@ class TransmitCommandTest extends TestCase
             ->expects(self::once())
             ->method('run')
             ->willReturn([0, 0]);
+
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_data',
+                'transmitCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
+                    }
+                )
+            );
 
         $this->commandTester->execute([]);
 
@@ -93,6 +114,19 @@ class TransmitCommandTest extends TestCase
             ->method('run')
             ->willReturn([3, 0]);
 
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_data',
+                'transmitCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
+                    }
+                )
+            );
+
         $this->commandTester->execute([]);
 
         self::assertSame(TransmitCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
@@ -121,6 +155,19 @@ class TransmitCommandTest extends TestCase
             ->method('run')
             ->willReturn([3, 1]);
 
+        $this->registryMock
+            ->expects(self::once())
+            ->method('set')
+            ->with(
+                'tx_jobrouter_data',
+                'transmitCommand.lastRun',
+                self::callback(
+                    function ($subject) {
+                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
+                    }
+                )
+            );
+
         $this->commandTester->execute([]);
 
         self::assertSame(TransmitCommand::EXIT_CODE_ERRORS_ON_TRANSMISSION, $this->commandTester->getStatusCode());
@@ -147,6 +194,10 @@ class TransmitCommandTest extends TestCase
         $this->transmitterMock
             ->expects(self::never())
             ->method('run');
+
+        $this->registryMock
+            ->expects(self::never())
+            ->method('set');
 
         $this->commandTester->execute([]);
 

@@ -18,6 +18,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Locking\Exception as LockException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
+use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 final class TransmitCommand extends Command
@@ -25,6 +26,9 @@ final class TransmitCommand extends Command
     public const EXIT_CODE_OK = 0;
     public const EXIT_CODE_ERRORS_ON_TRANSMISSION = 1;
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
+
+    /** @var int */
+    private $startTime;
 
     /** @var LockingStrategyInterface */
     private $locker;
@@ -38,8 +42,8 @@ final class TransmitCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $this->startTime = time();
         $outputStyle = new SymfonyStyle($input, $output);
-
         $lockFactory = GeneralUtility::makeInstance(LockFactory::class);
 
         try {
@@ -49,6 +53,7 @@ final class TransmitCommand extends Command
             [$exitCode, $messageType, $message] = $this->runTransmitter();
             $this->locker->release();
             $outputStyle->{$messageType}($message);
+            $this->recordLastRun($exitCode);
 
             return $exitCode;
         } catch (LockException $e) {
@@ -83,5 +88,16 @@ final class TransmitCommand extends Command
             'success',
             $message,
         ];
+    }
+
+    private function recordLastRun(int $exitCode): void
+    {
+        $registry = GeneralUtility::makeInstance(Registry::class);
+        $runInformation = [
+            'start' => $this->startTime,
+            'end' => time(),
+            'exitCode' => $exitCode,
+        ];
+        $registry->set('tx_jobrouter_data', 'transmitCommand.lastRun', $runInformation);
     }
 }

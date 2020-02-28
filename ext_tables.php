@@ -30,6 +30,11 @@ defined('TYPO3_MODE') || die('Access denied.');
         \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         ['source' => 'EXT:' . $extensionKey . '/Resources/Public/Icons/action-report.svg']
     );
+    $iconRegistry->registerIcon(
+        'jobrouter-data-toolbar',
+        \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        ['source' => 'EXT:' . $extensionKey . '/Resources/Public/Icons/jobrouter-data-toolbar.svg']
+    );
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
         '<INCLUDE_TYPOSCRIPT: source="FILE:EXT:' . $extensionKey . '/Configuration/TSconfig/Page/NewContentElementWizard.tsconfig">'
@@ -50,4 +55,20 @@ defined('TYPO3_MODE') || die('Access denied.');
             'report'      => \Brotkrueml\JobRouterData\Report\Status::class,
         ];
     }
+
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)
+        ->connect(
+            \TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem::class,
+            'getSystemInformation',
+            \Brotkrueml\JobRouterData\SystemInformation\SyncToolbarItemProvider::class,
+            'getItem'
+        );
+
+    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)
+        ->connect(
+            \TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem::class,
+            'getSystemInformation',
+            \Brotkrueml\JobRouterData\SystemInformation\TransmitToolbarItemProvider::class,
+            'getItem'
+        );
 })();
