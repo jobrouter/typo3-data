@@ -177,7 +177,7 @@ Transfer Data Sets To A JobRouter Installation
 
 Sometimes it is necessary to transfer data sets from TYPO3 to a JobRouter
 installation. An API and a :ref:`transmit command
-<configuration-transmit-command>` are available for this use case.
+<transmit-command>` are available for this use case.
 
 Data sets are transferred asynchronously, since a JobRouter installation may be
 unavailable or in maintenance mode and to avoid long page loads. Let's take a
@@ -225,7 +225,7 @@ you can use the :php:`Preparer` class within TYPO3:
       var_dump($e->getMessage());
    }
 
-The :ref:`transmit command <configuration-transmit-command>` must be activated
+The :ref:`transmit command <transmit-command>` must be activated
 with a cron job to periodically transmit the data sets to the JobRouter
 installation(s).
 

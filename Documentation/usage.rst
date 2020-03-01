@@ -60,7 +60,7 @@ extension. This is the recommended type if you only want to display data,
 e.g. with the :ref:`content element <editor-content-element>`. Have a look at
 the developer corner to see the :ref:`schema <developer-simple-sync-table>` of
 the table and how to use it in your code. The synchronisation is done with the
-available :ref:`synchronisation command <configuration-sync-command>`.
+available :ref:`synchronisation command <sync-command>`.
 
 .. figure:: _images/create-table-link-simple-synchronisation.png
    :alt: Create a table link of type Simple synchronisation
@@ -95,7 +95,7 @@ You have to define a table yourself in an extension with the needed columns
 from the JobData table. This is the recommended way when you want to display the
 data yourself, e.g. with filtering by some columns or with joins to other data.
 The synchronisation is carried out with the available :ref:`synchronisation
-command <configuration-sync-command>`.
+command <sync-command>`.
 
 .. figure:: _images/create-table-link-own-table.png
    :alt: Create a table link of type Synchronisation in own table
