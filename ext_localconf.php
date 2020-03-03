@@ -11,7 +11,7 @@ defined('TYPO3_MODE') || die('Access denied.');
 
     $configuration = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(
         TYPO3\CMS\Core\Configuration\ExtensionConfiguration::class
-    )->get('jobrouter_data');
+    )->get($extensionKey);
 
     $writerConfiguration = [];
     if ($configuration['logIntoFile']) {
