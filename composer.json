@@ -47,6 +47,9 @@
         "bin-dir": ".Build/bin"
     },
     "extra": {
+        "branch-alias": {
+            "dev-master": "0.10.x-dev"
+        },
         "typo3/cms": {
             "extension-key": "jobrouter_data",
             "cms-package-dir": "{$vendor-dir}/typo3/cms",

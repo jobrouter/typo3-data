@@ -55,7 +55,6 @@ According to your :ref:`logging configuration <configuration-extension>`, the
 error is also logged.
 
 .. note::
-
    Only one synchronisation can run at a time. If a synchronisation starts while
    another is in progress, the second synchronisation is terminated and a
    warning is displayed.
@@ -99,7 +98,6 @@ to your :ref:`logging configuration <configuration-extension>`, the error is
 also logged.
 
 .. note::
-
    Only one transmission can run at a time. If a transmission starts while
    another is in progress, the second transmission is terminated and a warning
    is displayed.
@@ -115,8 +113,8 @@ The last run of the command is shown in the system information toolbar
 
 .. _deleteoldtransfers-command:
 
-Delete Old Transfers
-====================
+Clean Up Transfers
+==================
 
 After successfully transmitting data sets from the transfer table, these
 transfers are marked as successful. They may contain sensitive data and should
@@ -124,7 +122,7 @@ be deleted regularly. A command is available for this task:
 
 ::
 
-   vendor/bin/typo3 jobrouter:data:deleteoldtransfers
+   vendor/bin/typo3 jobrouter:data:cleanuptransfers
 
 In general you should receive a successful answer:
 
@@ -137,14 +135,14 @@ You can adjust this value by adding an argument to the command:
 
 ::
 
-   vendor/bin/typo3 jobrouter:data:deleteoldtransfers 7
+   vendor/bin/typo3 jobrouter:data:cleanuptransfers 7
 
 Now successful transfer records that are older than seven days are deleted. If
 you use `0` as argument, all successful transfers are deleted.
 
-Erroneous transfers are not deleted and should be handled manually.
+.. important::
+   Erroneous transfers are not deleted and must be handled manually.
 
 .. note::
-
    If there were deleted successful transfer records, the number of affected
    rows is logged as *notice*, if there were none it is logged as *info*.

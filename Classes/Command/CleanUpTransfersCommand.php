@@ -19,7 +19,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-final class DeleteOldTransfersCommand extends Command
+final class CleanUpTransfersCommand extends Command
 {
     public const EXIT_CODE_OK = 0;
     public const EXIT_CODE_INVALID_ARGUMENT = 1;
