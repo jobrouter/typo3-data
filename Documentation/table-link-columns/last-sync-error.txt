@@ -1,4 +1,3 @@
-:aspect:`Last Synchronisation Error`
-
+Last Synchronisation Error
    If the synchronisation run has been performed, the last error (if applicable)
    is displayed in this read-only field.

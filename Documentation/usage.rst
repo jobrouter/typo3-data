@@ -131,9 +131,6 @@ synchronisation. This type can be used for the TYPO3 JobRouter Form extension to
 push the field values of a submitted form into a JobData table. Also you can
 synchronise data sets yourself and enrich the data with additional information.
 
-.. todo::
-   Add link to TYPO3 JobRouter Data Form extension
-
 .. figure:: _images/create-table-link-other-usage.png
    :alt: Create a table link of type Other usage
 

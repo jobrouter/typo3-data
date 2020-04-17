@@ -6,21 +6,21 @@ TYPO3 JobRouter Data
 
 Manual for the TYPO3 extension
 `TYPO3 JobRouter Data <https://github.com/brotkrueml/typo3-jobrouter-data>`_
-(extension key: jobrouter_data) in version |version|.
+(TYPO3 extension key: jobrouter_data) in version |version|.
 
 The documentation was updated on |today|.
 
 :Author:
-   `Chris Müller <https://github.com/brotkrueml>`__
+   `Chris Müller <https://github.com/brotkrueml>`_
 
 :Email:
    typo3 (at) krue (dot) ml
 
 :Slack:
-   chris on `typo3.slack.com <https://typo3.slack.com>`__
+   chris on `typo3.slack.com <https://typo3.slack.com>`_
 
 :Twitter:
-   `@brotkrueml <https://twitter.com/brotkrueml>`__
+   `@brotkrueml <https://twitter.com/brotkrueml>`_
 
 
 This documentation is published under the `CC BY-NC-SA 4.0 (Creative Commons)

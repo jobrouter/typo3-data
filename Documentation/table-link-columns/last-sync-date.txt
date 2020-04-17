@@ -1,4 +1,3 @@
-:aspect:`Last Synchronisation Date/Time`
-
+Last Synchronisation Date/Time
    If the synchronisation run has been performed, the last synchronisation date
    and time are available in this read-only field.

@@ -1,9 +1,7 @@
-:aspect:`Own table (required)`
-
+Own table (required)
    Choose one of the tables to synchronise into.
 
    .. note::
-
       Only extension tables beginning with *tx_* and a column named *jrid* are
       displayed in this list. A table can only be used once.
 
