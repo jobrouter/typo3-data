@@ -12,7 +12,7 @@ namespace Brotkrueml\JobRouterData\ViewHelpers;
 
 use Brotkrueml\JobRouterData\Domain\Model\Table\Cell;
 use Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration;
-use TYPO3\CMS\Lang\LanguageService;
+use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper;
 
