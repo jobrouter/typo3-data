@@ -1,11 +1,12 @@
 <?php
 return [
     'ctrl' => [
-        'title' => 'Transfer',
+        'title' => 'JobData Transfer',
         'label' => 'identifier',
         'crdate' => 'crdate',
         'rootLevel' => 1,
         'hideTable' => true,
+        'iconfile' => 'EXT:jobrouter_data/Resources/Public/Icons/tx_jobrouterdata_domain_model_transfer.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'table_uid, identifier, transmit_success, transmit_date, transmit_message',
