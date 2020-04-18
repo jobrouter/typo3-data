@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\JobRouterData\Synchronisation;
-
 /*
  * This file is part of the "jobrouter_data" extension for TYPO3 CMS.
  *
@@ -10,9 +8,11 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
+namespace Brotkrueml\JobRouterData\Synchronisation;
+
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
+use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Database\ConnectionPool;

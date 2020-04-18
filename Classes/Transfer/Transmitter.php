@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\JobRouterData\Transfer;
-
 /*
  * This file is part of the "jobrouter_data" extension for TYPO3 CMS.
  *
@@ -10,15 +8,17 @@ namespace Brotkrueml\JobRouterData\Transfer;
  * LICENSE.txt file that was distributed with this source code.
  */
 
+namespace Brotkrueml\JobRouterData\Transfer;
+
 use Brotkrueml\JobRouterClient\Client\ClientInterface;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
-use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Model\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\ConnectionNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
+use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Utility\GeneralUtility;

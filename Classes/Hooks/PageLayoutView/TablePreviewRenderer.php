@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\JobRouterData\Hooks\PageLayoutView;
-
 /*
  * This file is part of the "jobrouter_data" extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  */
+
+namespace Brotkrueml\JobRouterData\Hooks\PageLayoutView;
 
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use TYPO3\CMS\Backend\View\PageLayoutView;

@@ -1,8 +1,6 @@
 <?php
 declare(strict_types=1);
 
-namespace Brotkrueml\JobRouterData\Controller;
-
 /*
  * This file is part of the "jobrouter_data" extension for TYPO3 CMS.
  *
@@ -10,9 +8,11 @@ namespace Brotkrueml\JobRouterData\Controller;
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
+namespace Brotkrueml\JobRouterData\Controller;
+
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;
