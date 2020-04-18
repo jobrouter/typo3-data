@@ -19,6 +19,9 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Reports\Controller\ReportController;
 use TYPO3\CMS\Reports\ReportInterface;
 
+/**
+ * @internal
+ */
 final class Status implements ReportInterface
 {
     private const TEMPLATE = 'EXT:jobrouter_data/Resources/Private/Templates/Report/Status.html';

@@ -14,7 +14,10 @@ use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 
-class SimpleTableSynchroniser extends AbstractSynchroniser
+/**
+ * @internal
+ */
+final class SimpleTableSynchroniser extends AbstractSynchroniser
 {
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 

@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Enumeration;
 
-class ColumnTypeEnumeration
+final class ColumnTypeEnumeration
 {
     public const TEXT = 1;
     public const INTEGER = 2;

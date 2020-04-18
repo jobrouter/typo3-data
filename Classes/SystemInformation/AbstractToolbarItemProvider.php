@@ -16,6 +16,9 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * @internal
+ */
 abstract class AbstractToolbarItemProvider
 {
     protected $commandName = '';

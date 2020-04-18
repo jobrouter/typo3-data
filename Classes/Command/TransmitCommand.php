@@ -21,6 +21,9 @@ use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
 use TYPO3\CMS\Core\Registry;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
+/**
+ * @internal
+ */
 final class TransmitCommand extends Command
 {
     public const EXIT_CODE_OK = 0;

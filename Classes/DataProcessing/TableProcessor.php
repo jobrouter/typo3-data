@@ -18,7 +18,10 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
-class TableProcessor implements DataProcessorInterface
+/**
+ * @internal
+ */
+final class TableProcessor implements DataProcessorInterface
 {
     /** @var FlexFormService */
     private $flexFormService;

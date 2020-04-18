@@ -14,7 +14,10 @@ use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 
-class OwnTableSynchroniser extends AbstractSynchroniser
+/**
+ * @internal
+ */
+final class OwnTableSynchroniser extends AbstractSynchroniser
 {
     public function synchroniseTable(Table $table): bool
     {

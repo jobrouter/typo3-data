@@ -14,6 +14,9 @@ use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
+/**
+ * @internal
+ */
 final class Cache
 {
     private const CACHE_TAG_TEMPLATE = 'tx_jobrouterdata_table_%d';

@@ -18,6 +18,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
+/**
+ * @internal
+ */
 final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 {
     private const TEMPLATE = 'EXT:jobrouter_data/Resources/Private/Templates/PageLayout/TablePreview.html';

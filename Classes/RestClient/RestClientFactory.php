@@ -14,6 +14,9 @@ use Brotkrueml\JobRouterClient\Client\ClientInterface;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
+/**
+ * @internal
+ */
 final class RestClientFactory
 {
     /**

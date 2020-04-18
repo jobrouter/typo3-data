@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper;
 
-class ColumnLabelViewHelper extends ViewHelper\AbstractViewHelper
+final class ColumnLabelViewHelper extends ViewHelper\AbstractViewHelper
 {
     public function initializeArguments(): void
     {

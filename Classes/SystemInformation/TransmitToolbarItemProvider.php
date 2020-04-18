@@ -10,6 +10,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\SystemInformation;
 
+/**
+ * @internal
+ */
 final class TransmitToolbarItemProvider extends AbstractToolbarItemProvider
 {
     protected $commandName = 'transmitCommand';
