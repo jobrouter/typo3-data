@@ -9,7 +9,7 @@
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table',
+        'title' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table',
         'label' => 'name',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -21,7 +21,7 @@ return [
         ],
         'rootLevel' => 1,
         'searchFields' => 'name,table_guid',
-        'iconfile' => 'EXT:jobrouter_data/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
+        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
     ],
     'interface' => [
         'showRecordFieldList' => 'disabled, name, connection, table_guid, columns, last_sync_date, last_sync_error',
@@ -45,21 +45,21 @@ return [
 
         'type' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.simple_synchronisation',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.simple_synchronisation',
                         \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE
                     ],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table',
                         \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE
                     ],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.other_usage',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.other_usage',
                         \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE
                     ],
                 ],
@@ -67,7 +67,7 @@ return [
         ],
         'connection' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.connection',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.connection',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -78,7 +78,7 @@ return [
         ],
         'name' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.name',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -88,7 +88,7 @@ return [
         ],
         'table_guid' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.table_guid',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.table_guid',
             'config' => [
                 'type' => 'input',
                 'size' => 20,
@@ -98,7 +98,7 @@ return [
         ],
         'own_table' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.own_table',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.own_table',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -111,7 +111,7 @@ return [
         ],
         'columns' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.columns',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.columns',
             'config' => [
                 'type' => 'inline',
                 'allowed' => 'tx_jobrouterdata_domain_model_column',
@@ -133,7 +133,7 @@ return [
         ],
         'datasets' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.datasets',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.datasets',
             'config' => [
                 'type' => 'inline',
                 'allowed' => 'tx_jobrouterdata_domain_model_dataset',
@@ -160,7 +160,7 @@ return [
         ],
         'last_sync_date' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.last_sync_date',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.last_sync_date',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputDateTime',
@@ -170,7 +170,7 @@ return [
         ],
         'last_sync_error' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.last_sync_error',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.last_sync_error',
             'config' => [
                 'type' => 'text',
                 'cols' => 30,
@@ -185,7 +185,7 @@ return [
             type, connection, name, table_guid, columns,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
-            --div--;LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tab.status,
+            --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
             --palette--;;synchronisationStatus,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
         '
@@ -195,7 +195,7 @@ return [
             type, connection, name, table_guid, own_table,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
-            --div--;LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tab.status,
+            --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
             --palette--;;synchronisationStatus,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
         '
@@ -211,7 +211,7 @@ return [
     ],
     'palettes' => [
         'synchronisationStatus' => [
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:palette.last_synchronisation',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':palette.last_synchronisation',
             'showitem' => 'last_sync_date, --linebreak--, last_sync_error'
         ],
     ],

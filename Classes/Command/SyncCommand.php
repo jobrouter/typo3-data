@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Command;
 
+use Brotkrueml\JobRouterData\Extension;
 use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -119,7 +120,7 @@ final class SyncCommand extends Command
             'end' => time(),
             'exitCode' => $exitCode,
         ];
-        $registry->set('tx_jobrouter_data', 'syncCommand.lastRun', $runInformation);
+        $registry->set(Extension::REGISTRY_NAMESPACE, 'syncCommand.lastRun', $runInformation);
     }
 
     /**

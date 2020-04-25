@@ -12,14 +12,13 @@ namespace Brotkrueml\JobRouterData\ViewHelpers;
 
 use Brotkrueml\JobRouterData\Domain\Model\Table\Cell;
 use Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration;
+use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
 use TYPO3Fluid\Fluid\Core\ViewHelper;
 
 final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
 {
-    private const LOCALISATION_FILE = 'LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf';
-
     public function initializeArguments(): void
     {
         $this->registerArgument('cell', 'object', 'The column domain model', true);
@@ -85,7 +84,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
 
     private static function localise(string $key): string
     {
-        return static::getLanguageService()->sL(static::LOCALISATION_FILE . ':' . $key);
+        return static::getLanguageService()->sL(Extension::LANGUAGE_PATH_FORMAT . ':' . $key);
     }
 
     private static function getLanguageService(): LanguageService

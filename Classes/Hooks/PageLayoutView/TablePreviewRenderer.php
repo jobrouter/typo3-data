@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Hooks\PageLayoutView;
 
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Core\Localization\LanguageService;
@@ -23,8 +24,7 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
  */
 final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 {
-    private const TEMPLATE = 'EXT:jobrouter_data/Resources/Private/Templates/PageLayout/TablePreview.html';
-    private const LL_PREFIX = 'LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:';
+    private const TEMPLATE = 'EXT:' . Extension::KEY . '/Resources/Private/Templates/PageLayout/TablePreview.html';
 
     private $flexFormData;
 
@@ -55,7 +55,7 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 
         $headerContent = \sprintf(
             '<strong>%s</strong>',
-            $this->languageService->sL(static::LL_PREFIX . 'ce.title')
+            $this->languageService->sL(Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title')
         );
 
         $itemContent = $parentObject->linkEditContent($this->getItemContent($row), $row);

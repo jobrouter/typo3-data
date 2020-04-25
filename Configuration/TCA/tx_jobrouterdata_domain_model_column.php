@@ -9,7 +9,7 @@
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column',
+        'title' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column',
         'label' => 'label',
         'label_alt' => 'name',
         'tstamp' => 'tstamp',
@@ -19,7 +19,7 @@ return [
         'sortby' => 'sorting',
         'rootLevel' => 1,
         'searchFields' => 'name,label',
-        'iconfile' => 'EXT:jobrouter_data/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
+        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
         'hideTable' => true,
     ],
     'interface' => [
@@ -47,7 +47,7 @@ return [
 
         'name' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.name',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -57,7 +57,7 @@ return [
         ],
         'label' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.label',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.label',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -67,7 +67,7 @@ return [
         ],
         'type' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.type',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type',
             'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
@@ -75,23 +75,23 @@ return [
                 'items' => [
                     ['', ''],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.type.text',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.text',
                         \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::TEXT
                     ],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.type.integer',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.integer',
                         \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::INTEGER
                     ],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.type.decimal',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.decimal',
                         \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DECIMAL
                     ],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.type.date',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.date',
                         \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DATE
                     ],
                     [
-                        'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.type.datetime',
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.datetime',
                         \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DATETIME
                     ],
                 ],
@@ -100,7 +100,7 @@ return [
         ],
         'decimal_places' => [
             'exclude' => true,
-            'label' => 'LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.decimal_places',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
             'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DECIMAL,
             'config' => [
                 'type' => 'input',

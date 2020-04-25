@@ -12,6 +12,7 @@ namespace Brotkrueml\JobRouterData\Controller;
 
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
@@ -86,7 +87,7 @@ final class BackendController extends ActionController
     {
         $pageRenderer = $this->moduleTemplate->getPageRenderer();
         $pageRenderer->addInlineLanguageLabelFile(
-            'EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf'
+            \str_replace('LLL:', '', Extension::LANGUAGE_PATH_BACKEND_MODULE)
         );
         $pageRenderer->loadRequireJsModule(
             'TYPO3/CMS/JobrouterData/TableCheck'
@@ -105,7 +106,7 @@ final class BackendController extends ActionController
 
     protected function createNewHeaderButton(): void
     {
-        $title = $this->getLanguageService()->sL('LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.add_table');
+        $title = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_table');
 
         $newRecordButton = $this->buttonBar->makeLinkButton()
             ->setHref((string)$this->backendUriBuilder->buildUriFromRoute(
@@ -128,7 +129,7 @@ final class BackendController extends ActionController
             return;
         }
 
-        $title = $this->getLanguageService()->sL('LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.report');
+        $title = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.report');
 
         $reportButton = $this->buttonBar->makeLinkButton()
             ->setHref((string)$this->backendUriBuilder->buildUriFromRoute(
