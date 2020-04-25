@@ -23,9 +23,6 @@ return [
         'searchFields' => 'name,table_guid',
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
     ],
-    'interface' => [
-        'showRecordFieldList' => 'disabled, name, connection, table_guid, columns, last_sync_date, last_sync_error',
-    ],
     'columns' => [
         'disabled' => [
             'exclude' => true,

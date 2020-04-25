@@ -22,9 +22,6 @@ return [
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
         'hideTable' => true,
     ],
-    'interface' => [
-        'showRecordFieldList' => 'name, label, type, decimal_places',
-    ],
     'columns' => [
         'pid' => [
             'label' => 'pid',

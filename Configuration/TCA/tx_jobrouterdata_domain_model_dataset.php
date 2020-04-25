@@ -16,9 +16,6 @@ return [
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_dataset.svg',
         'hideTable' => true,
     ],
-    'interface' => [
-        'showRecordFieldList' => 'jrid, dataset',
-    ],
     'columns' => [
         'pid' => [
             'label' => 'pid',
