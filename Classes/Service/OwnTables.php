@@ -53,7 +53,7 @@ final class OwnTables
 
         $tables = [];
         foreach ($schemaManager->listTableNames() as $tableName) {
-            if (\strpos($tableName, 'tx_') !== 0) {
+            if (!\str_starts_with($tableName, 'tx_')) {
                 continue;
             }
 

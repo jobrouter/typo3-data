@@ -42,7 +42,7 @@ final class ColumnLabelViewHelper extends ViewHelper\AbstractViewHelper
 
         $label = $column->getLabel();
         if ($label) {
-            if (strpos($label, 'LLL:') === 0) {
+            if (\str_starts_with($label, 'LLL:')) {
                 $translatedLabel = static::getLanguageService()->sL($label);
 
                 if ($translatedLabel) {
