@@ -150,9 +150,7 @@ Here is an example to get the table link and initialise the JobRouter Client:
 
    $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
    $tableRepository = $objectManager->get(TableRepository::class);
-
-   // Get the table with uid 3
-   $table = $tableRepository->findByIdentifier(3);
+   $table = $tableRepository->findOneByHandle('contacts');
 
    $connection = $table->getConnection();
    if ($connection) {

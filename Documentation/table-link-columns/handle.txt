@@ -1,0 +1,5 @@
+Handle (required)
+   A handle for usage in the your own synchronisation implementations. It is
+   unique in the TYPO3 installation. Only the characters A-Z, a-z, 0-9, - and _
+   are allowed. It helps you referring to the same table link in development,
+   testing and production environments.

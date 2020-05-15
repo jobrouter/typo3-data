@@ -30,6 +30,9 @@ class Table extends AbstractEntity
     protected $type = 0;
 
     /** @var string */
+    protected $handle = '';
+
+    /** @var string */
     protected $name = '';
 
     /** @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null */
@@ -86,6 +89,16 @@ class Table extends AbstractEntity
     public function setType(int $type): void
     {
         $this->type = $type;
+    }
+
+    public function getHandle(): string
+    {
+        return $this->handle;
+    }
+
+    public function setHandle(string $handle): void
+    {
+        $this->name = $handle;
     }
 
     public function getName(): string

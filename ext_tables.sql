@@ -1,5 +1,6 @@
 CREATE TABLE tx_jobrouterdata_domain_model_table (
 	type smallint(5) unsigned DEFAULT '0' NOT NULL,
+	handle varchar(30) DEFAULT '' NOT NULL,
 	name varchar(255)  DEFAULT '' NOT NULL,
 	connection int(11) unsigned DEFAULT '0' NOT NULL,
 	table_guid varchar(36) DEFAULT '' NOT NULL,
@@ -8,7 +9,9 @@ CREATE TABLE tx_jobrouterdata_domain_model_table (
 	datasets int(11) unsigned DEFAULT '0' NOT NULL,
 	datasets_sync_hash varchar(40) DEFAULT '' NOT NULL,
 	last_sync_date int(11) unsigned DEFAULT '0' NOT NULL,
-	last_sync_error text
+	last_sync_error text,
+
+	UNIQUE KEY handle (handle)
 );
 
 CREATE TABLE tx_jobrouterdata_domain_model_column (

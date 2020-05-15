@@ -20,7 +20,7 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'name,table_guid',
+        'searchFields' => 'handle,name,table_guid',
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
     ],
     'columns' => [
@@ -71,6 +71,16 @@ return [
                 'foreign_table' => 'tx_jobrouterconnector_domain_model_connection',
                 'foreign_table_where' => ' ORDER BY tx_jobrouterconnector_domain_model_connection.name',
                 'eval' => 'int,required',
+            ],
+        ],
+        'handle' => [
+            'exclude' => true,
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.handle',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'max' => 30,
+                'eval' => 'alphanum_x,required,trim,unique'
             ],
         ],
         'name' => [
@@ -179,7 +189,7 @@ return [
     'types' => [
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => [
             'showitem' => '
-            type, connection, name, table_guid, columns,
+            type, connection, handle, name, table_guid, columns,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
@@ -189,7 +199,7 @@ return [
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => [
             'showitem' => '
-            type, connection, name, table_guid, own_table,
+            type, connection, handle, name, table_guid, own_table,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
@@ -199,7 +209,7 @@ return [
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => [
             'showitem' => '
-            type, connection, name, table_guid,
+            type, connection, handle, name, table_guid,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,

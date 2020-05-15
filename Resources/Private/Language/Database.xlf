@@ -60,6 +60,9 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.datasets">
 				<source><![CDATA[Data sets]]></source>
 			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.handle">
+				<source><![CDATA[Handle]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.own_table">
 				<source><![CDATA[Own table]]></source>
 			</trans-unit>

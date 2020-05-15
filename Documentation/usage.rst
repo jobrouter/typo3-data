@@ -72,6 +72,7 @@ The following fields are available:
 General
 '''''''
 .. include:: table-link-columns/connection.txt
+.. include:: table-link-columns/handle.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
 .. include:: table-link-columns/columns.txt
@@ -107,6 +108,7 @@ The following fields are available:
 General
 '''''''
 .. include:: table-link-columns/connection.txt
+.. include:: table-link-columns/handle.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
 .. include:: table-link-columns/own-table.txt
@@ -141,6 +143,7 @@ The following fields are available:
 General
 '''''''
 .. include:: table-link-columns/connection.txt
+.. include:: table-link-columns/handle.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
 
