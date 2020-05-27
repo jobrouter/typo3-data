@@ -3,6 +3,13 @@
     "type": "typo3-cms-extension",
     "description": "Connect JobRouter JobData tables with TYPO3",
     "license": "GPL-2.0-or-later",
+    "keywords": [
+        "TYPO3 CMS",
+        "TYPO3 extension",
+        "JobRouter",
+        "Data",
+        "Workflow"
+    ],
     "authors": [
         {
             "name": "Chris Müller",
