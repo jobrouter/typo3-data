@@ -6,3 +6,21 @@ services:
 
   Brotkrueml\JobRouterData\:
     resource: '../Classes/*'
+
+  Brotkrueml\JobRouterData\Command\SyncCommand:
+    tags:
+      - name: 'console.command'
+        command: 'jobrouter:data:sync'
+        schedulable: true
+
+  Brotkrueml\JobRouterData\Command\TransmitCommand:
+    tags:
+      - name: 'console.command'
+        command: 'jobrouter:data:transmit'
+        schedulable: true
+
+  Brotkrueml\JobRouterData\Command\CleanUpTransfersCommand:
+    tags:
+      - name: 'console.command'
+        command: 'jobrouter:data:cleanuptransfers'
+        schedulable: true
