@@ -35,11 +35,14 @@ final class BackendController extends ActionController
 
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    /** @var TableRepository */
-    private $tableRepository;
-
     /** @var IconFactory */
     private $iconFactory;
+
+    /** @var LanguageService */
+    private $languageService;
+
+    /** @var TableRepository */
+    private $tableRepository;
 
     /** @var UriBuilder */
     private $backendUriBuilder;
@@ -50,18 +53,15 @@ final class BackendController extends ActionController
     /** @var ButtonBar */
     private $buttonBar;
 
-    public function injectTableRepository(TableRepository $tableRepository): void
-    {
-        $this->tableRepository = $tableRepository;
-    }
-
-    public function injectIconFactory(IconFactory $iconFactory): void
-    {
+    public function __construct(
+        IconFactory $iconFactory,
+        LanguageService $languageService,
+        TableRepository $tableRepository,
+        UriBuilder $uriBuilder
+    ) {
         $this->iconFactory = $iconFactory;
-    }
-
-    public function injectUriBuilder(UriBuilder $uriBuilder): void
-    {
+        $this->languageService = $languageService;
+        $this->tableRepository = $tableRepository;
         $this->backendUriBuilder = $uriBuilder;
     }
 
@@ -106,7 +106,7 @@ final class BackendController extends ActionController
 
     protected function createNewHeaderButton(): void
     {
-        $title = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_table');
+        $title = $this->languageService->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_table');
 
         $newRecordButton = $this->buttonBar->makeLinkButton()
             ->setHref((string)$this->backendUriBuilder->buildUriFromRoute(
@@ -129,7 +129,7 @@ final class BackendController extends ActionController
             return;
         }
 
-        $title = $this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.report');
+        $title = $this->languageService->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.report');
 
         $reportButton = $this->buttonBar->makeLinkButton()
             ->setHref((string)$this->backendUriBuilder->buildUriFromRoute(
@@ -147,7 +147,7 @@ final class BackendController extends ActionController
 
     protected function createRefreshHeaderButton(): void
     {
-        $title = $this->getLanguageService()->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload');
+        $title = $this->languageService->sL('LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.reload');
 
         $refreshButton = $this->buttonBar->makeLinkButton()
             ->setHref(GeneralUtility::getIndpEnv('REQUEST_URI'))
@@ -165,11 +165,6 @@ final class BackendController extends ActionController
                 ->setDisplayName('Shortcut');
             $this->buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
         }
-    }
-
-    protected function getLanguageService(): LanguageService
-    {
-        return $GLOBALS['LANG'];
     }
 
     protected function getBackendUser(): BackendUserAuthentication
