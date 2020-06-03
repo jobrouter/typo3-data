@@ -14,7 +14,6 @@ use Brotkrueml\JobRouterData\Exception\DeleteException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @internal Only to be used within the jobrouter_data extension, not part of the public API
@@ -26,9 +25,9 @@ class Deleter implements LoggerAwareInterface
     /** @var ConnectionPool */
     private $connectionPool;
 
-    public function __construct(ConnectionPool $connectionPool = null)
+    public function __construct(ConnectionPool $connectionPool)
     {
-        $this->connectionPool = $connectionPool ?? GeneralUtility::makeInstance(ConnectionPool::class);
+        $this->connectionPool = $connectionPool;
     }
 
     public function run(int $ageInDays): int

@@ -17,7 +17,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 /**
  * @internal
  */
-final class RestClientFactory
+class RestClientFactory
 {
     /**
      * @var string

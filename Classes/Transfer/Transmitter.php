@@ -21,8 +21,6 @@ use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
 use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
@@ -52,19 +50,13 @@ class Transmitter implements LoggerAwareInterface
     private $erroneousNumbersOfTransfers = 0;
 
     public function __construct(
-        PersistenceManagerInterface $persistenceManager = null,
-        TransferRepository $transferRepository = null,
-        TableRepository $tableRepository = null
+        PersistenceManagerInterface $persistenceManager,
+        RestClientFactory $restClientFactory,
+        TransferRepository $transferRepository,
+        TableRepository $tableRepository
     ) {
-        if ($persistenceManager === null && $transferRepository === null && $tableRepository === null) {
-            $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-            $this->persistenceManager = $objectManager->get(PersistenceManagerInterface::class);
-            $this->transferRepository = $objectManager->get(TransferRepository::class);
-            $this->tableRepository = $objectManager->get(TableRepository::class);
-            return;
-        }
-
         $this->persistenceManager = $persistenceManager;
+        $this->restClientFactory = $restClientFactory;
         $this->transferRepository = $transferRepository;
         $this->tableRepository = $tableRepository;
     }
@@ -171,15 +163,6 @@ class Transmitter implements LoggerAwareInterface
             return static::$clients[$connectionUid];
         }
 
-        return static::$clients[$connectionUid] = $this->getRestClientFactory()->create($connection);
-    }
-
-    private function getRestClientFactory(): RestClientFactory
-    {
-        if ($this->restClientFactory) {
-            return $this->restClientFactory;
-        }
-
-        return $this->restClientFactory = new RestClientFactory();
+        return static::$clients[$connectionUid] = $this->restClientFactory->create($connection);
     }
 }

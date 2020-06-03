@@ -12,6 +12,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Transfer;
 
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
+use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -36,6 +37,8 @@ class TransmitterTest extends TestCase
     {
         $this->persistenceManagerMock = $this->createMock(PersistenceManagerInterface::class);
 
+        $restClientStub = $this->createStub(RestClientFactory::class);
+
         $this->transferRepositoryMock = $this->getMockBuilder(TransferRepository::class)
             ->disableOriginalConstructor()
             ->addMethods(['findByTransmitSuccess'])
@@ -48,6 +51,7 @@ class TransmitterTest extends TestCase
 
         $this->subject = new Transmitter(
             $this->persistenceManagerMock,
+            $restClientStub,
             $this->transferRepositoryMock,
             $this->tableRepositoryMock
         );
