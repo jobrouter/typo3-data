@@ -16,8 +16,6 @@ use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * @internal
@@ -29,18 +27,20 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
     /** @var ConnectionPool */
     protected $connectionPool;
 
-    public function __construct()
-    {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+    /** @var RestClientFactory */
+    private $restClientFactory;
 
-        $this->connectionPool = $objectManager->get(ConnectionPool::class);
+    public function __construct(ConnectionPool $connectionPool, RestClientFactory $restClientFactory)
+    {
+        $this->connectionPool = $connectionPool;
+        $this->restClientFactory = $restClientFactory;
     }
 
     abstract public function synchroniseTable(Table $table): bool;
 
     protected function retrieveDatasetsFromJobRouter(Table $table): array
     {
-        $restClient = (new RestClientFactory())->create($table->getConnection());
+        $restClient = $this->restClientFactory->create($table->getConnection());
 
         $response = $restClient->request(
             'GET',
