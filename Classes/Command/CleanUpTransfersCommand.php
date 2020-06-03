@@ -17,7 +17,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @internal
@@ -30,6 +29,16 @@ final class CleanUpTransfersCommand extends Command
 
     private const ARGUMENT_AGE_IN_DAYS = 'ageInDays';
     private const DEFAULT_AGE_IN_DAYS = 30;
+
+    /** @var Deleter */
+    private $deleter;
+
+    public function __construct(Deleter $deleter)
+    {
+        $this->deleter = $deleter;
+
+        parent::__construct();
+    }
 
     protected function configure(): void
     {
@@ -61,9 +70,8 @@ final class CleanUpTransfersCommand extends Command
             return self::EXIT_CODE_INVALID_ARGUMENT;
         }
 
-        $deleter = GeneralUtility::makeInstance(Deleter::class);
         try {
-            $numberOfDeletedTransfers = $deleter->run($ageInDays);
+            $numberOfDeletedTransfers = $this->deleter->run($ageInDays);
         } catch (DeleteException $e) {
             $outputStyle->error($e->getMessage());
 

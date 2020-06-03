@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Locking\Exception as LockException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
 use TYPO3\CMS\Core\Registry;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @internal
@@ -37,11 +36,26 @@ final class SyncCommand extends Command
     /** @var int */
     private $startTime;
 
-    /** @var LockingStrategyInterface */
-    private $locker;
+    /** @var LockFactory */
+    private $lockFactory;
+
+    /** @var Registry */
+    private $registry;
 
     /** @var SynchronisationRunner */
     private $synchronisationRunner;
+
+    public function __construct(
+        LockFactory $lockFactory,
+        Registry $registry,
+        SynchronisationRunner $synchronisationRunner
+    ) {
+        $this->lockFactory = $lockFactory;
+        $this->registry = $registry;
+        $this->synchronisationRunner = $synchronisationRunner;
+
+        parent::__construct();
+    }
 
     protected function configure(): void
     {
@@ -55,15 +69,14 @@ final class SyncCommand extends Command
     {
         $this->startTime = time();
         $outputStyle = new SymfonyStyle($input, $output);
-        $lockFactory = GeneralUtility::makeInstance(LockFactory::class);
 
         try {
-            $this->locker = $lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
-            $this->locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
+            $locker = $this->lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
+            $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
             $tableUid = $input->getArgument(static::ARGUMENT_TABLE) ? (int)$input->getArgument(static::ARGUMENT_TABLE) : null;
             [$exitCode, $messageType, $message] = $this->runSynchronisation($tableUid);
-            $this->locker->release();
+            $locker->release();
             $outputStyle->{$messageType}($message);
             $this->recordLastRun($exitCode);
 
@@ -77,8 +90,7 @@ final class SyncCommand extends Command
 
     private function runSynchronisation(?int $tableUid): array
     {
-        $synchronisationRunner = $this->getSynchronisationRunner();
-        [$total, $errors] = $synchronisationRunner->run($tableUid);
+        [$total, $errors] = $this->synchronisationRunner->run($tableUid);
 
         if ($errors) {
             $message = \sprintf('%d out of %d table(s) had errors on synchronisation', $errors, $total);
@@ -103,35 +115,13 @@ final class SyncCommand extends Command
         ];
     }
 
-    private function getSynchronisationRunner(): SynchronisationRunner
-    {
-        if ($this->synchronisationRunner) {
-            return $this->synchronisationRunner;
-        }
-
-        return new SynchronisationRunner();
-    }
-
     private function recordLastRun(int $exitCode): void
     {
-        $registry = GeneralUtility::makeInstance(Registry::class);
         $runInformation = [
             'start' => $this->startTime,
             'end' => time(),
             'exitCode' => $exitCode,
         ];
-        $registry->set(Extension::REGISTRY_NAMESPACE, 'syncCommand.lastRun', $runInformation);
-    }
-
-    /**
-     * For testing purposes only!
-     *
-     * @param SynchronisationRunner $synchronisationRunner
-     *
-     * @internal
-     */
-    public function setSynchronisationRunner(SynchronisationRunner $synchronisationRunner)
-    {
-        $this->synchronisationRunner = $synchronisationRunner;
+        $this->registry->set(Extension::REGISTRY_NAMESPACE, 'syncCommand.lastRun', $runInformation);
     }
 }

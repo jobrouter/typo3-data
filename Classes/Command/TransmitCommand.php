@@ -19,7 +19,6 @@ use TYPO3\CMS\Core\Locking\Exception as LockException;
 use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
 use TYPO3\CMS\Core\Registry;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @internal
@@ -33,8 +32,23 @@ final class TransmitCommand extends Command
     /** @var int */
     private $startTime;
 
-    /** @var LockingStrategyInterface */
-    private $locker;
+    /** @var LockFactory */
+    private $lockFactory;
+
+    /** @var Registry */
+    private $registry;
+
+    /** @var Transmitter */
+    private $transmitter;
+
+    public function __construct(LockFactory $lockFactory, Registry $registry, Transmitter $transmitter)
+    {
+        $this->lockFactory = $lockFactory;
+        $this->registry = $registry;
+        $this->transmitter = $transmitter;
+
+        parent::__construct();
+    }
 
     protected function configure(): void
     {
@@ -45,16 +59,15 @@ final class TransmitCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->startTime = time();
+        $this->startTime = \time();
         $outputStyle = new SymfonyStyle($input, $output);
-        $lockFactory = GeneralUtility::makeInstance(LockFactory::class);
 
         try {
-            $this->locker = $lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
-            $this->locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
+            $locker = $this->lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
+            $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
             [$exitCode, $messageType, $message] = $this->runTransmitter();
-            $this->locker->release();
+            $locker->release();
             $outputStyle->{$messageType}($message);
             $this->recordLastRun($exitCode);
 
@@ -71,8 +84,7 @@ final class TransmitCommand extends Command
      */
     private function runTransmitter(): array
     {
-        $transmitter = GeneralUtility::makeInstance(Transmitter::class);
-        [$total, $errors] = $transmitter->run();
+        [$total, $errors] = $this->transmitter->run();
 
         if ($errors) {
             $message = \sprintf('%d out of %d transfer(s) had errors on transmission', $errors, $total);
@@ -95,12 +107,11 @@ final class TransmitCommand extends Command
 
     private function recordLastRun(int $exitCode): void
     {
-        $registry = GeneralUtility::makeInstance(Registry::class);
         $runInformation = [
             'start' => $this->startTime,
             'end' => time(),
             'exitCode' => $exitCode,
         ];
-        $registry->set('tx_jobrouter_data', 'transmitCommand.lastRun', $runInformation);
+        $this->registry->set('tx_jobrouter_data', 'transmitCommand.lastRun', $runInformation);
     }
 }

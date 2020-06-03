@@ -29,9 +29,8 @@ class CleanUpTransfersCommandTest extends TestCase
     protected function setUp(): void
     {
         $this->deleterMock = $this->createMock(Deleter::class);
-        GeneralUtility::addInstance(Deleter::class, $this->deleterMock);
 
-        $this->commandTester = new CommandTester(new CleanUpTransfersCommand());
+        $this->commandTester = new CommandTester(new CleanUpTransfersCommand($this->deleterMock));
     }
 
     protected function tearDown(): void
