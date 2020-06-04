@@ -24,3 +24,9 @@ services:
       - name: 'console.command'
         command: 'jobrouter:data:cleanuptransfers'
         schedulable: true
+
+  Brotkrueml\JobRouterData\EventListener\ToolbarItemProvider:
+    tags:
+      - name: event.listener
+        identifier: 'jobrouter-process/toolbar-item-provider'
+        event: TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent

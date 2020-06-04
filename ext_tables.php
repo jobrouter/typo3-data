@@ -48,26 +48,10 @@ defined('TYPO3_MODE') || die('Access denied.');
 
     if (TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('reports')) {
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_jobrouterdata']['report'] = [
-            'title'       => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_REPORT . ':title',
+            'title' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_REPORT . ':title',
             'description' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_REPORT . ':description',
-            'icon'        => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/jobrouter-data-report.svg',
-            'report'      => Brotkrueml\JobRouterData\Report\Status::class,
+            'icon' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/jobrouter-data-report.svg',
+            'report' => Brotkrueml\JobRouterData\Report\Status::class,
         ];
     }
-
-    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)
-        ->connect(
-            \TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem::class,
-            'getSystemInformation',
-            \Brotkrueml\JobRouterData\SystemInformation\SyncToolbarItemProvider::class,
-            'getItem'
-        );
-
-    \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Extbase\SignalSlot\Dispatcher::class)
-        ->connect(
-            \TYPO3\CMS\Backend\Backend\ToolbarItems\SystemInformationToolbarItem::class,
-            'getSystemInformation',
-            \Brotkrueml\JobRouterData\SystemInformation\TransmitToolbarItemProvider::class,
-            'getItem'
-        );
 })();
