@@ -111,21 +111,21 @@
     </f:section>
 
     <f:section name="defaultColumnsHeader">
-        <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.handle"/></th>
         <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.name"/></th>
+        <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.handle"/></th>
         <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.connection"/></th>
         <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.table_guid"/></th>
     </f:section>
 
     <f:section name="defaultColumns">
         <td>
-            <be:link.editRecord table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">{table.handle}</be:link.editRecord>
-        </td>
-        <td>
             <be:link.editRecord table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">{table.name}</be:link.editRecord>
             <f:if condition="{table.disabled}">
                 ({f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:status.disabled')})
             </f:if>
+        </td>
+        <td>
+            <be:link.editRecord table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">{table.handle}</be:link.editRecord>
         </td>
         <td>
             {table.connection.name}
