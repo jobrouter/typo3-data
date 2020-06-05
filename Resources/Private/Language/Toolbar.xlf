@@ -3,31 +3,31 @@
 	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Toolbar.xlf" date="2020-02-28T20:47:06Z" product-name="jobrouter_data">
 		<header/>
 		<body>
-			<trans-unit id="status.overdue">
+			<trans-unit id="status.overdue" resname="status.overdue">
 				<source><![CDATA[overdue]]></source>
 			</trans-unit>
-			<trans-unit id="status.success">
+			<trans-unit id="status.success" resname="status.success">
 				<source><![CDATA[success]]></source>
 			</trans-unit>
-			<trans-unit id="status.warning">
+			<trans-unit id="status.warning" resname="status.warning">
 				<source><![CDATA[warnings]]></source>
 			</trans-unit>
-			<trans-unit id="syncCommand.lastRunLabel">
+			<trans-unit id="syncCommand.lastRunLabel" resname="syncCommand.lastRunLabel">
 				<source><![CDATA[Last Data Sync.]]></source>
 			</trans-unit>
-			<trans-unit id="syncCommand.lastRunMessage">
+			<trans-unit id="syncCommand.lastRunMessage" resname="syncCommand.lastRunMessage">
 				<source><![CDATA[%s at %s (%s)]]></source>
 			</trans-unit>
-			<trans-unit id="syncCommand.neverRun">
+			<trans-unit id="syncCommand.neverRun" resname="syncCommand.neverRun">
 				<source><![CDATA[The sync command has never been executed.]]></source>
 			</trans-unit>
-			<trans-unit id="transmitCommand.lastRunLabel">
+			<trans-unit id="transmitCommand.lastRunLabel" resname="transmitCommand.lastRunLabel">
 				<source><![CDATA[Last Data Transmiss.]]></source>
 			</trans-unit>
-			<trans-unit id="transmitCommand.lastRunMessage">
+			<trans-unit id="transmitCommand.lastRunMessage" resname="transmitCommand.lastRunMessage">
 				<source><![CDATA[%s at %s (%s)]]></source>
 			</trans-unit>
-			<trans-unit id="transmitCommand.neverRun">
+			<trans-unit id="transmitCommand.neverRun" resname="transmitCommand.neverRun">
 				<source><![CDATA[The transmit command has never been executed.]]></source>
 			</trans-unit>
 		</body>
