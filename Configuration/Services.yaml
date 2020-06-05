@@ -7,6 +7,20 @@ services:
   Brotkrueml\JobRouterData\:
     resource: '../Classes/*'
 
+  querybuilder.tx_jobrouterdata_domain_model_transfer:
+    class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getQueryBuilderForTable'
+    arguments:
+      - 'tx_jobrouterdata_domain_model_transfer'
+
+  Brotkrueml\JobRouterData\Command\CleanUpTransfersCommand:
+    tags:
+      - name: 'console.command'
+        command: 'jobrouter:data:cleanuptransfers'
+        schedulable: true
+
   Brotkrueml\JobRouterData\Command\SyncCommand:
     tags:
       - name: 'console.command'
@@ -19,14 +33,12 @@ services:
         command: 'jobrouter:data:transmit'
         schedulable: true
 
-  Brotkrueml\JobRouterData\Command\CleanUpTransfersCommand:
-    tags:
-      - name: 'console.command'
-        command: 'jobrouter:data:cleanuptransfers'
-        schedulable: true
-
   Brotkrueml\JobRouterData\EventListener\ToolbarItemProvider:
     tags:
       - name: event.listener
         identifier: 'jobrouter-process/toolbar-item-provider'
         event: TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent
+
+  Brotkrueml\JobRouterData\Transfer\Deleter:
+    arguments:
+      - '@querybuilder.tx_jobrouterdata_domain_model_transfer'

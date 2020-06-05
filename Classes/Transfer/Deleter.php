@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterData\Transfer;
 use Brotkrueml\JobRouterData\Exception\DeleteException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 /**
  * @internal Only to be used within the jobrouter_data extension, not part of the public API
@@ -22,39 +22,38 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /** @var ConnectionPool */
-    private $connectionPool;
+    /** @var QueryBuilder */
+    private $queryBuilder;
 
-    public function __construct(ConnectionPool $connectionPool)
+    public function __construct(QueryBuilder $queryBuilder)
     {
-        $this->connectionPool = $connectionPool;
+        $this->queryBuilder = $queryBuilder;
     }
 
     public function run(int $ageInDays): int
     {
-        $this->logger->info('Start deletion of old transfers');
+        $this->logger->info('Starting clean up of old transfers');
 
         $maximumTimestampForDeletion = \time() - $ageInDays * 86400;
 
         $this->logger->debug('Maximum timestamp for deletion: ' . $maximumTimestampForDeletion);
 
         try {
-            $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_jobrouterdata_domain_model_transfer');
-            $affectedRows = $queryBuilder
+            $affectedRows = $this->queryBuilder
                 ->delete('tx_jobrouterdata_domain_model_transfer')
                 ->where(
-                    $queryBuilder->expr()->eq(
+                    $this->queryBuilder->expr()->eq(
                         'transmit_success',
-                        $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
+                        $this->queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
                     ),
-                    $queryBuilder->expr()->lt(
+                    $this->queryBuilder->expr()->lt(
                         'crdate',
-                        $queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
+                        $this->queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
                     )
                 )
                 ->execute();
         } catch (\Exception $e) {
-            $message = 'Error on deletion of old transfers: ' . $e->getMessage();
+            $message = 'Error on clean up of old transfers: ' . $e->getMessage();
             $this->logger->error($message);
             throw new DeleteException($message, 1582139672, $e);
         }
