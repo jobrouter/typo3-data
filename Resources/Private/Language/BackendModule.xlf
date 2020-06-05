@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-08-26T18:18:42Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="messages" date="2020-06-05T17:17:19Z" product-name="jobrouter_data">
 		<header/>
 		<body>
 			<trans-unit id="mlang_labels_tablabel">
@@ -31,6 +31,9 @@
 			</trans-unit>
 			<trans-unit id="table_check_successful">
 				<source><![CDATA[JobData table accessed successfully]]></source>
+			</trans-unit>
+			<trans-unit id="table_check_unknown_error">
+				<source><![CDATA[Unknown error]]></source>
 			</trans-unit>
 
 			<trans-unit id="action.add_table">

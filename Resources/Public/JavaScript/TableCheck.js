@@ -1,59 +1,51 @@
-define(['jquery'], function($) {
+define([
+  'TYPO3/CMS/Core/DocumentService',
+  'TYPO3/CMS/Core/Event/RegularEvent',
+  'TYPO3/CMS/Core/Ajax/AjaxRequest',
+  'TYPO3/CMS/Backend/Notification'
+], (DocumentService, RegularEvent, AjaxRequest, Notification) => {
   'use strict';
 
-  var TableCheck = {};
+  const tableCheck = (id, name) => {
+    const notificationTitle = TYPO3.lang['table_check_for'] + ' ' + name;
+    const request = new AjaxRequest(TYPO3.settings.ajaxUrls['jobrouter_data_table_check']);
 
-  TableCheck.init = function() {
-    window.addEventListener('load', function() {
-      var listElement = document.getElementById('jobrouter-data-table-list');
-
-      if (!listElement) {
-        return;
-      }
-
-      listElement.addEventListener('click', function(event) {
-        var linkElement = event.target.closest('.jobrouter-data-table-check');
-
-        if (!linkElement) {
-          return;
-        }
-
-        event.preventDefault();
-
-        TableCheck.check(
-          linkElement.dataset.tableUid,
-          linkElement.dataset.tableName
-        );
-      });
-    });
-  };
-
-  TableCheck.check = function(id, name) {
-    var url = top.TYPO3.settings.ajaxUrls['jobrouter_data_table_check'];
-    var settings = {
-      type: 'POST',
-      data: {tableId: +id}
-    };
-
-    var notificationTitle = TYPO3.lang['table_check_for'] + ' ' + name;
-    $.ajax(url, settings)
-      .done(function(data) {
-        if (data.check === 'ok') {
-          top.TYPO3.Notification.success(notificationTitle, TYPO3.lang['table_check_successful'], 5);
+    request.post({tableId: +id}).then(
+      async response => {
+        const data = await response.resolve();
+        if (data.check && data.check === 'ok') {
+          Notification.success(notificationTitle, TYPO3.lang['table_check_successful'], 5);
           return;
         }
 
         if (data.error) {
-          top.TYPO3.Notification.error(notificationTitle, data.error);
+          Notification.error(notificationTitle, data.error);
           return;
         }
 
-        top.TYPO3.Notification.error(notificationTitle, 'Unknown error');
-      })
-      .fail(function(jqXhr, textStatus) {
-        top.TYPO3.Notification.error(notificationTitle, 'Unknown error (' + textStatus + ', ' + jqXhr.status + ')');
-      });
-  };
+        Notification.error(notificationTitle, TYPO3.lang['table_check_unknown_error']);
+      }, error => {
+        Notification.error(notificationTitle, TYPO3.lang['table_check_unknown_error'] + ' (' + error.statusText + ', ' + error.status + ')');
+      }
+    );
+  }
 
-  TableCheck.init();
+  DocumentService.ready().then(() => {
+    const tableListElement = document.getElementById('jobrouter-data-table-list');
+
+    if (!tableListElement) {
+      return;
+    }
+
+    new RegularEvent('click', event => {
+      const linkElement = event.target.closest('.jobrouter-data-table-check');
+
+      if (!linkElement) {
+        return;
+      }
+
+      event.preventDefault();
+      tableCheck(linkElement.dataset.tableUid, linkElement.dataset.tableName);
+    }).bindTo(tableListElement);
+  });
 });
