@@ -1,71 +1,76 @@
 {
-    "name": "brotkrueml/typo3-jobrouter-data",
-    "type": "typo3-cms-extension",
-    "description": "Connect JobRouter JobData tables with TYPO3",
-    "license": "GPL-2.0-or-later",
-    "keywords": [
-        "TYPO3 CMS",
-        "TYPO3 extension",
-        "JobRouter",
-        "Data",
-        "Workflow"
-    ],
-    "authors": [
-        {
-            "name": "Chris Müller",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-        "php": ">=7.2",
-        "ext-json": "*",
-        "ext-pdo": "*",
-        "brotkrueml/jobrouter-client": "^0.9",
-        "brotkrueml/typo3-jobrouter-connector": "^0.10",
-        "symfony/polyfill-php80": "^1.17",
-        "typo3/cms-backend": "^10.4",
-        "typo3/cms-core": "^10.4",
-        "typo3/cms-extbase": "^10.4",
-        "typo3/cms-fluid": "^10.4",
-        "typo3/cms-frontend": "^10.4"
-    },
-    "suggest": {
-        "typo3/cms-reports": "Show results of JobData synchronisations",
-        "co-stack/logs": "Backend module for displaying logs written to log table"
-    },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "mikey179/vfsstream": "^1.6",
-        "php-coveralls/php-coveralls": "^2.2",
-        "phpunit/phpunit": "^8.5 || ^9.1",
-        "typo3/cms-reports": "^10.4"
-    },
-    "autoload": {
-        "psr-4": {
-            "Brotkrueml\\JobRouterData\\": "Classes"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Brotkrueml\\JobRouterData\\Tests\\": "Tests"
-        }
-    },
-    "config": {
-        "sort-packages": true,
-        "vendor-dir": ".Build/vendor",
-        "bin-dir": ".Build/bin"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.10.x-dev"
-        },
-        "typo3/cms": {
-            "extension-key": "jobrouter_data",
-            "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "web-dir": ".Build/web"
-        }
-    },
-    "scripts": {
-        "fix-cs": ".Build/bin/php-cs-fixer fix"
-    }
+	"name": "brotkrueml/typo3-jobrouter-data",
+	"type": "typo3-cms-extension",
+	"description": "Connect JobRouter JobData tables with TYPO3",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"TYPO3 CMS",
+		"TYPO3 extension",
+		"JobRouter",
+		"Data",
+		"Workflow"
+	],
+	"authors": [
+		{
+			"name": "Chris Müller",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"docs": "https://typo3-jobrouter.readthedocs.io/projects/data/",
+		"issues": "https://github.com/brotkrueml/typo3-jobrouter-data/issues",
+		"source": "https://github.com/brotkrueml/typo3-jobrouter-data"
+	},
+	"require": {
+		"php": ">=7.2",
+		"ext-json": "*",
+		"ext-pdo": "*",
+		"brotkrueml/jobrouter-client": "^0.9",
+		"brotkrueml/typo3-jobrouter-connector": "^0.10",
+		"symfony/polyfill-php80": "^1.17",
+		"typo3/cms-backend": "^10.4",
+		"typo3/cms-core": "^10.4",
+		"typo3/cms-extbase": "^10.4",
+		"typo3/cms-fluid": "^10.4",
+		"typo3/cms-frontend": "^10.4"
+	},
+	"suggest": {
+		"typo3/cms-reports": "Show results of JobData synchronisations",
+		"co-stack/logs": "Backend module for displaying logs written to log table"
+	},
+	"require-dev": {
+		"friendsofphp/php-cs-fixer": "^2.16",
+		"mikey179/vfsstream": "^1.6",
+		"php-coveralls/php-coveralls": "^2.2",
+		"phpunit/phpunit": "^8.5 || ^9.1",
+		"typo3/cms-reports": "^10.4"
+	},
+	"autoload": {
+		"psr-4": {
+			"Brotkrueml\\JobRouterData\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Brotkrueml\\JobRouterData\\Tests\\": "Tests"
+		}
+	},
+	"config": {
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.10.x-dev"
+		},
+		"typo3/cms": {
+			"extension-key": "jobrouter_data",
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/web"
+		}
+	},
+	"scripts": {
+		"fix-cs": ".Build/bin/php-cs-fixer fix"
+	}
 }
