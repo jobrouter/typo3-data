@@ -36,7 +36,7 @@ services:
   Brotkrueml\JobRouterData\EventListener\ToolbarItemProvider:
     tags:
       - name: event.listener
-        identifier: 'jobrouter-process/toolbar-item-provider'
+        identifier: 'jobrouter-data/toolbar-item-provider'
         event: TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent
 
   Brotkrueml\JobRouterData\Transfer\Deleter:
