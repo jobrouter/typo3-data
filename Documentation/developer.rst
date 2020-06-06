@@ -196,32 +196,49 @@ Preparing The Data Sets
 -----------------------
 
 If you want to transfer data sets programmatically to a JobRouter installation,
-you can use the :php:`Preparer` class within TYPO3:
+you can use the :php:`Preparer` class within TYPO3, e.g. in an Extbase
+controller:
 
 ::
 
    <?php
+   declare(strict_types=1);
+
+   namespace Vendor\Extension\Controller;
+
    use Brotkrueml\JobRouterData\Exception\PrepareException;
    use Brotkrueml\JobRouterData\Transfer\Preparer;
-   use TYPO3\CMS\Core\Utility\GeneralUtility;
+   use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
-   // It's important to use the makeInstance method to inject all necessary
-   // dependencies
-   $preparer = GeneralUtility::makeInstance(Preparer::class);
-   try {
+   final class MyController extends ActionController
+   {
+      private Preparer $preparer;
 
-      $preparer->store(
-          // The table link uid
-         42,
-         // Some descriptive identifier for the source of the dataset
-         'some identifier',
-         // Your JSON encoded data set
-         '{"your": "data", "to": "transfer"}'
-      );
-   } catch (PrepareException $e) {
-      // In some rare cases an exception can be thrown
-      var_dump($e->getMessage());
-   }
+      // It's important to use dependency injection to inject all necessary
+      // dependencies into the preparer
+      public function __construct(Preparer $preparer)
+      {
+         $this->preparer = $preparer;
+      }
+
+      public function myAction()
+      {
+         // ... some other code
+
+         try {
+            $this-preparer->store(
+                // The table link uid
+               42,
+               // Some descriptive identifier for the source of the dataset
+               'some identifier',
+               // Your JSON encoded data set
+               '{"your": "data", "to": "transfer"}'
+            );
+         } catch (PrepareException $e) {
+            // In some rare cases an exception can be thrown
+            var_dump($e->getMessage());
+         }
+      }
 
 The :ref:`transmit command <transmit-command>` must be activated
 with a cron job to periodically transmit the data sets to the JobRouter
@@ -229,5 +246,6 @@ installation(s).
 
 .. important::
 
-   Do not insert the data sets directly into the transfer table, as the table
-   schema can be changed without notice. Use the API described above.
+   It is not advised to insert the data sets directly into the transfer table,
+   as the table schema can be changed in future versions. Use the API described
+   above.
