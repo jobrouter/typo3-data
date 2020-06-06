@@ -3,18 +3,18 @@
 .. _developer:
 
 ================
-Developer Corner
+Developer corner
 ================
 
 Target group: **Developers**
 
 
-Retrieve Data Sets From The Different Table Link Types
+Retrieve data sets from the different table link types
 ======================================================
 
 .. _developer-simple-sync-table:
 
-Simple Synchronisation Table
+Simple synchronisation table
 ----------------------------
 
 When a JobData table is synchronised with the :ref:`Simple synchronisation
@@ -27,7 +27,7 @@ and can be displayed on the website with a :ref:`content element
 However, you can also retrieve the data sets independently.
 
 
-Schema Of The Table `tx_jobrouterdata_domain_model_dataset`
+Schema of the table `tx_jobrouterdata_domain_model_dataset`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ========= ======================================================================
@@ -45,7 +45,7 @@ dataset   JSON-encoded data set with the synchronised JobData table row
 ========= ======================================================================
 
 
-Get The Data Sets Of A Table Link Programmatically
+Get the data sets of a table link programmatically
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There is an Extbase repository and a domain model available which you can use
@@ -76,7 +76,7 @@ in a TYPO3 context:
 
 .. _developer-own-table:
 
-Own Table
+Own table
 ---------
 
 Synchronising a JobData table into an :ref:`own table
@@ -128,7 +128,7 @@ This is the minimal setup to synchronise a JobData table into an own TYPO3
 table. How you will use the table depends on your use case.
 
 
-Other Usage
+Other usage
 -----------
 
 Links to JobData tables are also centralised in the Data module, in contrast to the definition in PHP code.
@@ -170,7 +170,7 @@ how to use it. The library eases the access to the JobRouter REST API.
 
 .. _developer-transfer-data-sets:
 
-Transfer Data Sets To A JobRouter Installation
+Transfer data sets to a JobRouter installation
 ==============================================
 
 Sometimes it is necessary to transfer data sets from TYPO3 to a JobRouter
@@ -192,7 +192,7 @@ depending on the configuration of the table link in the
 :ref:`Data module <usage-module>`.
 
 
-Preparing The Data Sets
+Preparing the data sets
 -----------------------
 
 If you want to transfer data sets programmatically to a JobRouter installation,

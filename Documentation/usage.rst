@@ -29,7 +29,7 @@ screen:
 
 .. _usage-create-table-link:
 
-Create a Table Link
+Create a table link
 -------------------
 
 To create a new table link, click the :guilabel:`+` button on the top menu bar,
@@ -154,7 +154,7 @@ Access
 
 .. _usage-table-links-overview:
 
-Table Links Overview
+Table links overview
 --------------------
 
 After you have created one or more table links, you will see an overview of the
@@ -184,7 +184,7 @@ also inside the :guilabel:`List` module.
 
 .. _usage-delete-table:
 
-Delete a Table Link
+Delete a table link
 -------------------
 
 To delete a table link, open the edit page of the table link. In the upper

@@ -70,7 +70,7 @@ The last run of the command is shown in the system information toolbar
 
 .. _transmit-command:
 
-Transmit Data Sets
+Transmit data sets
 ==================
 
 If you use the :ref:`transfer table <developer-transfer-data-sets>` to transmit
@@ -113,7 +113,7 @@ The last run of the command is shown in the system information toolbar
 
 .. _deleteoldtransfers-command:
 
-Clean Up Transfers
+Clean up transfers
 ==================
 
 After successfully transmitting data sets from the transfer table, these

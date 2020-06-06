@@ -3,7 +3,7 @@
 .. _editor:
 
 ===========
-For Editors
+For editors
 ===========
 
 Target group: **Editors**
@@ -11,7 +11,7 @@ Target group: **Editors**
 
 .. _editor-content-element:
 
-Content Element
+Content element
 ===============
 
 Content of JobData tables that are synchronised with the :ref:`simple type
