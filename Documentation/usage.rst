@@ -86,6 +86,10 @@ Status
 .. include:: table-link-columns/last-sync-date.txt
 .. include:: table-link-columns/last-sync-error.txt
 
+Notes
+'''''
+.. include:: table-link-columns/description.txt
+
 
 .. _usage-create-table-link-own:
 
@@ -122,6 +126,10 @@ Status
 .. include:: table-link-columns/last-sync-date.txt
 .. include:: table-link-columns/last-sync-error.txt
 
+Notes
+'''''
+.. include:: table-link-columns/description.txt
+
 
 .. _usage-create-table-link-other:
 
@@ -150,6 +158,10 @@ General
 Access
 ''''''
 .. include:: table-link-columns/enabled.txt
+
+Notes
+'''''
+.. include:: table-link-columns/description.txt
 
 
 .. _usage-table-links-overview:

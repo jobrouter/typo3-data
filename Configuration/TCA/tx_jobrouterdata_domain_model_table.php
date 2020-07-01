@@ -11,6 +11,7 @@ return [
     'ctrl' => [
         'title' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table',
         'label' => 'name',
+        'descriptionColumn' => 'description',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
@@ -20,7 +21,7 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'handle,name,table_guid',
+        'searchFields' => 'handle,name,table_guid,description',
         'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
     ],
     'columns' => [
@@ -185,6 +186,15 @@ return [
                 'readOnly' => true,
             ],
         ],
+        'description' => [
+            'exclude' => true,
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.description',
+            'config' => [
+                'type' => 'text',
+                'rows' => 5,
+                'cols' => 30
+            ]
+        ],
     ],
     'types' => [
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => [
@@ -194,7 +204,8 @@ return [
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
             --palette--;;synchronisationStatus,
-            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+            description,
         '
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => [
@@ -204,7 +215,8 @@ return [
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
             --palette--;;synchronisationStatus,
-            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+            description,
         '
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => [
@@ -212,7 +224,8 @@ return [
             type, connection, handle, name, table_guid,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
-            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_tca.xlf:pages.tabs.extended,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+            description,
         '
         ],
     ],
