@@ -14,7 +14,7 @@ Target group: **Integrators, Administrators**
 Module
 ======
 
-The links to tables in JobRouter installations are managed in the module
+The links to tables in JobRouter® installations are managed in the module
 :guilabel:`JobRouter` > :guilabel:`Data`.
 
 On your first visit after installing the extension you will see the following
@@ -187,7 +187,7 @@ There are three buttons available for each table link:
 - You can edit a table link with the pencil. Alternatively click on the name of
   the table to open the edit form.
 - Click on the bug icon to test a table link connection.
-- The last icon is a link to the JobData table definition in the JobRouter
+- The last icon is a link to the JobData table definition in the JobRouter®
   installation. Alternatively click on the table GUID to open the JobData table
   definition.
 

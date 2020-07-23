@@ -165,7 +165,7 @@ Here is an example to get the table link and initialise the JobRouter Client:
    }
 
 Have a look into the :doc:`JobRouter Client <client:introduction>` documentation
-how to use it. The library eases the access to the JobRouter REST API.
+how to use it. The library eases the access to the JobRouter® REST API.
 
 
 .. _developer-transfer-data-sets:
@@ -173,11 +173,11 @@ how to use it. The library eases the access to the JobRouter REST API.
 Transfer data sets to a JobRouter installation
 ==============================================
 
-Sometimes it is necessary to transfer data sets from TYPO3 to a JobRouter
+Sometimes it is necessary to transfer data sets from TYPO3 to a JobRouter®
 installation. An API and a :ref:`transmit command
 <transmit-command>` are available for this use case.
 
-Data sets are transferred asynchronously, since a JobRouter installation may be
+Data sets are transferred asynchronously, since a JobRouter® installation may be
 unavailable or in maintenance mode and to avoid long page loads. Let's take a
 look at the flow:
 
@@ -187,7 +187,7 @@ look at the flow:
    Transferring data sets
 
 As you can see from the diagram, you can prepare multiple data sets. The
-different data sets can be transmitted to different JobRouter installations –
+different data sets can be transmitted to different JobRouter® installations –
 depending on the configuration of the table link in the
 :ref:`Data module <usage-module>`.
 
@@ -195,7 +195,7 @@ depending on the configuration of the table link in the
 Preparing the data sets
 -----------------------
 
-If you want to transfer data sets programmatically to a JobRouter installation,
+If you want to transfer data sets programmatically to a JobRouter® installation,
 you can use the :php:`Preparer` class within TYPO3, e.g. in an Extbase
 controller:
 
@@ -241,7 +241,7 @@ controller:
       }
 
 The :ref:`transmit command <transmit-command>` must be activated
-with a cron job to periodically transmit the data sets to the JobRouter
+with a cron job to periodically transmit the data sets to the JobRouter®
 installation(s).
 
 .. important::

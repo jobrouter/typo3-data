@@ -74,7 +74,7 @@ Transmit data sets
 ==================
 
 If you use the :ref:`transfer table <developer-transfer-data-sets>` to transmit
-JobData data sets to a JobRouter installation must also use the transmit
+JobData data sets to a JobRouter® installation must also use the transmit
 command:
 
 ::

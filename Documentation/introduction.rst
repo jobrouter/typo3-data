@@ -6,9 +6,9 @@
 Introduction
 ============
 
-`JobRouter <https://www.jobrouter.com/>`_ is a scalable digitisation platform
+`JobRouter® <https://www.jobrouter.com/>`_ is a scalable digitisation platform
 which links processes, data and documents. The TYPO3 extension `TYPO3 JobRouter
-Data <https://github.com/brotkrueml/typo3-jobrouter-data>`_ connects JobRouter
+Data <https://github.com/brotkrueml/typo3-jobrouter-data>`_ connects JobRouter®
 JobData tables with TYPO3.
 
 .. admonition:: Work In Progress
@@ -30,4 +30,4 @@ A content element is available to display synchronised data sets on a web page.
 
 This extension uses the :doc:`JobRouter Client <client:introduction>`
 library and has the :doc:`TYPO3 JobRouter Connector <connector:introduction>`
-extension as a requirement to define connections to JobRouter installations.
+extension as a requirement to define connections to JobRouter® installations.
