@@ -12,13 +12,13 @@ namespace Brotkrueml\JobRouterData\Transfer;
 
 use Brotkrueml\JobRouterClient\Client\ClientInterface;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Model\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\ConnectionNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
-use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;

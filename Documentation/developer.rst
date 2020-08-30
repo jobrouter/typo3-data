@@ -148,7 +148,7 @@ Here is an example to get the table link and initialise the JobRouter Client:
 ::
 
    <?php
-   use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
+   use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
    use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
    use TYPO3\CMS\Extbase\Object\ObjectManager;

@@ -10,9 +10,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Controller;
 
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\RestClient\RestClientFactory;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;
