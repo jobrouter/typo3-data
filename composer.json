@@ -39,6 +39,8 @@
 		"co-stack/logs": "Backend module for displaying logs written to log table"
 	},
 	"require-dev": {
+		"dg/bypass-finals": "^1.2",
+		"donatj/mock-webserver": "^2.1",
 		"friendsofphp/php-cs-fixer": "^2.16",
 		"mikey179/vfsstream": "^1.6",
 		"php-coveralls/php-coveralls": "^2.2",

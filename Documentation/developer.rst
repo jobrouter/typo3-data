@@ -8,6 +8,10 @@ Developer corner
 
 Target group: **Developers**
 
+.. contents:: Table of Contents
+   :depth: 2
+   :local:
+
 
 Retrieve data sets from the different table link types
 ======================================================
@@ -131,7 +135,8 @@ table. How you will use the table depends on your use case.
 Other usage
 -----------
 
-Links to JobData tables are also centralised in the Data module, in contrast to the definition in PHP code.
+Links to JobData tables are also centralised in the Data module, in contrast to
+the definition in PHP code.
 
 The table link type :ref:`Other usage <usage-create-table-link-other>` can be
 used to facilitate the access a JobData table. Links to JobData tables are
@@ -249,3 +254,86 @@ installation(s).
    It is not advised to insert the data sets directly into the transfer table,
    as the table schema can be changed in future versions. Use the API described
    above.
+
+
+Using the JobDataRepository
+===========================
+
+The :php:`JobDataRepository` provides methods to access the JobData REST API
+in TYPO3, e.g. in a command or a controller.
+
+The following methods are available:
+
+.. option:: add(array $dataset): array
+
+   Adds a dataset to a JobData table and returns the stored dataset.
+
+.. option:: remove(int ...$jrid): void
+
+   Removes one or more datasets from a JobData table.
+
+.. option:: update(int $jrid, array $dataset): array
+
+   Updates the dataset with the given jrid for a JobData table and returns the
+   stored dataset.
+
+.. option:: findAll(): array
+
+   Returns all datasets of the JobData table;
+
+.. option:: findByJrId(int $jrid): array
+
+   Returns the dataset for the given jrid of a JobData table.
+
+
+Example
+-------
+
+Configure in :file:`Configuration/Services.yaml` an alias for the
+:php:`JobDataRepository` and add it to the command configuration:
+
+.. code-block:: yaml
+
+   services:
+      jobDataRepository.yourTableHandle:
+         class: 'Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository'
+         arguments:
+            $tableHandle: 'yourTableHandle'
+
+      Vendor\Extension\Command\YourCommand:
+         tags:
+            - name: 'console.command'
+              command: 'vendor:yourcommand'
+         arguments:
+            $jobDataRepository: '@jobDataRepository.yourTableHandle'
+
+Then inject the :php:`JobDataRepository` into the command and use the
+appropriate method:
+
+::
+
+   <?php
+   declare(strict_types=1);
+
+   namespace Vendor\Extension\Command;
+
+   final class YourCommand extends Command
+   {
+      private $jobDataRepository;
+
+      public function __construct(JobDataRepository $jobDataRepository)
+      {
+        $this->jobDataRepository = $jobDataRepository;
+
+        parent::__construct();
+      }
+
+      protected function execute(InputInterface $input, OutputInterface $output): int
+      {
+         $datasets = $this->jobDataRepository->findAll();
+
+         // ... your logic
+
+         return 0;
+      }
+   }
