@@ -12,7 +12,8 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
 
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
-use Brotkrueml\JobRouterData\Exception\SynchronisationException;
+use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -30,34 +31,25 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
     /** @var RestClientFactory */
     private $restClientFactory;
 
-    public function __construct(ConnectionPool $connectionPool, RestClientFactory $restClientFactory)
-    {
+    /** @var TableRepository */
+    private $tableRepository;
+
+    public function __construct(
+        ConnectionPool $connectionPool,
+        RestClientFactory $restClientFactory,
+        TableRepository $tableRepository
+    ) {
         $this->connectionPool = $connectionPool;
         $this->restClientFactory = $restClientFactory;
+        $this->tableRepository = $tableRepository;
     }
 
     abstract public function synchroniseTable(Table $table): bool;
 
     protected function retrieveDatasetsFromJobRouter(Table $table): array
     {
-        $restClient = $this->restClientFactory->create($table->getConnection());
-
-        $response = $restClient->request(
-            'GET',
-            \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
-        );
-
-        $content = $response->getBody()->getContents();
-        $responseContent = \json_decode($content, true);
-
-        if ($responseContent === null) {
-            $message = 'Content of response is no valid JSON!';
-            $this->logger->emergency($message, ['received content' => $content]);
-
-            throw new SynchronisationException($message, 1567004495);
-        }
-
-        return $responseContent['datasets'];
+        return (new JobDataRepository($this->restClientFactory, $this->tableRepository, $table->getHandle()))
+            ->findAll();
     }
 
     protected function hashDatasets(array $datasets): string
