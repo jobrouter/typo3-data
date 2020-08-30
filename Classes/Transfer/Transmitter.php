@@ -10,14 +10,12 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Transfer;
 
-use Brotkrueml\JobRouterClient\Client\ClientInterface;
-use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Model\Transfer;
+use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterData\Exception\ConnectionNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -44,7 +42,7 @@ class Transmitter implements LoggerAwareInterface
     /** @var RestClientFactory */
     private $restClientFactory;
 
-    private static $clients = [];
+    private static $jobDataRepositories = [];
 
     private $totalNumbersOfTransfers = 0;
     private $erroneousNumbersOfTransfers = 0;
@@ -108,21 +106,28 @@ class Transmitter implements LoggerAwareInterface
 
     private function transmitTransfer(Transfer $transfer): void
     {
-        $table = $this->getTable($transfer->getTableUid());
-        $client = $this->getRestClientForTable($table);
-        $response = $client->request(
-            'POST',
-            \sprintf(self::DATASET_RESOURCE_TEMPLATE, $table->getTableGuid()),
-            ['dataset' => \json_decode($transfer->getData(), true)]
-        );
-
-        $jrid = null;
-        if ($body = \json_decode($response->getBody()->getContents(), true)) {
-            $jrid = $body['datasets'][0]['jrid'] ?? null;
-        }
+        $result = $this
+            ->getJobDataRepositoryForTableUid($transfer->getTableUid())
+            ->add(\json_decode($transfer->getData(), true));
+        $jrid = $result['datasets'][0]['jrid'] ?? null;
 
         $transfer->setTransmitSuccess(true);
         $transfer->setTransmitMessage($jrid ? \json_encode(['jrid' => $jrid]) : '');
+    }
+
+    private function getJobDataRepositoryForTableUid(int $tableUid): JobDataRepository
+    {
+        $table = $this->getTable($tableUid);
+
+        if (static::$jobDataRepositories[$tableUid] ?? false) {
+            return static::$jobDataRepositories[$tableUid];
+        }
+
+        return static::$jobDataRepositories[$tableUid] = new JobDataRepository(
+            $this->restClientFactory,
+            $this->tableRepository,
+            $table->getHandle()
+        );
     }
 
     private function getTable(int $tableUid): Table
@@ -141,28 +146,5 @@ class Transmitter implements LoggerAwareInterface
         }
 
         return $table;
-    }
-
-    private function getRestClientForTable(Table $table): ClientInterface
-    {
-        /** @var Connection $connection */
-        $connection = $table->getConnection();
-        if (empty($connection)) {
-            throw new ConnectionNotAvailableException(
-                \sprintf(
-                    'Connection for table link "%s" with uid "%d" is not available',
-                    $table->getName(),
-                    $table->getUid()
-                ),
-                1579886904
-            );
-        }
-
-        $connectionUid = $connection->getUid();
-        if (static::$clients[$connectionUid] ?? false) {
-            return static::$clients[$connectionUid];
-        }
-
-        return static::$clients[$connectionUid] = $this->restClientFactory->create($connection);
     }
 }
