@@ -38,6 +38,7 @@ Contents
    configuration
    commands
    usage
+   form-finisher
    editor
    developer
    copyright

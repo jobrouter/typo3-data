@@ -1,0 +1,34 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Form:
+              formEditor:
+                editors:
+                  900:
+                    selectOptions:
+                      1601140510:
+                        value: 'JobRouterTransmitData'
+                        label: 'Transmit to JobData table'
+                propertyCollections:
+                  finishers:
+                    1601140510:
+                      identifier: 'JobRouterTransmitData'
+                      editors:
+                        100:
+                          identifier: 'header'
+                          label: 'Transmit to JobData table'
+                          templateName: 'Inspector-CollectionElementHeaderEditor'
+                        9999:
+                          identifier: 'removeButton'
+                          templateName: 'Inspector-RemoveElementEditor'
+          finishersDefinition:
+            JobRouterTransmitData:
+              implementationClassName: 'Brotkrueml\JobRouterData\Domain\Finishers\TransmitDataFinisher'
+              formEditor:
+                iconIdentifier: 'form-finisher'
+                label: 'Transmit to JobData table'
+                predefinedDefaults:
+                  options: []

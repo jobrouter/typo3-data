@@ -1,0 +1,15 @@
+module.tx_form {
+  settings {
+    yamlConfigurations {
+      1601140510 = EXT:jobrouter_data/Configuration/Yaml/FormSetup.yaml
+    }
+  }
+}
+
+plugin.tx_form {
+  settings {
+    yamlConfigurations {
+      1601140510 = EXT:jobrouter_data/Configuration/Yaml/FormSetup.yaml
+    }
+  }
+}
