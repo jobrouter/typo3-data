@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Form.xlf" date="2020-10-04T08:54:47Z" product-name="jobrouter_data">
+		<header/>
+		<body>
+			<trans-unit id="formEditor.elements.Form.finisher.JobRouterTransmitData.editor.header.label" resname="formEditor.elements.Form.finisher.JobRouterTransmitData.editor.header.label">
+				<source><![CDATA[Transmit to JobData table]]></source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

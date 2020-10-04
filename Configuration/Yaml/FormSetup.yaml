@@ -3,6 +3,9 @@ TYPO3:
     Form:
       prototypes:
         standard:
+          formEditor:
+            translationFiles:
+              1601140510: 'EXT:jobrouter_data/Resources/Private/Language/Form.xlf'
           formElementsDefinition:
             Form:
               formEditor:
@@ -11,7 +14,7 @@ TYPO3:
                     selectOptions:
                       1601140510:
                         value: 'JobRouterTransmitData'
-                        label: 'Transmit to JobData table'
+                        label: 'formEditor.elements.Form.finisher.JobRouterTransmitData.editor.header.label'
                 propertyCollections:
                   finishers:
                     1601140510:
@@ -19,7 +22,7 @@ TYPO3:
                       editors:
                         100:
                           identifier: 'header'
-                          label: 'Transmit to JobData table'
+                          label: 'formEditor.elements.Form.finisher.JobRouterTransmitData.editor.header.label'
                           templateName: 'Inspector-CollectionElementHeaderEditor'
                         9999:
                           identifier: 'removeButton'
@@ -29,6 +32,6 @@ TYPO3:
               implementationClassName: 'Brotkrueml\JobRouterData\Domain\Finishers\TransmitDataFinisher'
               formEditor:
                 iconIdentifier: 'form-finisher'
-                label: 'Transmit to JobData table'
+                label: 'formEditor.elements.Form.finisher.JobRouterTransmitData.editor.header.label'
                 predefinedDefaults:
                   options: []
