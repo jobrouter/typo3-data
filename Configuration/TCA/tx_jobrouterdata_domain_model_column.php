@@ -70,7 +70,6 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['', ''],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.text',
                         \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT
@@ -117,7 +116,12 @@ return [
         'field_size' => [
             'exclude' => true,
             'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.field_size',
-            'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+            'displayCond' => [
+                'OR' => [
+                    'REC:NEW:true',
+                    'FIELD:type:=:' . \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+                ],
+            ],
             'config' => [
                 'type' => 'input',
                 'size' => 5,
