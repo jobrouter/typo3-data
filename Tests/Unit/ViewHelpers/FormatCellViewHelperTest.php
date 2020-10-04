@@ -52,17 +52,15 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
      */
     public function contentWithTypeDecimalIsRenderedCorrectly(): void
     {
+        $languageMap = [
+            ['LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:thousands_separator', '$'],
+            ['LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:decimal_point', '#'],
+        ];
+
         $languageServiceMock = $this->initialiseLanguageServiceMock();
         $languageServiceMock
-            ->expects(self::at(0))
             ->method('sL')
-            ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:decimal_point')
-            ->willReturn('#');
-        $languageServiceMock
-            ->expects(self::at(1))
-            ->method('sL')
-            ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:thousands_separator')
-            ->willReturn('$');
+            ->willReturnMap($languageMap);
 
         $cell = new Cell();
         $cell->setContent(1234.56789);
