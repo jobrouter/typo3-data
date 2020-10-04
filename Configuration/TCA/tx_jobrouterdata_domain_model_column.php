@@ -73,23 +73,23 @@ return [
                     ['', ''],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.text',
-                        \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::TEXT
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.integer',
-                        \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::INTEGER
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.decimal',
-                        \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DECIMAL
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.date',
-                        \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DATE
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.datetime',
-                        \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DATETIME
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME
                     ],
                 ],
                 'eval' => 'required',
@@ -98,7 +98,7 @@ return [
         'decimal_places' => [
             'exclude' => true,
             'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
-            'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration::DECIMAL,
+            'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
             'config' => [
                 'type' => 'input',
                 'size' => 3,

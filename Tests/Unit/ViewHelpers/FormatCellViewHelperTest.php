@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\ViewHelpers;
 
+use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterData\Domain\Model\Table\Cell;
-use Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration;
 use TYPO3Fluid\Fluid\Core\ViewHelper;
 
 class FormatCellViewHelperTest extends ViewHelperTestCase
@@ -25,7 +25,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
     {
         $cell = new Cell();
         $cell->setContent('some text content');
-        $cell->setType(ColumnTypeEnumeration::TEXT);
+        $cell->setType(FieldTypeEnumeration::TEXT);
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
@@ -39,7 +39,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
     {
         $cell = new Cell();
         $cell->setContent(42);
-        $cell->setType(ColumnTypeEnumeration::INTEGER);
+        $cell->setType(FieldTypeEnumeration::INTEGER);
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
@@ -66,7 +66,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $cell = new Cell();
         $cell->setContent(1234.56789);
-        $cell->setType(ColumnTypeEnumeration::DECIMAL);
+        $cell->setType(FieldTypeEnumeration::DECIMAL);
         $cell->setDecimalPlaces(3);
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
@@ -89,7 +89,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $cell = new Cell();
         $cell->setContent('2019-05-15T00:00:00+00:00');
-        $cell->setType(ColumnTypeEnumeration::DATE);
+        $cell->setType(FieldTypeEnumeration::DATE);
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
@@ -111,7 +111,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
 
         $cell = new Cell();
         $cell->setContent('2019-05-15T12:34:56+09:00');
-        $cell->setType(ColumnTypeEnumeration::DATETIME);
+        $cell->setType(FieldTypeEnumeration::DATETIME);
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
@@ -125,7 +125,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
     {
         $cell = new Cell();
         $cell->setContent('some invalid date content');
-        $cell->setType(ColumnTypeEnumeration::DATE);
+        $cell->setType(FieldTypeEnumeration::DATE);
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 
@@ -139,7 +139,7 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
     {
         $cell = new Cell();
         $cell->setContent('some invalid datetime content');
-        $cell->setType(ColumnTypeEnumeration::DATETIME);
+        $cell->setType(FieldTypeEnumeration::DATETIME);
 
         $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
 

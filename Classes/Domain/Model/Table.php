@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Model;
 
+use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterData\Domain\Model\Table\Cell;
 use Brotkrueml\JobRouterData\Domain\Model\Table\Row;
-use Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -199,7 +199,7 @@ class Table extends AbstractEntity
 
                 if ($column->getName() === 'jrid') {
                     $cell->setContent($dataset->getJrid());
-                    $cell->setType(ColumnTypeEnumeration::INTEGER);
+                    $cell->setType(FieldTypeEnumeration::INTEGER);
                 } else {
                     $cell->setContent($datasetArray[$column->getName() ?? '']);
                     $cell->setType($column->getType());

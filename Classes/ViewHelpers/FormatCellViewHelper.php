@@ -10,8 +10,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\ViewHelpers;
 
+use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterData\Domain\Model\Table\Cell;
-use Brotkrueml\JobRouterData\Enumeration\ColumnTypeEnumeration;
 use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3Fluid\Fluid\Core\Rendering\RenderingContextInterface;
@@ -50,7 +50,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
         $type = $cell->getType();
         $content = $cell->getContent();
 
-        if (ColumnTypeEnumeration::DATE === $type) {
+        if (FieldTypeEnumeration::DATE === $type) {
             try {
                 $date = new \DateTime($content);
 
@@ -60,7 +60,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
             }
         }
 
-        if (ColumnTypeEnumeration::DATETIME === $type) {
+        if (FieldTypeEnumeration::DATETIME === $type) {
             try {
                 $date = new \DateTime($content);
 
@@ -70,7 +70,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
             }
         }
 
-        if (ColumnTypeEnumeration::DECIMAL === $type) {
+        if (FieldTypeEnumeration::DECIMAL === $type) {
             return \number_format(
                 (float)$content,
                 $cell->getDecimalPlaces(),
