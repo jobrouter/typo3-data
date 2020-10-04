@@ -160,9 +160,9 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
 
                 return $value;
             case FieldTypeEnumeration::INTEGER:
-                return (int)$value;
+                return $value === '' ? '' : (int)$value;
             case FieldTypeEnumeration::DECIMAL:
-                return (float)$value;
+                return $value === '' ? '' : (float)$value;
             // @todo handle DATE and DATETIME
         }
 
