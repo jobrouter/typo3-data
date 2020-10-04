@@ -109,7 +109,7 @@ class Transmitter implements LoggerAwareInterface
         $result = $this
             ->getJobDataRepositoryForTableUid($transfer->getTableUid())
             ->add(\json_decode($transfer->getData(), true));
-        $jrid = $result['datasets'][0]['jrid'] ?? null;
+        $jrid = $result[0]['jrid'] ?? null;
 
         $transfer->setTransmitSuccess(true);
         $transfer->setTransmitMessage($jrid ? \json_encode(['jrid' => $jrid]) : '');
