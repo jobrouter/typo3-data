@@ -8,6 +8,10 @@ Usage
 
 Target group: **Integrators, Administrators**
 
+.. contents:: Table of Contents
+   :depth: 3
+   :local:
+
 
 .. _usage-module:
 
@@ -131,10 +135,48 @@ Notes
 .. include:: table-link-columns/description.txt
 
 
+.. _usage-create-table-link-form-finisher:
+
+Form finisher
+~~~~~~~~~~~~~
+
+The fields from a form are stored into a JobData table. An intermediate transfer
+table is used, so you have to activate the :ref:`transmit command
+<transmit-command>`.
+
+.. figure:: _images/create-table-link-form-finisher.png
+   :alt: Create a table link of type Form finisher
+
+   Create a table link of type "Form finisher"
+
+The following fields are available:
+
+General
+'''''''
+.. include:: table-link-columns/connection.txt
+.. include:: table-link-columns/handle.txt
+.. include:: table-link-columns/name.txt
+.. include:: table-link-columns/jobdata-table-guid.txt
+.. include:: table-link-columns/columns.txt
+
+Access
+''''''
+.. include:: table-link-columns/enabled.txt
+
+Status
+''''''
+.. include:: table-link-columns/last-sync-date.txt
+.. include:: table-link-columns/last-sync-error.txt
+
+Notes
+'''''
+.. include:: table-link-columns/description.txt
+
+
 .. _usage-create-table-link-other:
 
-Other usage (no synchronisation)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Other usage
+~~~~~~~~~~~
 
 You only define the link to a JobData table – there is no automatic
 synchronisation. This type can be used for the TYPO3 JobRouter Form extension to

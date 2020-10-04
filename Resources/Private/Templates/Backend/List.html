@@ -12,7 +12,7 @@
     </f:section>
 
     <f:section name="content">
-        <f:if condition="{simpleTables -> f:count()} || {ownTables -> f:count()} || {otherTables -> f:count()}">
+        <f:if condition="{simpleTables -> f:count()} || {ownTables -> f:count()} || {formFinisherTables -> f:count()} || {otherTables -> f:count()}">
             <f:then>
                 <div id="jobrouter-data-table-list">
                     <f:if condition="{simpleTables -> f:count()}">
@@ -20,6 +20,9 @@
                     </f:if>
                     <f:if condition="{ownTables -> f:count()}">
                         <f:render section="ownTables" arguments="{_all}"/>
+                    </f:if>
+                    <f:if condition="{formFinisherTables -> f:count()}">
+                        <f:render section="formFinisherTables" arguments="{_all}"/>
                     </f:if>
                     <f:if condition="{otherTables -> f:count()}">
                         <f:render section="otherTables" arguments="{_all}"/>
@@ -85,6 +88,35 @@
                         <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
                     </tr>
                 </f:for>
+            </tbody>
+        </table>
+    </f:section>
+
+    <f:section name="formFinisherTables">
+        <h2><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.form_finisher"/></h2>
+        <table class="table table-vertical-top table-striped table-hover">
+            <thead>
+            <tr>
+                <f:render section="defaultColumnsHeader"/>
+                <th scope="col"><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.columns"/></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <f:for each="{formFinisherTables}" as="table">
+                <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
+                <tr>
+                    <f:render section="defaultColumns" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
+                    <td>
+                        <ul>
+                            <f:for each="{table.columns}" as="column">
+                                <li><jobRouterData:columnLabel column="{column}"/></li>
+                            </f:for>
+                        </ul>
+                    </td>
+                    <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
+                </tr>
+            </f:for>
             </tbody>
         </table>
     </f:section>

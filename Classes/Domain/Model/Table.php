@@ -25,6 +25,7 @@ class Table extends AbstractEntity
     public const TYPE_SIMPLE = 1;
     public const TYPE_OWN_TABLE = 2;
     public const TYPE_OTHER_USAGE = 3;
+    public const TYPE_FORM_FINISHER = 4;
 
     /** @var int */
     protected $type = 0;

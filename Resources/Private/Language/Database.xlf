@@ -84,8 +84,11 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type" resname="tx_jobrouterdata_domain_model_table.type">
 				<source><![CDATA[Type]]></source>
 			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.form_finisher" resname="tx_jobrouterdata_domain_model_table.type.form_finisher">
+				<source><![CDATA[Form finisher]]></source>
+			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type.other_usage" resname="tx_jobrouterdata_domain_model_table.type.other_usage">
-				<source><![CDATA[Other usage (no synchronisation)]]></source>
+				<source><![CDATA[Other usage]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type.simple_synchronisation" resname="tx_jobrouterdata_domain_model_table.type.simple_synchronisation">
 				<source><![CDATA[Simple synchronisation]]></source>

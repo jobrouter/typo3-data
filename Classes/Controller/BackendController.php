@@ -95,11 +95,13 @@ final class BackendController extends ActionController
 
         $simpleTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_SIMPLE);
         $ownTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_OWN_TABLE);
+        $formFinisherTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_FORM_FINISHER);
         $otherTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_OTHER_USAGE);
 
         $this->view->assignMultiple([
             'simpleTables' => $simpleTables,
             'ownTables' => $ownTables,
+            'formFinisherTables' => $formFinisherTables,
             'otherTables' => $otherTables,
         ]);
     }
