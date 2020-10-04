@@ -25,6 +25,7 @@ TYPO3 JobRouter Data is a TYPO3 extension for
 * Providing a module to manage JobData table links
 * Synchronising data sets from JobData tables into TYPO3
 * Transmitting data sets from TYPO3 into JobData tables
+* Providing a form finisher to store form data into a JobData table
 
 A content element is available to display synchronised data sets on a web page.
 

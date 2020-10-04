@@ -12,5 +12,6 @@ What this extension does:
   * Provides a module to manage JobData table links
   * Synchronises data sets from JobData tables into TYPO3
   * Transmits data sets from TYPO3 into JobData tables
+  * Provides a form finisher to store form data into a JobData table
 
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/data/)
