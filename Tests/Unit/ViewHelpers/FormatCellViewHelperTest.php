@@ -57,8 +57,8 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
             ['LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:decimal_point', '#'],
         ];
 
-        $languageServiceMock = $this->initialiseLanguageServiceMock();
-        $languageServiceMock
+        $languageServiceStub = $this->initialiseLanguageServiceStub();
+        $languageServiceStub
             ->method('sL')
             ->willReturnMap($languageMap);
 
@@ -78,9 +78,8 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
      */
     public function contentWithTypeDateIsRenderedCorrectly(): void
     {
-        $languageServiceMock = $this->initialiseLanguageServiceMock();
-        $languageServiceMock
-            ->expects(self::once())
+        $languageServiceStub = $this->initialiseLanguageServiceStub();
+        $languageServiceStub
             ->method('sL')
             ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:date')
             ->willReturn('d+m+Y');
@@ -100,9 +99,8 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
      */
     public function contentWithTypeDateTimeIsRenderedCorrectly(): void
     {
-        $languageServiceMock = $this->initialiseLanguageServiceMock();
-        $languageServiceMock
-            ->expects(self::once())
+        $languageServiceStub = $this->initialiseLanguageServiceStub();
+        $languageServiceStub
             ->method('sL')
             ->with('LLL:EXT:jobrouter_data/Resources/Private/Language/Format.xlf:datetime')
             ->willReturn('d+m+Y H-i-s');

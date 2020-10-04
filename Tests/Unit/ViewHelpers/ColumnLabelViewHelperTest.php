@@ -50,9 +50,8 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
      */
     public function withLocalisedLabelSetTheLocalisedLabelIsReturned(): void
     {
-        $languageServiceMock = $this->initialiseLanguageServiceMock();
-        $languageServiceMock
-            ->expects(self::once())
+        $languageServiceStub = $this->initialiseLanguageServiceStub();
+        $languageServiceStub
             ->method('sL')
             ->with('LLL:EXT:some_extension/Resources/Private/Language/locallang.xml:some-localised-column-label')
             ->willReturn('the localised column label');

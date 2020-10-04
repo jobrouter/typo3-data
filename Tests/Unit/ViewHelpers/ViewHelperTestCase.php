@@ -45,9 +45,9 @@ class ViewHelperTestCase extends TestCase
         return $this->view->render();
     }
 
-    protected function initialiseLanguageServiceMock()
+    protected function initialiseLanguageServiceStub()
     {
-        $GLOBALS['LANG'] = $this->createMock(LanguageService::class);
+        $GLOBALS['LANG'] = $this->createStub(LanguageService::class);
 
         return $GLOBALS['LANG'];
     }
