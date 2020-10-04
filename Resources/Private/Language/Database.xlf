@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2020-07-01T16:16:31Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2020-10-04T10:06:14Z" product-name="jobrouter_data">
 		<header/>
 		<body>
 			<trans-unit id="palette.last_synchronisation" resname="palette.last_synchronisation">
@@ -11,6 +11,9 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column" resname="tx_jobrouterdata_domain_model_column">
 				<source><![CDATA[JobData Column]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.field_size" resname="tx_jobrouterdata_domain_model_column.field_size">
+				<source><![CDATA[Field Size]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.label" resname="tx_jobrouterdata_domain_model_column.label">
 				<source><![CDATA[Label]]></source>

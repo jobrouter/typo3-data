@@ -10,10 +10,20 @@ Columns (required)
       using the plugin.
 
    Type (required)
-      Select the column type (`Text`, `Integer`, `Decimal`, `Date`, `DateTime`)
-      as defined in the JobData table. If you choose the type `Decimal`, an
-      additional field `Decimal places` is shown after the form is reloaded.
-      Select the number of decimals to be displayed.
+      Select the column type (:guilabel:`Text`, :guilabel:`Integer`,
+      :guilabel:`Decimal`, :guilabel:`Date`, :guilabel:`DateTime`) as defined
+      in the JobData table.
+
+   Decimal places
+      This option is only shown with type :guilabel:`Decimal`. Select the number
+      of decimals to be used.
+
+   Field size
+      This option is only shown with type :guilabel:`Text`. Enter the size of
+      the field. When sending the fields of a form to a JobData table with
+      the :ref:`form finisher <form-finisher>` the values are truncated if too
+      long to prevent errors when transmitting the data. To disable the
+      truncation enter 0.
 
    .. important::
       The `jrid` column must not be defined as it is available by default.

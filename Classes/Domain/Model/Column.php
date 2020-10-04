@@ -29,6 +29,9 @@ class Column extends AbstractEntity
     /** @var int */
     protected $decimalPlaces = 0;
 
+    /** @var int */
+    protected $fieldSize = 0;
+
     public function getName(): string
     {
         return $this->name;
@@ -67,5 +70,15 @@ class Column extends AbstractEntity
     public function setDecimalPlaces(int $decimalPlaces): void
     {
         $this->decimalPlaces = $decimalPlaces;
+    }
+
+    public function getFieldSize(): int
+    {
+        return $this->fieldSize;
+    }
+
+    public function setFieldSize(int $fieldSize): void
+    {
+        $this->fieldSize = $fieldSize;
     }
 }

@@ -124,7 +124,8 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
 
             $data[$column] = $this->considerTypeForFieldValue(
                 $value,
-                $definedTableColumns[$column]->getType()
+                $definedTableColumns[$column]->getType(),
+                $definedTableColumns[$column]->getFieldSize()
             );
         }
 
@@ -147,11 +148,15 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
         return $tableFields;
     }
 
-    private function considerTypeForFieldValue($value, int $type)
+    private function considerTypeForFieldValue($value, int $type, int $fieldSize)
     {
         switch ($type) {
             case FieldTypeEnumeration::TEXT:
                 $value = (string)$value;
+
+                if ($fieldSize) {
+                    $value = \substr($value, 0, $fieldSize);
+                }
 
                 return $value;
             case FieldTypeEnumeration::INTEGER:

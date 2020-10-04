@@ -114,6 +114,21 @@ return [
                 'default' => 2,
             ],
         ],
+        'field_size' => [
+            'exclude' => true,
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.field_size',
+            'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+            'config' => [
+                'type' => 'input',
+                'size' => 5,
+                'max' => 5,
+                'range' => [
+                    'lower' => 0,
+                ],
+                'eval' => 'int',
+                'default' => 0,
+            ],
+        ],
     ],
     'types' => [
         '0' => [
@@ -126,6 +141,6 @@ return [
     ],
     'palettes' => [
         'nameLabel' => ['showitem' => 'name, label'],
-        'type' => ['showitem' => 'type, decimal_places'],
+        'type' => ['showitem' => 'type, decimal_places, field_size'],
     ],
 ];
