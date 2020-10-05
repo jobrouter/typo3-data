@@ -15,7 +15,10 @@ $EM_CONF[$_EXTKEY] = [
             'jobrouter_connector' => '0.11.0-0.11.99',
         ],
         'conflicts' => [],
-        'suggests' => [],
+        'suggests' => [
+            'dashboard' => '',
+            'logs' => ''
+        ],
     ],
     'autoload' => [
         'psr-4' => ['Brotkrueml\\JobRouterData\\' => 'Classes']

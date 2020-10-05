@@ -37,7 +37,7 @@
 		"typo3/cms-frontend": "^10.4"
 	},
 	"suggest": {
-		"typo3/cms-reports": "Show results of JobData synchronisations",
+		"typo3/cms-dashboard": "Use dashboard widgets for information about jobData transmissions",
 		"co-stack/logs": "Backend module for displaying logs written to log table"
 	},
 	"require-dev": {
@@ -46,7 +46,8 @@
 		"friendsofphp/php-cs-fixer": "^2.16",
 		"mikey179/vfsstream": "^1.6",
 		"php-coveralls/php-coveralls": "^2.2",
-		"phpunit/phpunit": "^8.5 || ^9.1"
+		"phpunit/phpunit": "^8.5 || ^9.1",
+		"typo3/cms-dashboard": "^10.4"
 	},
 	"autoload": {
 		"psr-4": {
