@@ -39,6 +39,7 @@ Contents
    commands
    usage
    form-finisher
+   dashboard
    editor
    developer
    copyright
