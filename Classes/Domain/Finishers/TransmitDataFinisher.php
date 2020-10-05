@@ -163,7 +163,12 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
                 return $value === '' ? '' : (int)$value;
             case FieldTypeEnumeration::DECIMAL:
                 return $value === '' ? '' : (float)$value;
-            // @todo handle DATE and DATETIME
+            case FieldTypeEnumeration::DATE:
+            case FieldTypeEnumeration::DATETIME:
+                throw new InvalidFieldTypeException(
+                    \sprintf('The field type "%d" is not implemented in the form finisher yet', $type),
+                    1601884157
+                );
         }
 
         throw new InvalidFieldTypeException(
