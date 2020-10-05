@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
@@ -78,7 +77,6 @@ final class BackendController extends ActionController
 
         $this->buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
         $this->createNewHeaderButton();
-        $this->createReportHeaderButton();
         $this->createRefreshHeaderButton();
         $this->createShortcutHeaderButton();
     }
@@ -123,28 +121,6 @@ final class BackendController extends ActionController
             ->setTitle($title)
             ->setIcon($this->iconFactory->getIcon('actions-add', Icon::SIZE_SMALL));
         $this->buttonBar->addButton($newRecordButton, ButtonBar::BUTTON_POSITION_LEFT);
-    }
-
-    protected function createReportHeaderButton(): void
-    {
-        if (!ExtensionManagementUtility::isLoaded('reports')) {
-            return;
-        }
-
-        $title = $this->languageService->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.report');
-
-        $reportButton = $this->buttonBar->makeLinkButton()
-            ->setHref((string)$this->backendUriBuilder->buildUriFromRoute(
-                'system_reports',
-                [
-                    'action' => 'detail',
-                    'extension' => 'tx_jobrouterdata',
-                    'report' => 'report',
-                ]
-            ))
-            ->setTitle($title)
-            ->setIcon($this->iconFactory->getIcon('jobrouterdata-action-report', Icon::SIZE_SMALL));
-        $this->buttonBar->addButton($reportButton, ButtonBar::BUTTON_POSITION_RIGHT);
     }
 
     protected function createRefreshHeaderButton(): void
