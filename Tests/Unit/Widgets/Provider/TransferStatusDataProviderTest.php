@@ -201,6 +201,6 @@ class TransferStatusDataProviderTest extends TestCase
 
         $actual = $this->subject->getStatus();
 
-        self::assertEquals(new \DateTimeImmutable('@1601889643'), $actual->getLastRun());
+        self::assertSame('1601889643', $actual->getLastRun()->format('U'));
     }
 }
