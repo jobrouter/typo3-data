@@ -50,7 +50,7 @@ configuration of the specific form:
                source: 'Website'
 
 The `handle` is required as it connects the fields to the appropriate
-:ref:`table link <usage-create-table-link>`.
+:ref:`table link <module-create-table-link>`.
 
 You can map the form fields to the JobData columns. As you can see in the
 example above, you define the JobData column as the key (e.g `email_address`)
@@ -60,7 +60,7 @@ a combination of a static value with a form field or even multiple form fields.
 
 .. note::
    Only columns that are configured in the :ref:`table link
-   <usage-create-table-link>` are possible. If a column is used that is not
+   <module-create-table-link>` are possible. If a column is used that is not
    defined, an exception is thrown.
 
    If the value of a form field is an array, like from a multi checkbox, the

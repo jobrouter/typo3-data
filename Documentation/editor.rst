@@ -15,7 +15,7 @@ Content element
 ===============
 
 Content of JobData tables that are synchronised with the :ref:`simple type
-<usage-create-table-link-simple>` can be easily displayed on the website
+<module-create-table-link-simple>` can be easily displayed on the website
 with the content element `JobData Table`.
 
 Go to the :guilabel:`Web` > :guilabel:`Page` module and select the desired page

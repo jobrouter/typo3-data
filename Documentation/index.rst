@@ -37,7 +37,7 @@ Contents
    installation
    configuration
    commands
-   usage
+   module
    form-finisher
    dashboard
    editor

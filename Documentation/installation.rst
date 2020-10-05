@@ -20,8 +20,8 @@ Requirements
 The extension has no PHP requirements in addition to TYPO3 and the TYPO3
 JobRouter Connector extension.
 
-If you want to use the :ref:`JobRouter Data report <usage-report>`, you have to
-install and activate the Reports system extension.
+If you want to use the :ref:`Dashboard widgets <dashboard-widgets>`, you have to
+install and activate the Dashboard system extension.
 
 
 .. _installation-composer:

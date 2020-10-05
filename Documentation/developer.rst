@@ -22,7 +22,7 @@ Simple synchronisation table
 ----------------------------
 
 When a JobData table is synchronised with the :ref:`Simple synchronisation
-<usage-create-table-link-simple>` type, the data sets are stored in a table
+<module-create-table-link-simple>` type, the data sets are stored in a table
 provided by this extension. This is the simplest type, as no programming
 knowledge is required. The data sets are stored JSON encoded in a provided table
 and can be displayed on the website with a :ref:`content element
@@ -84,7 +84,7 @@ Own table
 ---------
 
 Synchronising a JobData table into an :ref:`own table
-<usage-create-table-link-own>` has some advantages and disadvantages compared
+<module-create-table-link-own>` has some advantages and disadvantages compared
 to the simple synchronisation type described above:
 
 
@@ -126,7 +126,7 @@ But let's start:
 #. Go to the :guilabel:`Admin Tools` > :guilabel:`Maintenance` module, click on
    the :guilabel:`Analyse database` button and create the table.
 
-#. Add a table link in the :ref:`module <usage-create-table-link-own>`.
+#. Add a table link in the :ref:`module <module-create-table-link-own>`.
 
 This is the minimal setup to synchronise a JobData table into an own TYPO3
 table. How you will use the table depends on your use case.
@@ -138,7 +138,7 @@ Other usage
 Links to JobData tables are also centralised in the Data module, in contrast to
 the definition in PHP code.
 
-The table link type :ref:`Other usage <usage-create-table-link-other>` can be
+The table link type :ref:`Other usage <module-create-table-link-other>` can be
 used to facilitate the access a JobData table. Links to JobData tables are
 also centralised in the :guilabel:`Data` module, in contrast to the definition
 in PHP code.
@@ -194,7 +194,7 @@ look at the flow:
 As you can see from the diagram, you can prepare multiple data sets. The
 different data sets can be transmitted to different JobRouter® installations –
 depending on the configuration of the table link in the
-:ref:`Data module <usage-module>`.
+:ref:`Data module <module>`.
 
 
 Preparing the data sets

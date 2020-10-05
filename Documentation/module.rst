@@ -1,22 +1,12 @@
 .. include:: _includes.txt
 
-.. _usage:
+.. _module:
 
-=====
-Usage
-=====
-
-Target group: **Integrators, Administrators**
-
-.. contents:: Table of Contents
-   :depth: 3
-   :local:
-
-
-.. _usage-module:
-
+======
 Module
 ======
+
+Target group: **Integrators, Administrators**
 
 The links to tables in JobRouter® installations are managed in the module
 :guilabel:`JobRouter` > :guilabel:`Data`.
@@ -30,8 +20,11 @@ screen:
    Initial Data module screen
 
 
+.. contents:: Table of Contents
+   :depth: 3
+   :local:
 
-.. _usage-create-table-link:
+.. _module-create-table-link:
 
 Create a table link
 -------------------
@@ -41,7 +34,7 @@ which opens a form. Alternatively, you can use the :guilabel:`Create new table
 link` button.
 
 
-.. _usage-create-table-link-types:
+.. _module-create-table-link-types:
 
 Types
 ~~~~~
@@ -54,7 +47,7 @@ Each table link has one of the following types:
    Table link types
 
 
-.. _usage-create-table-link-simple:
+.. _module-create-table-link-simple:
 
 Simple synchronisation
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -95,7 +88,7 @@ Notes
 .. include:: table-link-columns/description.txt
 
 
-.. _usage-create-table-link-own:
+.. _module-create-table-link-own:
 
 Synchronisation in own table
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -135,7 +128,7 @@ Notes
 .. include:: table-link-columns/description.txt
 
 
-.. _usage-create-table-link-form-finisher:
+.. _module-create-table-link-form-finisher:
 
 Form finisher
 ~~~~~~~~~~~~~
@@ -173,7 +166,7 @@ Notes
 .. include:: table-link-columns/description.txt
 
 
-.. _usage-create-table-link-other:
+.. _module-create-table-link-other:
 
 Other usage
 ~~~~~~~~~~~
@@ -206,7 +199,7 @@ Notes
 .. include:: table-link-columns/description.txt
 
 
-.. _usage-table-links-overview:
+.. _module-table-links-overview:
 
 Table links overview
 --------------------
@@ -236,7 +229,7 @@ There are three buttons available for each table link:
 The table link records are stored under the root page. You can edit a table link
 also inside the :guilabel:`List` module.
 
-.. _usage-delete-table:
+.. _module-delete-table:
 
 Delete a table link
 -------------------
