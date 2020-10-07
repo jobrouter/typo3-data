@@ -80,7 +80,9 @@ final class TransferStatusDataProvider implements TransferStatusDataProviderInte
         }
 
         if ($lastRunInformation['start'] ?? false) {
-            $this->status->setLastRun(new \DateTimeImmutable('@' . $lastRunInformation['start']));
+            $this->status->setLastRun(
+                (new \DateTime('@' . $lastRunInformation['start']))->setTimezone(new \DateTimeZone(date_default_timezone_get()))
+            );
         }
     }
 }
