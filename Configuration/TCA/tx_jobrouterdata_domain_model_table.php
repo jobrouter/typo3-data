@@ -203,7 +203,7 @@ return [
     'types' => [
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => [
             'showitem' => '
-            type, connection, handle, name, table_guid, columns,
+            type, connection, name, handle, table_guid, columns,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
@@ -214,7 +214,7 @@ return [
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => [
             'showitem' => '
-            type, connection, handle, name, table_guid, own_table,
+            type, connection, name, handle, table_guid, own_table,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
@@ -225,7 +225,7 @@ return [
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_FORM_FINISHER => [
             'showitem' => '
-            type, connection, handle, name, table_guid, columns,
+            type, connection, name, handle, table_guid, columns,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
@@ -236,7 +236,7 @@ return [
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => [
             'showitem' => '
-            type, connection, handle, name, table_guid,
+            type, connection, name, handle, table_guid,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
