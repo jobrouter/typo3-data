@@ -10,10 +10,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Transfer;
 
+use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\DeleteException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 /**
  * @internal Only to be used within the jobrouter_data extension, not part of the public API
@@ -22,12 +22,12 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /** @var QueryBuilder */
-    private $queryBuilder;
+    /** @var TransferRepository */
+    private $transferRepository;
 
-    public function __construct(QueryBuilder $queryBuilder)
+    public function __construct(TransferRepository $transferRepository)
     {
-        $this->queryBuilder = $queryBuilder;
+        $this->transferRepository = $transferRepository;
     }
 
     public function run(int $ageInDays): int
@@ -39,19 +39,7 @@ class Deleter implements LoggerAwareInterface
         $this->logger->debug('Maximum timestamp for deletion: ' . $maximumTimestampForDeletion);
 
         try {
-            $affectedRows = $this->queryBuilder
-                ->delete('tx_jobrouterdata_domain_model_transfer')
-                ->where(
-                    $this->queryBuilder->expr()->eq(
-                        'transmit_success',
-                        $this->queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
-                    ),
-                    $this->queryBuilder->expr()->lt(
-                        'crdate',
-                        $this->queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
-                    )
-                )
-                ->execute();
+            $affectedRows = $this->transferRepository->deleteOldSuccessfulTransfers($maximumTimestampForDeletion);
         } catch (\Exception $e) {
             $message = 'Error on clean up of old transfers: ' . $e->getMessage();
             $this->logger->error($message);

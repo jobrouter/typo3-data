@@ -64,4 +64,21 @@ class TransferRepository
 
         return $count;
     }
+
+    public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): int
+    {
+        return $this->queryBuilder
+            ->delete('tx_jobrouterdata_domain_model_transfer')
+            ->where(
+                $this->queryBuilder->expr()->eq(
+                    'transmit_success',
+                    $this->queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
+                ),
+                $this->queryBuilder->expr()->lt(
+                    'crdate',
+                    $this->queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
+                )
+            )
+            ->execute();
+    }
 }
