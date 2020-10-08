@@ -26,51 +26,59 @@ class JobDataRepository
     protected const RESOURCE_TEMPLATE_POST = 'application/jobdata/tables/%s/datasets';
     protected const RESOURCE_TEMPLATE_PUT = 'application/jobdata/tables/%s/datasets/%d';
 
-    /**
-     * @var Table
-     */
+    /** @var Table */
     protected $table;
 
-    /**
-     * @var ClientInterface
-     */
-    protected $client;
+    /** @var ClientInterface */
+    private $client;
+
+    /** @var RestClientFactory */
+    private $restClientFactory;
+
+    /** @var TableRepository */
+    private $tableRepository;
+
+    /** @var string */
+    private $tableHandle;
 
     public function __construct(
         RestClientFactory $restClientFactory,
         TableRepository $tableRepository,
         string $tableHandle
     ) {
-        $this->initialiseClient($restClientFactory, $tableRepository, $tableHandle);
+        $this->restClientFactory = $restClientFactory;
+        $this->tableRepository = $tableRepository;
+        $this->tableHandle = $tableHandle;
     }
 
-    private function initialiseClient(
-        RestClientFactory $restClientFactory,
-        TableRepository $tableRepository,
-        string $tableHandle
-    ): void {
-        $this->table = $tableRepository->findOneByHandle($tableHandle);
-        if (!$this->table) {
-            throw new TableNotAvailableException(
-                \sprintf('Table with handle "%s" is not available!', $tableHandle),
-                1595951023
-            );
+    protected function getClient(): ClientInterface
+    {
+        if (!$this->client) {
+            $this->table = $this->tableRepository->findOneByHandle($this->tableHandle);
+            if (!$this->table) {
+                throw new TableNotAvailableException(
+                    \sprintf('Table with handle "%s" is not available!', $this->tableHandle),
+                    1595951023
+                );
+            }
+
+            $connection = $this->table->getConnection();
+            if (!$connection) {
+                throw new ConnectionNotAvailableException(
+                    \sprintf('Connection for table with handle "%s" is not available!', $this->tableHandle),
+                    1595951024
+                );
+            }
+
+            $this->client = $this->restClientFactory->create($connection);
         }
 
-        $connection = $this->table->getConnection();
-        if (!$connection) {
-            throw new ConnectionNotAvailableException(
-                \sprintf('Connection for table with handle "%s" is not available!', $tableHandle),
-                1595951024
-            );
-        }
-
-        $this->client = $restClientFactory->create($connection);
+        return $this->client;
     }
 
     public function add(array $dataset): array
     {
-        $response = $this->client->request(
+        $response = $this->getClient()->request(
             'POST',
             \sprintf(self::RESOURCE_TEMPLATE_POST, $this->table->getTableGuid()),
             ['dataset' => $dataset]
@@ -86,7 +94,7 @@ class JobDataRepository
             $datasets[] = ['jrid' => $jrid];
         }
 
-        $this->client->request(
+        $this->getClient()->request(
             'DELETE',
             \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->table->getTableGuid()),
             ['datasets' => $datasets]
@@ -95,7 +103,7 @@ class JobDataRepository
 
     public function update(int $jrid, array $dataset): array
     {
-        $response = $this->client->request(
+        $response = $this->getClient()->request(
             'PUT',
             \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->table->getTableGuid(), $jrid),
             ['dataset' => $dataset]
@@ -106,7 +114,7 @@ class JobDataRepository
 
     public function findAll(): array
     {
-        $response = $this->client->request(
+        $response = $this->getClient()->request(
             'GET',
             \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->table->getTableGuid())
         );
@@ -116,7 +124,7 @@ class JobDataRepository
 
     public function findByJrid(int $jrid): array
     {
-        $response = $this->client->request(
+        $response = $this->getClient()->request(
             'GET',
             \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->getTableGuid(), $jrid)
         );

@@ -52,7 +52,7 @@ class JobDataRepositoryTest extends TestCase
     /**
      * @test
      */
-    public function constructThrowsExceptionWhenTableNotAvailable(): void
+    public function methodCallThrowsExceptionWhenTableNotAvailable(): void
     {
         $this->expectException(TableNotAvailableException::class);
         $this->expectExceptionCode(1595951023);
@@ -63,13 +63,14 @@ class JobDataRepositoryTest extends TestCase
             ->with('some handle')
             ->willReturn(null);
 
-        new JobDataRepository($this->restClientFactoryStub, $this->tableRepositoryStub, 'some handle');
+        (new JobDataRepository($this->restClientFactoryStub, $this->tableRepositoryStub, 'some handle'))
+            ->findAll();
     }
 
     /**
      * @test
      */
-    public function constructThrowsExceptionWhenConnectionNotAvailable(): void
+    public function methodCallThrowsExceptionWhenConnectionNotAvailable(): void
     {
         $this->expectException(ConnectionNotAvailableException::class);
         $this->expectExceptionCode(1595951024);
@@ -80,6 +81,7 @@ class JobDataRepositoryTest extends TestCase
             ->with('some handle')
             ->willReturn($this->table);
 
-        new JobDataRepository($this->restClientFactoryStub, $this->tableRepositoryStub, 'some handle');
+        (new JobDataRepository($this->restClientFactoryStub, $this->tableRepositoryStub, 'some handle'))
+            ->findAll();
     }
 }
