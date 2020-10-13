@@ -16,7 +16,6 @@ use Brotkrueml\JobRouterData\Transfer\Deleter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class CleanUpTransfersCommandTest extends TestCase
 {
@@ -31,11 +30,6 @@ class CleanUpTransfersCommandTest extends TestCase
         $this->deleterMock = $this->createMock(Deleter::class);
 
         $this->commandTester = new CommandTester(new CleanUpTransfersCommand($this->deleterMock));
-    }
-
-    protected function tearDown(): void
-    {
-        GeneralUtility::purgeInstances();
     }
 
     /**
