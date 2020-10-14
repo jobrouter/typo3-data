@@ -35,7 +35,7 @@ installations). It is enabled by default.
 log.logIntoTable
 ----------------
 
-Activate this option to log into the table `tx_jobrouterconnector_log`. It is
+Activate this option to log into the table `tx_jobrouterbase_log`. It is
 disabled by default.
 
 .. hint::
