@@ -65,30 +65,31 @@ class SynchronisationRunner implements LoggerAwareInterface
 
     private function synchroniseTable(Table $table): void
     {
-        if ($table->getType() === Table::TYPE_SIMPLE) {
-            $this->totalNumberOfTables++;
-            if ($this->simpleTableSynchroniser->synchroniseTable($table) === false) {
+        switch ($table->getType()) {
+            case Table::TYPE_SIMPLE:
+                $this->totalNumberOfTables++;
+                if ($this->simpleTableSynchroniser->synchroniseTable($table) === false) {
+                    $this->erroneousNumberOfTables++;
+                }
+                break;
+
+            case Table::TYPE_OWN_TABLE:
+                $this->totalNumberOfTables++;
+                if ($this->ownTableSynchroniser->synchroniseTable($table) === false) {
+                    $this->erroneousNumberOfTables++;
+                }
+                break;
+
+            case Table::TYPE_OTHER_USAGE:
+            case Table::TYPE_FORM_FINISHER:
+                // do nothing
+                break;
+
+            default:
+                $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
+                $this->logger->error($message);
                 $this->erroneousNumberOfTables++;
-            }
-            return;
         }
-
-        if ($table->getType() === Table::TYPE_OWN_TABLE) {
-            $this->totalNumberOfTables++;
-            if ($this->ownTableSynchroniser->synchroniseTable($table) === false) {
-                $this->erroneousNumberOfTables++;
-            }
-            return;
-        }
-
-        if ($table->getType() === Table::TYPE_OTHER_USAGE) {
-            // do nothing
-            return;
-        }
-
-        $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
-        $this->logger->error($message);
-        $this->erroneousNumberOfTables++;
     }
 
     private function getTable(int $tableUid): Table
