@@ -4,10 +4,10 @@
 		<header/>
 		<body>
 			<trans-unit id="logIntoFile" resname="logIntoFile">
-				<source><![CDATA[Log into file (typo3_jobrouter_data_<hash>.log)]]></source>
+				<source><![CDATA[Log into file: File: var/log/typo3_jobrouter_data_<hash>.log]]></source>
 			</trans-unit>
 			<trans-unit id="logIntoTable" resname="logIntoTable">
-				<source><![CDATA[Log into table (tx_jobrouterbase_log)]]></source>
+				<source><![CDATA[Log into table: Table: tx_jobrouterbase_log]]></source>
 			</trans-unit>
 			<trans-unit id="logLevel" resname="logLevel">
 				<source><![CDATA[Log level]]></source>

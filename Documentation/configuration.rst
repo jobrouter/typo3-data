@@ -25,15 +25,18 @@ extensions` button. Open the :guilabel:`jobrouter_data` configuration:
 
    Options in the extension configuration
 
-log.logIntoFile
----------------
+Log
+---
+
+Log into file
+~~~~~~~~~~~~~
 
 If this option is activated, the log output is written to the file
 :file:`var/log/typo3_jobrouter_data_<hash>.log` (for Composer-based
 installations). It is enabled by default.
 
-log.logIntoTable
-----------------
+Log into table
+~~~~~~~~~~~~~~
 
 Activate this option to log into the table `tx_jobrouterbase_log`. It is
 disabled by default.
@@ -43,8 +46,8 @@ disabled by default.
    To display the log entries of this table in the TYPO3 backend, install the
    extension `co-stack/logs <https://extensions.typo3.org/extension/logs>`_.
 
-log.logLevel
-------------
+Log level
+~~~~~~~~~
 
 Using the drop down menu you can select the log level for the activated log
 options. :guilabel:`warning` is selected by default.
