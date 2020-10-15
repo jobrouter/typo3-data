@@ -39,13 +39,13 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetIdentifierImplementedCorrectly(): void
+    public function getAndSetCorrelationIdImplementedCorrectly(): void
     {
-        self::assertSame('', $this->subject->getIdentifier());
+        self::assertSame('', $this->subject->getCorrelationId());
 
-        $this->subject->setIdentifier('some identifier');
+        $this->subject->setCorrelationId('some correlation id');
 
-        self::assertSame('some identifier', $this->subject->getIdentifier());
+        self::assertSame('some correlation id', $this->subject->getCorrelationId());
     }
 
     /**

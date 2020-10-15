@@ -23,7 +23,7 @@ class Transfer extends AbstractEntity
     /**
      * @var string
      */
-    protected $identifier = '';
+    protected $correlationId = '';
 
     /**
      * @var string
@@ -55,14 +55,14 @@ class Transfer extends AbstractEntity
         $this->tableUid = $tableUid;
     }
 
-    public function getIdentifier(): string
+    public function getCorrelationId(): string
     {
-        return $this->identifier;
+        return $this->correlationId;
     }
 
-    public function setIdentifier(string $identifier): void
+    public function setCorrelationId(string $correlationId): void
     {
-        $this->identifier = $identifier;
+        $this->correlationId = $correlationId;
     }
 
     public function getData(): string

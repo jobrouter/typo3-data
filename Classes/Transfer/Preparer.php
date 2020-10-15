@@ -41,12 +41,12 @@ final class Preparer implements LoggerAwareInterface
         $this->transferRepository = $transferRepository;
     }
 
-    public function store(int $tableUid, string $identifier, string $data): void
+    public function store(int $tableUid, string $correlationId, string $data): void
     {
         $transfer = new Transfer();
         $transfer->setPid(0);
         $transfer->setTableUid($tableUid);
-        $transfer->setIdentifier($identifier);
+        $transfer->setCorrelationId($correlationId);
         $transfer->setData($data);
 
         try {

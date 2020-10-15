@@ -37,7 +37,7 @@ CREATE TABLE tx_jobrouterdata_domain_model_dataset (
 
 CREATE TABLE tx_jobrouterdata_domain_model_transfer (
 	table_uid int(11) unsigned DEFAULT '0' NOT NULL,
-	identifier VARCHAR(255) DEFAULT '' NOT NULL,
+	correlation_id VARCHAR(255) DEFAULT '' NOT NULL,
 	data text,
 	transmit_success tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	transmit_date int(11) unsigned DEFAULT '0' NOT NULL,

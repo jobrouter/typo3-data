@@ -23,8 +23,8 @@ return [
                 'type' => 'input',
             ],
         ],
-        'identifier' => [
-            'label' => 'Identifier',
+        'correlation_id' => [
+            'label' => 'Correlation id',
             'config' => [
                 'type' => 'input',
             ],

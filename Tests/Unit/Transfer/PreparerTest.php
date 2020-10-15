@@ -48,7 +48,7 @@ class PreparerTest extends TestCase
         $transfer = new Transfer();
         $transfer->setPid(0);
         $transfer->setTableUid(42);
-        $transfer->setIdentifier('some identifier');
+        $transfer->setCorrelationId('some correlation id');
         $transfer->setData('some data');
 
         $this->persistenceManagerMock
@@ -60,7 +60,7 @@ class PreparerTest extends TestCase
             ->method('add')
             ->with($transfer);
 
-        $this->subject->store(42, 'some identifier', 'some data');
+        $this->subject->store(42, 'some correlation id', 'some data');
     }
 
     /**
@@ -75,6 +75,6 @@ class PreparerTest extends TestCase
             ->method('add')
             ->willThrowException(new \Exception());
 
-        $this->subject->store(42, 'some identifier', 'some data');
+        $this->subject->store(42, 'some correlation id', 'some data');
     }
 }
