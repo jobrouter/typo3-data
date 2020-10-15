@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /*
@@ -56,7 +57,7 @@ class JobDataRepositoryTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$server = new MockWebServer;
+        self::$server = new MockWebServer();
         self::$server->start();
 
         self::$configuration = new ClientConfiguration(
