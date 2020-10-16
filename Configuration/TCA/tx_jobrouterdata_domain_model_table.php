@@ -22,7 +22,8 @@ return [
         ],
         'rootLevel' => 1,
         'searchFields' => 'handle,name,table_guid,description',
-        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg'
+        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg',
+        'hideTable' => true,
     ],
     'columns' => [
         'disabled' => [
