@@ -2,23 +2,22 @@ name: CI
 
 on:
   push:
-    paths:
-      - '**.php'
-      - '.github/workflows/ci.yml'
+    paths-ignore:
+      - 'Documentation/**'
+      - 'README.md'
   pull_request:
-    paths:
-      - '**.php'
-      - '.github/workflows/ci.yml'
+    paths-ignore:
+      - 'Documentation/**'
+      - 'README.md'
 
 jobs:
   build:
-    name: Build PHP/TYPO3
+    name: Linting / Unit tests
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         php-versions: ['7.2', '7.3', '7.4']
-        typo3-versions: ['^10']
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
@@ -41,16 +40,29 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer self-update
-          composer --version
-          composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress
-          git checkout composer.json
+          composer install --no-progress
       - name: Run PHP linter
         run: |
           find . -name \*.php  ! -path "./.Build/*" -exec php -l {} \;
       - name: Run unit tests
         run: |
           .Build/bin/phpunit -c Tests/phpunit.xml.dist
+  acceptance-tests:
+    name: Acceptance tests
+    runs-on: ubuntu-latest
+    env:
+      phpVersion: 7.2
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Install composer dependencies
+        run: |
+          ./Build/Scripts/runTests.sh -s composerInstall -p $phpVersion
+      - name: Run acceptance tests
+        run: |
+          ./Build/Scripts/runTests.sh -s acceptance -p $phpVersion
   sonar-cloud:
     name: SonarCloud Analysis
     runs-on: ubuntu-latest

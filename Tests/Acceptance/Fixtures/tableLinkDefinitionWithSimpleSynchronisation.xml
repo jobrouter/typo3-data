@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+	<tx_jobrouterdata_domain_model_table>
+		<uid>1</uid>
+		<pid>0</pid>
+        <crdate>1603481421</crdate>
+		<tstamp>1603481421</tstamp>
+        <cruser_id>1</cruser_id>
+        <type>1</type>
+        <handle>handle_simple_sync</handle>
+        <name>Name for simple sync</name>
+        <connection>1</connection>
+        <table_guid>8BD9BABA-7E2A-9C98-DA8B-41CDE4BD3412</table_guid>
+        <columns>4</columns>
+	</tx_jobrouterdata_domain_model_table>
+    <tx_jobrouterdata_domain_model_column>
+        <uid>1</uid>
+        <pid>0</pid>
+        <crdate>1603481421</crdate>
+        <tstamp>1603481421</tstamp>
+        <cruser_id>1</cruser_id>
+        <table_uid>1</table_uid>
+        <name>text_max_length</name>
+        <label>Text field with maximum length</label>
+        <type>1</type>
+        <field_size>50</field_size>
+    </tx_jobrouterdata_domain_model_column>
+    <tx_jobrouterdata_domain_model_column>
+        <uid>2</uid>
+        <pid>0</pid>
+        <crdate>1603481421</crdate>
+        <tstamp>1603481421</tstamp>
+        <cruser_id>1</cruser_id>
+        <table_uid>1</table_uid>
+        <name>text_undef_length</name>
+        <label>Text field with undefined maximum length</label>
+        <type>1</type>
+    </tx_jobrouterdata_domain_model_column>
+    <tx_jobrouterdata_domain_model_column>
+        <uid>3</uid>
+        <pid>0</pid>
+        <crdate>1603481421</crdate>
+        <tstamp>1603481421</tstamp>
+        <cruser_id>1</cruser_id>
+        <table_uid>1</table_uid>
+        <name>number_field</name>
+        <label>Number field</label>
+        <type>2</type>
+    </tx_jobrouterdata_domain_model_column>
+    <tx_jobrouterdata_domain_model_column>
+        <uid>4</uid>
+        <pid>0</pid>
+        <crdate>1603481421</crdate>
+        <tstamp>1603481421</tstamp>
+        <cruser_id>1</cruser_id>
+        <table_uid>1</table_uid>
+        <name>field_without_label</name>
+        <label/>
+        <type>1</type>
+    </tx_jobrouterdata_domain_model_column>
+</dataset>

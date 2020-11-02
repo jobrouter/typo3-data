@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+	<tx_jobrouterconnector_domain_model_connection>
+		<uid>1</uid>
+		<pid>0</pid>
+        <crdate>1603481421</crdate>
+		<tstamp>1603481421</tstamp>
+        <cruser_id>1</cruser_id>
+        <name>Mockserver</name>
+        <handle>mockserver</handle>
+        <base_url>http://mockserver:1080/</base_url>
+        <username>john.doe</username>
+        <!-- Password in clear text: secretPwd -->
+        <password>XPa1uhmp6ow/sohbGqlHNLSCHeQ+10odSZp9GILkrtoT1PpceNIGvCxWbJ2mKUseuQ==</password>
+	</tx_jobrouterconnector_domain_model_connection>
+</dataset>
