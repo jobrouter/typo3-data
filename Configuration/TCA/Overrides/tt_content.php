@@ -7,7 +7,7 @@
  * LICENSE.txt file that was distributed with this source code.
  */
 
-defined('TYPO3_MODE') || die();
+defined('TYPO3') || die();
 
 (function ($extensionKey='jobrouter_data', $contentType='tx_jobrouterdata_table') {
     $llPrefix = 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/ContentElement.xlf:';
