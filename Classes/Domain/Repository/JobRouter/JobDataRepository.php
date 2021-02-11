@@ -12,10 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Domain\Repository\JobRouter;
 
 use Brotkrueml\JobRouterClient\Client\ClientInterface;
+use Brotkrueml\JobRouterClient\Exception\ExceptionInterface;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\ConnectionNotAvailableException;
+use Brotkrueml\JobRouterData\Exception\DatasetNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\DatasetsNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
 
@@ -125,10 +127,18 @@ class JobDataRepository
 
     public function findByJrid(int $jrid): array
     {
-        $response = $this->getClient()->request(
-            'GET',
-            \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->getTableGuid(), $jrid)
-        );
+        try {
+            $response = $this->getClient()->request(
+                'GET',
+                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->getTableGuid(), $jrid)
+            );
+        } catch (ExceptionInterface $e) {
+            throw new DatasetNotAvailableException(
+                \sprintf('Dataset with jrid "%d" is not available', $jrid),
+                1613047932,
+                $e
+            );
+        }
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }

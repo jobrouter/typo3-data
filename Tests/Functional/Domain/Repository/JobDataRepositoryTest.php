@@ -18,6 +18,7 @@ use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Exception\DatasetNotAvailableException;
 use donatj\MockWebServer\MockWebServer;
 use donatj\MockWebServer\Response;
 use PHPUnit\Framework\MockObject\Stub;
@@ -201,16 +202,33 @@ class JobDataRepositoryTest extends TestCase
     public function findByJrid(): void
     {
         self::$server->setResponseOfPath(
-            'application/jobdata/tables/some-guid/datasets/42',
+            '/api/rest/v2/application/jobdata/tables/some-guid/datasets/42',
             new Response('{"datasets":[{"jrid": "42","foo":"bar","qux":"qoo"}]}', [], 200)
         );
 
         $actual = $this->subject->findByJrid(42);
-        $expected = ['jrid' => '42', 'foo' => 'bar', 'qux' => 'qoo'];
+        $expected = [['jrid' => '42', 'foo' => 'bar', 'qux' => 'qoo']];
 
         self::assertSame($expected, $actual);
 
         $method = self::$server->getLastRequest()->getRequestMethod();
         self::assertSame('GET', $method);
+    }
+
+    /**
+     * @test
+     */
+    public function findByJridThrowsExceptionWhenJridNotAvailable(): void
+    {
+        $this->expectException(DatasetNotAvailableException::class);
+        $this->expectExceptionCode(1613047932);
+        $this->expectExceptionMessage('Dataset with jrid "53" is not available');
+
+        self::$server->setResponseOfPath(
+            '/api/rest/v2/application/jobdata/tables/some-guid/datasets/53',
+            new Response('{"errors":{"-": ["Record for given primary key not found."]}}', [], 404)
+        );
+
+        $this->subject->findByJrid(53);
     }
 }
