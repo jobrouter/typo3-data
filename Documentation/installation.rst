@@ -9,8 +9,7 @@ Installation
 Target group: **Administrators**
 
 .. note::
-   The extension works with TYPO3 v10 LTS.
-
+   The extension in version |release| supports TYPO3 v10 LTS.
 
 .. _installation-requirements:
 
