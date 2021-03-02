@@ -33,11 +33,11 @@
 		"typo3/cms-core": "^10.4.11",
 		"typo3/cms-extbase": "*",
 		"typo3/cms-fluid": "*",
-		"typo3/cms-form": "*",
 		"typo3/cms-frontend": "*"
 	},
 	"suggest": {
 		"typo3/cms-dashboard": "Use dashboard widgets for information about jobData transmissions",
+		"typo3/cms-form": "Use form finisher with TYPO3 form framework",
 		"co-stack/logs": "Backend module for displaying logs written to log table"
 	},
 	"require-dev": {
@@ -51,6 +51,7 @@
 		"php-coveralls/php-coveralls": "^2.2",
 		"phpunit/phpunit": "^8.5 || ^9.1",
 		"typo3/cms-dashboard": "*",
+		"typo3/cms-form": "*",
 		"typo3/coding-standards": "^0.2",
 		"typo3/testing-framework": "^6.4"
 	},

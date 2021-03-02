@@ -19,8 +19,9 @@ Requirements
 The extension has no PHP requirements in addition to TYPO3 and the TYPO3
 JobRouter Connector extension.
 
-If you want to use the :ref:`Dashboard widgets <dashboard-widgets>`, you have to
-install and activate the Dashboard system extension.
+To use the :ref:`Dashboard widgets <dashboard-widgets>`, install and activate
+the Dashboard system extension. To use the :ref:`Form finisher <form-finisher>`
+install and activate the Form system extension.
 
 
 .. _installation-composer:
