@@ -13,8 +13,8 @@ JobData tables with TYPO3.
 
 .. admonition:: Work In Progress
 
-   Currently, the TYPO3 JobRouter Data extension is in a development phase. As
-   it can be used already, the API is still subject to change.
+   Currently the TYPO3 JobRouter Data extension is in a beta phase. Although it
+   can already be used, the API is still subject to changes.
 
 
 What does it do?
