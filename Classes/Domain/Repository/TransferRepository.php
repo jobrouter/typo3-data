@@ -11,8 +11,25 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 class TransferRepository extends Repository
 {
+    public function findErroneousTransfers()
+    {
+        $query = $this->createQuery();
+
+        return $query
+            ->matching(
+                $query->logicalAnd([
+                    $query->equals('transmitSuccess', 0),
+                    $query->logicalNot(
+                        $query->equals('transmitMessage', '')
+                    )
+                ])
+            )
+            ->setOrderings(['crdate' => QueryInterface::ORDER_ASCENDING])
+            ->execute();
+    }
 }

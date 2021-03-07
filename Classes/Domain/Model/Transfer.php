@@ -18,6 +18,11 @@ class Transfer extends AbstractEntity
     /**
      * @var int
      */
+    protected $crdate = 0;
+
+    /**
+     * @var int
+     */
     protected $tableUid = 0;
 
     /**
@@ -44,6 +49,11 @@ class Transfer extends AbstractEntity
      * @var string
      */
     protected $transmitMessage = '';
+
+    public function getCrdate(): int
+    {
+        return $this->crdate;
+    }
 
     public function getTableUid(): int
     {

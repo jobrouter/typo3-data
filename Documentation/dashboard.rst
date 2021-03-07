@@ -41,3 +41,15 @@ The status of the JobData transmissions can be shown with this widget:
    :class: with-border
 
    JobData Transmission Status widget
+
+
+JobData transmission errors
+===========================
+
+If errors occur when transmitting a JobData data set, they can be displayed with this widget:
+
+.. figure:: _images/dashboard-widget-jobdata-transmission-report.png
+   :alt: JobData Transmission Errors widget
+   :class: with-border
+
+   JobData Transmission Errors widget

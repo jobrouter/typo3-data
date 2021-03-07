@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData;
 
+use Brotkrueml\JobRouterBase\Widgets\TransferReportWidget;
 use Brotkrueml\JobRouterBase\Widgets\TransferStatusWidget;
+use Brotkrueml\JobRouterData\Widgets\Provider\TransferReportDataProvider;
 use Brotkrueml\JobRouterData\Widgets\Provider\TransferStatusDataProvider;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
@@ -36,5 +38,20 @@ return function (ContainerConfigurator $configurator): void {
             'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.statusOfDataTransmissions.description',
             'iconIdentifier' => 'content-widget-number',
             'height' => 'small',
+        ]);
+
+    $services
+        ->set('dashboard.widget.brotkrueml.jobrouter_data.transferReport')
+        ->class(TransferReportWidget::class)
+        ->arg('$view', new Reference('dashboard.views.widget'))
+        ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
+        ->tag('dashboard.widget', [
+            'identifier' => 'jobrouter_data.transferReport',
+            'groupNames' => 'jobrouter',
+            'title' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.transferReport.title',
+            'description' => Extension::LANGUAGE_PATH_DASHBOARD . ':widgets.transferReport.description',
+            'iconIdentifier' => 'content-widget-table',
+            'height' => 'medium',
+            'width' => 'large',
         ]);
 };

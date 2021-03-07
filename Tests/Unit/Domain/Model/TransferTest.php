@@ -27,7 +27,17 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetTableUidImplementedCorrectly(): void
+    public function getCrDate(): void
+    {
+        $this->subject->_setProperty('crdate', 1615134986);
+
+        self::assertSame(1615134986, $this->subject->getCrdate());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetTableUid(): void
     {
         self::assertSame(0, $this->subject->getTableUid());
 
@@ -39,7 +49,7 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetCorrelationIdImplementedCorrectly(): void
+    public function getAndSetCorrelationId(): void
     {
         self::assertSame('', $this->subject->getCorrelationId());
 
@@ -51,7 +61,7 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetDataImplementedCorrectly(): void
+    public function getAndSetData(): void
     {
         self::assertSame('', $this->subject->getData());
 
@@ -63,7 +73,7 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function isAndSetTransmitSuccessImplementedCorrectly(): void
+    public function isAndSetTransmitSuccess(): void
     {
         self::assertFalse($this->subject->isTransmitSuccess());
 
@@ -75,7 +85,7 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetTransmitDateImplementedCorrectly(): void
+    public function getAndSetTransmitDate(): void
     {
         self::assertNull($this->subject->getTransmitDate());
 
@@ -88,7 +98,7 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetTransmitMessageImplementedCorrectly(): void
+    public function getAndSetTransmitMessage(): void
     {
         self::assertSame('', $this->subject->getTransmitMessage());
 
