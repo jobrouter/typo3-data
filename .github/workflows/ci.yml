@@ -102,7 +102,7 @@ jobs:
         run: |
           composer self-update
           composer --version
-          composer install --no-progress
+          composer update --no-progress
       - name: Run unit tests
         run: |
           .Build/bin/phpunit -c Tests/phpunit.xml.dist --log-junit .Build/logs/phpunit.xml --coverage-text --coverage-clover .Build/logs/clover.xml
