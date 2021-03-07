@@ -43,17 +43,17 @@
 	"require-dev": {
 		"codeception/codeception": "^4.1",
 		"codeception/module-asserts": "^1.3",
-		"codeception/module-webdriver": "^1.1",
-		"dg/bypass-finals": "^1.2",
-		"donatj/mock-webserver": "^2.1",
-		"friendsofphp/php-cs-fixer": "^2.16",
+		"codeception/module-webdriver": "^1.2",
+		"dg/bypass-finals": "^1.3",
+		"donatj/mock-webserver": "^2.2",
+		"friendsofphp/php-cs-fixer": "^2.18",
 		"mikey179/vfsstream": "^1.6",
-		"php-coveralls/php-coveralls": "^2.2",
-		"phpunit/phpunit": "^8.5 || ^9.1",
+		"php-coveralls/php-coveralls": "^2.4",
+		"phpunit/phpunit": "^8.5 || ^9.5",
 		"typo3/cms-dashboard": "*",
 		"typo3/cms-form": "*",
 		"typo3/coding-standards": "^0.2",
-		"typo3/testing-framework": "^6.4"
+		"typo3/testing-framework": "^6.7"
 	},
 	"autoload": {
 		"psr-4": {
