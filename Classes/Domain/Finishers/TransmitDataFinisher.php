@@ -16,7 +16,6 @@ use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterData\Domain\Model\Column;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
-use Brotkrueml\JobRouterData\Domain\Model\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterData\Exception\MissingColumnException;
@@ -38,9 +37,6 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
 
     /** @var TableRepository */
     private $tableRepository;
-
-    /** @var Transfer */
-    private $transfer;
 
     /** @var Table|null */
     private $table;
