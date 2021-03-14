@@ -27,7 +27,7 @@
 		"ext-pdo": "*",
 		"brotkrueml/jobrouter-client": "^1.0",
 		"brotkrueml/typo3-jobrouter-base": "^0.1.1",
-		"brotkrueml/typo3-jobrouter-connector": "^0.12",
+		"brotkrueml/typo3-jobrouter-connector": "^0.12 || ^1.0",
 		"symfony/polyfill-php80": "^1.17",
 		"typo3/cms-backend": "*",
 		"typo3/cms-core": "^10.4.11",
