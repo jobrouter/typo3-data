@@ -52,7 +52,7 @@
 		"phpunit/phpunit": "^8.5 || ^9.5",
 		"typo3/cms-dashboard": "*",
 		"typo3/cms-form": "*",
-		"typo3/coding-standards": "^0.2",
+		"typo3/coding-standards": "^0.3",
 		"typo3/testing-framework": "^6.7"
 	},
 	"autoload": {
