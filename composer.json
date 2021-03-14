@@ -26,8 +26,8 @@
 		"ext-json": "*",
 		"ext-pdo": "*",
 		"brotkrueml/jobrouter-client": "^1.0",
-		"brotkrueml/typo3-jobrouter-base": "1.0.x-dev@dev",
-		"brotkrueml/typo3-jobrouter-connector": "^0.12 || ^1.0",
+		"brotkrueml/typo3-jobrouter-base": "^1.0",
+		"brotkrueml/typo3-jobrouter-connector": "^1.0",
 		"symfony/polyfill-php80": "^1.17",
 		"typo3/cms-backend": "*",
 		"typo3/cms-core": "^10.4.11",
@@ -36,7 +36,7 @@
 		"typo3/cms-frontend": "*"
 	},
 	"suggest": {
-		"typo3/cms-dashboard": "Use dashboard widgets for information about jobData transmissions",
+		"typo3/cms-dashboard": "Use dashboard widgets for information about JobData transmissions",
 		"typo3/cms-form": "Use form finisher with TYPO3 form framework",
 		"co-stack/logs": "Backend module for displaying logs written to log table"
 	},
