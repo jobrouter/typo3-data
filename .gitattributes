@@ -1,11 +1,13 @@
+/Build/ export-ignore
 /Documentation/ export-ignore
 /Tests/ export-ignore
 /.coveralls.yml export-ignore
 /.editorconfig export-ignore
-/.github/ export-ignore
 /.gitattributes export-ignore
+/.github/ export-ignore
 /.gitignore export-ignore
 /.php_cs export-ignore
 /.readthedocs.yml export-ignore
+/CHANGELOG.md export-ignore
 /README.md export-ignore
 /sonar-project.properties export-ignore
