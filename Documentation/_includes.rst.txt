@@ -5,6 +5,8 @@
    :language: php
 .. role:: yaml(code)
    :language: yaml
+.. role:: shell(code)
+   :language: shell
 
 .. default-role:: code
 .. highlight:: php
