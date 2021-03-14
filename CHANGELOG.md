@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Set crdate in transfer table correctly
+
 ## [0.12.3] - 2021-03-07
 
 ### Added

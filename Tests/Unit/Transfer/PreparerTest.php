@@ -46,6 +46,7 @@ class PreparerTest extends TestCase
     public function storePersistsRecordCorrectly(): void
     {
         $transfer = new Transfer();
+        $transfer->setCrdate(\time());
         $transfer->setPid(0);
         $transfer->setTableUid(42);
         $transfer->setCorrelationId('some correlation id');

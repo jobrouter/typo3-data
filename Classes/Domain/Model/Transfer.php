@@ -55,6 +55,11 @@ class Transfer extends AbstractEntity
         return $this->crdate;
     }
 
+    public function setCrdate(int $crdate): void
+    {
+        $this->crdate = $crdate;
+    }
+
     public function getTableUid(): int
     {
         return $this->tableUid;

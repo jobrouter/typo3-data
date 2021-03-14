@@ -44,6 +44,7 @@ final class Preparer implements LoggerAwareInterface
     public function store(int $tableUid, string $correlationId, string $data): void
     {
         $transfer = new Transfer();
+        $transfer->setCrdate(\time());
         $transfer->setPid(0);
         $transfer->setTableUid($tableUid);
         $transfer->setCorrelationId($correlationId);

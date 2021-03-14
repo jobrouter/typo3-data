@@ -27,11 +27,13 @@ class TransferTest extends TestCase
     /**
      * @test
      */
-    public function getCrDate(): void
+    public function getAndSetCrdate(): void
     {
-        $this->subject->_setProperty('crdate', 1615134986);
+        self::assertSame(0, $this->subject->getCrdate());
 
-        self::assertSame(1615134986, $this->subject->getCrdate());
+        $this->subject->setCrdate(1615715456);
+
+        self::assertSame(1615715456, $this->subject->getCrdate());
     }
 
     /**
