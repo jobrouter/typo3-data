@@ -24,15 +24,18 @@ Synchronise tables
 ==================
 
 To synchronise the tables from JobRouter installations in TYPO3 a command is
-available. Run the following command in the project directory:
-
-::
+available. Run the following command in the project directory for a composer
+installation::
 
    vendor/bin/typo3 jobrouter:data:sync
 
+In a non-composer installation execute::
+
+   php public/typo3/sysext/core/bin/typo3 jobrouter:data:sync
+
 Hopefully you will receive a successful response:
 
-::
+.. code-block:: text
 
    [OK] 2 table(s) synchronised successfully
 
@@ -46,7 +49,7 @@ Where `1` is the uid of the table.
 
 If an error occurs, the command issues a warning:
 
-::
+.. code-block:: text
 
    [WARNING] 1 out of 2 table(s) had errors on synchronisation
 
@@ -75,21 +78,23 @@ Transmit data sets
 
 If you use the :ref:`transfer table <developer-transfer-data-sets>` to transmit
 JobData data sets to a JobRouter® installation must also use the transmit
-command:
-
-::
+command from the project directory for a composer installation::
 
    vendor/bin/typo3 jobrouter:data:transmit
 
+In a non-composer installation execute::
+
+   php public/typo3/sysext/core/bin/typo3 jobrouter:data:transmit
+
 In general you should receive a successful answer:
 
-::
+.. code-block:: text
 
    [OK] 13 transfer(s) transmitted successfully
 
 If an error occurs, the command issues a warning:
 
-::
+.. code-block:: text
 
    [WARNING] 2 out of 6 transfer(s) had errors on transmission
 
@@ -118,22 +123,22 @@ Clean up transfers
 
 After successfully transmitting data sets from the transfer table, these
 transfers are marked as successful. They may contain sensitive data and should
-be deleted regularly. A command is available for this task:
-
-::
+be deleted regularly. A command is available for this task::
 
    vendor/bin/typo3 jobrouter:data:cleanuptransfers
 
+In a non-composer installation execute::
+
+   php public/typo3/sysext/core/bin/typo3 jobrouter:data:cleanuptransfers
+
 In general you should receive a successful answer:
 
-::
+.. code-block:: text
 
    [OK] 23 successful transfers older than 30 days deleted
 
 By default, successful transfer records that are older than 30 days are deleted.
-You can adjust this value by adding an argument to the command:
-
-::
+You can adjust this value by adding an argument to the command::
 
    vendor/bin/typo3 jobrouter:data:cleanuptransfers 7
 
@@ -142,7 +147,3 @@ you use `0` as argument, all successful transfers are deleted.
 
 .. important::
    Erroneous transfers are not deleted and must be handled manually.
-
-.. note::
-   If there were deleted successful transfer records, the number of affected
-   rows is logged as *notice*, if there were none it is logged as *info*.

@@ -8,7 +8,7 @@ Module
 
 Target group: **Integrators, Administrators**
 
-The links to tables in JobRouter® installations are managed in the module
+The links to JobData tables in JobRouter® installations are managed in the module
 :guilabel:`JobRouter` > :guilabel:`Data`.
 
 On your first visit after installing the extension you will see the following

@@ -20,12 +20,13 @@ a JobData table. After submitting a form, the form values are stored in a
 transfer table. A command, hopefully executed regularly, takes these transfer
 records and transmit this data. This is due the fact, that a JobRouter®
 installation can be temporarily not available due to maintenance or network
-problems. Also the submitting of a form should be as fast as possible.
+problems. Also the submitting of a form should be as fast as possible for
+better user experience.
 
 .. note::
 
    The finisher can only be used in the yaml form definition, not in the
-   :guilabel:`Form` GUI module.
+   :guilabel:`Forms` backend module.
 
 
 Transmit to a JobData table
@@ -102,5 +103,5 @@ Variables
 ---------
 
 You can use variables as column values. For more information have a look into
-the available :ref:`variable resolvers <base:variable-resolvers>`. You can also
-write your :ref:`own variable resolvers <base:developer-variable-resolvers>`.
+the available :ref:`variable resolvers <typo3-jobrouter-base:variable-resolvers>`. You can also
+write your :ref:`own variable resolvers <typo3-jobrouter-base:developer-variable-resolvers>`.
