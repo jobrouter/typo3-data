@@ -18,6 +18,8 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
  */
 class TransferRepository
 {
+    private const TABLE_NAME = 'tx_jobrouterdata_domain_model_transfer';
+
     /**
      * @var QueryBuilder
      */
@@ -30,10 +32,12 @@ class TransferRepository
 
     public function countGroupByTransmitSuccess(): array
     {
-        return $this->queryBuilder
+        $queryBuilder = $this->createQueryBuilder();
+
+        return $queryBuilder
             ->select('transmit_success')
-            ->addSelectLiteral('COUNT(*) AS ' . $this->queryBuilder->quoteIdentifier('count'))
-            ->from('tx_jobrouterdata_domain_model_transfer')
+            ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
+            ->from(self::TABLE_NAME)
             ->groupBy('transmit_success')
             ->execute()
             ->fetchAll();
@@ -41,20 +45,22 @@ class TransferRepository
 
     public function countTransmitFailed(): int
     {
+        $queryBuilder = $this->createQueryBuilder();
+
         $whereExpressions = [
-            $this->queryBuilder->expr()->eq(
+            $queryBuilder->expr()->eq(
                 'transmit_success',
-                $this->queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
             ),
-            $this->queryBuilder->expr()->gt(
+            $queryBuilder->expr()->gt(
                 'transmit_date',
-                $this->queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
             ),
         ];
 
-        $count = $this->queryBuilder
+        $count = $queryBuilder
             ->count('*')
-            ->from('tx_jobrouterdata_domain_model_transfer')
+            ->from(self::TABLE_NAME)
             ->where(...$whereExpressions)
             ->execute()
             ->fetchColumn();
@@ -68,18 +74,38 @@ class TransferRepository
 
     public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): int
     {
-        return $this->queryBuilder
-            ->delete('tx_jobrouterdata_domain_model_transfer')
+        $queryBuilder = $this->createQueryBuilder();
+
+        return $queryBuilder
+            ->delete(self::TABLE_NAME)
             ->where(
-                $this->queryBuilder->expr()->eq(
+                $queryBuilder->expr()->eq(
                     'transmit_success',
-                    $this->queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
                 ),
-                $this->queryBuilder->expr()->lt(
+                $queryBuilder->expr()->lt(
                     'crdate',
-                    $this->queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
                 )
             )
             ->execute();
+    }
+
+    public function findFirstCreationDate(): int
+    {
+        $queryBuilder = $this->createQueryBuilder();
+
+        $quotedCrdate = $queryBuilder->quoteIdentifier('crdate');
+
+        return $queryBuilder
+            ->selectLiteral(\sprintf('MIN(%s)', $quotedCrdate))
+            ->from(self::TABLE_NAME)
+            ->execute()
+            ->fetchColumn() ?: 0;
+    }
+
+    private function createQueryBuilder(): QueryBuilder
+    {
+        return clone $this->queryBuilder;
     }
 }

@@ -51,6 +51,7 @@ final class TransferStatusDataProvider implements TransferStatusDataProviderInte
     {
         $this->calculateStatuses();
         $this->evaluateLastRun();
+        $this->calculateNumberOfDays();
 
         return $this->status;
     }
@@ -85,5 +86,18 @@ final class TransferStatusDataProvider implements TransferStatusDataProviderInte
                 (new \DateTime('@' . $lastRunInformation['start']))->setTimezone(new \DateTimeZone(date_default_timezone_get()))
             );
         }
+    }
+
+    private function calculateNumberOfDays(): void
+    {
+        $firstCreationDate = $this->transferRepository->findFirstCreationDate();
+        if ($firstCreationDate === 0) {
+            return;
+        }
+
+        $firstCreationDateTime = new \DateTimeImmutable('@' . $firstCreationDate);
+        $recentDateTime = new \DateTimeImmutable();
+        $difference = $recentDateTime->diff($firstCreationDateTime);
+        $this->status->setNumberOfDays($difference->days + 1);
     }
 }
