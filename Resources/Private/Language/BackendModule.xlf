@@ -45,9 +45,6 @@
 			<trans-unit id="action.edit_table" resname="action.edit_table">
 				<source><![CDATA[Edit table link]]></source>
 			</trans-unit>
-			<trans-unit id="action.report" resname="action.report">
-				<source><![CDATA[Report]]></source>
-			</trans-unit>
 			<trans-unit id="action.show_table_structure" resname="action.show_table_structure">
 				<source><![CDATA[Show JobData table structure]]></source>
 			</trans-unit>
