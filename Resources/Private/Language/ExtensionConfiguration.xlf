@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf" date="2020-01-23T10:48:17Z" product-name="jobrouter_data">
-		<header/>
 		<body>
 			<trans-unit id="logIntoFile" resname="logIntoFile">
 				<source><![CDATA[Log into file: File: var/log/typo3_jobrouter_data_<hash>.log]]></source>

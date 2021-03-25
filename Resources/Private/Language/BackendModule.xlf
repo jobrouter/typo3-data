@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf" date="2020-06-05T17:17:19Z" product-name="jobrouter_data">
-		<header/>
 		<body>
 			<trans-unit id="mlang_labels_tablabel" resname="mlang_labels_tablabel">
 				<source><![CDATA[JobRouter Data]]></source>

@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Dashboard.xlf" date="2021-03-07T16:39:17Z" product-name="jobrouter_data">
-		<header/>
 		<body>
 			<trans-unit id="widgets.transferReport.description" resname="widgets.transferReport.description">
 				<source><![CDATA[Shows failing JobData transmissions.]]></source>
