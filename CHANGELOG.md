@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Rename "own table" to "custom table"
+- Use table handle instead of uid as argument in SyncCommand
+
 ## [0.13.0] - 2021-03-14
 
 ### Added
