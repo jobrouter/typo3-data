@@ -54,8 +54,8 @@ return [
                         \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE,
                     ],
                     [
-                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table',
-                        \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE,
+                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table',
+                        \Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_CUSTOM_TABLE,
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.form_finisher',
@@ -109,16 +109,16 @@ return [
                 'eval' => 'alphanum_x,required,trim,upper',
             ],
         ],
-        'own_table' => [
+        'custom_table' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.own_table',
+            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.custom_table',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
                     ['' => ''],
                 ],
-                'itemsProcFunc' => \Brotkrueml\JobRouterData\Service\OwnTables::class . '->getTables',
+                'itemsProcFunc' => \Brotkrueml\JobRouterData\Service\CustomTables::class . '->getTables',
                 'eval' => 'required',
             ],
         ],
@@ -213,9 +213,9 @@ return [
             description,
         '
         ],
-        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OWN_TABLE => [
+        (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_CUSTOM_TABLE => [
             'showitem' => '
-            type, connection, name, handle, table_guid, own_table,
+            type, connection, name, handle, table_guid, custom_table,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
             disabled,
             --div--;' . \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,

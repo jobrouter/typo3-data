@@ -30,18 +30,18 @@ class SynchronisationRunner implements LoggerAwareInterface
     /** @var SimpleTableSynchroniser */
     private $simpleTableSynchroniser;
 
-    /** @var OwnTableSynchroniser */
-    private $ownTableSynchroniser;
+    /** @var CustomTableSynchroniser */
+    private $customTableSynchroniser;
 
     private $totalNumberOfTables = 0;
     private $erroneousNumberOfTables = 0;
 
     public function __construct(
-        OwnTableSynchroniser $ownTableSynchroniser,
+        CustomTableSynchroniser $customTableSynchroniser,
         SimpleTableSynchroniser $simpleTableSynchroniser,
         TableRepository $tableRepository
     ) {
-        $this->ownTableSynchroniser = $ownTableSynchroniser;
+        $this->customTableSynchroniser = $customTableSynchroniser;
         $this->simpleTableSynchroniser = $simpleTableSynchroniser;
         $this->tableRepository = $tableRepository;
     }
@@ -74,9 +74,9 @@ class SynchronisationRunner implements LoggerAwareInterface
                 }
                 break;
 
-            case Table::TYPE_OWN_TABLE:
+            case Table::TYPE_CUSTOM_TABLE:
                 $this->totalNumberOfTables++;
-                if ($this->ownTableSynchroniser->synchroniseTable($table) === false) {
+                if ($this->customTableSynchroniser->synchroniseTable($table) === false) {
                     $this->erroneousNumberOfTables++;
                 }
                 break;

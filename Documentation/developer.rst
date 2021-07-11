@@ -74,15 +74,14 @@ in a TYPO3 context::
    }
 
 
-.. _developer-own-table:
+.. _developer-custom-table:
 
-Own table
----------
+Custom table
+------------
 
-Synchronising a JobData table into an :ref:`own table
-<module-create-table-link-own>` has some advantages and disadvantages compared
-to the simple synchronisation type described above:
-
+Synchronising a JobData table into an :ref:`custom table
+<module-create-table-link-custom>` has some advantages and disadvantages
+compared to the simple synchronisation type described above:
 
 - Flexibility: You can filter the content of a synchronised table with specific
   SQL queries, because all JobData columns are stored in separate columns in the
@@ -108,8 +107,8 @@ But let's start:
          UNIQUE KEY jrid (jrid)
       );
 
-   The table name must start with `tx_` to be recognised as an own table in the
-   module.
+   The table name must start with `tx_` to be recognised as an custom table in
+   the module.
 
    It must also have a column `jrid`. Add a unique or primary key for the `jrid`
    column. If you want to use the table in a TCA/Extbase context, you must
@@ -123,9 +122,9 @@ But let's start:
 #. Go to the :guilabel:`Admin Tools` > :guilabel:`Maintenance` module, click on
    the :guilabel:`Analyse database` button and create the table.
 
-#. Add a table link in the :ref:`backend module <module-create-table-link-own>`.
+#. Add a table link in the :ref:`backend module <module-create-table-link-custom>`.
 
-This is the minimal setup to synchronise a JobData table into an own TYPO3
+This is the minimal setup to synchronise a JobData table into an custom TYPO3
 table. How you will use the table depends on your use case.
 
 

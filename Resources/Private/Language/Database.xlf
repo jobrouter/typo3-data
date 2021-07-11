@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2020-10-04T10:06:14Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-07-11T13:29:22Z" product-name="jobrouter_data">
 		<body>
 			<trans-unit id="palette.last_synchronisation" resname="palette.last_synchronisation">
 				<source><![CDATA[Last Synchronisation]]></source>
@@ -68,8 +68,8 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.handle" resname="tx_jobrouterdata_domain_model_table.handle">
 				<source><![CDATA[Handle]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.own_table" resname="tx_jobrouterdata_domain_model_table.own_table">
-				<source><![CDATA[Own table]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.custom_table" resname="tx_jobrouterdata_domain_model_table.custom_table">
+				<source><![CDATA[Custom table]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.last_sync_date" resname="tx_jobrouterdata_domain_model_table.last_sync_date">
 				<source><![CDATA[Date/Time]]></source>
@@ -95,8 +95,8 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.type.simple_synchronisation" resname="tx_jobrouterdata_domain_model_table.type.simple_synchronisation">
 				<source><![CDATA[Simple synchronisation]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table" resname="tx_jobrouterdata_domain_model_table.type.synchronisation_in_own_table">
-				<source><![CDATA[Synchronisation in own table]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table" resname="tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table">
+				<source><![CDATA[Synchronisation in custom table]]></source>
 			</trans-unit>
 		</body>
 	</file>

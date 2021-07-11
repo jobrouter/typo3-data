@@ -24,7 +24,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 class Table extends AbstractEntity
 {
     public const TYPE_SIMPLE = 1;
-    public const TYPE_OWN_TABLE = 2;
+    public const TYPE_CUSTOM_TABLE = 2;
     public const TYPE_OTHER_USAGE = 3;
     public const TYPE_FORM_FINISHER = 4;
 
@@ -44,7 +44,7 @@ class Table extends AbstractEntity
     protected $tableGuid = '';
 
     /** @var string */
-    protected $ownTable = '';
+    protected $customTable = '';
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column>
@@ -133,14 +133,14 @@ class Table extends AbstractEntity
         $this->tableGuid = $tableGuid;
     }
 
-    public function getOwnTable(): string
+    public function getCustomTable(): string
     {
-        return $this->ownTable;
+        return $this->customTable;
     }
 
-    public function setOwnTable(string $ownTable): void
+    public function setCustomTable(string $customTable): void
     {
-        $this->ownTable = $ownTable;
+        $this->customTable = $customTable;
     }
 
     public function addColumn(Column $column): void

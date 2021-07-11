@@ -18,13 +18,13 @@ use Doctrine\DBAL\Schema\AbstractSchemaManager;
 /**
  * @internal
  */
-final class OwnTableSynchroniser extends AbstractSynchroniser
+final class CustomTableSynchroniser extends AbstractSynchroniser
 {
     public function synchroniseTable(Table $table): bool
     {
         try {
             $datasets = $this->retrieveDatasetsFromJobRouter($table);
-            $columns = $this->getOwnTableColumns($table);
+            $columns = $this->getCustomTableColumns($table);
             $this->storeDatasets($table, $columns, $datasets);
             $this->updateSynchronisationStatus($table);
         } catch (\Exception $e) {
@@ -43,19 +43,19 @@ final class OwnTableSynchroniser extends AbstractSynchroniser
         return true;
     }
 
-    private function getOwnTableColumns(Table $table): array
+    private function getCustomTableColumns(Table $table): array
     {
-        $ownTable = $table->getOwnTable();
+        $customTable = $table->getCustomTable();
 
-        $connection = $this->connectionPool->getConnectionForTable($ownTable);
+        $connection = $this->connectionPool->getConnectionForTable($customTable);
 
         /** @var AbstractSchemaManager $schemaManager */
         $schemaManager = $connection->getSchemaManager();
 
-        return \array_keys($schemaManager->listTableColumns($ownTable));
+        return \array_keys($schemaManager->listTableColumns($customTable));
     }
 
-    private function storeDatasets(Table $table, array $ownTableColumns, array $datasets): void
+    private function storeDatasets(Table $table, array $customTableColumns, array $datasets): void
     {
         $datasetsHash = $this->hashDatasets($datasets);
 
@@ -65,29 +65,29 @@ final class OwnTableSynchroniser extends AbstractSynchroniser
             return;
         }
 
-        $ownTable = $table->getOwnTable();
+        $customTable = $table->getCustomTable();
 
-        $connection = $this->connectionPool->getConnectionForTable($ownTable);
+        $connection = $this->connectionPool->getConnectionForTable($customTable);
         $connection->setAutoCommit(false);
         $connection->beginTransaction();
 
         try {
-            $connection->truncate($ownTable);
-            $this->logger->debug('Truncated table in transaction', ['own table' => $ownTable]);
+            $connection->truncate($customTable);
+            $this->logger->debug('Truncated table in transaction', ['custom table' => $customTable]);
 
             foreach ($datasets as $dataset) {
                 $data = [];
 
                 foreach ($dataset as $column => $content) {
                     $column = \strtolower($column);
-                    if (!\in_array($column, $ownTableColumns)) {
+                    if (!\in_array($column, $customTableColumns)) {
                         continue;
                     }
 
                     $data[$column] = $content;
                 }
 
-                $connection->insert($ownTable, $data);
+                $connection->insert($customTable, $data);
 
                 $this->logger->debug('Inserted table record in transaction', $data);
             }
@@ -101,7 +101,7 @@ final class OwnTableSynchroniser extends AbstractSynchroniser
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
-                ['table uid' => $table->getUid(), 'own table' => $ownTable, 'message' => $e->getMessage()]
+                ['table uid' => $table->getUid(), 'custom table' => $customTable, 'message' => $e->getMessage()]
             );
 
             throw new SynchronisationException($e->getMessage(), 1567799062, $e);

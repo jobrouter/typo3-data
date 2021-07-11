@@ -81,13 +81,13 @@ class TableTest extends TestCase
     /**
      * @test
      */
-    public function getAndSetOwnTable(): void
+    public function getAndSetCustomTable(): void
     {
-        self::assertSame('', $this->subject->getOwnTable());
+        self::assertSame('', $this->subject->getCustomTable());
 
-        $this->subject->setOwnTable('some own table');
+        $this->subject->setCustomTable('some custom table');
 
-        self::assertSame('some own table', $this->subject->getOwnTable());
+        self::assertSame('some custom table', $this->subject->getCustomTable());
     }
 
     /**

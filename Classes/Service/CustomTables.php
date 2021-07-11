@@ -19,7 +19,7 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
 /**
  * @internal
  */
-final class OwnTables
+final class CustomTables
 {
     /**
      * @var ConnectionPool
@@ -39,14 +39,14 @@ final class OwnTables
 
         $alreadyAssignedTables = \array_column(
             $connection->fetchAll(
-                'SELECT own_table FROM tx_jobrouterdata_domain_model_table WHERE own_table != ""'
+                'SELECT custom_table FROM tx_jobrouterdata_domain_model_table WHERE custom_table != ""'
             ),
-            'own_table'
+            'custom_table'
         );
 
         $alreadyAssignedTables = \array_diff(
             $alreadyAssignedTables,
-            [$config['row']['own_table']]
+            [$config['row']['custom_table']]
         );
 
         /** @var AbstractSchemaManager $schemaManager */

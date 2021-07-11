@@ -1,4 +1,4 @@
-Own table (required)
+Custom table (required)
    Choose one of the tables to synchronise into.
 
    .. note::
@@ -6,4 +6,4 @@ Own table (required)
       displayed in this list. A table can only be used once.
 
    In the developer corner you will find the :ref:`requirements
-   <developer-own-table>` for an own table.
+   <developer-custom-table>` for a custom table.

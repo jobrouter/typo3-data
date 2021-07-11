@@ -49,7 +49,7 @@ class TableRepository extends Repository
         $query->matching(
             $query->logicalOr([
                 $query->equals('type', Table::TYPE_SIMPLE),
-                $query->equals('type', Table::TYPE_OWN_TABLE),
+                $query->equals('type', Table::TYPE_CUSTOM_TABLE),
             ])
         );
 

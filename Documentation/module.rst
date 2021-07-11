@@ -88,10 +88,10 @@ Notes
 .. include:: table-link-columns/description.txt
 
 
-.. _module-create-table-link-own:
+.. _module-create-table-link-custom:
 
-Synchronisation in own table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Synchronisation in custom table
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You have to define a table yourself in an extension with the needed columns
 from the JobData table. This is the recommended way when you want to display the
@@ -99,10 +99,10 @@ data yourself, e.g. with filtering by some columns or with joins to other data.
 The synchronisation is carried out with the available :ref:`synchronisation
 command <sync-command>`.
 
-.. figure:: _images/create-table-link-own-table.png
-   :alt: Create a table link of type Synchronisation in own table
+.. figure:: _images/create-table-link-custom-table.png
+   :alt: Create a table link of type Synchronisation in custom table
 
-   Create a table link of type "Synchronisation in own table"
+   Create a table link of type "Synchronisation in custom table"
 
 The following fields are available:
 
@@ -112,7 +112,7 @@ General
 .. include:: table-link-columns/handle.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
-.. include:: table-link-columns/own-table.txt
+.. include:: table-link-columns/custom-table.txt
 
 Access
 ''''''
