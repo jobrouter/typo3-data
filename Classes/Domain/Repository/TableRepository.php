@@ -55,4 +55,12 @@ class TableRepository extends Repository
 
         return $query->execute();
     }
+
+    public function findByHandle(string $handle)
+    {
+        $query = $this->createQuery();
+        $query->matching($query->equals('handle', $handle));
+
+        return $query->execute()->getFirst();
+    }
 }

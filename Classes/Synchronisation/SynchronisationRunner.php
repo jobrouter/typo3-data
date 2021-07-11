@@ -46,16 +46,16 @@ class SynchronisationRunner implements LoggerAwareInterface
         $this->tableRepository = $tableRepository;
     }
 
-    public function run(?int $tableUid): array
+    public function run(string $tableHandle): array
     {
-        if ($tableUid === null) {
+        if ($tableHandle === '') {
             $tables = $this->tableRepository->findAll();
             /** @var Table $table */
             foreach ($tables as $table) {
                 $this->synchroniseTable($table);
             }
         } else {
-            $this->synchroniseTable($this->getTable($tableUid));
+            $this->synchroniseTable($this->getTable($tableHandle));
         }
 
         return [
@@ -93,12 +93,12 @@ class SynchronisationRunner implements LoggerAwareInterface
         }
     }
 
-    private function getTable(int $tableUid): Table
+    private function getTable(string $tableHandle): Table
     {
-        $table = $this->tableRepository->findByIdentifier($tableUid);
+        $table = $this->tableRepository->findByHandle($tableHandle);
 
         if (!$table instanceof Table) {
-            $message = \sprintf('Table with uid "%d" not available (perhaps disabled?)!', $tableUid);
+            $message = \sprintf('Table with handle "%s" not available (perhaps disabled?)!', $tableHandle);
             $this->logger->emergency($message);
 
             throw new SynchronisationException($message, 1567003394);

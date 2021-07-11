@@ -120,11 +120,11 @@ class SyncCommandTest extends TestCase
                 )
             );
 
-        $this->commandTester->execute(['table' => 42]);
+        $this->commandTester->execute(['table' => 'some_handle']);
 
         self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            'Table with uid "42" synchronised successfully',
+            'Table with handle "some_handle" synchronised successfully',
             $this->commandTester->getDisplay()
         );
     }

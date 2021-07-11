@@ -63,7 +63,7 @@ final class SyncCommand extends Command
         $this
             ->setDescription('Synchronise JobData data sets from JobRouter installations')
             ->setHelp('This command synchronises JobData tables from JobRouter instances into TYPO3. You can set a specific table name as argument. If the table argument is omitted, all enabled tables are processed.')
-            ->addArgument(static::ARGUMENT_TABLE, InputArgument::OPTIONAL, 'The uid of a table (optional)');
+            ->addArgument(self::ARGUMENT_TABLE, InputArgument::OPTIONAL, 'The handle of a table (optional)');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -75,8 +75,8 @@ final class SyncCommand extends Command
             $locker = $this->lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
-            $tableUid = $input->getArgument(static::ARGUMENT_TABLE) ? (int)$input->getArgument(static::ARGUMENT_TABLE) : null;
-            [$exitCode, $messageType, $message] = $this->runSynchronisation($tableUid);
+            $tableHandle = $input->getArgument(self::ARGUMENT_TABLE) ? $input->getArgument(self::ARGUMENT_TABLE) : '';
+            [$exitCode, $messageType, $message] = $this->runSynchronisation($tableHandle);
             $locker->release();
             $outputStyle->{$messageType}($message);
             $this->recordLastRun($exitCode);
@@ -89,9 +89,9 @@ final class SyncCommand extends Command
         }
     }
 
-    private function runSynchronisation(?int $tableUid): array
+    private function runSynchronisation(string $tableHandle): array
     {
-        [$total, $errors] = $this->synchronisationRunner->run($tableUid);
+        [$total, $errors] = $this->synchronisationRunner->run($tableHandle);
 
         if ($errors) {
             $message = \sprintf('%d out of %d table(s) had errors on synchronisation', $errors, $total);
@@ -103,8 +103,8 @@ final class SyncCommand extends Command
             ];
         }
 
-        if ($tableUid) {
-            $message = \sprintf('Table with uid "%d" synchronised successfully', $tableUid);
+        if ($tableHandle) {
+            $message = \sprintf('Table with handle "%s" synchronised successfully', $tableHandle);
         } else {
             $message = \sprintf('%d table(s) synchronised successfully', $total);
         }
