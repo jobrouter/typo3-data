@@ -13,3 +13,4 @@
 /Makefile export-ignore
 /README.md export-ignore
 /sonar-project.properties export-ignore
+*.xsd export-ignore
