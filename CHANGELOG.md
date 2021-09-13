@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Compatibility with TYPO3 v11
+
 ### Changed
 - Rename "own table" to "custom table"
 - Use table handle instead of uid as argument in SyncCommand

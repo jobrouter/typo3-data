@@ -21,14 +21,14 @@
 		"ext-json": "*",
 		"ext-pdo": "*",
 		"brotkrueml/jobrouter-client": "^1.0",
-		"brotkrueml/typo3-jobrouter-base": "^1.0",
-		"brotkrueml/typo3-jobrouter-connector": "^1.0",
+		"brotkrueml/typo3-jobrouter-base": "^1.0 || 1.1.*@dev",
+		"brotkrueml/typo3-jobrouter-connector": "^1.0 || 1.1.*@dev",
 		"symfony/polyfill-php80": "^1.17",
-		"typo3/cms-backend": "^10.4.11",
-		"typo3/cms-core": "^10.4.11",
-		"typo3/cms-extbase": "^10.4.11",
-		"typo3/cms-fluid": "^10.4.11",
-		"typo3/cms-frontend": "^10.4.11"
+		"typo3/cms-backend": "^10.4.11 || ^11.4",
+		"typo3/cms-core": "^10.4.11 || ^11.4",
+		"typo3/cms-extbase": "^10.4.11 || ^11.4",
+		"typo3/cms-fluid": "^10.4.11 || ^11.4",
+		"typo3/cms-frontend": "^10.4.11 || ^11.4"
 	},
 	"require-dev": {
 		"codeception/codeception": "^4.1",
@@ -42,8 +42,8 @@
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpunit/phpunit": "^8.5 || ^9.5",
 		"symfony/yaml": "^4.4 || ^5.3",
-		"typo3/cms-dashboard": "^10.4.11",
-		"typo3/cms-form": "^10.4.11",
+		"typo3/cms-dashboard": "^10.4.11 || ^11.4",
+		"typo3/cms-form": "^10.4.11 || ^11.4",
 		"typo3/coding-standards": "^0.3",
 		"typo3/testing-framework": "^6.7"
 	},

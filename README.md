@@ -15,6 +15,8 @@ What this extension does:
   * Transmits data sets from TYPO3 into JobData tables
   * Provides a form finisher to store form data into a JobData table
 
+The extension supports TYPO3 v10 LTS and TYPO3 v11.
+
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/data/) |
 [Translation](https://crowdin.com/project/typo3-extension-jobrouterdata) |
 [Changelog](https://github.com/brotkrueml/typo3-jobrouter-data/blob/master/CHANGELOG.md) |
