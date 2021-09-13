@@ -18,19 +18,18 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * @internal
  */
 final class TableAjaxController
 {
-    /** @var ObjectManager */
-    private $objectManager;
+    /** @var TableRepository */
+    private $tableRepository;
 
     public function __construct()
     {
-        $this->objectManager = GeneralUtility::makeInstance(ObjectManager::class);
+        $this->tableRepository = GeneralUtility::makeInstance(TableRepository::class);
     }
 
     public function checkAction(ServerRequestInterface $request): ResponseInterface
@@ -39,9 +38,8 @@ final class TableAjaxController
 
         $result = ['check' => 'ok'];
         try {
-            $tableRepository = $this->objectManager->get(TableRepository::class);
             /** @var Table $table */
-            $table = $tableRepository->findByIdentifierWithHidden($tableId);
+            $table = $this->tableRepository->findByIdentifierWithHidden($tableId);
 
             if ($table) {
                 try {

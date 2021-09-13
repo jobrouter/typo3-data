@@ -17,7 +17,6 @@ use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
@@ -40,10 +39,8 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 
     public function __construct(TableRepository $tableRepository = null, StandaloneView $view = null, LanguageService $languageService = null)
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-
-        $this->tableRepository = $tableRepository ?? $objectManager->get(TableRepository::class);
-        $this->view = $view ?? $objectManager->get(StandaloneView::class);
+        $this->tableRepository = $tableRepository ?? GeneralUtility::makeInstance(TableRepository::class);
+        $this->view = $view ?? GeneralUtility::makeInstance(StandaloneView::class);
         $this->view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(static::TEMPLATE));
         $this->languageService = $languageService ?? $GLOBALS['LANG'];
     }

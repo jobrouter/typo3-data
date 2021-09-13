@@ -15,7 +15,6 @@ use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * @internal
@@ -29,8 +28,7 @@ final class TableUpdateHook
 
     public function __construct(ConnectionPool $connectionPool = null)
     {
-        $this->connectionPool = $connectionPool
-            ?? GeneralUtility::makeInstance(ObjectManager::class)->get(ConnectionPool::class);
+        $this->connectionPool = $connectionPool ?? GeneralUtility::makeInstance(ConnectionPool::class);
     }
 
     public function processCmdmap_postProcess($command, $table, $recordId, $commandValue, DataHandler $dataHandler): void

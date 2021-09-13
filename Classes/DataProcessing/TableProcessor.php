@@ -15,7 +15,6 @@ use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -32,10 +31,8 @@ final class TableProcessor implements DataProcessorInterface
 
     public function __construct(FlexFormService $flexFormService = null, TableRepository $tableRepository = null)
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-
-        $this->flexFormService = $flexFormService ?? $objectManager->get(FlexFormService::class);
-        $this->tableRepository = $tableRepository ?? $objectManager->get(TableRepository::class);
+        $this->flexFormService = $flexFormService ?? GeneralUtility::makeInstance(FlexFormService::class);
+        $this->tableRepository = $tableRepository ?? GeneralUtility::makeInstance(TableRepository::class);
     }
 
     public function process(

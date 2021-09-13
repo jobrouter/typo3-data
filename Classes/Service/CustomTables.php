@@ -14,7 +14,6 @@ namespace Brotkrueml\JobRouterData\Service;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * @internal
@@ -28,9 +27,7 @@ final class CustomTables
 
     public function __construct()
     {
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-
-        $this->connectionPool = $objectManager->get(ConnectionPool::class);
+        $this->connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
     }
 
     public function getTables(array $config): array
