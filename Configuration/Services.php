@@ -15,12 +15,13 @@ use Brotkrueml\JobRouterBase\Widgets\TransferReportWidget;
 use Brotkrueml\JobRouterBase\Widgets\TransferStatusWidget;
 use Brotkrueml\JobRouterData\Widgets\Provider\TransferReportDataProvider;
 use Brotkrueml\JobRouterData\Widgets\Provider\TransferStatusDataProvider;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Dashboard\Dashboard;
 
-return function (ContainerConfigurator $configurator): void {
-    if (!ExtensionManagementUtility::isLoaded('dashboard')) {
+return function (ContainerConfigurator $configurator, ContainerBuilder $containerBuilder): void {
+    if (!$containerBuilder->hasDefinition(Dashboard::class)) {
         return;
     }
 
