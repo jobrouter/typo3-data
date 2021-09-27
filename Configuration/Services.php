@@ -32,6 +32,12 @@ return function (ContainerConfigurator $configurator, ContainerBuilder $containe
         ->class(TransferStatusWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
+        ->arg(
+            '$options',
+            [
+                'refreshAvailable' => true,
+            ]
+        )
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_data.statusOfDataTransmissions',
             'groupNames' => 'jobrouter',
@@ -46,6 +52,12 @@ return function (ContainerConfigurator $configurator, ContainerBuilder $containe
         ->class(TransferReportWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
+        ->arg(
+            '$options',
+            [
+                'refreshAvailable' => true,
+            ]
+        )
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_data.transferReport',
             'groupNames' => 'jobrouter',
