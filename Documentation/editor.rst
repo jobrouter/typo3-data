@@ -14,6 +14,10 @@ Target group: **Editors**
 Content element
 ===============
 
+.. caution::
+   The content element is considered experimental. It can change in the next
+   major releases!
+
 Content of JobData tables that are synchronised with the :ref:`simple type
 <module-create-table-link-simple>` can be easily displayed on the website
 with the content element `JobData Table`.
@@ -22,7 +26,7 @@ Go to the :guilabel:`Web` > :guilabel:`Page` module and select the desired page
 in the page tree. Click on :guilabel:`+ Content` in the column and position you
 want to insert. To add the content element, select the :guilabel:`Special
 elements` tab in the :guilabel:`Create new content element` wizard and click on
-the :guilabel:`JobRouter Data` element:
+the :guilabel:`JobData Table` element:
 
 .. figure:: _images/content-element-wizard.png
    :alt: Content element wizard
