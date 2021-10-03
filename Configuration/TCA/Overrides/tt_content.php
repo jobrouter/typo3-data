@@ -9,23 +9,21 @@
 
 defined('TYPO3') || die();
 
-(static function ($extensionKey = 'jobrouter_data', $contentType = 'tx_jobrouterdata_table') {
-    $llPrefix = 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/ContentElement.xlf:';
-
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
+(static function ($contentType = 'tx_jobrouterdata_table') {
+    TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
         [
-            $llPrefix . 'ce.title',
+            Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . 'ce.title',
             $contentType,
-            'EXT:' . $extensionKey . '/Resources/Public/Icons/ce-table.svg',
+            'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
         ],
-        'CType',
-        $extensionKey
+        TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
+        Brotkrueml\JobRouterData\Extension::KEY
     );
 
     $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$contentType] = 'pi_flexform';
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
         '*',
-        'FILE:EXT:' . $extensionKey . '/Configuration/FlexForms/Table.xml',
+        'FILE:EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Configuration/FlexForms/Table.xml',
         $contentType
     );
 
@@ -33,14 +31,14 @@ defined('TYPO3') || die();
         $contentType => [
             'columnsOverrides' => [
                 'pi_flexform' => [
-                    'label' => $llPrefix . 'table',
+                    'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . 'table',
                 ],
             ],
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                     --palette--;;general,
                     --palette--;;headers,
-                --div--;' . $llPrefix . 'table,
+                --div--;' . Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . 'table,
                     pi_flexform,
                 --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
                     --palette--;;frames,

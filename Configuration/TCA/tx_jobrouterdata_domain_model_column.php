@@ -9,7 +9,7 @@
 
 return [
     'ctrl' => [
-        'title' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column',
+        'title' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column',
         'label' => 'label',
         'label_alt' => 'name',
         'tstamp' => 'tstamp',
@@ -19,7 +19,7 @@ return [
         'sortby' => 'sorting',
         'rootLevel' => 1,
         'searchFields' => 'name,label',
-        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
+        'iconfile' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
         'hideTable' => true,
     ],
     'columns' => [
@@ -44,7 +44,7 @@ return [
 
         'name' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.name',
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -54,7 +54,7 @@ return [
         ],
         'label' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.label',
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.label',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -64,31 +64,31 @@ return [
         ],
         'type' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type',
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type',
             'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.text',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.text',
+                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                     ],
                     [
-                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.integer',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.integer',
+                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                     ],
                     [
-                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.decimal',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.decimal',
+                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
                     ],
                     [
-                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.date',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE,
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.date',
+                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE,
                     ],
                     [
-                        \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.datetime',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.datetime',
+                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
                     ],
                 ],
                 'eval' => 'required',
@@ -96,8 +96,8 @@ return [
         ],
         'decimal_places' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
-            'displayCond' => 'FIELD:type:=:' . \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
+            'displayCond' => 'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
             'config' => [
                 'type' => 'input',
                 'size' => 3,
@@ -115,11 +115,11 @@ return [
         ],
         'field_size' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.field_size',
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.field_size',
             'displayCond' => [
                 'OR' => [
                     'REC:NEW:true',
-                    'FIELD:type:=:' . \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+                    'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                 ],
             ],
             'config' => [
@@ -149,7 +149,6 @@ return [
         ],
         'type' => [
             'showitem' => 'type, decimal_places, field_size',
-            
         ],
     ],
 ];

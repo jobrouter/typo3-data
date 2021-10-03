@@ -9,11 +9,11 @@
 
 return [
     'ctrl' => [
-        'title' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset',
+        'title' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset',
         'label' => 'name',
         'rootLevel' => 1,
         'searchFields' => 'name,label',
-        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_dataset.svg',
+        'iconfile' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_dataset.svg',
         'hideTable' => true,
     ],
     'columns' => [
@@ -26,7 +26,7 @@ return [
 
         'jrid' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset.jrid',
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset.jrid',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -37,7 +37,7 @@ return [
         ],
         'dataset' => [
             'exclude' => true,
-            'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset.dataset',
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset.dataset',
             'config' => [
                 'type' => 'text',
                 'eval' => 'required',
