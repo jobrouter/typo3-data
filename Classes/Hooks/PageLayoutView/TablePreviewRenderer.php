@@ -62,7 +62,7 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
             $this->languageService->sL(Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title')
         );
 
-        $itemContent = $parentObject->linkEditContent($this->getItemContent($row), $row);
+        $itemContent = $headerContent . $parentObject->linkEditContent($this->getItemContent($row), $row);
 
         $drawItem = false;
     }

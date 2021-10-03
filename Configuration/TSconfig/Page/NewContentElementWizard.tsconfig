@@ -6,8 +6,7 @@ mod.wizards.newContentElement.wizardItems {
         title = LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:ce.title
         description = LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:ce.description
         tt_content_defValues {
-          CType = list
-          list_type = tx_jobrouterdata_table
+          CType = tx_jobrouterdata_table
         }
       }
     }

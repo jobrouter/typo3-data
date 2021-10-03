@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename "own table" to "custom table"
 - Use table handle instead of uid as argument in SyncCommand
 
+### Fixed
+- Content element cannot be selected from new content element wizard
+
 ## [0.13.0] - 2021-03-14
 
 ### Added
