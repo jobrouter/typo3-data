@@ -42,4 +42,5 @@ Contents
    dashboard
    editor
    developer
+   changelog
    copyright

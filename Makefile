@@ -5,6 +5,14 @@ qa: cs unit-tests yaml-lint
 acceptance-tests: vendor
 	./Build/Scripts/runTests.sh -s acceptance -p 7.2
 
+# See: https://github.com/crossnox/m2r2
+.PHONY: changelog
+changelog:
+	m2r2 CHANGELOG.md && \
+	echo ".. _changelog:" | cat - CHANGELOG.rst > /tmp/CHANGELOG.rst && \
+	mv /tmp/CHANGELOG.rst Documentation/changelog.rst && \
+	rm CHANGELOG.rst
+
 .PHONY: code-coverage
 code-coverage: vendor
 	XDEBUG_MODE=coverage .Build/bin/phpunit -c Tests/phpunit.xml.dist --log-junit .Build/logs/phpunit.xml --coverage-text --coverage-clover .Build/logs/clover.xml
