@@ -46,9 +46,6 @@ final class Cache
 
     private static function getCacheManager(): CacheManager
     {
-        /** @var CacheManager $cacheManager */
-        $cacheManager = GeneralUtility::makeInstance(CacheManager::class);
-
-        return $cacheManager;
+        return GeneralUtility::makeInstance(CacheManager::class);
     }
 }
