@@ -31,7 +31,9 @@ final class CleanUpTransfersCommand extends Command
     private const ARGUMENT_AGE_IN_DAYS = 'ageInDays';
     private const DEFAULT_AGE_IN_DAYS = 30;
 
-    /** @var Deleter */
+    /**
+     * @var Deleter
+     */
     private $deleter;
 
     public function __construct(Deleter $deleter)
@@ -101,7 +103,7 @@ final class CleanUpTransfersCommand extends Command
     protected function getAgeInDays(InputInterface $input): int
     {
         $ageInDays = $input->getArgument(self::ARGUMENT_AGE_IN_DAYS) ?? self::DEFAULT_AGE_IN_DAYS;
-        if (!\is_numeric($ageInDays)) {
+        if (! \is_numeric($ageInDays)) {
             throw new \InvalidArgumentException(
                 \sprintf(
                     'Argument "%s" must be a number, "%s" given',

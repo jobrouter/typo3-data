@@ -24,13 +24,19 @@ class SynchronisationRunner implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
-    /** @var SimpleTableSynchroniser */
+    /**
+     * @var SimpleTableSynchroniser
+     */
     private $simpleTableSynchroniser;
 
-    /** @var CustomTableSynchroniser */
+    /**
+     * @var CustomTableSynchroniser
+     */
     private $customTableSynchroniser;
 
     private $totalNumberOfTables = 0;
@@ -97,7 +103,7 @@ class SynchronisationRunner implements LoggerAwareInterface
     {
         $table = $this->tableRepository->findByHandle($tableHandle);
 
-        if (!$table instanceof Table) {
+        if (! $table instanceof Table) {
             $message = \sprintf('Table with handle "%s" not available (perhaps disabled?)!', $tableHandle);
             $this->logger->emergency($message);
 

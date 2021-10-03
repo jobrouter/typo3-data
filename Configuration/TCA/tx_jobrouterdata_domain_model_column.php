@@ -26,20 +26,20 @@ return [
         'pid' => [
             'label' => 'pid',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
         'crdate' => [
             'label' => 'crdate',
             'config' => [
                 'type' => 'passthrough',
-            ]
+            ],
         ],
         'tstamp' => [
             'label' => 'tstamp',
             'config' => [
                 'type' => 'passthrough',
-            ]
+            ],
         ],
 
         'name' => [
@@ -59,7 +59,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'trim'
+                'eval' => 'trim',
             ],
         ],
         'type' => [
@@ -72,23 +72,23 @@ return [
                 'items' => [
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.text',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.integer',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.decimal',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.date',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE,
                     ],
                     [
                         \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.datetime',
-                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME
+                        \Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
                     ],
                 ],
                 'eval' => 'required',
@@ -140,11 +140,16 @@ return [
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;nameLabel,
                 --palette--;;type,
-            '
+            ',
         ],
     ],
     'palettes' => [
-        'nameLabel' => ['showitem' => 'name, label'],
-        'type' => ['showitem' => 'type, decimal_places, field_size'],
+        'nameLabel' => [
+            'showitem' => 'name, label',
+        ],
+        'type' => [
+            'showitem' => 'type, decimal_places, field_size',
+            
+        ],
     ],
 ];

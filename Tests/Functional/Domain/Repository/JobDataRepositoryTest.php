@@ -71,7 +71,9 @@ class JobDataRepositoryTest extends TestCase
             '/api/rest/v2/application/tokens',
             new Response(
                 \sprintf('{"tokens":["%s"]}', self::TEST_TOKEN),
-                ['content-type' => 'application/json'],
+                [
+                    'content-type' => 'application/json',
+                ],
                 201
             )
         );
@@ -123,10 +125,15 @@ class JobDataRepositoryTest extends TestCase
             new Response('{"datasets":{"jrid": "42","foo":"bar","qux":"qoo"}}', [], 201)
         );
 
-        $dataset = ['foo' => 'bar', 'qux' => 'qoo'];
+        $dataset = [
+            'foo' => 'bar',
+            'qux' => 'qoo',
+        ];
 
         $actual = $this->subject->add($dataset);
-        $expected = \array_merge(['jrid' => '42'], $dataset);
+        $expected = \array_merge([
+            'jrid' => '42',
+        ], $dataset);
 
         self::assertSame($expected, $actual);
 
@@ -163,10 +170,15 @@ class JobDataRepositoryTest extends TestCase
             new Response('{"datasets":{"jrid": "42","foo":"bar","qux":"qoo"}}', [], 200)
         );
 
-        $dataset = ['foo' => 'bar', 'qux' => 'qoo'];
+        $dataset = [
+            'foo' => 'bar',
+            'qux' => 'qoo',
+        ];
 
         $actual = $this->subject->update(42, $dataset);
-        $expected = \array_merge(['jrid' => '42'], $dataset);
+        $expected = \array_merge([
+            'jrid' => '42',
+        ], $dataset);
 
         self::assertSame($expected, $actual);
 
@@ -188,7 +200,11 @@ class JobDataRepositoryTest extends TestCase
         );
 
         $actual = $this->subject->findAll();
-        $expected = [['jrid' => '42', 'foo' => 'bar', 'qux' => 'qoo']];
+        $expected = [[
+            'jrid' => '42',
+            'foo' => 'bar',
+            'qux' => 'qoo',
+        ]];
 
         self::assertSame($expected, $actual);
 
@@ -207,7 +223,11 @@ class JobDataRepositoryTest extends TestCase
         );
 
         $actual = $this->subject->findByJrid(42);
-        $expected = [['jrid' => '42', 'foo' => 'bar', 'qux' => 'qoo']];
+        $expected = [[
+            'jrid' => '42',
+            'foo' => 'bar',
+            'qux' => 'qoo',
+        ]];
 
         self::assertSame($expected, $actual);
 

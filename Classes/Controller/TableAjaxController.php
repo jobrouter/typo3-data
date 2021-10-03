@@ -24,7 +24,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class TableAjaxController
 {
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
     public function __construct()
@@ -36,7 +38,9 @@ final class TableAjaxController
     {
         $tableId = (int)$request->getParsedBody()['tableId'];
 
-        $result = ['check' => 'ok'];
+        $result = [
+            'check' => 'ok',
+        ];
         try {
             /** @var Table $table */
             $table = $this->tableRepository->findByIdentifierWithHidden($tableId);
@@ -48,13 +52,19 @@ final class TableAjaxController
                         \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
                     );
                 } catch (\Exception $e) {
-                    $result = ['error' => $e->getMessage()];
+                    $result = [
+                        'error' => $e->getMessage(),
+                    ];
                 }
             } else {
-                $result = ['error' => \sprintf('Table with id %s not found!', $tableId)];
+                $result = [
+                    'error' => \sprintf('Table with id %s not found!', $tableId),
+                ];
             }
         } catch (\Exception $e) {
-            $result = ['error' => $e->getMessage()];
+            $result = [
+                'error' => $e->getMessage(),
+            ];
         }
 
         return new JsonResponse($result);

@@ -18,16 +18,24 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class Dataset extends AbstractEntity
 {
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $tableUid = 0;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $jrid = 0;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $dataset = '';
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $decodedDataset;
 
     public function getTableUid(): int
@@ -63,7 +71,7 @@ class Dataset extends AbstractEntity
 
     public function getDatasetContentForColumn(string $column): ?string
     {
-        if (\is_null($this->decodedDataset)) {
+        if ($this->decodedDataset === null) {
             $this->decodedDataset = \json_decode($this->dataset, true);
         }
 

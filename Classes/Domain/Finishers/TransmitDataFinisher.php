@@ -32,13 +32,19 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
 {
     use LoggerAwareTrait;
 
-    /** @var Preparer */
+    /**
+     * @var Preparer
+     */
     private $preparer;
 
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
-    /** @var Table|null */
+    /**
+     * @var Table|null
+     */
     private $table;
 
     public function injectPreparer(Preparer $preparer): void
@@ -88,7 +94,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
 
     private function prepareData(): array
     {
-        if (!isset($this->options['columns']) || !\is_array($this->options['columns'])) {
+        if (! isset($this->options['columns']) || ! \is_array($this->options['columns'])) {
             return [];
         }
 
@@ -100,7 +106,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
         $definedTableColumns = $this->getTableColumns();
         $data = [];
         foreach ($this->options['columns'] as $column => $value) {
-            if (!\array_key_exists($column, $definedTableColumns)) {
+            if (! \array_key_exists($column, $definedTableColumns)) {
                 throw new MissingColumnException(
                     \sprintf(
                         'Column "%s" is assigned in form with identifier "%s" but not defined in table link "%s"',

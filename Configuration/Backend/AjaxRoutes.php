@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the "jobrouter_data" extension for TYPO3 CMS.
  *
@@ -10,6 +12,6 @@
 return [
     'jobrouter_data_table_check' => [
         'path' => '/jobrouter/data/table/check',
-        'target' => \Brotkrueml\JobRouterData\Controller\TableAjaxController::class . '::checkAction'
+        'target' => \Brotkrueml\JobRouterData\Controller\TableAjaxController::class . '::checkAction',
     ],
 ];

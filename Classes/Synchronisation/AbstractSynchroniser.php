@@ -26,13 +26,19 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /** @var ConnectionPool */
+    /**
+     * @var ConnectionPool
+     */
     protected $connectionPool;
 
-    /** @var RestClientFactory */
+    /**
+     * @var RestClientFactory
+     */
     private $restClientFactory;
 
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
     public function __construct(
@@ -78,7 +84,9 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
         $connection->update(
             'tx_jobrouterdata_domain_model_table',
             $data,
-            ['uid' => $table->getUid()],
+            [
+                'uid' => $table->getUid(),
+            ],
             $types
         );
     }

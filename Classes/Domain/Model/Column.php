@@ -18,19 +18,29 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class Column extends AbstractEntity
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $name = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $label = '';
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $type = 0;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $decimalPlaces = 0;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $fieldSize = 0;
 
     public function getName(): string

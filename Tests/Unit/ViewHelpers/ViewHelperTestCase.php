@@ -21,10 +21,14 @@ class ViewHelperTestCase extends TestCase
 {
     protected const VIEWHELPER_NAMESPACE = '{namespace jobRouterData=Brotkrueml\JobRouterData\ViewHelpers}';
 
-    /** @var vfsStreamDirectory */
+    /**
+     * @var vfsStreamDirectory
+     */
     protected $root;
 
-    /** @var TemplateView */
+    /**
+     * @var TemplateView
+     */
     protected $view;
 
     protected function setUp(): void
@@ -39,7 +43,7 @@ class ViewHelperTestCase extends TestCase
 
         $this->view->getTemplatePaths()->setTemplatePathAndFilename(vfsStream::url('test-dir') . '/template.html');
 
-        if (!empty($variables)) {
+        if (! empty($variables)) {
             $this->view->assignMultiple($variables);
         }
 

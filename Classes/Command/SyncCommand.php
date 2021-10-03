@@ -34,16 +34,24 @@ final class SyncCommand extends Command
 
     private const ARGUMENT_TABLE = 'table';
 
-    /** @var int */
+    /**
+     * @var int
+     */
     private $startTime;
 
-    /** @var LockFactory */
+    /**
+     * @var LockFactory
+     */
     private $lockFactory;
 
-    /** @var Registry */
+    /**
+     * @var Registry
+     */
     private $registry;
 
-    /** @var SynchronisationRunner */
+    /**
+     * @var SynchronisationRunner
+     */
     private $synchronisationRunner;
 
     public function __construct(

@@ -31,7 +31,7 @@ final class ColumnLabelViewHelper extends ViewHelper\AbstractViewHelper
         /** @var Column $column */
         $column = $arguments['column'];
 
-        if (!$column instanceof Column) {
+        if (! $column instanceof Column) {
             throw new ViewHelper\Exception(
                 \sprintf(
                     'Argument "column" is not an instance of "%s"',

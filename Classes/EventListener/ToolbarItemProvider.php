@@ -27,13 +27,19 @@ final class ToolbarItemProvider
         'transmitCommand',
     ];
 
-    /** @var array|null */
+    /**
+     * @var array|null
+     */
     private $lastRunInformation;
 
-    /** @var LanguageService */
+    /**
+     * @var LanguageService
+     */
     private $languageService;
 
-    /** @var Registry */
+    /**
+     * @var Registry
+     */
     private $registry;
 
     public function __construct(LanguageService $languageService, Registry $registry)
@@ -59,7 +65,7 @@ final class ToolbarItemProvider
         }
     }
 
-    protected function getMessage(string $commandName): string
+    private function getMessage(string $commandName): string
     {
         if ($this->lastRunInformation === null) {
             return $this->languageService->sL(
@@ -85,17 +91,17 @@ final class ToolbarItemProvider
         );
     }
 
-    protected function isWarning(): bool
+    private function isWarning(): bool
     {
         return $this->lastRunInformation['exitCode'] > 0;
     }
 
-    protected function isOverdue(): bool
+    private function isOverdue(): bool
     {
         return $this->lastRunInformation['start'] < \time() - 86400;
     }
 
-    protected function getSeverity(): string
+    private function getSeverity(): string
     {
         if ($this->lastRunInformation === null) {
             return InformationStatus::STATUS_WARNING;

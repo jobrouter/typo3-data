@@ -28,13 +28,19 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 
     private $flexFormData;
 
-    /** @var StandaloneView */
+    /**
+     * @var StandaloneView
+     */
     private $view;
 
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
-    /** @var LanguageService */
+    /**
+     * @var LanguageService
+     */
     private $languageService;
 
     public function __construct(TableRepository $tableRepository = null, StandaloneView $view = null, LanguageService $languageService = null)

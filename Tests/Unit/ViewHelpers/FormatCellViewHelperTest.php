@@ -28,7 +28,9 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $cell->setContent('some text content');
         $cell->setType(FieldTypeEnumeration::TEXT);
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => $cell,
+        ]);
 
         self::assertSame('some text content', $actual);
     }
@@ -42,7 +44,9 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $cell->setContent(42);
         $cell->setType(FieldTypeEnumeration::INTEGER);
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => $cell,
+        ]);
 
         self::assertSame('42', $actual);
     }
@@ -68,7 +72,9 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $cell->setType(FieldTypeEnumeration::DECIMAL);
         $cell->setDecimalPlaces(3);
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => $cell,
+        ]);
 
         self::assertSame('1$234#568', $actual);
     }
@@ -89,7 +95,9 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $cell->setContent('2019-05-15T00:00:00+00:00');
         $cell->setType(FieldTypeEnumeration::DATE);
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => $cell,
+        ]);
 
         self::assertSame('15+05+2019', $actual);
     }
@@ -110,7 +118,9 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $cell->setContent('2019-05-15T12:34:56+09:00');
         $cell->setType(FieldTypeEnumeration::DATETIME);
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => $cell,
+        ]);
 
         self::assertSame('15+05+2019 12-34-56', $actual);
     }
@@ -124,7 +134,9 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $cell->setContent('some invalid date content');
         $cell->setType(FieldTypeEnumeration::DATE);
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => $cell,
+        ]);
 
         self::assertSame('some invalid date content', $actual);
     }
@@ -138,7 +150,9 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $cell->setContent('some invalid datetime content');
         $cell->setType(FieldTypeEnumeration::DATETIME);
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => $cell]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => $cell,
+        ]);
 
         self::assertSame('some invalid datetime content', $actual);
     }
@@ -151,6 +165,8 @@ class FormatCellViewHelperTest extends ViewHelperTestCase
         $this->expectException(ViewHelper\Exception::class);
         $this->expectExceptionCode(1567619441);
 
-        $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['cell' => new \stdClass()]);
+        $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'cell' => new \stdClass(),
+        ]);
     }
 }

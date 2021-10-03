@@ -24,16 +24,24 @@ use TYPO3\CMS\Core\Registry;
 
 class TransmitCommandTest extends TestCase
 {
-    /** @var CommandTester */
+    /**
+     * @var CommandTester
+     */
     private $commandTester;
 
-    /** @var LockingStrategyInterface|MockObject */
+    /**
+     * @var LockingStrategyInterface|MockObject
+     */
     private $lockerMock;
 
-    /** @var Transmitter|MockObject */
+    /**
+     * @var Transmitter|MockObject
+     */
     private $transmitterMock;
 
-    /** @var MockObject|Registry */
+    /**
+     * @var MockObject|Registry
+     */
     private $registryMock;
 
     protected function setUp(): void
@@ -77,7 +85,7 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    function ($subject) {
+                    static function ($subject) {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
                     }
                 )
@@ -118,7 +126,7 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    function ($subject) {
+                    static function ($subject) {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
                     }
                 )
@@ -159,7 +167,7 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    function ($subject) {
+                    static function ($subject) {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
                     }
                 )

@@ -31,16 +31,24 @@ class Transmitter implements LoggerAwareInterface
 
     private const DATASET_RESOURCE_TEMPLATE = '/application/jobdata/tables/%s/datasets';
 
-    /** @var PersistenceManagerInterface */
+    /**
+     * @var PersistenceManagerInterface
+     */
     private $persistenceManager;
 
-    /** @var TransferRepository */
+    /**
+     * @var TransferRepository
+     */
     private $transferRepository;
 
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
-    /** @var RestClientFactory */
+    /**
+     * @var RestClientFactory
+     */
     private $restClientFactory;
 
     private static $jobDataRepositories = [];
@@ -113,7 +121,9 @@ class Transmitter implements LoggerAwareInterface
         $jrid = $result[0]['jrid'] ?? null;
 
         $transfer->setTransmitSuccess(true);
-        $transfer->setTransmitMessage($jrid ? \json_encode(['jrid' => $jrid]) : '');
+        $transfer->setTransmitMessage($jrid ? \json_encode([
+            'jrid' => $jrid,
+        ]) : '');
     }
 
     private function getJobDataRepositoryForTableUid(int $tableUid): JobDataRepository

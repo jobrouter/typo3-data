@@ -39,8 +39,12 @@ final class TableUpdateHook
 
             $connection->delete(
                 'tx_jobrouterdata_domain_model_dataset',
-                ['table_uid' => $recordId],
-                ['table_uid' => Connection::PARAM_INT]
+                [
+                    'table_uid' => $recordId,
+                ],
+                [
+                    'table_uid' => Connection::PARAM_INT,
+                ]
             );
         }
     }

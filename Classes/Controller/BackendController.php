@@ -35,22 +35,34 @@ final class BackendController extends ActionController
 
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    /** @var IconFactory */
+    /**
+     * @var IconFactory
+     */
     private $iconFactory;
 
-    /** @var LanguageService */
+    /**
+     * @var LanguageService
+     */
     private $languageService;
 
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
-    /** @var UriBuilder */
+    /**
+     * @var UriBuilder
+     */
     private $backendUriBuilder;
 
-    /** @var ModuleTemplate */
+    /**
+     * @var ModuleTemplate
+     */
     private $moduleTemplate;
 
-    /** @var ButtonBar */
+    /**
+     * @var ButtonBar
+     */
     private $buttonBar;
 
     public function __construct(
@@ -67,8 +79,6 @@ final class BackendController extends ActionController
 
     /**
      * Set up the doc header properly here
-     *
-     * @param ViewInterface $view
      */
     protected function initializeView(ViewInterface $view): void
     {

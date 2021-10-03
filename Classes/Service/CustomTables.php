@@ -51,7 +51,7 @@ final class CustomTables
 
         $tables = [];
         foreach ($schemaManager->listTableNames() as $tableName) {
-            if (!\str_starts_with($tableName, 'tx_')) {
+            if (! \str_starts_with($tableName, 'tx_')) {
                 continue;
             }
 
@@ -59,7 +59,7 @@ final class CustomTables
                 continue;
             }
 
-            if (\in_array($tableName, $alreadyAssignedTables)) {
+            if (\in_array($tableName, $alreadyAssignedTables, true)) {
                 continue;
             }
 

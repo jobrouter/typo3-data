@@ -18,15 +18,15 @@ class SubtractViewHelperTest extends ViewHelperTestCase
     /**
      * @test
      * @dataProvider dataProvider
-     * @param int $minuend
-     * @param int $subtrahend
-     * @param int $expected
      */
     public function contentWithTypeTextIsRenderedCorrectly(int $minuend, int $subtrahend, int $expected): void
     {
         $actual = $this->renderTemplate(
             static::VIEWHELPER_TEMPLATE,
-            ['minuend' => $minuend, 'subtrahend' => $subtrahend]
+            [
+                'minuend' => $minuend,
+                'subtrahend' => $subtrahend,
+            ]
         );
 
         self::assertSame($expected, $actual);

@@ -52,7 +52,9 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
 
         if ($datasetsHash === $table->getDatasetsSyncHash()) {
             $this->updateSynchronisationStatus($table);
-            $this->logger->info('Data sets have not changed', ['table_uid' => $table->getUid()]);
+            $this->logger->info('Data sets have not changed', [
+                'table_uid' => $table->getUid(),
+            ]);
             return;
         }
 
@@ -63,11 +65,17 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
         try {
             $connection->delete(
                 static::DATASET_TABLE_NAME,
-                ['table_uid' => $table->getUid()],
-                ['table_uid' => \PDO::PARAM_INT]
+                [
+                    'table_uid' => $table->getUid(),
+                ],
+                [
+                    'table_uid' => \PDO::PARAM_INT,
+                ]
             );
 
-            $this->logger->debug('Deleted existing data sets in transaction', ['table_uid' => $table->getUid()]);
+            $this->logger->debug('Deleted existing data sets in transaction', [
+                'table_uid' => $table->getUid(),
+            ]);
 
             foreach ($datasets as $dataset) {
                 $jrid = $dataset['jrid'];
@@ -103,7 +111,10 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
-                ['table uid' => $table->getUid(), 'message' => $e->getMessage()]
+                [
+                    'table uid' => $table->getUid(),
+                    'message' => $e->getMessage(),
+                ]
             );
 
             throw new SynchronisationException($e->getMessage(), 1567014608, $e);

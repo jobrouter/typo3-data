@@ -33,7 +33,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
         /** @var Cell $cell */
         $cell = $arguments['cell'];
 
-        if (!$cell instanceof Cell) {
+        if (! $cell instanceof Cell) {
             throw new ViewHelper\Exception(
                 \sprintf(
                     'Argument "cell" is not an instance of "%s"',
@@ -51,7 +51,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
         $type = $cell->getType();
         $content = $cell->getContent();
 
-        if (FieldTypeEnumeration::DATE === $type) {
+        if ($type === FieldTypeEnumeration::DATE) {
             try {
                 $date = new \DateTime($content);
 
@@ -61,7 +61,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
             }
         }
 
-        if (FieldTypeEnumeration::DATETIME === $type) {
+        if ($type === FieldTypeEnumeration::DATETIME) {
             try {
                 $date = new \DateTime($content);
 
@@ -71,7 +71,7 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
             }
         }
 
-        if (FieldTypeEnumeration::DECIMAL === $type) {
+        if ($type === FieldTypeEnumeration::DECIMAL) {
             return \number_format(
                 (float)$content,
                 $cell->getDecimalPlaces(),

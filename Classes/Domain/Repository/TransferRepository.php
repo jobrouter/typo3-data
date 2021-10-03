@@ -26,10 +26,12 @@ class TransferRepository extends Repository
                     $query->equals('transmitSuccess', 0),
                     $query->logicalNot(
                         $query->equals('transmitMessage', '')
-                    )
+                    ),
                 ])
             )
-            ->setOrderings(['crdate' => QueryInterface::ORDER_ASCENDING])
+            ->setOrderings([
+                'crdate' => QueryInterface::ORDER_ASCENDING,
+            ])
             ->execute();
     }
 }

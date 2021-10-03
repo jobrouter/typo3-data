@@ -36,10 +36,10 @@ return [
                     [
                         0 => '',
                         1 => '',
-                        'invertStateDisplay' => true
-                    ]
+                        'invertStateDisplay' => true,
+                    ],
                 ],
-            ]
+            ],
         ],
 
         'type' => [
@@ -86,7 +86,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 30,
-                'eval' => 'alphanum_x,required,trim,unique'
+                'eval' => 'alphanum_x,required,trim,unique',
             ],
         ],
         'name' => [
@@ -96,7 +96,7 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'required,trim'
+                'eval' => 'required,trim',
             ],
         ],
         'table_guid' => [
@@ -116,7 +116,9 @@ return [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
-                    ['' => ''],
+                    [
+                        '' => '',
+                    ],
                 ],
                 'itemsProcFunc' => \Brotkrueml\JobRouterData\Service\CustomTables::class . '->getTables',
                 'eval' => 'required',
@@ -169,7 +171,7 @@ return [
             'label' => 'Data sets sync hash',
             'config' => [
                 'type' => 'input',
-            ]
+            ],
         ],
         'last_sync_date' => [
             'exclude' => true,
@@ -197,8 +199,8 @@ return [
             'config' => [
                 'type' => 'text',
                 'rows' => 5,
-                'cols' => 30
-            ]
+                'cols' => 30,
+            ],
         ],
     ],
     'types' => [
@@ -211,7 +213,7 @@ return [
             --palette--;;synchronisationStatus,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
             description,
-        '
+        ',
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_CUSTOM_TABLE => [
             'showitem' => '
@@ -222,7 +224,7 @@ return [
             --palette--;;synchronisationStatus,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
             description,
-        '
+        ',
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_FORM_FINISHER => [
             'showitem' => '
@@ -233,7 +235,7 @@ return [
             --palette--;;synchronisationStatus,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
             description,
-        '
+        ',
         ],
         (string)\Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => [
             'showitem' => '
@@ -242,13 +244,13 @@ return [
             disabled,
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
             description,
-        '
+        ',
         ],
     ],
     'palettes' => [
         'synchronisationStatus' => [
             'label' => \Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':palette.last_synchronisation',
-            'showitem' => 'last_sync_date, --linebreak--, last_sync_error'
+            'showitem' => 'last_sync_date, --linebreak--, last_sync_error',
         ],
     ],
 ];

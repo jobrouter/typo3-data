@@ -61,7 +61,9 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
 
         if ($datasetsHash === $table->getDatasetsSyncHash()) {
             $this->updateSynchronisationStatus($table);
-            $this->logger->info('Datasets have not changed', ['table_uid' => $table->getUid()]);
+            $this->logger->info('Datasets have not changed', [
+                'table_uid' => $table->getUid(),
+            ]);
             return;
         }
 
@@ -73,14 +75,16 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
 
         try {
             $connection->truncate($customTable);
-            $this->logger->debug('Truncated table in transaction', ['custom table' => $customTable]);
+            $this->logger->debug('Truncated table in transaction', [
+                'custom table' => $customTable,
+            ]);
 
             foreach ($datasets as $dataset) {
                 $data = [];
 
                 foreach ($dataset as $column => $content) {
                     $column = \strtolower($column);
-                    if (!\in_array($column, $customTableColumns)) {
+                    if (! \in_array($column, $customTableColumns, true)) {
                         continue;
                     }
 
@@ -101,7 +105,11 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
-                ['table uid' => $table->getUid(), 'custom table' => $customTable, 'message' => $e->getMessage()]
+                [
+                    'table uid' => $table->getUid(),
+                    'custom table' => $customTable,
+                    'message' => $e->getMessage(),
+                ]
             );
 
             throw new SynchronisationException($e->getMessage(), 1567799062, $e);

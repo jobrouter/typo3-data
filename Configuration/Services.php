@@ -20,8 +20,8 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\DependencyInjection\Reference;
 use TYPO3\CMS\Dashboard\Dashboard;
 
-return function (ContainerConfigurator $configurator, ContainerBuilder $containerBuilder): void {
-    if (!$containerBuilder->hasDefinition(Dashboard::class)) {
+return static function (ContainerConfigurator $configurator, ContainerBuilder $containerBuilder): void {
+    if (! $containerBuilder->hasDefinition(Dashboard::class)) {
         return;
     }
 

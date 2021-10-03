@@ -23,10 +23,14 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 final class TableProcessor implements DataProcessorInterface
 {
-    /** @var FlexFormService */
+    /**
+     * @var FlexFormService
+     */
     private $flexFormService;
 
-    /** @var TableRepository */
+    /**
+     * @var TableRepository
+     */
     private $tableRepository;
 
     public function __construct(FlexFormService $flexFormService = null, TableRepository $tableRepository = null)
@@ -45,7 +49,7 @@ final class TableProcessor implements DataProcessorInterface
 
         $tableUid = (int)($flexForm['table'] ?? 0);
 
-        if (!empty($tableUid)) {
+        if (! empty($tableUid)) {
             $processedData['table'] = $this->tableRepository->findByIdentifier($tableUid);
             Cache::addCacheTagByTable($tableUid);
         }

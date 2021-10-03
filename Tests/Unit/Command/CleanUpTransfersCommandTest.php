@@ -20,10 +20,14 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class CleanUpTransfersCommandTest extends TestCase
 {
-    /** @var CommandTester */
+    /**
+     * @var CommandTester
+     */
     private $commandTester;
 
-    /** @var Deleter|MockObject */
+    /**
+     * @var Deleter|MockObject
+     */
     private $deleterMock;
 
     protected function setUp(): void
@@ -100,7 +104,9 @@ class CleanUpTransfersCommandTest extends TestCase
             ->method('run')
             ->willReturn(42);
 
-        $this->commandTester->execute(['ageInDays' => 60]);
+        $this->commandTester->execute([
+            'ageInDays' => 60,
+        ]);
 
         self::assertSame(CleanUpTransfersCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
@@ -118,7 +124,9 @@ class CleanUpTransfersCommandTest extends TestCase
             ->expects(self::never())
             ->method('run');
 
-        $this->commandTester->execute(['ageInDays' => 'abc']);
+        $this->commandTester->execute([
+            'ageInDays' => 'abc',
+        ]);
 
         self::assertSame(CleanUpTransfersCommand::EXIT_CODE_INVALID_ARGUMENT, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
@@ -136,7 +144,9 @@ class CleanUpTransfersCommandTest extends TestCase
             ->expects(self::never())
             ->method('run');
 
-        $this->commandTester->execute(['ageInDays' => '-42']);
+        $this->commandTester->execute([
+            'ageInDays' => '-42',
+        ]);
 
         self::assertSame(CleanUpTransfersCommand::EXIT_CODE_INVALID_ARGUMENT, $this->commandTester->getStatusCode());
         self::assertStringContainsString(

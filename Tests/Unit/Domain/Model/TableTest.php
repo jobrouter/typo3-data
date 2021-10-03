@@ -21,7 +21,9 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class TableTest extends TestCase
 {
-    /** @var Table */
+    /**
+     * @var Table
+     */
     private $subject;
 
     protected function setUp(): void
@@ -217,10 +219,18 @@ class TableTest extends TestCase
         $this->subject->addColumn($column3);
 
         $dataset1 = new Dataset();
-        $dataset1->setDataset(\json_encode(['jrid' => 1, 'column1' => 'value1-1', 'column2' => 'value1-2']));
+        $dataset1->setDataset(\json_encode([
+            'jrid' => 1,
+            'column1' => 'value1-1',
+            'column2' => 'value1-2',
+        ]));
         $this->subject->addDataset($dataset1);
         $dataset2 = new Dataset();
-        $dataset2->setDataset(\json_encode(['jrid' => 2, 'column1' => 'value2-1', 'column2' => 'value2-2']));
+        $dataset2->setDataset(\json_encode([
+            'jrid' => 2,
+            'column1' => 'value2-1',
+            'column2' => 'value2-2',
+        ]));
         $this->subject->addDataset($dataset2);
 
         /** @var Row[] $actual */

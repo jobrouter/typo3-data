@@ -22,16 +22,24 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 class TransmitterTest extends TestCase
 {
-    /** @var Transmitter */
+    /**
+     * @var Transmitter
+     */
     private $subject;
 
-    /** @var MockObject|PersistenceManagerInterface */
+    /**
+     * @var MockObject|PersistenceManagerInterface
+     */
     private $persistenceManagerMock;
 
-    /** @var MockObject|TransferRepository */
+    /**
+     * @var MockObject|TransferRepository
+     */
     private $transferRepositoryMock;
 
-    /** @var MockObject|TableRepository */
+    /**
+     * @var MockObject|TableRepository
+     */
     private $tableRepositoryMock;
 
     protected function setUp(): void

@@ -9,7 +9,7 @@
 
 defined('TYPO3') || die();
 
-(function ($extensionKey='jobrouter_data', $contentType='tx_jobrouterdata_table') {
+(static function ($extensionKey = 'jobrouter_data', $contentType = 'tx_jobrouterdata_table') {
     $llPrefix = 'LLL:EXT:' . $extensionKey . '/Resources/Private/Language/ContentElement.xlf:';
 
     \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
@@ -34,7 +34,7 @@ defined('TYPO3') || die();
             'columnsOverrides' => [
                 'pi_flexform' => [
                     'label' => $llPrefix . 'table',
-                ]
+                ],
             ],
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,

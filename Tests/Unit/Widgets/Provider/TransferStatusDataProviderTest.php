@@ -20,13 +20,19 @@ use TYPO3\CMS\Core\Registry;
 
 class TransferStatusDataProviderTest extends TestCase
 {
-    /** @var Stub|Registry */
+    /**
+     * @var Stub|Registry
+     */
     private $registryStub;
 
-    /** @var Stub|TransferRepository */
+    /**
+     * @var Stub|TransferRepository
+     */
     private $transferRepositoryStub;
 
-    /** @var TransferStatusDataProvider */
+    /**
+     * @var TransferStatusDataProvider
+     */
     private $subject;
 
     protected function setUp(): void
@@ -67,7 +73,7 @@ class TransferStatusDataProviderTest extends TestCase
                 [
                     'transmit_success' => 1,
                     'count' => 16,
-                ]
+                ],
             ]);
 
         $this->registryStub
@@ -91,7 +97,7 @@ class TransferStatusDataProviderTest extends TestCase
                 [
                     'transmit_success' => 0,
                     'count' => 8,
-                ]
+                ],
             ]);
         $this->transferRepositoryStub
             ->method('countTransmitFailed')
@@ -118,7 +124,7 @@ class TransferStatusDataProviderTest extends TestCase
                 [
                     'transmit_success' => 0,
                     'count' => 4,
-                ]
+                ],
             ]);
         $this->transferRepositoryStub
             ->method('countTransmitFailed')
@@ -147,9 +153,9 @@ class TransferStatusDataProviderTest extends TestCase
                     'count' => 42,
                 ],
                 [
-                'transmit_success' => 0,
-                'count' => 28,
-            ]
+                    'transmit_success' => 0,
+                    'count' => 28,
+                ],
             ]);
         $this->transferRepositoryStub
             ->method('countTransmitFailed')

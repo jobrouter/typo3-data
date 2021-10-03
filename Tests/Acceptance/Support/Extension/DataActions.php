@@ -56,7 +56,9 @@ trait DataActions
             ],
             'httpResponse' => [
                 'statusCode' => 201,
-                'headers' => ['content-type' => ['application/json']],
+                'headers' => [
+                    'content-type' => ['application/json'],
+                ],
                 'body' => '{"tokens":["testtoken"]}',
             ],
             'times' => [
@@ -85,7 +87,9 @@ trait DataActions
             ],
             'httpResponse' => [
                 'statusCode' => 200,
-                'headers' => ['content-type' => ['application/json']],
+                'headers' => [
+                    'content-type' => ['application/json'],
+                ],
                 'body' => '{"datasets":[]}',
             ],
             'times' => [

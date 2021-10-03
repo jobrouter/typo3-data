@@ -30,16 +30,24 @@ final class TransmitCommand extends Command
     public const EXIT_CODE_ERRORS_ON_TRANSMISSION = 1;
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     private $startTime;
 
-    /** @var LockFactory */
+    /**
+     * @var LockFactory
+     */
     private $lockFactory;
 
-    /** @var Registry */
+    /**
+     * @var Registry
+     */
     private $registry;
 
-    /** @var Transmitter */
+    /**
+     * @var Transmitter
+     */
     private $transmitter;
 
     public function __construct(LockFactory $lockFactory, Registry $registry, Transmitter $transmitter)

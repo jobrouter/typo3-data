@@ -28,22 +28,34 @@ class Table extends AbstractEntity
     public const TYPE_OTHER_USAGE = 3;
     public const TYPE_FORM_FINISHER = 4;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $type = 0;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $handle = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $name = '';
 
-    /** @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null */
+    /**
+     * @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null
+     */
     protected $connection;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $tableGuid = '';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $customTable = '';
 
     /**
@@ -60,16 +72,24 @@ class Table extends AbstractEntity
      */
     protected $datasets;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $datasetsSyncHash = '';
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     protected $disabled = false;
 
-    /** @var \DateTime */
+    /**
+     * @var \DateTime
+     */
     protected $lastSyncDate;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $lastSyncError = '';
 
     public function __construct()

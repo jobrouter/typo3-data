@@ -23,16 +23,24 @@ use TYPO3\CMS\Core\Registry;
 
 class SyncCommandTest extends TestCase
 {
-    /** @var CommandTester */
+    /**
+     * @var CommandTester
+     */
     private $commandTester;
 
-    /** @var MockObject|LockingStrategyInterface */
+    /**
+     * @var MockObject|LockingStrategyInterface
+     */
     private $lockerMock;
 
-    /** @var MockObject|SynchronisationRunner */
+    /**
+     * @var MockObject|SynchronisationRunner
+     */
     private $synchronisationRunnerMock;
 
-    /** @var MockObject|Registry */
+    /**
+     * @var MockObject|Registry
+     */
     private $registryMock;
 
     protected function setUp(): void
@@ -76,7 +84,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    function ($subject) {
+                    static function ($subject) {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
                     }
                 )
@@ -114,13 +122,15 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    function ($subject) {
+                    static function ($subject) {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
                     }
                 )
             );
 
-        $this->commandTester->execute(['table' => 'some_handle']);
+        $this->commandTester->execute([
+            'table' => 'some_handle',
+        ]);
 
         self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
@@ -154,7 +164,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    function ($subject) {
+                    static function ($subject) {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
                     }
                 )

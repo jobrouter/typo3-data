@@ -18,10 +18,14 @@ use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 
 class TransferRepositoryTest extends TestCase
 {
-    /** @var Stub|QueryBuilder */
+    /**
+     * @var Stub|QueryBuilder
+     */
     private $queryBuilderStub;
 
-    /** @var TransferRepository */
+    /**
+     * @var TransferRepository
+     */
     private $subject;
 
     protected function setUp(): void

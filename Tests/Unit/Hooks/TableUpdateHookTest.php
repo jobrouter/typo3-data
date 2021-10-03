@@ -59,8 +59,12 @@ class TableUpdateHookTest extends TestCase
             ->method('delete')
             ->with(
                 self::equalTo('tx_jobrouterdata_domain_model_dataset'),
-                self::equalTo(['table_uid' => 42]),
-                self::equalTo(['table_uid' => Connection::PARAM_INT])
+                self::equalTo([
+                    'table_uid' => 42,
+                ]),
+                self::equalTo([
+                    'table_uid' => Connection::PARAM_INT,
+                ])
             );
 
         $this->connectionPoolMock

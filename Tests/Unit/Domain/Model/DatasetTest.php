@@ -16,7 +16,9 @@ use PHPUnit\Framework\TestCase;
 
 class DatasetTest extends TestCase
 {
-    /** @var Dataset */
+    /**
+     * @var Dataset
+     */
     protected $subject;
 
     protected function setUp(): void
@@ -77,7 +79,9 @@ class DatasetTest extends TestCase
      */
     public function getDatasetContentForColumnFromDataset(): void
     {
-        $this->subject->setDataset(\json_encode(['someColumn' => 'someValue']));
+        $this->subject->setDataset(\json_encode([
+            'someColumn' => 'someValue',
+        ]));
 
         $actual = $this->subject->getDatasetContentForColumn('someColumn');
         self::assertSame('someValue', $actual);
@@ -91,8 +95,12 @@ class DatasetTest extends TestCase
      */
     public function getDatasetContentForColumnAfterSetDataset(): void
     {
-        $this->subject->setDataset(\json_encode(['someColumn' => 'someValue']));
-        $this->subject->setDataset(\json_encode(['someOtherColumn' => 'someOtherValue']));
+        $this->subject->setDataset(\json_encode([
+            'someColumn' => 'someValue',
+        ]));
+        $this->subject->setDataset(\json_encode([
+            'someOtherColumn' => 'someOtherValue',
+        ]));
 
         $actual = $this->subject->getDatasetContentForColumn('someColumn');
         self::assertNull($actual);

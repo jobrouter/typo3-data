@@ -20,8 +20,8 @@ return [
         'pid' => [
             'label' => 'pid',
             'config' => [
-                'type' => 'passthrough'
-            ]
+                'type' => 'passthrough',
+            ],
         ],
 
         'jrid' => [
@@ -50,7 +50,7 @@ return [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 jrid, dataset,
-            '
+            ',
         ],
     ],
 ];

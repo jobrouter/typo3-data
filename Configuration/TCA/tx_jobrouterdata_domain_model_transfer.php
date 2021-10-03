@@ -14,7 +14,7 @@ return [
         'crdate' => 'crdate',
         'rootLevel' => 1,
         'hideTable' => true,
-        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_transfer.svg'
+        'iconfile' => 'EXT:' . \Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_transfer.svg',
     ],
     'columns' => [
         'crdate' => [
@@ -61,6 +61,8 @@ return [
         ],
     ],
     'types' => [
-        '1' => ['showitem' => 'table_uid, identifier, data, transmit_success, transmit_date, transmit_message'],
+        '1' => [
+            'showitem' => 'table_uid, identifier, data, transmit_success, transmit_date, transmit_message',
+        ],
     ],
 ];

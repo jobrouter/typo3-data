@@ -26,7 +26,9 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
         $column = new Column();
         $column->setName('someColumnLabel');
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['column' => $column]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'column' => $column,
+        ]);
 
         self::assertSame('someColumnLabel', $actual);
     }
@@ -40,7 +42,9 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
         $column->setName('someColumnLabel');
         $column->setLabel('Some column label');
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['column' => $column]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'column' => $column,
+        ]);
 
         self::assertSame('Some column label', $actual);
     }
@@ -61,7 +65,9 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
         $column->setName('someColumnLabel');
         $column->setLabel('LLL:EXT:some_extension/Resources/Private/Language/locallang.xml:some-localised-column-label');
 
-        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['column' => $column]);
+        $actual = $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'column' => $column,
+        ]);
 
         self::assertSame('the localised column label', $actual);
     }
@@ -74,6 +80,8 @@ class ColumnLabelViewHelperTest extends ViewHelperTestCase
         $this->expectException(ViewHelper\Exception::class);
         $this->expectExceptionCode(1567518752);
 
-        $this->renderTemplate(static::VIEWHELPER_TEMPLATE, ['column' => new \stdClass()]);
+        $this->renderTemplate(static::VIEWHELPER_TEMPLATE, [
+            'column' => new \stdClass(),
+        ]);
     }
 }
