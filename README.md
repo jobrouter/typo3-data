@@ -5,6 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/brotkrueml/typo3-jobrouter-data/badge.svg?branch=master)](https://coveralls.io/github/brotkrueml/typo3-jobrouter-data?branch=master)
 [![Documentation Status](https://readthedocs.org/projects/typo3-jobrouter-data/badge/?version=latest)](https://typo3-jobrouter.readthedocs.io/projects/data/)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-jobrouterdata/localized.svg)](https://crowdin.com/project/typo3-extension-jobrouterdata)
+[![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-jobrouter-data.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-jobrouter-data)
 
 [JobRouter®](https://www.jobrouter.com/) is a scalable digitization
 platform which links processes, data and documents.
