@@ -9,7 +9,7 @@ Installation
 Target group: **Administrators**
 
 .. note::
-   The extension is available for TYPO3 v10 LTS and TYPO3 v11.
+   The extension is available for TYPO3 v10 LTS and TYPO3 v11 LTS.
 
 .. _installation-requirements:
 

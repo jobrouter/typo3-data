@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Compatibility with TYPO3 v11
+- Compatibility with TYPO3 v11 LTS
 - Possibility to refresh dashboard widgets (TYPO3 v11+ only)
 
 ### Changed
