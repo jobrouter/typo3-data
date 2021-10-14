@@ -83,7 +83,7 @@ class Table extends AbstractEntity
     protected $disabled = false;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     protected $lastSyncDate;
 
@@ -178,7 +178,7 @@ class Table extends AbstractEntity
         return $this->columns;
     }
 
-    public function setColumns(ObjectStorage $columns)
+    public function setColumns(ObjectStorage $columns): void
     {
         $this->columns = $columns;
     }
@@ -198,7 +198,7 @@ class Table extends AbstractEntity
         return $this->datasets;
     }
 
-    public function setDatasets(ObjectStorage $datasets)
+    public function setDatasets(ObjectStorage $datasets): void
     {
         $this->datasets = $datasets;
     }
@@ -208,6 +208,9 @@ class Table extends AbstractEntity
         return count($this->datasets);
     }
 
+    /**
+     * @return Row[]
+     */
     public function getRows(): array
     {
         $rows = [];

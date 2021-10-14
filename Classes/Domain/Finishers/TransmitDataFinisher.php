@@ -92,12 +92,17 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
         }
     }
 
+    /**
+     * @return mixed[]
+     */
     private function prepareData(): array
     {
-        if (! isset($this->options['columns']) || ! \is_array($this->options['columns'])) {
+        if (! isset($this->options['columns'])) {
             return [];
         }
-
+        if (! \is_array($this->options['columns'])) {
+            return [];
+        }
         $formValues = (new FormFieldValuesPreparer())->prepareForSubstitution(
             $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements(),
             $this->finisherContext->getFormValues()
@@ -140,7 +145,6 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
      */
     private function getTableColumns(): array
     {
-        /** @var Column[] $fields */
         $columns = $this->table->getColumns();
 
         $tableFields = [];
@@ -151,13 +155,16 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
         return $tableFields;
     }
 
+    /**
+     * @return string|int|float
+     */
     private function considerTypeForFieldValue($value, int $type, int $fieldSize)
     {
         switch ($type) {
             case FieldTypeEnumeration::TEXT:
                 $value = (string)$value;
 
-                if ($fieldSize) {
+                if ($fieldSize !== 0) {
                     $value = \substr($value, 0, $fieldSize);
                 }
 

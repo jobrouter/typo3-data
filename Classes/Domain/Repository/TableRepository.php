@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterData\Domain\Repository;
 
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**
@@ -20,11 +21,17 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class TableRepository extends Repository
 {
+    /**
+     * @var array<string, string>
+     */
     protected $defaultOrderings = [
         'disabled' => QueryInterface::ORDER_ASCENDING,
         'name' => QueryInterface::ORDER_ASCENDING,
     ];
 
+    /**
+     * @return mixed[]|QueryResultInterface
+     */
     public function findAllByTypeWithHidden(int $type)
     {
         $query = $this->createQuery();
@@ -34,7 +41,7 @@ class TableRepository extends Repository
         return $query->execute();
     }
 
-    public function findByIdentifierWithHidden(int $identifier)
+    public function findByIdentifierWithHidden(int $identifier): object
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setIgnoreEnableFields(true);
@@ -43,6 +50,9 @@ class TableRepository extends Repository
         return $query->execute()->getFirst();
     }
 
+    /**
+     * @return mixed[]|QueryResultInterface
+     */
     public function findAllSyncTables()
     {
         $query = $this->createQuery();
@@ -56,7 +66,7 @@ class TableRepository extends Repository
         return $query->execute();
     }
 
-    public function findByHandle(string $handle)
+    public function findByHandle(string $handle): object
     {
         $query = $this->createQuery();
         $query->matching($query->equals('handle', $handle));

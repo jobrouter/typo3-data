@@ -27,10 +27,13 @@ final class ColumnLabelViewHelper extends ViewHelper\AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): string {
         /** @var Column $column */
-        $column = $arguments['column'];
+        $column = $arguments['column'] ?? null;
 
+        /**
+         * @noRector \Rector\DeadCode\Rector\If_\RemoveDeadInstanceOfRector
+         */
         if (! $column instanceof Column) {
             throw new ViewHelper\Exception(
                 \sprintf(
@@ -42,11 +45,11 @@ final class ColumnLabelViewHelper extends ViewHelper\AbstractViewHelper
         }
 
         $label = $column->getLabel();
-        if ($label) {
+        if ($label !== '') {
             if (\str_starts_with($label, 'LLL:')) {
                 $translatedLabel = static::getLanguageService()->sL($label);
 
-                if ($translatedLabel) {
+                if ($translatedLabel !== '') {
                     return $translatedLabel;
                 }
             } else {

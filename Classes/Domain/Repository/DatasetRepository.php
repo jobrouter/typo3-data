@@ -19,6 +19,9 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
  */
 class DatasetRepository extends Repository
 {
+    /**
+     * @var array<string, string>
+     */
     protected $defaultOrderings = [
         'jrid' => QueryInterface::ORDER_ASCENDING,
     ];

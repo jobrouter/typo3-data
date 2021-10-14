@@ -30,6 +30,9 @@ final class CustomTables
         $this->connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getTables(array $config): array
     {
         $connection = $this->connectionPool->getConnectionForTable('tx_jobrouterdata_domain_model_table');

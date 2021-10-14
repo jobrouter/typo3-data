@@ -84,7 +84,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static function ($subject) {
+                    static function ($subject): bool {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
                     }
                 )
@@ -122,7 +122,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static function ($subject) {
+                    static function ($subject): bool {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
                     }
                 )
@@ -164,7 +164,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static function ($subject) {
+                    static function ($subject): bool {
                         return $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
                     }
                 )

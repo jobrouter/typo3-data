@@ -43,6 +43,9 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
         return true;
     }
 
+    /**
+     * @return int[]|string[]
+     */
     private function getCustomTableColumns(Table $table): array
     {
         $customTable = $table->getCustomTable();

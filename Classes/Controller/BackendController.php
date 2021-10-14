@@ -33,6 +33,9 @@ final class BackendController extends ActionController
 {
     private const MODULE_NAME = 'jobrouter_JobRouterDataJobrouterdata';
 
+    /**
+     * @var class-string<\TYPO3\CMS\Backend\View\BackendTemplateView>
+     */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
     /**

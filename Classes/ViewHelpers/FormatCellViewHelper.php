@@ -29,10 +29,13 @@ final class FormatCellViewHelper extends ViewHelper\AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): string {
         /** @var Cell $cell */
-        $cell = $arguments['cell'];
+        $cell = $arguments['cell'] ?? null;
 
+        /**
+         * @noRector \Rector\DeadCode\Rector\If_\RemoveDeadInstanceOfRector
+         */
         if (! $cell instanceof Cell) {
             throw new ViewHelper\Exception(
                 \sprintf(

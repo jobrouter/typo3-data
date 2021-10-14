@@ -89,6 +89,9 @@ class JobDataRepository
         return $this->client;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function add(array $dataset): array
     {
         $response = $this->getClient()->request(
@@ -120,6 +123,9 @@ class JobDataRepository
         );
     }
 
+    /**
+     * @return mixed[]
+     */
     public function update(int $jrid, array $dataset): array
     {
         $response = $this->getClient()->request(
@@ -133,6 +139,9 @@ class JobDataRepository
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }
 
+    /**
+     * @return mixed[]
+     */
     public function findAll(): array
     {
         $response = $this->getClient()->request(
@@ -143,6 +152,9 @@ class JobDataRepository
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }
 
+    /**
+     * @return mixed[]
+     */
     public function findByJrid(int $jrid): array
     {
         try {
@@ -161,6 +173,9 @@ class JobDataRepository
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }
 
+    /**
+     * @return mixed[]
+     */
     protected function buildDatasetsArrayFromJson(string $json): array
     {
         $decodedJson = \json_decode($json, true) ?? [];

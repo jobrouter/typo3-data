@@ -39,7 +39,13 @@ class SynchronisationRunner implements LoggerAwareInterface
      */
     private $customTableSynchroniser;
 
+    /**
+     * @var int
+     */
     private $totalNumberOfTables = 0;
+    /**
+     * @var int
+     */
     private $erroneousNumberOfTables = 0;
 
     public function __construct(
@@ -52,6 +58,9 @@ class SynchronisationRunner implements LoggerAwareInterface
         $this->tableRepository = $tableRepository;
     }
 
+    /**
+     * @return array<0: int, 1:int>
+     */
     public function run(string $tableHandle): array
     {
         if ($tableHandle === '') {
@@ -75,14 +84,14 @@ class SynchronisationRunner implements LoggerAwareInterface
         switch ($table->getType()) {
             case Table::TYPE_SIMPLE:
                 $this->totalNumberOfTables++;
-                if ($this->simpleTableSynchroniser->synchroniseTable($table) === false) {
+                if (! $this->simpleTableSynchroniser->synchroniseTable($table)) {
                     $this->erroneousNumberOfTables++;
                 }
                 break;
 
             case Table::TYPE_CUSTOM_TABLE:
                 $this->totalNumberOfTables++;
-                if ($this->customTableSynchroniser->synchroniseTable($table) === false) {
+                if (! $this->customTableSynchroniser->synchroniseTable($table)) {
                     $this->erroneousNumberOfTables++;
                 }
                 break;

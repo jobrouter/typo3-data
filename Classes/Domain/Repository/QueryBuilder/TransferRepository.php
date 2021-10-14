@@ -30,6 +30,9 @@ class TransferRepository
         $this->queryBuilder = $queryBuilder;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function countGroupByTransmitSuccess(): array
     {
         $queryBuilder = $this->createQueryBuilder();

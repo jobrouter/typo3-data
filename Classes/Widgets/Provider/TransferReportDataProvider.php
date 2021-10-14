@@ -31,6 +31,9 @@ final class TransferReportDataProvider implements ListDataProviderInterface
         $this->transferRepository = $transferRepository;
     }
 
+    /**
+     * @return TransferReportItem[]
+     */
     public function getItems(): array
     {
         $transfers = $this->transferRepository->findErroneousTransfers();

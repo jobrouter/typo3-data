@@ -13,13 +13,22 @@ namespace Brotkrueml\JobRouterData\Domain\Model\Table;
 
 class Row
 {
+    /**
+     * @var Cell[]
+     */
     protected $cells = [];
 
+    /**
+     * @return Cell[]
+     */
     public function getCells(): iterable
     {
         return $this->cells;
     }
 
+    /**
+     * @param Cell[] $cells
+     */
     public function setCells(iterable $cells): void
     {
         $this->cells = $cells;

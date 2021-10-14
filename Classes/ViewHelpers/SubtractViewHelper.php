@@ -26,7 +26,7 @@ final class SubtractViewHelper extends ViewHelper\AbstractViewHelper
         array $arguments,
         \Closure $renderChildrenClosure,
         RenderingContextInterface $renderingContext
-    ) {
+    ): int {
         $minuend = (int)$arguments['minuend'];
         $subtrahend = (int)$arguments['subtrahend'];
 

@@ -73,7 +73,7 @@ final class TransmitCommand extends Command
         $outputStyle = new SymfonyStyle($input, $output);
 
         try {
-            $locker = $this->lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
+            $locker = $this->lockFactory->createLocker(self::class);
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
             [$exitCode, $messageType, $message] = $this->runTransmitter();

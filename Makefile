@@ -1,5 +1,5 @@
 .PHONY: qa
-qa: cs unit-tests yaml-lint
+qa: cs unit-tests rector-dry yaml-lint
 
 .PHONY: acceptance-tests
 acceptance-tests: vendor
@@ -20,6 +20,14 @@ code-coverage: vendor
 .PHONY: cs
 cs: vendor
 	.Build/bin/ecs check --fix
+
+.PHONY: rector
+rector: vendor
+	.Build/bin/rector
+
+.PHONY: rector-dry
+rector-dry: vendor
+	.Build/bin/rector --dry-run
 
 .PHONY: unit-tests
 unit-tests: vendor

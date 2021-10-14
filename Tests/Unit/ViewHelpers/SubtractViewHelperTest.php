@@ -32,24 +32,24 @@ class SubtractViewHelperTest extends ViewHelperTestCase
         self::assertSame($expected, $actual);
     }
 
-    public function dataProvider(): array
+    public function dataProvider(): iterable
     {
-        return [
-            [
-                42,
-                42,
-                0,
-            ],
-            [
-                42,
-                13,
-                29,
-            ],
-            [
-                31,
-                58,
-                -27,
-            ],
+        yield [
+            42,
+            42,
+            0,
+        ];
+
+        yield [
+            42,
+            13,
+            29,
+        ];
+
+        yield [
+            31,
+            58,
+            -27,
         ];
     }
 }

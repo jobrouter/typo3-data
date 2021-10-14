@@ -39,6 +39,9 @@ final class TableProcessor implements DataProcessorInterface
         $this->tableRepository = $tableRepository ?? GeneralUtility::makeInstance(TableRepository::class);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function process(
         ContentObjectRenderer $contentObjectRenderer,
         array $contentObjectConfiguration,

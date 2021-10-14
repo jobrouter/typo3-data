@@ -81,10 +81,10 @@ final class SyncCommand extends Command
         $outputStyle = new SymfonyStyle($input, $output);
 
         try {
-            $locker = $this->lockFactory->createLocker(__CLASS__, LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE);
+            $locker = $this->lockFactory->createLocker(self::class);
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
-            $tableHandle = $input->getArgument(self::ARGUMENT_TABLE) ? $input->getArgument(self::ARGUMENT_TABLE) : '';
+            $tableHandle = $input->getArgument(self::ARGUMENT_TABLE) ?: '';
             [$exitCode, $messageType, $message] = $this->runSynchronisation($tableHandle);
             $locker->release();
             $outputStyle->{$messageType}($message);
@@ -98,6 +98,9 @@ final class SyncCommand extends Command
         }
     }
 
+    /**
+     * @return array<0: int, 1: string, 2: string>
+     */
     private function runSynchronisation(string $tableHandle): array
     {
         [$total, $errors] = $this->synchronisationRunner->run($tableHandle);
@@ -112,7 +115,7 @@ final class SyncCommand extends Command
             ];
         }
 
-        if ($tableHandle) {
+        if ($tableHandle !== '') {
             $message = \sprintf('Table with handle "%s" synchronised successfully', $tableHandle);
         } else {
             $message = \sprintf('%d table(s) synchronised successfully', $total);

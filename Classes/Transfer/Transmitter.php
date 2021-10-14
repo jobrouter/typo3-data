@@ -29,8 +29,6 @@ class Transmitter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private const DATASET_RESOURCE_TEMPLATE = '/application/jobdata/tables/%s/datasets';
-
     /**
      * @var PersistenceManagerInterface
      */
@@ -51,9 +49,18 @@ class Transmitter implements LoggerAwareInterface
      */
     private $restClientFactory;
 
+    /**
+     * @var JobDataRepository[]
+     */
     private static $jobDataRepositories = [];
 
+    /**
+     * @var int
+     */
     private $totalNumbersOfTransfers = 0;
+    /**
+     * @var int
+     */
     private $erroneousNumbersOfTransfers = 0;
 
     public function __construct(
@@ -68,6 +75,9 @@ class Transmitter implements LoggerAwareInterface
         $this->tableRepository = $tableRepository;
     }
 
+    /**
+     * @return array<0: int, 1: int>
+     */
     public function run(): array
     {
         $this->logger->info('Transmit data sets for all tables');

@@ -26,6 +26,9 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 {
     private const TEMPLATE = 'EXT:' . Extension::KEY . '/Resources/Private/Templates/PageLayout/TablePreview.html';
 
+    /**
+     * @var mixed|null
+     */
     private $flexFormData;
 
     /**
@@ -51,7 +54,7 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
         $this->languageService = $languageService ?? $GLOBALS['LANG'];
     }
 
-    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
+    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row): void
     {
         if ($row['CType'] !== 'tx_jobrouterdata_table') {
             return;
@@ -73,7 +76,7 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 
         $tableId = (int)$this->getValueFromFlexform('table');
         $table = null;
-        if ($tableId) {
+        if ($tableId !== 0) {
             $table = $this->tableRepository->findByIdentifier($tableId);
         }
 

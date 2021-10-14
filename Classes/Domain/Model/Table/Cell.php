@@ -13,9 +13,21 @@ namespace Brotkrueml\JobRouterData\Domain\Model\Table;
 
 class Cell
 {
+    /**
+     * @var string
+     */
     protected $name = '';
+    /**
+     * @var mixed|null
+     */
     protected $content;
+    /**
+     * @var int
+     */
     protected $type = 0;
+    /**
+     * @var int
+     */
     protected $decimalPlaces = 0;
 
     public function getName(): string
@@ -28,6 +40,9 @@ class Cell
         $this->name = $name;
     }
 
+    /**
+     * @return mixed|null
+     */
     public function getContent()
     {
         return $this->content;

@@ -53,6 +53,9 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
 
     abstract public function synchroniseTable(Table $table): bool;
 
+    /**
+     * @return mixed[]
+     */
     protected function retrieveDatasetsFromJobRouter(Table $table): array
     {
         return (new JobDataRepository($this->restClientFactory, $this->tableRepository, $table->getHandle()))
