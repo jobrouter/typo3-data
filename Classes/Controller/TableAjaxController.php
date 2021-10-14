@@ -14,10 +14,10 @@ namespace Brotkrueml\JobRouterData\Controller;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use TYPO3\CMS\Core\Http\JsonResponse;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Psr\Http\Message\StreamFactoryInterface;
 
 /**
  * @internal
@@ -28,10 +28,23 @@ final class TableAjaxController
      * @var TableRepository
      */
     private $tableRepository;
+    /**
+     * @var ResponseFactoryInterface
+     */
+    private $responseFactory;
+    /**
+     * @var StreamFactoryInterface
+     */
+    private $streamFactory;
 
-    public function __construct()
-    {
-        $this->tableRepository = GeneralUtility::makeInstance(TableRepository::class);
+    public function __construct(
+        TableRepository $tableRepository,
+        ResponseFactoryInterface $responseFactory,
+        StreamFactoryInterface $streamFactory
+    ) {
+        $this->tableRepository = $tableRepository;
+        $this->responseFactory = $responseFactory;
+        $this->streamFactory = $streamFactory;
     }
 
     public function checkAction(ServerRequestInterface $request): ResponseInterface
@@ -67,6 +80,8 @@ final class TableAjaxController
             ];
         }
 
-        return new JsonResponse($result);
+        return $this->responseFactory->createResponse(200)
+            ->withHeader('Content-Type', 'application/json; charset=utf-8')
+            ->withBody($this->streamFactory->createStream(\json_encode($result)));
     }
 }

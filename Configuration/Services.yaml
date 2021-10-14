@@ -36,6 +36,9 @@ services:
         description: 'Transmit data sets to JobData tables'
         schedulable: true
 
+  Brotkrueml\JobRouterData\Controller\TableAjaxController:
+    tags: [ 'backend.controller' ]
+
   Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterdata_domain_model_transfer'
