@@ -51,6 +51,7 @@ final class CleanUpTransfersCommand extends Command
             self::DEFAULT_AGE_IN_DAYS
         );
 
+        // @todo Remove when compatibility is set to TYPO3 v11+ as it is defined in Configuration/Services.yaml
         $this
             ->setDescription('Delete old entries in the transfer table')
             ->setHelp($help)

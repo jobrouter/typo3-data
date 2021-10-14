@@ -19,18 +19,21 @@ services:
     tags:
       - name: 'console.command'
         command: 'jobrouter:data:cleanuptransfers'
+        description: 'Delete old entries in the transfer table'
         schedulable: true
 
   Brotkrueml\JobRouterData\Command\SyncCommand:
     tags:
       - name: 'console.command'
         command: 'jobrouter:data:sync'
+        description: 'Synchronise JobData data sets from JobRouter installations'
         schedulable: true
 
   Brotkrueml\JobRouterData\Command\TransmitCommand:
     tags:
       - name: 'console.command'
         command: 'jobrouter:data:transmit'
+        description: 'Transmit data sets to JobData tables'
         schedulable: true
 
   Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository:
