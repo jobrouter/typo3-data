@@ -28,7 +28,7 @@ defined('TYPO3') || die();
     TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
         'JobRouterData',
         'jobrouter',
-        'jobrouterdata',
+        'tables',
         '',
         [
             Brotkrueml\JobRouterData\Controller\BackendController::class => 'list',

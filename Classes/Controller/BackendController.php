@@ -31,7 +31,7 @@ use TYPO3\CMS\Extbase\Mvc\View\ViewInterface;
  */
 final class BackendController extends ActionController
 {
-    private const MODULE_NAME = 'jobrouter_JobRouterDataJobrouterdata';
+    private const MODULE_NAME = 'jobrouter_JobRouterDataTables';
 
     /**
      * @var class-string<\TYPO3\CMS\Backend\View\BackendTemplateView>
