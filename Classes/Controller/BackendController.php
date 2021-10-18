@@ -150,13 +150,22 @@ final class BackendController extends ActionController
 
     protected function createShortcutHeaderButton(): void
     {
-        if ($this->getBackendUser()->mayMakeShortcut()) {
-            $shortcutButton = $this->buttonBar->makeShortcutButton()
-                ->setModuleName(self::MODULE_NAME)
-                ->setGetVariables(['route', 'module', 'id'])
-                ->setDisplayName('Shortcut');
-            $this->buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
+        if (! $this->getBackendUser()->mayMakeShortcut()) {
+            return;
         }
+
+        $label = $this->languageService->sL(
+            \sprintf(
+                'LLL:EXT:%s/Resources/Private/Language/BackendModule.xlf:heading_text',
+                Extension::KEY
+            )
+        );
+
+        $shortcutButton = $this->buttonBar->makeShortcutButton()
+            ->setModuleName(self::MODULE_NAME)
+            ->setGetVariables(['route', 'module', 'id'])
+            ->setDisplayName($label);
+        $this->buttonBar->addButton($shortcutButton, ButtonBar::BUTTON_POSITION_RIGHT);
     }
 
     protected function getBackendUser(): BackendUserAuthentication
