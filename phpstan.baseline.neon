@@ -1,0 +1,653 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Cache\\\\Cache\\:\\:getCacheManager\\(\\) should return TYPO3\\\\CMS\\\\Core\\\\Cache\\\\CacheManager but returns object\\.$#"
+			count: 1
+			path: Classes/Cache/Cache.php
+
+		-
+			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
+			count: 2
+			path: Classes/Command/SyncCommand.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/Command/SyncCommand.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Command\\\\SyncCommand\\:\\:runSynchronisation\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Command/SyncCommand.php
+
+		-
+			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\: string, 2\\: string\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
+			count: 1
+			path: Classes/Command/SyncCommand.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 2
+			path: Classes/Command/SyncCommand.php
+
+		-
+			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
+			count: 2
+			path: Classes/Command/TransmitCommand.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/Command/TransmitCommand.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Command\\\\TransmitCommand\\:\\:runTransmitter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Command/TransmitCommand.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 2
+			path: Classes/Command/TransmitCommand.php
+
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:getModuleTemplate\\(\\)\\.$#"
+			count: 1
+			path: Classes/Controller/BackendController.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 4
+			path: Classes/Controller/TableAjaxController.php
+
+		-
+			message: "#^Cannot access offset 'tableId' on array\\|object\\|null\\.$#"
+			count: 1
+			path: Classes/Controller/TableAjaxController.php
+
+		-
+			message: "#^If condition is always true\\.$#"
+			count: 1
+			path: Classes/Controller/TableAjaxController.php
+
+		-
+			message: "#^Parameter \\#1 \\$connection of method Brotkrueml\\\\JobRouterConnector\\\\RestClient\\\\RestClientFactory\\:\\:create\\(\\) expects Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Model\\\\Connection, Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Model\\\\Connection\\|null given\\.$#"
+			count: 1
+			path: Classes/Controller/TableAjaxController.php
+
+		-
+			message: "#^\"empty\\(\\$tableUid\\)\" is forbidden to use$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:process\\(\\) has parameter \\$contentObjectConfiguration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:process\\(\\) has parameter \\$processedData with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:process\\(\\) has parameter \\$processorConfiguration with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:\\$flexFormService \\(TYPO3\\\\CMS\\\\Core\\\\Service\\\\FlexFormService\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:\\$tableRepository \\(Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
+			message: "#^\"empty\\(\\$handle\\)\" is forbidden to use$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^\"empty\\(\\$this\\-\\>table\\)\" is forbidden to use$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message:
+				"""
+					#^"switch \\(\\$type\\) \\{
+					    case \\\\Brotkrueml\\\\JobRouterBase\\\\Enumeration\\\\FieldTypeEnumeration\\:\\:TEXT\\:
+					        \\$value \\= \\(string\\) \\$value;
+					        if \\(\\$fieldSize \\!\\=\\= 0\\) \\{
+					            \\$value \\= \\\\substr\\(\\$value, 0, \\$fieldSize\\);
+					        \\}
+					        return \\$value;
+					    case \\\\Brotkrueml\\\\JobRouterBase\\\\Enumeration\\\\FieldTypeEnumeration\\:\\:INTEGER\\:
+					        return \\$value \\=\\=\\= '' \\? '' \\: \\(int\\) \\$value;
+					    case \\\\Brotkrueml\\\\JobRouterBase\\\\Enumeration\\\\FieldTypeEnumeration\\:\\:DECIMAL\\:
+					        return \\$value \\=\\=\\= '' \\? '' \\: \\(float\\) \\$value;
+					    case \\\\Brotkrueml\\\\JobRouterBase\\\\Enumeration\\\\FieldTypeEnumeration\\:\\:DATE\\:
+					    case \\\\Brotkrueml\\\\JobRouterBase\\\\Enumeration\\\\FieldTypeEnumeration\\:\\:DATETIME\\:
+					        throw new \\\\Brotkrueml\\\\JobRouterData\\\\Exception\\\\InvalidFieldTypeException\\(\\\\sprintf\\('The field type "%%d" is not implemented in the form finisher yet', \\$type\\), 1601884157\\);
+					\\}" is forbidden to use$#
+				"""
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Call to an undefined method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository\\:\\:findOneByHandle\\(\\)\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Cannot call method critical\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 2
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Cannot call method getColumns\\(\\) on Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\|null\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Cannot call method getName\\(\\) on Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\|null\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Cannot call method getUid\\(\\) on Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\|null\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Class cognitive complexity is 12, keep it under 10$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Finishers\\\\TransmitDataFinisher\\:\\:considerTypeForFieldValue\\(\\) has parameter \\$value with no typehint specified\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Parameter \\#1 \\$handle of method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Finishers\\\\TransmitDataFinisher\\:\\:determineTable\\(\\) expects string\\|null, array\\|string\\|null given\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Parameter \\#1 \\$tableUid of method Brotkrueml\\\\JobRouterData\\\\Transfer\\\\Preparer\\:\\:store\\(\\) expects int, int\\|null given\\.$#"
+			count: 1
+			path: Classes/Domain/Finishers/TransmitDataFinisher.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Dataset\\:\\:\\$decodedDataset \\(array\\) does not accept null\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Dataset.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Dataset\\:\\:\\$decodedDataset type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Dataset.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:getColumns\\(\\) return type with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage does not specify its types\\: TEntity$#"
+			count: 1
+			path: Classes/Domain/Model/Table.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:getDatasets\\(\\) return type with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage does not specify its types\\: TEntity$#"
+			count: 1
+			path: Classes/Domain/Model/Table.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:setColumns\\(\\) has parameter \\$columns with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage but does not specify its types\\: TEntity$#"
+			count: 1
+			path: Classes/Domain/Model/Table.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:setDatasets\\(\\) has parameter \\$datasets with generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\ObjectStorage but does not specify its types\\: TEntity$#"
+			count: 1
+			path: Classes/Domain/Model/Table.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Cell\\:\\:setContent\\(\\) has parameter \\$content with no typehint specified\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Table/Cell.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Row\\:\\:\\$cells \\(array\\<Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Cell\\>\\) does not accept iterable\\<Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Cell\\>\\.$#"
+			count: 1
+			path: Classes/Domain/Model/Table/Row.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/Domain/Repository/DatasetRepository.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
+
+		-
+			message: "#^Call to an undefined method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository\\:\\:findOneByHandle\\(\\)\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\JobRouter\\\\JobDataRepository\\:\\:add\\(\\) has parameter \\$dataset with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\JobRouter\\\\JobDataRepository\\:\\:update\\(\\) has parameter \\$dataset with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
+
+		-
+			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+
+		-
+			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
+			count: 2
+			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\QueryBuilder\\\\TransferRepository\\:\\:deleteOldSuccessfulTransfers\\(\\) should return int but returns Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/Domain/Repository/TableRepository.php
+
+		-
+			message: "#^Cannot call method getFirst\\(\\) on array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
+			count: 2
+			path: Classes/Domain/Repository/TableRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository\\:\\:findAllByTypeWithHidden\\(\\) should return iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface but returns array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/TableRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository\\:\\:findAllSyncTables\\(\\) should return iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface but returns array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/TableRepository.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findErroneousTransfers\\(\\) should return iterable&TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface but returns array\\|TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\QueryResultInterface\\.$#"
+			count: 1
+			path: Classes/Domain/Repository/TransferRepository.php
+
+		-
+			message: "#^Offset 'exitCode' does not exist on array\\|null\\.$#"
+			count: 1
+			path: Classes/EventListener/ToolbarItemProvider.php
+
+		-
+			message: "#^Offset 'start' does not exist on array\\|null\\.$#"
+			count: 1
+			path: Classes/EventListener/ToolbarItemProvider.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\EventListener\\\\ToolbarItemProvider\\:\\:\\$lastRunInformation type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/EventListener/ToolbarItemProvider.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setTemplatePathAndFilename\\(\\)\\.$#"
+			count: 1
+			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\TablePreviewRenderer\\:\\:getItemContent\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\TablePreviewRenderer\\:\\:preProcess\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\TablePreviewRenderer\\:\\:\\$tableRepository \\(Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\TablePreviewRenderer\\:\\:\\$view \\(TYPO3\\\\CMS\\\\Fluid\\\\View\\\\StandaloneView\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$command with no typehint specified\\.$#"
+			count: 1
+			path: Classes/Hooks/TableUpdateHook.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$commandValue with no typehint specified\\.$#"
+			count: 1
+			path: Classes/Hooks/TableUpdateHook.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$recordId with no typehint specified\\.$#"
+			count: 1
+			path: Classes/Hooks/TableUpdateHook.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$table with no typehint specified\\.$#"
+			count: 1
+			path: Classes/Hooks/TableUpdateHook.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:\\$connectionPool \\(TYPO3\\\\CMS\\\\Core\\\\Database\\\\ConnectionPool\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Hooks/TableUpdateHook.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Service\\\\CustomTables\\:\\:getTables\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Service/CustomTables.php
+
+		-
+			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Service\\\\CustomTables\\:\\:\\$connectionPool \\(TYPO3\\\\CMS\\\\Core\\\\Database\\\\ConnectionPool\\) does not accept object\\.$#"
+			count: 1
+			path: Classes/Service/CustomTables.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 2
+			path: Classes/Synchronisation/AbstractSynchroniser.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\AbstractSynchroniser\\:\\:hashDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Synchronisation/AbstractSynchroniser.php
+
+		-
+			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 2
+			path: Classes/Synchronisation/CustomTableSynchroniser.php
+
+		-
+			message: "#^Cannot call method emergency\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/CustomTableSynchroniser.php
+
+		-
+			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/CustomTableSynchroniser.php
+
+		-
+			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/CustomTableSynchroniser.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Synchronisation/CustomTableSynchroniser.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Synchronisation/CustomTableSynchroniser.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/Synchronisation/SimpleTableSynchroniser.php
+
+		-
+			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 3
+			path: Classes/Synchronisation/SimpleTableSynchroniser.php
+
+		-
+			message: "#^Cannot call method emergency\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SimpleTableSynchroniser.php
+
+		-
+			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SimpleTableSynchroniser.php
+
+		-
+			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SimpleTableSynchroniser.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SimpleTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SimpleTableSynchroniser.php
+
+		-
+			message: "#^Parameter \\#1 \\$tableUid of static method Brotkrueml\\\\JobRouterData\\\\Cache\\\\Cache\\:\\:clearCacheByTable\\(\\) expects int, int\\|null given\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SimpleTableSynchroniser.php
+
+		-
+			message:
+				"""
+					#^"switch \\(\\$table\\-\\>getType\\(\\)\\) \\{
+					    case \\\\Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:TYPE_SIMPLE\\:
+					        \\$this\\-\\>totalNumberOfTables\\+\\+;
+					        if \\(\\!\\$this\\-\\>simpleTableSynchroniser\\-\\>synchroniseTable\\(\\$table\\)\\) \\{
+					            \\$this\\-\\>erroneousNumberOfTables\\+\\+;
+					        \\}
+					        break;
+					    case \\\\Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:TYPE_CUSTOM_TABLE\\:
+					        \\$this\\-\\>totalNumberOfTables\\+\\+;
+					        if \\(\\!\\$this\\-\\>customTableSynchroniser\\-\\>synchroniseTable\\(\\$table\\)\\) \\{
+					            \\$this\\-\\>erroneousNumberOfTables\\+\\+;
+					        \\}
+					        break;
+					    case \\\\Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:TYPE_OTHER_USAGE\\:
+					    case \\\\Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:TYPE_FORM_FINISHER\\:
+					        // do nothing
+					        break;
+					    default\\:
+					        \\$message \\= \\\\sprintf\\('Table with uid "%%d" has invalid type "%%d"\\!', \\$table\\-\\>getUid\\(\\), \\$table\\-\\>getType\\(\\)\\);
+					        \\$this\\-\\>logger\\-\\>error\\(\\$message\\);
+					        \\$this\\-\\>erroneousNumberOfTables\\+\\+;
+					\\}" is forbidden to use$#
+				"""
+			count: 1
+			path: Classes/Synchronisation/SynchronisationRunner.php
+
+		-
+			message: "#^Cannot call method emergency\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SynchronisationRunner.php
+
+		-
+			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SynchronisationRunner.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SynchronisationRunner\\:\\:run\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Synchronisation/SynchronisationRunner.php
+
+		-
+			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\:int\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
+			count: 1
+			path: Classes/Synchronisation/SynchronisationRunner.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 1
+			path: Classes/Synchronisation/SynchronisationRunner.php
+
+		-
+			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Deleter.php
+
+		-
+			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Deleter.php
+
+		-
+			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 2
+			path: Classes/Transfer/Deleter.php
+
+		-
+			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Deleter.php
+
+		-
+			message: "#^Cannot call method critical\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Preparer.php
+
+		-
+			message: "#^\"empty\\(\\$table\\)\" is forbidden to use$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Call to an undefined method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TransferRepository\\:\\:findByTransmitSuccess\\(\\)\\.$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
+			count: 2
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Do not use static property$#"
+			count: 3
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Transfer\\\\Transmitter\\:\\:run\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\: int\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 1
+			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\ColumnLabelViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/ViewHelpers/ColumnLabelViewHelper.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\FormatCellViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/ViewHelpers/FormatCellViewHelper.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\SubtractViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/ViewHelpers/SubtractViewHelper.php
+
+		-
+			message: "#^\"empty\\(\\$lastRunInformation\\)\" is forbidden to use$#"
+			count: 1
+			path: Classes/Widgets/Provider/TransferStatusDataProvider.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 2
+			path: Configuration/Backend/AjaxRoutes.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 4
+			path: Configuration/Icons.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 1
+			path: Configuration/Icons.php
+
+		-
+			message: "#^Right side of \\|\\| is always false\\.$#"
+			count: 1
+			path: Configuration/TCA/Overrides/tt_content.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 28
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_column.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 1
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_column.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 11
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_dataset.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 1
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_dataset.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 42
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_table.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 1
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_table.php
+
+		-
+			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
+			count: 19
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_transfer.php
+
+		-
+			message: "#^Use value object over return of values$#"
+			count: 1
+			path: Configuration/TCA/tx_jobrouterdata_domain_model_transfer.php
+

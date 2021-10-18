@@ -1,5 +1,5 @@
 .PHONY: qa
-qa: cs unit-tests rector-dry yaml-lint
+qa: cs unit-tests phpstan rector-dry yaml-lint
 
 .PHONY: acceptance-tests
 acceptance-tests: vendor
@@ -20,6 +20,10 @@ code-coverage: vendor
 .PHONY: cs
 cs: vendor
 	.Build/bin/ecs check --fix
+
+.PHONY: phpstan
+phpstan: vendor
+	.Build/bin/phpstan analyse
 
 .PHONY: rector
 rector: vendor
