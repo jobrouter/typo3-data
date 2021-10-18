@@ -61,7 +61,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
     {
         $this->determineTable($this->parseOption('handle'));
         $data = $this->prepareData();
-        $this->preparer->store($this->table->getUid(), $this->correlationId, \json_encode($data));
+        $this->preparer->store($this->table->getUid(), $this->correlationId, \json_encode($data, \JSON_THROW_ON_ERROR));
     }
 
     private function determineTable(?string $handle): void

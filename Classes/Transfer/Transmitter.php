@@ -127,13 +127,13 @@ class Transmitter implements LoggerAwareInterface
     {
         $result = $this
             ->getJobDataRepositoryForTableUid($transfer->getTableUid())
-            ->add(\json_decode($transfer->getData(), true));
+            ->add(\json_decode($transfer->getData(), true, 512, \JSON_THROW_ON_ERROR));
         $jrid = $result[0]['jrid'] ?? null;
 
         $transfer->setTransmitSuccess(true);
         $transfer->setTransmitMessage($jrid ? \json_encode([
             'jrid' => $jrid,
-        ]) : '');
+        ], \JSON_THROW_ON_ERROR) : '');
     }
 
     private function getJobDataRepositoryForTableUid(int $tableUid): JobDataRepository

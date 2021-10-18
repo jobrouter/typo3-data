@@ -81,7 +81,7 @@ class DatasetTest extends TestCase
     {
         $this->subject->setDataset(\json_encode([
             'someColumn' => 'someValue',
-        ]));
+        ], \JSON_THROW_ON_ERROR));
 
         $actual = $this->subject->getDatasetContentForColumn('someColumn');
         self::assertSame('someValue', $actual);
@@ -97,10 +97,10 @@ class DatasetTest extends TestCase
     {
         $this->subject->setDataset(\json_encode([
             'someColumn' => 'someValue',
-        ]));
+        ], \JSON_THROW_ON_ERROR));
         $this->subject->setDataset(\json_encode([
             'someOtherColumn' => 'someOtherValue',
-        ]));
+        ], \JSON_THROW_ON_ERROR));
 
         $actual = $this->subject->getDatasetContentForColumn('someColumn');
         self::assertNull($actual);

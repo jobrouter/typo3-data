@@ -72,7 +72,10 @@ class Dataset extends AbstractEntity
     public function getDatasetContentForColumn(string $column): ?string
     {
         if ($this->decodedDataset === null) {
-            $this->decodedDataset = \json_decode($this->dataset, true);
+            try {
+                $this->decodedDataset = \json_decode($this->dataset, true, 512, \JSON_THROW_ON_ERROR);
+            } catch (\JsonException $e) {
+            }
         }
 
         return $this->decodedDataset[$column] ?? null;

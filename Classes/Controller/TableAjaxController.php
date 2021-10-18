@@ -82,6 +82,6 @@ final class TableAjaxController
 
         return $this->responseFactory->createResponse(200)
             ->withHeader('Content-Type', 'application/json; charset=utf-8')
-            ->withBody($this->streamFactory->createStream(\json_encode($result)));
+            ->withBody($this->streamFactory->createStream(\json_encode($result, \JSON_THROW_ON_ERROR)));
     }
 }

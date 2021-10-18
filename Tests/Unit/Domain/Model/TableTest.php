@@ -223,14 +223,14 @@ class TableTest extends TestCase
             'jrid' => 1,
             'column1' => 'value1-1',
             'column2' => 'value1-2',
-        ]));
+        ], \JSON_THROW_ON_ERROR));
         $this->subject->addDataset($dataset1);
         $dataset2 = new Dataset();
         $dataset2->setDataset(\json_encode([
             'jrid' => 2,
             'column1' => 'value2-1',
             'column2' => 'value2-2',
-        ]));
+        ], \JSON_THROW_ON_ERROR));
         $this->subject->addDataset($dataset2);
 
         /** @var Row[] $actual */

@@ -215,7 +215,7 @@ class Table extends AbstractEntity
     {
         $rows = [];
         foreach ($this->datasets as $dataset) {
-            $datasetArray = \json_decode($dataset->getDataset(), true);
+            $datasetArray = \json_decode($dataset->getDataset(), true, 512, \JSON_THROW_ON_ERROR);
 
             $row = new Row();
             foreach ($this->columns as $column) {
@@ -226,7 +226,7 @@ class Table extends AbstractEntity
                     $cell->setContent($dataset->getJrid());
                     $cell->setType(FieldTypeEnumeration::INTEGER);
                 } else {
-                    $cell->setContent($datasetArray[$column->getName() ?? '']);
+                    $cell->setContent($datasetArray[$column->getName()] ?? '');
                     $cell->setType($column->getType());
                     $cell->setDecimalPlaces($column->getDecimalPlaces());
                 }

@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Content element cannot be selected from new content element wizard
 
+### Removed
+- Compatibility with PHP 7.2
+
 ## [0.13.0] - 2021-03-14
 
 ### Added

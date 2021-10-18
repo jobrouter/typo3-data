@@ -24,6 +24,20 @@ the Dashboard system extension. To use the :ref:`form finisher <form-finisher>`
 install and activate the Form system extension.
 
 
+.. _version-matrix:
+
+Version matrix
+==============
+
+============== ========== ===========
+JobRouter Data PHP        TYPO3
+============== ========== ===========
+0.13           7.2 - 7.4  10.4
+-------------- ---------- -----------
+0.14           7.3 - 8.0  10.4 / 11.5
+============== ========== ===========
+
+
 .. _installation-composer:
 
 Installation via composer

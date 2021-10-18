@@ -31,6 +31,12 @@ Fixed
 
 * Content element cannot be selected from new content element wizard
 
+Removed
+^^^^^^^
+
+
+* Compatibility with PHP 7.2
+
 `0.13.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.3...v0.13.0>`_ - 2021-03-14
 ---------------------------------------------------------------------------------------------------------
 

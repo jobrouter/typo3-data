@@ -178,7 +178,11 @@ class JobDataRepository
      */
     protected function buildDatasetsArrayFromJson(string $json): array
     {
-        $decodedJson = \json_decode($json, true) ?? [];
+        try {
+            $decodedJson = \json_decode($json, true, 512, \JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            $decodedJson = [];
+        }
         if (! \array_key_exists('datasets', $decodedJson)) {
             throw new DatasetsNotAvailableException(
                 \sprintf('Key "datasets" is not available in response, given: %s', $json),
