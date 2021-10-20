@@ -12,10 +12,9 @@ Target group: **Editors, Integrators, Administrators**
    :depth: 1
    :local:
 
-With the `Dashboard <https://docs.typo3.org/c/typo3/cms-dashboard/master/en-us/>`_
-system extension installed, some widgets can be used for statistics. You can
-find them in the :guilabel:`Add widget` wizard on the
-:guilabel:`JobRouter` tab:
+With the :ref:`Dashboard <t3dashboard:introduction>` system extension
+installed, some widgets can be used for statistics. You can find them in the
+:guilabel:`Add widget` wizard on the :guilabel:`JobRouter` tab:
 
 .. figure:: _images/dashboard-add-widget.png
    :alt: Add JobRouter widgets

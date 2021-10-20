@@ -42,9 +42,8 @@ Activate this option to log into the table `tx_jobrouterbase_log`. It is
 disabled by default.
 
 .. hint::
-
    To display the log entries of this table in the TYPO3 backend, install the
-   extension `co-stack/logs <https://extensions.typo3.org/extension/logs>`_.
+   extension `co-stack/logs`_.
 
 Log level
 ~~~~~~~~~
@@ -71,3 +70,5 @@ site package extension and add the path via TypoScript, e.g.::
       templateRootPaths.10 = EXT:your_extension/Resources/Private/Template/JobRouterData/
    }
 
+
+.. _co-stack/logs: https://extensions.typo3.org/extension/logs
