@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf" date="2020-01-23T10:48:17Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf" date="2021-10-21T15:23:24Z" product-name="jobrouter_data">
 		<body>
 			<trans-unit id="logIntoFile" resname="logIntoFile">
-				<source><![CDATA[Log into file: File: var/log/typo3_jobrouter_data_<hash>.log]]></source>
+				<source><![CDATA[Log into file (deprecated, set up your own log writers): File: var/log/typo3_jobrouter_data_<hash>.log ]]></source>
 			</trans-unit>
 			<trans-unit id="logIntoTable" resname="logIntoTable">
-				<source><![CDATA[Log into table: Table: tx_jobrouterbase_log]]></source>
+				<source><![CDATA[Log into table (deprecated, set up your own log writers): Table: tx_jobrouterbase_log]]></source>
 			</trans-unit>
 			<trans-unit id="logLevel" resname="logLevel">
-				<source><![CDATA[Log level]]></source>
+				<source><![CDATA[Log level (deprecated, set up your own log writers)]]></source>
 			</trans-unit>
 		</body>
 	</file>

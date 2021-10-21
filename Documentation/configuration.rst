@@ -16,6 +16,11 @@ Target group: **Administrators**
 Extension configuration
 =======================
 
+.. deprecated:: 0.14.0
+   The configuration of logging is deprecated and will be removed in the next
+   major version 0.15.0 or 1.0.0. :ref:`Configure the required log writers
+   <configuration-logging>` in your site package instead.
+
 To configure the extension, go to :guilabel:`Admin Tools` > :guilabel:`Settings`
 > :guilabel:`Extension Configuration` and click on the :guilabel:`Configure
 extensions` button. Open the :guilabel:`jobrouter_data` configuration:
@@ -50,6 +55,28 @@ Log level
 
 Using the drop down menu you can select the log level for the activated log
 options. :guilabel:`warning` is selected by default.
+
+
+.. _configuration-logging:
+
+Logging
+=======
+
+If logging is necessary to track synchronisations and possible warnings or
+errors, you can set up :ref:`log writers <t3api:logging-writers>` depending on
+your needs.
+
+**Example:** To log all warnings and higher levels of this extension into a
+file, add this snippet to the :file:`ext_localconf.php` file of your site
+package extension:
+
+.. code-block:: php
+
+   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterData']['writerConfiguration'][\Psr\Log\Level::WARNING] =
+      [\TYPO3\CMS\Core\Log\Writer\FileWriter::class] = ['logFileInfix' => 'jobrouter_data'];
+
+The messages are then written to the
+:file:`var/log/typo3_jobrouter_data_<hash>.log` file.
 
 
 .. _configuration-templates:

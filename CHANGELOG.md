@@ -14,6 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Rename "own table" to "custom table"
 - Use table handle instead of uid as argument in SyncCommand
 
+### Deprecated
+- Configuration of log writers in the extension configuration
+
 ### Fixed
 - Content element cannot be selected from new content element wizard
 

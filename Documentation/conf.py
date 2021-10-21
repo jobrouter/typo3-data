@@ -193,6 +193,7 @@ intersphinx_mapping = {
     'jobrouter-client': ('https://jobrouter-client.readthedocs.io/en/stable/', None),
     'typo3-jobrouter-base': ('https://typo3-jobrouter.readthedocs.io/projects/base/en/stable/', None),
     'typo3-jobrouter-connector': ('https://typo3-jobrouter.readthedocs.io/projects/connector/en/stable/', None),
+    't3api': ('https://docs.typo3.org/m/typo3/reference-coreapi/11.5/en-us/', None),
     't3dashboard': ('https://docs.typo3.org/c/typo3/cms-dashboard/10.4/en-us/', None),
     't3gettingstarted': ('https://docs.typo3.org/m/typo3/tutorial-getting-started/11.5/en-us/', None),
 }

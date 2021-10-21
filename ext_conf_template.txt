@@ -1,5 +1,5 @@
 # cat=Log; type=boolean; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logIntoFile
-logIntoFile = 1
+logIntoFile = 0
 
 # cat=Log; type=boolean; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logIntoTable
 logIntoTable = 0

@@ -25,6 +25,12 @@ Changed
 * Rename "own table" to "custom table"
 * Use table handle instead of uid as argument in SyncCommand
 
+Deprecated
+^^^^^^^^^^
+
+
+* Configuration of log writers in the extension configuration
+
 Fixed
 ^^^^^
 
