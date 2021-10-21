@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterData\Domain\Repository\JobRouter;
 
 use Brotkrueml\JobRouterClient\Client\ClientInterface;
 use Brotkrueml\JobRouterClient\Exception\ExceptionInterface;
+use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
@@ -67,16 +68,17 @@ class JobDataRepository
     protected function getClient(): ClientInterface
     {
         if (! $this->client) {
-            $this->table = $this->tableRepository->findOneByHandle($this->tableHandle);
-            if (! $this->table) {
+            $table = $this->tableRepository->findOneByHandle($this->tableHandle);
+            if (! $table instanceof Table) {
                 throw new TableNotAvailableException(
                     \sprintf('Table with handle "%s" is not available!', $this->tableHandle),
                     1595951023
                 );
             }
 
+            $this->table = $table;
             $connection = $this->table->getConnection();
-            if (! $connection) {
+            if (! $connection instanceof Connection) {
                 throw new ConnectionNotAvailableException(
                     \sprintf('Connection for table with handle "%s" is not available!', $this->tableHandle),
                     1595951024

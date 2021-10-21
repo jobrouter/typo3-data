@@ -173,11 +173,17 @@ class Table extends AbstractEntity
         $this->columns->detach($columnToRemove);
     }
 
+    /**
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column>
+     */
     public function getColumns(): ObjectStorage
     {
         return $this->columns;
     }
 
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column> $columns
+     */
     public function setColumns(ObjectStorage $columns): void
     {
         $this->columns = $columns;
@@ -193,11 +199,17 @@ class Table extends AbstractEntity
         $this->datasets->detach($datasetToRemove);
     }
 
+    /**
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Dataset>
+     */
     public function getDatasets(): ObjectStorage
     {
         return $this->datasets;
     }
 
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Dataset> $datasets
+     */
     public function setDatasets(ObjectStorage $datasets): void
     {
         $this->datasets = $datasets;
