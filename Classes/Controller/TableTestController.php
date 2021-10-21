@@ -11,7 +11,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Controller;
 
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
+use Brotkrueml\JobRouterData\Domain\Entity\TableTestResult;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -29,6 +31,10 @@ final class TableTestController
      */
     private $tableRepository;
     /**
+     * @var RestClientFactoryInterface
+     */
+    private $restClientFactory;
+    /**
      * @var ResponseFactoryInterface
      */
     private $responseFactory;
@@ -39,49 +45,52 @@ final class TableTestController
 
     public function __construct(
         TableRepository $tableRepository,
+        RestClientFactoryInterface $restClientFactory,
         ResponseFactoryInterface $responseFactory,
         StreamFactoryInterface $streamFactory
     ) {
         $this->tableRepository = $tableRepository;
+        $this->restClientFactory = $restClientFactory;
         $this->responseFactory = $responseFactory;
         $this->streamFactory = $streamFactory;
     }
 
-    public function checkAction(ServerRequestInterface $request): ResponseInterface
+    public function __invoke(ServerRequestInterface $request): ResponseInterface
     {
-        $tableId = (int)$request->getParsedBody()['tableId'];
-
-        $result = [
-            'check' => 'ok',
-        ];
-        try {
-            /** @var Table $table */
-            $table = $this->tableRepository->findByIdentifierWithHidden($tableId);
-
-            if ($table) {
-                try {
-                    (new RestClientFactory())->create($table->getConnection())->request(
-                        'GET',
-                        \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
-                    );
-                } catch (\Exception $e) {
-                    $result = [
-                        'error' => $e->getMessage(),
-                    ];
-                }
-            } else {
-                $result = [
-                    'error' => \sprintf('Table with id %s not found!', $tableId),
-                ];
-            }
-        } catch (\Exception $e) {
-            $result = [
-                'error' => $e->getMessage(),
-            ];
+        $body = $request->getParsedBody();
+        if (! \is_array($body)) {
+            return $this->buildResponse('Request has no valid body!');
         }
+
+        $tableId = (int)$body['tableId'];
+        try {
+            /** @var Table|null $table */
+            $table = $this->tableRepository->findByIdentifierWithHidden($tableId);
+            if (! $table instanceof Table) {
+                return $this->buildResponse(\sprintf('Table with id "%s" not found!', $tableId));
+            }
+
+            $connection = $table->getConnection();
+            if (! $connection instanceof Connection) {
+                return $this->buildResponse(\sprintf('Connection with id "%s" not found or disabled!', $tableId));
+            }
+
+            $this->restClientFactory->create($connection)->request(
+                'GET',
+                \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
+            );
+            return $this->buildResponse();
+        } catch (\Throwable $t) {
+            return $this->buildResponse($t->getMessage());
+        }
+    }
+
+    private function buildResponse(string $errorMessage = ''): ResponseInterface
+    {
+        $result = new TableTestResult($errorMessage);
 
         return $this->responseFactory->createResponse(200)
             ->withHeader('Content-Type', 'application/json; charset=utf-8')
-            ->withBody($this->streamFactory->createStream(\json_encode($result, \JSON_THROW_ON_ERROR)));
+            ->withBody($this->streamFactory->createStream($result->toJson()));
     }
 }

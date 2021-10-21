@@ -56,26 +56,6 @@ parameters:
 			path: Classes/Controller/BackendController.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 4
-			path: Classes/Controller/TableAjaxController.php
-
-		-
-			message: "#^Cannot access offset 'tableId' on array\\|object\\|null\\.$#"
-			count: 1
-			path: Classes/Controller/TableAjaxController.php
-
-		-
-			message: "#^If condition is always true\\.$#"
-			count: 1
-			path: Classes/Controller/TableAjaxController.php
-
-		-
-			message: "#^Parameter \\#1 \\$connection of method Brotkrueml\\\\JobRouterConnector\\\\RestClient\\\\RestClientFactory\\:\\:create\\(\\) expects Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Model\\\\Connection, Brotkrueml\\\\JobRouterConnector\\\\Domain\\\\Model\\\\Connection\\|null given\\.$#"
-			count: 1
-			path: Classes/Controller/TableAjaxController.php
-
-		-
 			message: "#^\"empty\\(\\$tableUid\\)\" is forbidden to use$#"
 			count: 1
 			path: Classes/DataProcessing/TableProcessor.php
