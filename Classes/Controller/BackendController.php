@@ -102,7 +102,7 @@ final class BackendController extends ActionController
             \str_replace('LLL:', '', Extension::LANGUAGE_PATH_BACKEND_MODULE)
         );
         $pageRenderer->loadRequireJsModule(
-            'TYPO3/CMS/JobrouterData/TableCheck'
+            'TYPO3/CMS/JobrouterData/TableTest'
         );
 
         $simpleTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_SIMPLE);

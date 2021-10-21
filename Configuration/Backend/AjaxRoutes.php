@@ -10,8 +10,8 @@ declare(strict_types=1);
  */
 
 return [
-    'jobrouter_data_table_check' => [
-        'path' => '/jobrouter/data/table/check',
-        'target' => \Brotkrueml\JobRouterData\Controller\TableAjaxController::class . '::checkAction',
+    'jobrouter_data_table_test' => [
+        'path' => '/jobrouter/data/table/test',
+        'target' => Brotkrueml\JobRouterData\Controller\TableTestController::class . '::checkAction',
     ],
 ];

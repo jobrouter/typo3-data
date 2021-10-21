@@ -22,7 +22,7 @@ use Psr\Http\Message\StreamFactoryInterface;
 /**
  * @internal
  */
-final class TableAjaxController
+final class TableTestController
 {
     /**
      * @var TableRepository

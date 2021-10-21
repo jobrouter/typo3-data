@@ -36,7 +36,7 @@ services:
         description: 'Transmit data sets to JobData tables'
         schedulable: true
 
-  Brotkrueml\JobRouterData\Controller\TableAjaxController:
+  Brotkrueml\JobRouterData\Controller\TableTestController:
     tags: [ 'backend.controller' ]
 
   Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository:

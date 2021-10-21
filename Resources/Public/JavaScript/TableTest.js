@@ -8,8 +8,8 @@ define([
 
   const tableCheck = (id, name) => {
     const notificationTitle = TYPO3.lang['table_check_for'] + ' ' + name;
-    const request = new AjaxRequest(TYPO3.settings.ajaxUrls['jobrouter_data_table_check']);
-
+    const request = new AjaxRequest(TYPO3.settings.ajaxUrls['jobrouter_data_table_test']);
+console.log(TYPO3.settings.ajaxUrls['jobrouter_data_table_test']);
     request.post({tableId: +id}).then(
       async response => {
         const data = await response.resolve();
