@@ -1,6 +1,5 @@
 Documentation/_build/
 .Build
 .idea
-.phpunit.result.cache
 .scannerwork
 composer.lock
