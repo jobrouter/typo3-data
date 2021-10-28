@@ -77,7 +77,7 @@ final class TransferStatusDataProvider implements TransferStatusDataProviderInte
     private function evaluateLastRun(): void
     {
         $lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, 'transmitCommand.lastRun');
-        if (empty($lastRunInformation)) {
+        if (! \is_array($lastRunInformation)) {
             return;
         }
 
