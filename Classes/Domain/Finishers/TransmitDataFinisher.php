@@ -22,16 +22,12 @@ use Brotkrueml\JobRouterData\Exception\MissingColumnException;
 use Brotkrueml\JobRouterData\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
 use Brotkrueml\JobRouterData\Transfer\Preparer;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
 
 /**
  * @internal
  */
-final class TransmitDataFinisher extends AbstractTransferFinisher implements LoggerAwareInterface
+final class TransmitDataFinisher extends AbstractTransferFinisher
 {
-    use LoggerAwareTrait;
-
     /**
      * @var Preparer
      */
@@ -41,11 +37,6 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
      * @var TableRepository
      */
     private $tableRepository;
-
-    /**
-     * @var Table|null
-     */
-    private $table;
 
     public function injectPreparer(Preparer $preparer): void
     {
@@ -59,43 +50,41 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
 
     protected function process(): void
     {
-        $this->determineTable($this->parseOption('handle'));
-        $data = $this->prepareData();
-        $this->preparer->store($this->table->getUid(), $this->correlationId, \json_encode($data, \JSON_THROW_ON_ERROR));
+        $table = $this->getTable();
+        $data = $this->prepareData($table);
+        $this->preparer->store((int)$table->getUid(), $this->correlationId, \json_encode($data, \JSON_THROW_ON_ERROR));
     }
 
-    private function determineTable(?string $handle): void
+    private function getTable(): Table
     {
-        if (empty($handle)) {
+        $handle = $this->parseOption('handle');
+        if (! \is_string($handle) || $handle === '') {
             $message = \sprintf(
-                'Table handle in TransmitDataFinisher of form with identifier "%s" is not defined.',
+                'Table handle in TransmitDataFinisher of form with identifier "%s" is not defined correctly.',
                 $this->getFormIdentifier()
             );
-
-            $this->logger->critical($message);
 
             throw new MissingFinisherOptionException($message, 1601728021);
         }
 
-        $this->table = $this->tableRepository->findOneByHandle($handle);
-
-        if (empty($this->table)) {
+        $table = $this->tableRepository->findOneByHandle($handle);
+        if (! $table instanceof Table) {
             $message = \sprintf(
                 'Table with handle "%s" is not available, defined in form with identifier "%s"',
                 $handle,
                 $this->getFormIdentifier()
             );
 
-            $this->logger->critical($message);
-
             throw new TableNotAvailableException($message, 1601728085);
         }
+
+        return $table;
     }
 
     /**
      * @return mixed[]
      */
-    private function prepareData(): array
+    private function prepareData(Table $table): array
     {
         if (! isset($this->options['columns'])) {
             return [];
@@ -108,7 +97,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
             $this->finisherContext->getFormValues()
         );
 
-        $definedTableColumns = $this->getTableColumns();
+        $definedTableColumns = $this->getTableColumns($table);
         $data = [];
         foreach ($this->options['columns'] as $column => $value) {
             if (! \array_key_exists($column, $definedTableColumns)) {
@@ -117,7 +106,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
                         'Column "%s" is assigned in form with identifier "%s" but not defined in table link "%s"',
                         $column,
                         $this->getFormIdentifier(),
-                        $this->table->getName()
+                        $table->getName()
                     ),
                     1601736690
                 );
@@ -128,7 +117,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
                 $value
             );
 
-            $value = $this->resolveFormFields($formValues, $value);
+            $value = $this->resolveFormFields($formValues, (string)$value);
 
             $data[$column] = $this->considerTypeForFieldValue(
                 $value,
@@ -143,42 +132,48 @@ final class TransmitDataFinisher extends AbstractTransferFinisher implements Log
     /**
      * @return Column[]
      */
-    private function getTableColumns(): array
+    private function getTableColumns(Table $table): array
     {
-        $columns = $this->table->getColumns();
+        $columns = $table->getColumns();
 
         $tableFields = [];
         foreach ($columns as $column) {
             $tableFields[$column->getName()] = $column;
         }
 
+        // @phpstan-ignore-next-line
         return $tableFields;
     }
 
     /**
+     * @param mixed $value
      * @return string|int|float
      */
     private function considerTypeForFieldValue($value, int $type, int $fieldSize)
     {
-        switch ($type) {
-            case FieldTypeEnumeration::TEXT:
-                $value = (string)$value;
+        if ($type === FieldTypeEnumeration::TEXT) {
+            $value = (string)$value;
 
-                if ($fieldSize !== 0) {
-                    $value = \substr($value, 0, $fieldSize);
-                }
+            if ($fieldSize !== 0) {
+                $value = \substr($value, 0, $fieldSize);
+            }
 
-                return $value;
-            case FieldTypeEnumeration::INTEGER:
-                return $value === '' ? '' : (int)$value;
-            case FieldTypeEnumeration::DECIMAL:
-                return $value === '' ? '' : (float)$value;
-            case FieldTypeEnumeration::DATE:
-            case FieldTypeEnumeration::DATETIME:
-                throw new InvalidFieldTypeException(
-                    \sprintf('The field type "%d" is not implemented in the form finisher yet', $type),
-                    1601884157
-                );
+            return $value;
+        }
+
+        if ($type === FieldTypeEnumeration::INTEGER) {
+            return $value === '' ? '' : (int)$value;
+        }
+
+        if ($type === FieldTypeEnumeration::DECIMAL) {
+            return $value === '' ? '' : (float)$value;
+        }
+
+        if ($type === FieldTypeEnumeration::DATE || $type === FieldTypeEnumeration::DATETIME) {
+            throw new InvalidFieldTypeException(
+                \sprintf('The field type "%d" is not implemented in the form finisher yet', $type),
+                1601884157
+            );
         }
 
         throw new InvalidFieldTypeException(
