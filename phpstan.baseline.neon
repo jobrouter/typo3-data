@@ -340,16 +340,6 @@ parameters:
 			path: Classes/Transfer/Preparer.php
 
 		-
-			message: "#^\"empty\\(\\$table\\)\" is forbidden to use$#"
-			count: 1
-			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Transfer/Transmitter.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Transfer/Transmitter.php
@@ -362,21 +352,6 @@ parameters:
 		-
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
-			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^Do not use static property$#"
-			count: 3
-			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Transfer\\\\Transmitter\\:\\:run\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\: int\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
-			count: 1
 			path: Classes/Transfer/Transmitter.php
 
 		-
@@ -398,3 +373,4 @@ parameters:
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\SubtractViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/ViewHelpers/SubtractViewHelper.php
+

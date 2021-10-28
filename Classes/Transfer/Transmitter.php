@@ -50,11 +50,6 @@ class Transmitter implements LoggerAwareInterface
     private $restClientFactory;
 
     /**
-     * @var JobDataRepository[]
-     */
-    private static $jobDataRepositories = [];
-
-    /**
      * @var int
      */
     private $totalNumbersOfTransfers = 0;
@@ -76,7 +71,7 @@ class Transmitter implements LoggerAwareInterface
     }
 
     /**
-     * @return array<0: int, 1: int>
+     * @return array{0: int, 1: int}
      */
     public function run(): array
     {
@@ -109,6 +104,7 @@ class Transmitter implements LoggerAwareInterface
             $this->transmitTransfer($transfer);
         } catch (\Exception $e) {
             $this->erroneousNumbersOfTransfers++;
+            // @phpstan-ignore-next-line
             $context = [
                 'transfer uid' => $transfer->getUid(),
                 'exception class' => \get_class($e),
@@ -138,13 +134,16 @@ class Transmitter implements LoggerAwareInterface
 
     private function getJobDataRepositoryForTableUid(int $tableUid): JobDataRepository
     {
+        /** @var JobDataRepository[] $jobDataRepositories */
+        static $jobDataRepositories = [];
+
         $table = $this->getTable($tableUid);
 
-        if (static::$jobDataRepositories[$tableUid] ?? false) {
-            return static::$jobDataRepositories[$tableUid];
+        if ($jobDataRepositories[$tableUid] ?? false) {
+            return $jobDataRepositories[$tableUid];
         }
 
-        return static::$jobDataRepositories[$tableUid] = new JobDataRepository(
+        return $jobDataRepositories[$tableUid] = new JobDataRepository(
             $this->restClientFactory,
             $this->tableRepository,
             $table->getHandle()
@@ -153,10 +152,10 @@ class Transmitter implements LoggerAwareInterface
 
     private function getTable(int $tableUid): Table
     {
-        /** @var Table $table */
+        /** @var Table|null $table */
         $table = $this->tableRepository->findByIdentifier($tableUid);
 
-        if (empty($table)) {
+        if (! $table instanceof Table) {
             throw new TableNotAvailableException(
                 \sprintf(
                     'Table link with uid "%d" is not available',
