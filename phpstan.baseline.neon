@@ -81,16 +81,6 @@ parameters:
 			path: Classes/Service/CustomTables.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 2
-			path: Classes/Synchronisation/AbstractSynchroniser.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\AbstractSynchroniser\\:\\:hashDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Synchronisation/AbstractSynchroniser.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Synchronisation/CustomTableSynchroniser.php

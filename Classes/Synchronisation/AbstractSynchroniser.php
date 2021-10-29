@@ -62,6 +62,9 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
             ->findAll();
     }
 
+    /**
+     * @param list<array<string, string|int|float|bool|null>> $datasets
+     */
     protected function hashDatasets(array $datasets): string
     {
         return \sha1(\serialize($datasets));
@@ -69,10 +72,12 @@ abstract class AbstractSynchroniser implements LoggerAwareInterface
 
     protected function updateSynchronisationStatus(Table $table, ?string $datasetsHash = null, string $error = ''): void
     {
+        // @phpstan-ignore-next-line
         $data = [
             'last_sync_date' => time(),
             'last_sync_error' => $error,
         ];
+        // @phpstan-ignore-next-line
         $types = [
             'last_sync_date' => \PDO::PARAM_INT,
             'last_sync_error' => \PDO::PARAM_STR,
