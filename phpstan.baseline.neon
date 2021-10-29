@@ -3,31 +3,6 @@ parameters:
 		-
 			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
 			count: 1
-			path: Classes/Command/SyncCommand.php
-
-		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Command/SyncCommand.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Command\\\\SyncCommand\\:\\:runSynchronisation\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Command/SyncCommand.php
-
-		-
-			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\: string, 2\\: string\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
-			count: 1
-			path: Classes/Command/SyncCommand.php
-
-		-
-			message: "#^Use value object over return of values$#"
-			count: 2
-			path: Classes/Command/SyncCommand.php
-
-		-
-			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 1
 			path: Classes/Command/TransmitCommand.php
 
 		-

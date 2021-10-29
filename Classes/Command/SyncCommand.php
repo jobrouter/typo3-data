@@ -53,6 +53,10 @@ final class SyncCommand extends Command
      * @var SynchronisationRunner
      */
     private $synchronisationRunner;
+    /**
+     * @var SymfonyStyle
+     */
+    private $outputStyle;
 
     public function __construct(
         LockFactory $lockFactory,
@@ -78,58 +82,49 @@ final class SyncCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->startTime = time();
-        $outputStyle = new SymfonyStyle($input, $output);
+        $this->outputStyle = new SymfonyStyle($input, $output);
 
         try {
             $locker = $this->lockFactory->createLocker(self::class);
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
             $tableHandle = $input->getArgument(self::ARGUMENT_TABLE) ?: '';
-            [$exitCode, $messageType, $message] = $this->runSynchronisation($tableHandle);
+            $exitCode = $this->runSynchronisation($tableHandle);
             $locker->release();
-            $outputStyle->{$messageType}($message);
             $this->recordLastRun($exitCode);
 
             return $exitCode;
         } catch (LockException $e) {
-            $outputStyle->warning('Could not acquire lock, another process is running');
+            $this->outputStyle->note('Could not acquire lock, another process is running');
 
             return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
         }
     }
 
-    /**
-     * @return array<0: int, 1: string, 2: string>
-     */
-    private function runSynchronisation(string $tableHandle): array
+    private function runSynchronisation(string $tableHandle): int
     {
         $result = $this->synchronisationRunner->run($tableHandle);
 
         if ($result->errors > 0) {
-            $message = \sprintf('%d out of %d table(s) had errors on synchronisation', $result->errors, $result->total);
+            $this->outputStyle->warning(
+                \sprintf('%d out of %d table(s) had errors on synchronisation', $result->errors, $result->total)
+            );
 
-            return [
-                self::EXIT_CODE_ERRORS_ON_SYNCHRONISATION,
-                'warning',
-                $message,
-            ];
+            return self::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
         }
 
-        if ($tableHandle !== '') {
-            $message = \sprintf('Table with handle "%s" synchronised successfully', $tableHandle);
-        } else {
-            $message = \sprintf('%d table(s) synchronised successfully', $result->total);
-        }
+        $message = $tableHandle !== ''
+            ? \sprintf('Table with handle "%s" synchronised successfully', $tableHandle)
+            : \sprintf('%d table(s) synchronised successfully', $result->total);
 
-        return [
-            self::EXIT_CODE_OK,
-            'success',
-            $message,
-        ];
+        $this->outputStyle->success($message);
+
+        return self::EXIT_CODE_OK;
     }
 
     private function recordLastRun(int $exitCode): void
     {
+        // @phpstan-ignore-next-line
         $runInformation = [
             'start' => $this->startTime,
             'end' => time(),
