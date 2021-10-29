@@ -49,6 +49,10 @@ final class TransmitCommand extends Command
      * @var Transmitter
      */
     private $transmitter;
+    /**
+     * @var SymfonyStyle
+     */
+    private $outputStyle;
 
     public function __construct(LockFactory $lockFactory, Registry $registry, Transmitter $transmitter)
     {
@@ -70,53 +74,46 @@ final class TransmitCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->startTime = \time();
-        $outputStyle = new SymfonyStyle($input, $output);
+        $this->outputStyle = new SymfonyStyle($input, $output);
 
         try {
             $locker = $this->lockFactory->createLocker(self::class);
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
-            [$exitCode, $messageType, $message] = $this->runTransmitter();
+            $exitCode = $this->runTransmitter();
             $locker->release();
-            $outputStyle->{$messageType}($message);
             $this->recordLastRun($exitCode);
 
             return $exitCode;
         } catch (LockException $e) {
-            $outputStyle->warning('Could not acquire lock, another process is running');
+            $this->outputStyle->note('Could not acquire lock, another process is running');
 
             return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
         }
     }
 
-    /**
-     * @return array with [exitCode, outputStyleType, outputMessage]
-     */
-    private function runTransmitter(): array
+    private function runTransmitter(): int
     {
         $result = $this->transmitter->run();
 
         if ($result->errors > 0) {
-            $message = \sprintf('%d out of %d transfer(s) had errors on transmission', $result->errors, $result->total);
+            $this->outputStyle->warning(
+                \sprintf('%d out of %d transfer(s) had errors on transmission', $result->errors, $result->total)
+            );
 
-            return [
-                self::EXIT_CODE_ERRORS_ON_TRANSMISSION,
-                'warning',
-                $message,
-            ];
+            return self::EXIT_CODE_ERRORS_ON_TRANSMISSION;
         }
 
-        $message = \sprintf('%d transfer(s) transmitted successfully', $result->total);
+        $this->outputStyle->success(
+            $message = \sprintf('%d transfer(s) transmitted successfully', $result->total)
+        );
 
-        return [
-            self::EXIT_CODE_OK,
-            'success',
-            $message,
-        ];
+        return self::EXIT_CODE_OK;
     }
 
     private function recordLastRun(int $exitCode): void
     {
+        // @phpstan-ignore-next-line
         $runInformation = [
             'start' => $this->startTime,
             'end' => time(),

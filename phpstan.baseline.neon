@@ -1,26 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Command/TransmitCommand.php
-
-		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Command/TransmitCommand.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Command\\\\TransmitCommand\\:\\:runTransmitter\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Command/TransmitCommand.php
-
-		-
-			message: "#^Use value object over return of values$#"
-			count: 2
-			path: Classes/Command/TransmitCommand.php
-
-		-
 			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:getModuleTemplate\\(\\)\\.$#"
 			count: 1
 			path: Classes/Controller/BackendController.php
