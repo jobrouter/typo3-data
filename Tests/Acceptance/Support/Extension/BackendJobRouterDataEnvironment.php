@@ -14,7 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Acceptance\Support\Extension;
 use TYPO3\TestingFramework\Core\Acceptance\Extension\BackendEnvironment;
 
 /**
- * Load various core extensions and jobrouter_connector
+ * Load various core extensions and JobRouter Data
  */
 class BackendJobRouterDataEnvironment extends BackendEnvironment
 {
@@ -29,7 +29,6 @@ class BackendJobRouterDataEnvironment extends BackendEnvironment
             'extbase',
             'fluid',
             'backend',
-            'about',
             'install',
             'frontend',
             'recordlist',
@@ -42,8 +41,6 @@ class BackendJobRouterDataEnvironment extends BackendEnvironment
         ],
         'xmlDatabaseFixtures' => [
             'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml',
-            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_sessions.xml',
-            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_groups.xml',
             'EXT:jobrouter_data/Tests/Acceptance/Fixtures/tx_jobrouterconnector_domain_model_connection.xml',
         ],
         'pathsToLinkInTestInstance' => [

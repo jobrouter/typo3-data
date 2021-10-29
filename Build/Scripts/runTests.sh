@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #
-# TYPO3 JobRouter data test runner based on docker and docker-compose.
+# TYPO3 core test runner based on docker and docker-compose.
 #
 
 # Function to write a .env file in Build/testing-docker
@@ -26,9 +26,10 @@ setUpDockerComposeDotEnv() {
     echo "PHP_XDEBUG_ON=${PHP_XDEBUG_ON}" >> .env
     echo "PHP_XDEBUG_PORT=${PHP_XDEBUG_PORT}" >> .env
     echo "DOCKER_PHP_IMAGE=${DOCKER_PHP_IMAGE}" >> .env
+    echo "TYPO3=${TYPO3}" >> .env
+    echo "PHP_VERSION=${PHP_VERSION}" >> .env
     echo "EXTRA_TEST_OPTIONS=${EXTRA_TEST_OPTIONS}" >> .env
     echo "SCRIPT_VERBOSE=${SCRIPT_VERBOSE}" >> .env
-    echo "CGLCHECK_DRY_RUN=${CGLCHECK_DRY_RUN}" >> .env
 }
 
 # Load help text into $HELP
@@ -40,20 +41,23 @@ Successfully tested with docker version 19.03.13-ce and docker-compose 1.25.0.
 
 Usage: $0 [options] [file]
 
-No arguments: Run all unit tests with PHP 7.2
+No arguments: Run all unit tests with PHP 7.4
 
 Options:
     -s <...>
         Specifies which test suite to run
             - acceptance: backend acceptance tests
-            - cgl: cgl test and fix all php files
             - composerInstall: "composer install", handy if host has no PHP, uses composer cache of users home
             - composerValidate: "composer validate"
             - functional: functional tests
             - lint: PHP linting
             - unit (default): PHP unit tests
 
-    -d <mariadb>
+    -t <10|11>
+        Only with -s composerInstall|acceptance
+        TYPO3 core major version the extension is embedded in for testing.
+
+    -d <mariadb|mssql|postgres|sqlite>
         Only with -s functional
         Specifies on which DBMS tests are performed
             - mariadb (default): use mariadb
@@ -61,11 +65,9 @@ Options:
             - postgres: use postgres
             - sqlite: use sqlite
 
-    -p <7.2|7.3|7.4>
+    -p <7.2|7.3|7.4|8.0>
         Specifies the PHP minor version to be used
-            - 7.2 (default): use PHP 7.2
-            - 7.3: use PHP 7.3
-            - 7.4: use PHP 7.4
+            - 7.4 (default): use PHP 7.4
 
     -e "<phpunit or codeception options>"
         Only with -s acceptance|functional|unit
@@ -75,7 +77,7 @@ Options:
         named "canRetrieveValueWithGP"
 
     -x
-        Only with -s functional|unit
+        Only with -s functional|unit|acceptance
         Send information to host instance for test or system under test break points. This is especially
         useful if a local PhpStorm instance is listening on default xdebug port 9000. A different port
         can be selected with -y
@@ -83,10 +85,6 @@ Options:
     -y <port>
         Send xdebug information to a different port than default 9000 if an IDE like PhpStorm
         is not listening on default port.
-
-    -n
-        Only with -s cgl
-        Activate dry-run in CGL check that does not actively change files and only prints broken ones.
 
     -u
         Update existing typo3gmbh/phpXY:latest docker images. Maintenance call to docker pull latest
@@ -101,11 +99,11 @@ Options:
         Show this help.
 
 Examples:
-    # Run unit tests using PHP 7.2
+    # Run unit tests using PHP 7.4
     ./Build/Scripts/runTests.sh
 
-    # Run unit tests using PHP 7.4
-    ./Build/Scripts/runTests.sh -p 7.4
+    # Run unit tests using PHP 7.3
+    ./Build/Scripts/runTests.sh -p 7.3
 EOF
 
 # Test if docker-compose exists, else exit out with error
@@ -126,12 +124,12 @@ cd ../testing-docker || exit 1
 ROOT_DIR=`readlink -f ${PWD}/../../`
 TEST_SUITE="unit"
 DBMS="mariadb"
-PHP_VERSION="7.2"
+PHP_VERSION="7.4"
 PHP_XDEBUG_ON=0
 PHP_XDEBUG_PORT=9000
 EXTRA_TEST_OPTIONS=""
 SCRIPT_VERBOSE=0
-CGLCHECK_DRY_RUN=""
+TYPO3="10"
 
 # Option parsing
 # Reset in case getopts has been used previously in the shell
@@ -139,13 +137,19 @@ OPTIND=1
 # Array for invalid options
 INVALID_OPTIONS=();
 # Simple option parsing based on getopts (! not getopt)
-while getopts ":s:p:e:xy:nhuv" OPT; do
+while getopts ":s:d:p:e:t:xy:nhuvf" OPT; do
     case ${OPT} in
         s)
             TEST_SUITE=${OPTARG}
             ;;
+        d)
+            DBMS=${OPTARG}
+            ;;
         p)
             PHP_VERSION=${OPTARG}
+            ;;
+        t)
+            TYPO3=${OPTARG}
             ;;
         e)
             EXTRA_TEST_OPTIONS=${OPTARG}
@@ -159,9 +163,6 @@ while getopts ":s:p:e:xy:nhuv" OPT; do
         h)
             echo "${HELP}"
             exit 0
-            ;;
-        n)
-            CGLCHECK_DRY_RUN="-n"
             ;;
         u)
             TEST_SUITE=update
@@ -196,18 +197,6 @@ DOCKER_PHP_IMAGE=`echo "php${PHP_VERSION}" | sed -e 's/\.//'`
 shift $((OPTIND - 1))
 if [ -n "${1}" ]; then
     TEST_FILE="Web/typo3conf/ext/jobrouter_data/${1}"
-else
-    case ${TEST_SUITE} in
-        acceptance)
-            TEST_FILE="Web/typo3conf/ext/jobrouter_data/Tests/Acceptance"
-            ;;
-        functional)
-            TEST_FILE="Web/typo3conf/ext/jobrouter_data/Tests/Functional"
-            ;;
-        unit)
-            TEST_FILE="Web/typo3conf/ext/jobrouter_data/Tests/Unit"
-            ;;
-    esac
 fi
 
 if [ ${SCRIPT_VERBOSE} -eq 1 ]; then
@@ -219,16 +208,6 @@ case ${TEST_SUITE} in
     acceptance)
         setUpDockerComposeDotEnv
         docker-compose run acceptance_backend_mariadb10
-        SUITE_EXIT_CODE=$?
-        docker-compose down
-        ;;
-    cgl)
-        # Active dry-run for cgl needs not "-n" but specific options
-        if [[ ! -z ${CGLCHECK_DRY_RUN} ]]; then
-            CGLCHECK_DRY_RUN="--dry-run --diff --diff-format udiff"
-        fi
-        setUpDockerComposeDotEnv
-        docker-compose run cgl
         SUITE_EXIT_CODE=$?
         docker-compose down
         ;;
@@ -246,8 +225,29 @@ case ${TEST_SUITE} in
         ;;
     functional)
         setUpDockerComposeDotEnv
-        docker-compose run functional_mariadb10
-        SUITE_EXIT_CODE=$?
+        case ${DBMS} in
+            mariadb)
+                docker-compose run functional_mariadb10
+                SUITE_EXIT_CODE=$?
+                ;;
+            mssql)
+                docker-compose run functional_mssql2019latest
+                SUITE_EXIT_CODE=$?
+                ;;
+            postgres)
+                docker-compose run functional_postgres10
+                SUITE_EXIT_CODE=$?
+                ;;
+            sqlite)
+                docker-compose run functional_sqlite
+                SUITE_EXIT_CODE=$?
+                ;;
+            *)
+                echo "Invalid -d option argument ${DBMS}" >&2
+                echo >&2
+                echo "${HELP}" >&2
+                exit 1
+        esac
         docker-compose down
         ;;
     lint)
@@ -263,10 +263,10 @@ case ${TEST_SUITE} in
         docker-compose down
         ;;
     update)
-        # pull typo3gmbh/phpXY:latest versions of those ones that exist locally
-        docker images typo3gmbh/php*:latest --format "{{.Repository}}:latest" | xargs -I {} docker pull {}
-        # remove "dangling" typo3gmbh/phpXY images (those tagged as <none>)
-        docker images typo3gmbh/php* --filter "dangling=true" --format "{{.ID}}" | xargs -I {} docker rmi {}
+        # pull typo3/core-testing-*:latest versions of those ones that exist locally
+        docker images typo3/core-testing-*:latest --format "{{.Repository}}:latest" | xargs -I {} docker pull {}
+        # remove "dangling" typo3/core-testing-* images (those tagged as <none>)
+        docker images typo3/core-testing-* --filter "dangling=true" --format "{{.ID}}" | xargs -I {} docker rmi {}
         ;;
     *)
         echo "Invalid -s option argument ${TEST_SUITE}" >&2

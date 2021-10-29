@@ -13,13 +13,13 @@ namespace Brotkrueml\JobRouterData\Tests\Acceptance\Backend;
 
 use Brotkrueml\JobRouterData\Tests\Acceptance\Support\BackendTester;
 
-class ModuleCest
+class DataModuleCest
 {
-    private const DATA_MODULE_SELECTOR = '#jobrouter_JobRouterDataJobrouterdata';
+    private const DATA_MODULE_SELECTOR = '#jobrouter_JobRouterDataTables';
 
     public function _before(BackendTester $I): void
     {
-        $I->useExistingSession('admin');
+        $I->loginAs('admin');
     }
 
     public function _after(BackendTester $I): void
@@ -27,7 +27,7 @@ class ModuleCest
         $I->truncateDataTables();
     }
 
-    public function onFirstCallModuleShowHintThatNoTableLinksAreFound(BackendTester $I): void
+    public function onVeryFirstCallModuleShowsHintThatNoTableLinksAreFound(BackendTester $I): void
     {
         $I->click(self::DATA_MODULE_SELECTOR);
         $I->switchToContentFrame();
@@ -67,7 +67,7 @@ class ModuleCest
         $I->canSee('field_without_label', '#jobrouter-data-list-columns-1');
     }
 
-    public function whenSimpleSynchronisationTableIsAvailableAClickOnTheEditButtonsOpensToEditForm(BackendTester $I): void
+    public function whenSimpleSynchronisationTableIsAvailableAClickOnTheEditButtonOpensTheEditForm(BackendTester $I): void
     {
         $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
 
@@ -81,7 +81,7 @@ class ModuleCest
         $I->waitForText('Edit JobData Table Link "Name for simple sync" on root level');
     }
 
-    public function whenSimpleSynchronisationTableIsAvailableAClickOnTheCheckButtonsShowsSuccessfulNotification(BackendTester $I): void
+    public function whenSimpleSynchronisationTableIsAvailableAClickOnTheCheckButtonShowsSuccessfulNotification(BackendTester $I): void
     {
         $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
         $I->createMockServerExpectationForConnection();
