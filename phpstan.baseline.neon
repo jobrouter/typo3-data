@@ -33,11 +33,6 @@ parameters:
 		-
 			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
 			count: 1
-			path: Classes/Domain/Repository/DatasetRepository.php
-
-		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
 			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
 
 		-

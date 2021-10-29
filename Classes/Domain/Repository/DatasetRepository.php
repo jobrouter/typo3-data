@@ -14,13 +14,11 @@ namespace Brotkrueml\JobRouterData\Domain\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
-/**
- * The repository for datasets
- */
 class DatasetRepository extends Repository
 {
     /**
      * @var array<string, string>
+     * @phpstan-ignore-next-line
      */
     protected $defaultOrderings = [
         'jrid' => QueryInterface::ORDER_ASCENDING,
