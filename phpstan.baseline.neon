@@ -46,11 +46,6 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Domain/Repository/TableRepository.php
-
-		-
 			message: "#^Offset 'exitCode' does not exist on array\\|null\\.$#"
 			count: 1
 			path: Classes/EventListener/ToolbarItemProvider.php
