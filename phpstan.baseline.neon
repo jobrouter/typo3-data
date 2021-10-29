@@ -6,11 +6,6 @@ parameters:
 			path: Classes/Controller/BackendController.php
 
 		-
-			message: "#^\"empty\\(\\$tableUid\\)\" is forbidden to use$#"
-			count: 1
-			path: Classes/DataProcessing/TableProcessor.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:process\\(\\) has parameter \\$contentObjectConfiguration with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/DataProcessing/TableProcessor.php

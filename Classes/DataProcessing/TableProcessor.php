@@ -52,7 +52,7 @@ final class TableProcessor implements DataProcessorInterface
 
         $tableUid = (int)($flexForm['table'] ?? 0);
 
-        if (! empty($tableUid)) {
+        if ($tableUid > 0) {
             $processedData['table'] = $this->tableRepository->findByIdentifier($tableUid);
             Cache::addCacheTagByTable($tableUid);
         }
