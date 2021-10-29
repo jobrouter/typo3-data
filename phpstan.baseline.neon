@@ -27,7 +27,7 @@ parameters:
 
 		-
 			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 2
+			count: 1
 			path: Classes/Command/TransmitCommand.php
 
 		-
@@ -352,11 +352,6 @@ parameters:
 		-
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
-			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^Use value object over return of values$#"
-			count: 1
 			path: Classes/Transfer/Transmitter.php
 
 		-

@@ -94,10 +94,10 @@ final class TransmitCommand extends Command
      */
     private function runTransmitter(): array
     {
-        [$total, $errors] = $this->transmitter->run();
+        $result = $this->transmitter->run();
 
-        if ($errors) {
-            $message = \sprintf('%d out of %d transfer(s) had errors on transmission', $errors, $total);
+        if ($result->errors > 0) {
+            $message = \sprintf('%d out of %d transfer(s) had errors on transmission', $result->errors, $result->total);
 
             return [
                 self::EXIT_CODE_ERRORS_ON_TRANSMISSION,
@@ -106,7 +106,7 @@ final class TransmitCommand extends Command
             ];
         }
 
-        $message = \sprintf('%d transfer(s) transmitted successfully', $total);
+        $message = \sprintf('%d transfer(s) transmitted successfully', $result->total);
 
         return [
             self::EXIT_CODE_OK,
