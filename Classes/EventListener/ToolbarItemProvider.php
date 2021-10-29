@@ -31,9 +31,9 @@ final class ToolbarItemProvider
     ];
 
     /**
-     * @var array|null
+     * @var array{exitCode?: int, start?: int}
      */
-    private $lastRunInformation;
+    private $lastRunInformation = [];
 
     /**
      * @var LanguageService
@@ -56,7 +56,7 @@ final class ToolbarItemProvider
         $systemInformationToolbarItem = $event->getToolbarItem();
 
         foreach ($this->commandNames as $commandName) {
-            $this->lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, $commandName . '.lastRun');
+            $this->lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, $commandName . '.lastRun', []);
             $systemInformationToolbarItem->addSystemInformation(
                 $this->languageService->sL(
                     \sprintf('%s:%s.lastRunLabel', Extension::LANGUAGE_PATH_TOOLBAR, $commandName)
@@ -70,7 +70,7 @@ final class ToolbarItemProvider
 
     private function getMessage(string $commandName): string
     {
-        if ($this->lastRunInformation === null) {
+        if ($this->lastRunInformation === []) {
             return $this->languageService->sL(
                 \sprintf('%s:%s.neverRun', Extension::LANGUAGE_PATH_TOOLBAR, $commandName)
             );
@@ -96,12 +96,12 @@ final class ToolbarItemProvider
 
     private function isWarning(): bool
     {
-        return $this->lastRunInformation['exitCode'] > 0;
+        return ($this->lastRunInformation['exitCode'] ?? 0) > 0;
     }
 
     private function isOverdue(): bool
     {
-        return $this->lastRunInformation['start'] < \time() - 86400;
+        return ($this->lastRunInformation['start'] ?? 0) < \time() - 86400;
     }
 
     private function getSeverity(): string

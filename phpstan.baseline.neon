@@ -46,21 +46,6 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
-			message: "#^Offset 'exitCode' does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/EventListener/ToolbarItemProvider.php
-
-		-
-			message: "#^Offset 'start' does not exist on array\\|null\\.$#"
-			count: 1
-			path: Classes/EventListener/ToolbarItemProvider.php
-
-		-
-			message: "#^Property Brotkrueml\\\\JobRouterData\\\\EventListener\\\\ToolbarItemProvider\\:\\:\\$lastRunInformation type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/EventListener/ToolbarItemProvider.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\TablePreviewRenderer\\:\\:getItemContent\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
