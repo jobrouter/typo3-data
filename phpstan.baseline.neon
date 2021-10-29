@@ -31,26 +31,6 @@ parameters:
 			path: Classes/Domain/Model/Table/Row.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\JobRouter\\\\JobDataRepository\\:\\:add\\(\\) has parameter \\$dataset with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\JobRouter\\\\JobDataRepository\\:\\:update\\(\\) has parameter \\$dataset with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
-
-		-
-			message: "#^Negated boolean expression is always false\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
-
-		-
 			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
 			count: 1
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php

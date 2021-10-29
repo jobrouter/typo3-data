@@ -36,7 +36,7 @@ class JobDataRepository
     protected $table;
 
     /**
-     * @var ClientInterface
+     * @var ClientInterface|null
      */
     private $client;
 
@@ -67,7 +67,7 @@ class JobDataRepository
 
     protected function getClient(): ClientInterface
     {
-        if (! $this->client) {
+        if (! $this->client instanceof ClientInterface) {
             $table = $this->tableRepository->findOneByHandle($this->tableHandle);
             if (! $table instanceof Table) {
                 throw new TableNotAvailableException(
@@ -92,7 +92,8 @@ class JobDataRepository
     }
 
     /**
-     * @return mixed[]
+     * @param array<string, string|int|float|bool|null> $dataset
+     * @return list<array<string, string|int|float|bool|null>>
      */
     public function add(array $dataset): array
     {
@@ -111,6 +112,7 @@ class JobDataRepository
     {
         $datasets = [];
         foreach ($jrids as $jrid) {
+            // @phpstan-ignore-next-line
             $datasets[] = [
                 'jrid' => $jrid,
             ];
@@ -126,7 +128,8 @@ class JobDataRepository
     }
 
     /**
-     * @return mixed[]
+     * @param array<string, string|int|float|bool|null> $dataset
+     * @return list<array<string, string|int|float|bool|null>>
      */
     public function update(int $jrid, array $dataset): array
     {
@@ -142,7 +145,7 @@ class JobDataRepository
     }
 
     /**
-     * @return mixed[]
+     * @return list<array<string, string|int|float|bool|null>>
      */
     public function findAll(): array
     {
@@ -155,7 +158,7 @@ class JobDataRepository
     }
 
     /**
-     * @return mixed[]
+     * @return list<array<string, string|int|float|bool|null>>
      */
     public function findByJrid(int $jrid): array
     {
