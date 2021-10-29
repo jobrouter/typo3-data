@@ -2,7 +2,7 @@ parameters:
 	ignoreErrors:
 		-
 			message: "#^Array destruct is not allowed\\. Use value object to pass data instead$#"
-			count: 2
+			count: 1
 			path: Classes/Command/SyncCommand.php
 
 		-
@@ -265,15 +265,15 @@ parameters:
 				"""
 					#^"switch \\(\\$table\\-\\>getType\\(\\)\\) \\{
 					    case \\\\Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:TYPE_SIMPLE\\:
-					        \\$this\\-\\>totalNumberOfTables\\+\\+;
+					        \\$this\\-\\>totalTables\\+\\+;
 					        if \\(\\!\\$this\\-\\>simpleTableSynchroniser\\-\\>synchroniseTable\\(\\$table\\)\\) \\{
-					            \\$this\\-\\>erroneousNumberOfTables\\+\\+;
+					            \\$this\\-\\>erroneousTables\\+\\+;
 					        \\}
 					        break;
 					    case \\\\Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:TYPE_CUSTOM_TABLE\\:
-					        \\$this\\-\\>totalNumberOfTables\\+\\+;
+					        \\$this\\-\\>totalTables\\+\\+;
 					        if \\(\\!\\$this\\-\\>customTableSynchroniser\\-\\>synchroniseTable\\(\\$table\\)\\) \\{
-					            \\$this\\-\\>erroneousNumberOfTables\\+\\+;
+					            \\$this\\-\\>erroneousTables\\+\\+;
 					        \\}
 					        break;
 					    case \\\\Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\:\\:TYPE_OTHER_USAGE\\:
@@ -283,7 +283,7 @@ parameters:
 					    default\\:
 					        \\$message \\= \\\\sprintf\\('Table with uid "%%d" has invalid type "%%d"\\!', \\$table\\-\\>getUid\\(\\), \\$table\\-\\>getType\\(\\)\\);
 					        \\$this\\-\\>logger\\-\\>error\\(\\$message\\);
-					        \\$this\\-\\>erroneousNumberOfTables\\+\\+;
+					        \\$this\\-\\>erroneousTables\\+\\+;
 					\\}" is forbidden to use$#
 				"""
 			count: 1
@@ -296,21 +296,6 @@ parameters:
 
 		-
 			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SynchronisationRunner.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SynchronisationRunner\\:\\:run\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SynchronisationRunner.php
-
-		-
-			message: "#^PHPDoc tag @return has invalid value \\(array\\<0\\: int, 1\\:int\\>\\)\\: Unexpected token \"\\:\", expected '\\>' at offset 26$#"
-			count: 1
-			path: Classes/Synchronisation/SynchronisationRunner.php
-
-		-
-			message: "#^Use value object over return of values$#"
 			count: 1
 			path: Classes/Synchronisation/SynchronisationRunner.php
 

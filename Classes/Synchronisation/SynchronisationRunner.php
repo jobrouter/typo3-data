@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
+use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
@@ -42,11 +43,11 @@ class SynchronisationRunner implements LoggerAwareInterface
     /**
      * @var int
      */
-    private $totalNumberOfTables = 0;
+    private $totalTables = 0;
     /**
      * @var int
      */
-    private $erroneousNumberOfTables = 0;
+    private $erroneousTables = 0;
 
     public function __construct(
         CustomTableSynchroniser $customTableSynchroniser,
@@ -58,10 +59,7 @@ class SynchronisationRunner implements LoggerAwareInterface
         $this->tableRepository = $tableRepository;
     }
 
-    /**
-     * @return array<0: int, 1:int>
-     */
-    public function run(string $tableHandle): array
+    public function run(string $tableHandle): CountResult
     {
         if ($tableHandle === '') {
             $tables = $this->tableRepository->findAll();
@@ -73,26 +71,23 @@ class SynchronisationRunner implements LoggerAwareInterface
             $this->synchroniseTable($this->getTable($tableHandle));
         }
 
-        return [
-            $this->totalNumberOfTables,
-            $this->erroneousNumberOfTables,
-        ];
+        return new CountResult($this->totalTables, $this->erroneousTables);
     }
 
     private function synchroniseTable(Table $table): void
     {
         switch ($table->getType()) {
             case Table::TYPE_SIMPLE:
-                $this->totalNumberOfTables++;
+                $this->totalTables++;
                 if (! $this->simpleTableSynchroniser->synchroniseTable($table)) {
-                    $this->erroneousNumberOfTables++;
+                    $this->erroneousTables++;
                 }
                 break;
 
             case Table::TYPE_CUSTOM_TABLE:
-                $this->totalNumberOfTables++;
+                $this->totalTables++;
                 if (! $this->customTableSynchroniser->synchroniseTable($table)) {
-                    $this->erroneousNumberOfTables++;
+                    $this->erroneousTables++;
                 }
                 break;
 
@@ -104,7 +99,7 @@ class SynchronisationRunner implements LoggerAwareInterface
             default:
                 $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
                 $this->logger->error($message);
-                $this->erroneousNumberOfTables++;
+                $this->erroneousTables++;
         }
     }
 

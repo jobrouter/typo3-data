@@ -9,19 +9,19 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\Transfer;
+namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Entity;
 
-use Brotkrueml\JobRouterData\Transfer\TransferResult;
+use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use PHPUnit\Framework\TestCase;
 
-final class TransferResultTest extends TestCase
+final class ErrorResultTest extends TestCase
 {
     /**
      * @test
      */
     public function constructSetsPropertiesCorrectly(): void
     {
-        $subject = new TransferResult(42, 12);
+        $subject = new CountResult(42, 12);
 
         self::assertSame(42, $subject->total);
         self::assertSame(12, $subject->errors);

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 
 use Brotkrueml\JobRouterData\Command\SyncCommand;
+use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -75,7 +76,7 @@ class SyncCommandTest extends TestCase
         $this->synchronisationRunnerMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn([2, 0]);
+            ->willReturn(new CountResult(2, 0));
 
         $this->registryMock
             ->expects(self::once())
@@ -113,7 +114,7 @@ class SyncCommandTest extends TestCase
         $this->synchronisationRunnerMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn([1, 0]);
+            ->willReturn(new CountResult(1, 0));
 
         $this->registryMock
             ->expects(self::once())
@@ -155,7 +156,7 @@ class SyncCommandTest extends TestCase
 
         $this->synchronisationRunnerMock
             ->method('run')
-            ->willReturn([3, 1]);
+            ->willReturn(new CountResult(3, 1));
 
         $this->registryMock
             ->expects(self::once())

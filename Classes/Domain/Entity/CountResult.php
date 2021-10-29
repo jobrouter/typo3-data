@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Transfer;
+namespace Brotkrueml\JobRouterData\Domain\Entity;
 
 /**
  * @internal
  */
-final class TransferResult
+final class CountResult
 {
     /**
      * @var int

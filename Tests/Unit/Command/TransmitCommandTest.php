@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 
 use Brotkrueml\JobRouterData\Command\SyncCommand;
 use Brotkrueml\JobRouterData\Command\TransmitCommand;
-use Brotkrueml\JobRouterData\Transfer\TransferResult;
+use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -77,7 +77,7 @@ class TransmitCommandTest extends TestCase
         $this->transmitterMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn(new TransferResult(0, 0));
+            ->willReturn(new CountResult(0, 0));
 
         $this->registryMock
             ->expects(self::once())
@@ -118,7 +118,7 @@ class TransmitCommandTest extends TestCase
         $this->transmitterMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn(new TransferResult(3, 0));
+            ->willReturn(new CountResult(3, 0));
 
         $this->registryMock
             ->expects(self::once())
@@ -159,7 +159,7 @@ class TransmitCommandTest extends TestCase
         $this->transmitterMock
             ->expects(self::once())
             ->method('run')
-            ->willReturn(new TransferResult(3, 1));
+            ->willReturn(new CountResult(3, 1));
 
         $this->registryMock
             ->expects(self::once())

@@ -103,10 +103,10 @@ final class SyncCommand extends Command
      */
     private function runSynchronisation(string $tableHandle): array
     {
-        [$total, $errors] = $this->synchronisationRunner->run($tableHandle);
+        $result = $this->synchronisationRunner->run($tableHandle);
 
-        if ($errors) {
-            $message = \sprintf('%d out of %d table(s) had errors on synchronisation', $errors, $total);
+        if ($result->errors > 0) {
+            $message = \sprintf('%d out of %d table(s) had errors on synchronisation', $result->errors, $result->total);
 
             return [
                 self::EXIT_CODE_ERRORS_ON_SYNCHRONISATION,
@@ -118,7 +118,7 @@ final class SyncCommand extends Command
         if ($tableHandle !== '') {
             $message = \sprintf('Table with handle "%s" synchronised successfully', $tableHandle);
         } else {
-            $message = \sprintf('%d table(s) synchronised successfully', $total);
+            $message = \sprintf('%d table(s) synchronised successfully', $result->total);
         }
 
         return [

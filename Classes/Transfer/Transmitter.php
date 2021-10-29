@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Transfer;
 
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Model\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
@@ -70,7 +71,7 @@ class Transmitter implements LoggerAwareInterface
         $this->tableRepository = $tableRepository;
     }
 
-    public function run(): TransferResult
+    public function run(): CountResult
     {
         $this->logger->info('Transmit data sets for all tables');
         $transfers = $this->transferRepository->findByTransmitSuccess(0);
@@ -89,7 +90,7 @@ class Transmitter implements LoggerAwareInterface
             )
         );
 
-        return new TransferResult($this->totalTransfers, $this->erroneousTransfers);
+        return new CountResult($this->totalTransfers, $this->erroneousTransfers);
     }
 
     private function processTransfer(Transfer $transfer): void
