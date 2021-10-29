@@ -13,9 +13,6 @@ namespace Brotkrueml\JobRouterData\Domain\Model;
 
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
-/**
- * Dataset model
- */
 class Dataset extends AbstractEntity
 {
     /**
@@ -34,7 +31,7 @@ class Dataset extends AbstractEntity
     protected $dataset = '';
 
     /**
-     * @var array
+     * @var array<string, mixed>|null
      */
     protected $decodedDataset;
 

@@ -21,16 +21,6 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Dataset\\:\\:\\$decodedDataset \\(array\\) does not accept null\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Dataset.php
-
-		-
-			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Dataset\\:\\:\\$decodedDataset type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Dataset.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Cell\\:\\:setContent\\(\\) has parameter \\$content with no typehint specified\\.$#"
 			count: 1
 			path: Classes/Domain/Model/Table/Cell.php
