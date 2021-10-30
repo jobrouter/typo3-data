@@ -14,7 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Entity;
 use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use PHPUnit\Framework\TestCase;
 
-final class ErrorResultTest extends TestCase
+final class CountResultTest extends TestCase
 {
     /**
      * @test
