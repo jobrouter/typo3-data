@@ -37,6 +37,7 @@ defined('TYPO3') || die();
             'access' => 'admin',
             'iconIdentifier' => 'jobrouter-module-data',
             'labels' => 'LLL:EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Private/Language/BackendModule.xlf',
+            'workspaces' => 'online',
         ]
     );
 
