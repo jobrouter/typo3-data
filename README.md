@@ -7,7 +7,7 @@
 [![Crowdin](https://badges.crowdin.net/typo3-extension-jobrouterdata/localized.svg)](https://crowdin.com/project/typo3-extension-jobrouterdata)
 [![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-jobrouter-data.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-jobrouter-data)
 
-[JobRouter®](https://www.jobrouter.com/) is a scalable digitization
+[JobRouter®](https://www.jobrouter.com/) is a scalable digitalisation
 platform which links processes, data and documents.
 
 What this extension does:
