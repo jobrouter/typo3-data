@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.0] - 2021-11-21
+
 ### Added
 - Compatibility with TYPO3 v11 LTS
 - Possibility to refresh dashboard widgets (TYPO3 v11+ only)
@@ -173,7 +175,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial pre-release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.13.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.14.0...HEAD
+[0.14.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.3...v0.13.0
 [0.12.3]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.2...v0.12.3
 [0.12.2]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.1...v0.12.2
