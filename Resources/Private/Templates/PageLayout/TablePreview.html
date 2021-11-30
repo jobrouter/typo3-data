@@ -1,8 +1,4 @@
-<html
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:jobRouterData="http://typo3.org/ns/Brotkrueml/JobRouterData/ViewHelpers"
-    data-namespace-typo3-fluid="true"
->
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     <br>
     <f:if condition="{table.name}">
         <strong class="jobrouter-data-ce-info">{table.name -> f:format.case(mode: 'upper')}</strong>
@@ -12,9 +8,9 @@
 
     <f:if condition="{table}">
         <f:then>
-            <f:if condition="{table.countRows}">
+            <f:if condition="{rows}">
                 <f:then>
-                    <f:render section="DatasetExcerpt" arguments="{table: table}"/>
+                    <f:render section="DatasetExcerpt" arguments="{table: table, rows: rows}"/>
                 </f:then>
                 <f:else>
                     <div class="alert alert-info">
@@ -34,27 +30,31 @@
         <f:be.pageRenderer includeCssFiles="{0: '{f:uri.resource(extensionName: \'jobrouter_data\', path:\'Css/Backend/PageLayoutView.css\')}'}"/>
 
         <f:variable name="MAX_ROWS" value="5"/>
-
         <table class="jobrouter-data-table">
             <thead>
                 <tr>
                     <f:for each="{table.columns}" as="column">
-                        <th scope="col"><jobRouterData:columnLabel column="{column}"/></th>
+                        <th scope="col">
+                            <f:if condition="{column.label}">
+                                <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
+                                <f:else>{column.name}</f:else>
+                            </f:if>
+                        </th>
                     </f:for>
                 </tr>
             </thead>
             <tbody>
-                <f:for each="{table.rows}" as="row" iteration="iterator">
+                <f:for each="{rows}" as="row" iteration="i">
                     <f:if condition="{iterator.index} < {MAX_ROWS}">
                         <tr>
-                            <f:for each="{row.cells}" as="cell">
-                                <td><jobRouterData:formatCell cell="{cell}"/></td>
+                            <f:for each="{table.columns}" as="column">
+                                <td>{row.{column.name}}</td>
                             </f:for>
                         </tr>
                     </f:if>
                 </f:for>
-                <f:if condition="{table.countRows} > {MAX_ROWS}">
-                    <f:variable name="remainingRows"><jobRouterData:subtract minuend="{table.countRows}" subtrahend="{MAX_ROWS}"/></f:variable>
+                <f:if condition="{rows -> f:count()} > {MAX_ROWS}">
+                    <f:variable name="remainingRows"><jobRouterData:subtract minuend="{rows -> f:count()}" subtrahend="{MAX_ROWS}"/></f:variable>
                     <tr>
                         <td colspan="{table.columns -> f:count()}">
                             <f:if condition="{remainingRows} == 1">

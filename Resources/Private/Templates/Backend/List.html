@@ -58,7 +58,12 @@
                         <td id="jobrouter-data-list-columns-{table.uid}">
                             <ul>
                                 <f:for each="{table.columns}" as="column">
-                                    <li><jobRouterData:columnLabel column="{column}"/></li>
+                                    <li>
+                                        <f:if condition="{column.label}">
+                                            <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
+                                            <f:else>{column.name}</f:else>
+                                        </f:if>
+                                    </li>
                                 </f:for>
                             </ul>
                         </td>
@@ -110,7 +115,12 @@
                     <td>
                         <ul>
                             <f:for each="{table.columns}" as="column">
-                                <li><jobRouterData:columnLabel column="{column}"/></li>
+                                <li>
+                                    <f:if condition="{column.label}">
+                                        <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
+                                        <f:else>{column.name}</f:else>
+                                    </f:if>
+                                </li>
                             </f:for>
                         </ul>
                     </td>

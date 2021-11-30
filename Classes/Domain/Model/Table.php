@@ -11,10 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Model;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
-use Brotkrueml\JobRouterData\Domain\Model\Table\Cell;
-use Brotkrueml\JobRouterData\Domain\Model\Table\Row;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -213,43 +210,6 @@ class Table extends AbstractEntity
     public function setDatasets(ObjectStorage $datasets): void
     {
         $this->datasets = $datasets;
-    }
-
-    public function getCountRows(): int
-    {
-        return count($this->datasets);
-    }
-
-    /**
-     * @return Row[]
-     */
-    public function getRows(): array
-    {
-        $rows = [];
-        foreach ($this->datasets as $dataset) {
-            $datasetArray = \json_decode($dataset->getDataset(), true, 512, \JSON_THROW_ON_ERROR);
-
-            $row = new Row();
-            foreach ($this->columns as $column) {
-                $cell = new Cell();
-                $cell->setName($column->getName());
-
-                if ($column->getName() === 'jrid') {
-                    $cell->setContent($dataset->getJrid());
-                    $cell->setType(FieldTypeEnumeration::INTEGER);
-                } else {
-                    $cell->setContent($datasetArray[$column->getName()] ?? '');
-                    $cell->setType($column->getType());
-                    $cell->setDecimalPlaces($column->getDecimalPlaces());
-                }
-
-                $row->addCell($cell);
-            }
-
-            $rows[] = $row;
-        }
-
-        return $rows;
     }
 
     public function isDisabled(): bool

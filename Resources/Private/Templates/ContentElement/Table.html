@@ -1,25 +1,26 @@
-<html
-    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:jobRouterData="http://typo3.org/ns/Brotkrueml/JobRouterData/ViewHelpers"
-    data-namespace-typo3-fluid="true"
->
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
     <f:layout name="Default" />
 
     <f:section name="Main">
-        <f:if condition="{table} && {table.countRows}">
+        <f:if condition="{table} && {rows}">
             <table class="ce-table">
                 <thead>
                     <tr>
                         <f:for each="{table.columns}" as="column">
-                            <th scope="col"><jobRouterData:columnLabel column="{column}"/></th>
+                            <th scope="col">
+                                <f:if condition="{column.label}">
+                                    <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
+                                    <f:else>{column.name}</f:else>
+                                </f:if>
+                            </th>
                         </f:for>
                     </tr>
                 </thead>
                 <tbody>
-                    <f:for each="{table.rows}" as="row">
+                    <f:for as="row" each="{rows}">
                         <tr>
-                            <f:for each="{row.cells}" as="cell">
-                                <td><jobRouterData:formatCell cell="{cell}"/></td>
+                            <f:for as="column" each="{table.columns}">
+                                <td>{row.{column.name}}</td>
                             </f:for>
                         </tr>
                     </f:for>

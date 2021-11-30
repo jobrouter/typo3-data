@@ -54,3 +54,8 @@ Switch to the web page to see the content of the table displayed:
    :alt: Content of the table on the web page
 
    Content of the table on the web page
+
+.. hint::
+   The formatting of the content in the table is customised to match the page's
+   locale (date and numbers). It can be customized by a developer, see section
+   :ref:`customise-column-formatting`.

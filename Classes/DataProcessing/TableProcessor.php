@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\DataProcessing;
 
 use Brotkrueml\JobRouterData\Cache\Cache;
+use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
+use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -24,6 +26,11 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 final class TableProcessor implements DataProcessorInterface
 {
     /**
+     * @var DatasetConverter
+     */
+    private $datasetConverter;
+
+    /**
      * @var FlexFormService
      */
     private $flexFormService;
@@ -33,8 +40,12 @@ final class TableProcessor implements DataProcessorInterface
      */
     private $tableRepository;
 
-    public function __construct(FlexFormService $flexFormService = null, TableRepository $tableRepository = null)
-    {
+    public function __construct(
+        DatasetConverter $datasetConverter = null,
+        FlexFormService $flexFormService = null,
+        TableRepository $tableRepository = null
+    ) {
+        $this->datasetConverter = $datasetConverter ?? GeneralUtility::makeInstance(DatasetConverter::class);
         $this->flexFormService = $flexFormService ?? GeneralUtility::makeInstance(FlexFormService::class);
         $this->tableRepository = $tableRepository ?? GeneralUtility::makeInstance(TableRepository::class);
     }
@@ -43,17 +54,20 @@ final class TableProcessor implements DataProcessorInterface
      * @return mixed[]
      */
     public function process(
-        ContentObjectRenderer $contentObjectRenderer,
+        ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
     ): array {
-        $flexForm = $this->flexFormService->convertFlexFormContentToArray($contentObjectRenderer->data['pi_flexform']);
+        $flexForm = $this->flexFormService->convertFlexFormContentToArray($cObj->data['pi_flexform']);
 
         $tableUid = (int)($flexForm['table'] ?? 0);
-
         if ($tableUid > 0) {
-            $processedData['table'] = $this->tableRepository->findByIdentifier($tableUid);
+            $locale = $cObj->getRequest()->getAttribute('language')->getLocale();
+            /** @var Table $table */
+            $table = $this->tableRepository->findByIdentifier($tableUid);
+            $processedData['table'] = $table;
+            $processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
             Cache::addCacheTagByTable($tableUid);
         }
 

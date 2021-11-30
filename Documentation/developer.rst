@@ -333,3 +333,75 @@ appropriate method:
          return 0;
       }
    }
+
+
+.. _customise-column-formatting:
+
+Customising the formatting of a table column in the content element
+===================================================================
+
+The extension comes with four formatters that are used when rendering the
+column content in the :ref:`content element <editor-content-element>`:
+
+- DateFormatter
+- DateTimeFormatter
+- DecimalFormatter
+- IntegerFormatter
+
+These are implemented as :ref:`PSR-14 event listeners <t3coreapi:EventDispatcher>`
+and are located in the :file:`Classes/EventListener` folder of this extension.
+They receive a :php:`Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent`
+event with the following methods:
+
+.. option:: getTable()
+
+The table model.
+
+Return value
+   The domain model of a table
+   (:php:`Brotkrueml\JobRouterData\Domain\Model\Table`).
+
+.. option:: getColumn()
+
+The column model.
+
+Return value
+   The domain model of a column
+   (:php:`Brotkrueml\JobRouterData\Domain\Model\Column`).
+
+.. option:: getContent()
+
+The content of a table cell.
+
+Return value
+   The value of the content (types: float, int, string).
+
+.. option:: setContent($content)
+
+Set a content for a table cell.
+
+Parameter
+   :php:`float|int|string $content`
+      The formatted content of a table cell.
+
+.. option:: getLocale()
+
+The locale of the website page.
+
+Return value
+   The locale (for example, "de_DE.utf8" or "en_US") is retrieved from the
+   configured site language field `locale`.
+
+
+Custom formatters
+-----------------
+
+As a PSR-14 event is dispatched for formatting a cell content, a custom
+event listener can be used. Have a look into the existing formatter event
+listeners.
+
+.. note::
+   Only the first suitable formatter is used. When the content is adjusted
+   with the :php:`setContent()` method of the event the propagation of other
+   events is stopped. So be sure to add your custom event listener before
+   existing ones.

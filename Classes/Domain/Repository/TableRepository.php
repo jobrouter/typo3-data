@@ -42,7 +42,7 @@ class TableRepository extends Repository
         return $query->execute();
     }
 
-    public function findByIdentifierWithHidden(int $identifier): object
+    public function findByIdentifierWithHidden(int $identifier): ?object
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setIgnoreEnableFields(true);

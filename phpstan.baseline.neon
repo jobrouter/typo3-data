@@ -1,6 +1,6 @@
 parameters:
 	ignoreErrors:
-		- # ViewInterface is deprecated in v11, but necessary for v10 compatibility. Will be refactored once minimum requirement is TYPO3 v11
+		-
 			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:getModuleTemplate\\(\\)\\.$#"
 			count: 1
 			path: Classes/Controller/BackendController.php
@@ -19,16 +19,6 @@ parameters:
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:process\\(\\) has parameter \\$processorConfiguration with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/DataProcessing/TableProcessor.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Cell\\:\\:setContent\\(\\) has parameter \\$content with no typehint specified\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Table/Cell.php
-
-		-
-			message: "#^Property Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Row\\:\\:\\$cells \\(array\\<Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Cell\\>\\) does not accept iterable\\<Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table\\\\Cell\\>\\.$#"
-			count: 1
-			path: Classes/Domain/Model/Table/Row.php
 
 		-
 			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Driver\\\\ResultStatement\\|int\\.$#"
@@ -223,16 +213,6 @@ parameters:
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\ColumnLabelViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/ViewHelpers/ColumnLabelViewHelper.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\FormatCellViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/ViewHelpers/FormatCellViewHelper.php
 
 		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\SubtractViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"

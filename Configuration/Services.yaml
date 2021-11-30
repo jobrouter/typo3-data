@@ -39,6 +39,9 @@ services:
   Brotkrueml\JobRouterData\Controller\TableTestController:
     tags: [ 'backend.controller' ]
 
+  Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter:
+    public: true
+
   Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository:
     arguments:
       $queryBuilder: '@querybuilder.tx_jobrouterdata_domain_model_transfer'
@@ -48,3 +51,27 @@ services:
       - name: event.listener
         identifier: 'jobrouter-data/toolbar-item-provider'
         event: TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent
+
+  Brotkrueml\JobRouterData\EventListener\IntegerFormatter:
+    tags:
+      - name: event.listener
+        identifier: 'jobrouter-data/integer-formatter'
+        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
+
+  Brotkrueml\JobRouterData\EventListener\DecimalFormatter:
+    tags:
+      - name: event.listener
+        identifier: 'jobrouter-data/decimal-formatter'
+        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
+
+  Brotkrueml\JobRouterData\EventListener\DateFormatter:
+    tags:
+      - name: event.listener
+        identifier: 'jobrouter-data/date-formatter'
+        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
+
+  Brotkrueml\JobRouterData\EventListener\DateTimeFormatter:
+    tags:
+      - name: event.listener
+        identifier: 'jobrouter-data/datetime-formatter'
+        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent

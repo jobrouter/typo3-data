@@ -15,7 +15,6 @@ use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterData\Domain\Model\Column;
 use Brotkrueml\JobRouterData\Domain\Model\Dataset;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
-use Brotkrueml\JobRouterData\Domain\Model\Table\Row;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -188,57 +187,6 @@ class TableTest extends TestCase
         $this->subject->setDatasets($objectStorage);
 
         self::assertSame($objectStorage, $this->subject->getDatasets());
-    }
-
-    /**
-     * @test
-     */
-    public function getCountRows(): void
-    {
-        $dataset1 = new Dataset();
-        $this->subject->addDataset($dataset1);
-        $dataset2 = new Dataset();
-        $this->subject->addDataset($dataset2);
-
-        self::assertSame(2, $this->subject->getCountRows());
-    }
-
-    /**
-     * @test
-     */
-    public function getRows(): void
-    {
-        $column1 = new Column();
-        $column1->setName('column1');
-        $this->subject->addColumn($column1);
-        $column2 = new Column();
-        $column2->setName('column2');
-        $this->subject->addColumn($column2);
-        $column3 = new Column();
-        $column3->setName('jrid');
-        $this->subject->addColumn($column3);
-
-        $dataset1 = new Dataset();
-        $dataset1->setDataset(\json_encode([
-            'jrid' => 1,
-            'column1' => 'value1-1',
-            'column2' => 'value1-2',
-        ], \JSON_THROW_ON_ERROR));
-        $this->subject->addDataset($dataset1);
-        $dataset2 = new Dataset();
-        $dataset2->setDataset(\json_encode([
-            'jrid' => 2,
-            'column1' => 'value2-1',
-            'column2' => 'value2-2',
-        ], \JSON_THROW_ON_ERROR));
-        $this->subject->addDataset($dataset2);
-
-        /** @var Row[] $actual */
-        $actual = $this->subject->getRows();
-
-        self::assertCount(2, $actual);
-        self::assertCount(3, $actual[0]->getCells());
-        self::assertCount(3, $actual[1]->getCells());
     }
 
     /**

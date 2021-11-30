@@ -11,11 +11,14 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Hooks\PageLayoutView;
 
+use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
+use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
@@ -37,6 +40,16 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
     private $view;
 
     /**
+     * @var DatasetConverter
+     */
+    private $datasetConverter;
+
+    /**
+     * @var SiteFinder
+     */
+    private $siteFinder;
+
+    /**
      * @var TableRepository
      */
     private $tableRepository;
@@ -46,12 +59,14 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
      */
     private $languageService;
 
-    public function __construct(TableRepository $tableRepository = null, StandaloneView $view = null, LanguageService $languageService = null)
+    public function __construct()
     {
-        $this->tableRepository = $tableRepository ?? GeneralUtility::makeInstance(TableRepository::class);
-        $this->view = $view ?? GeneralUtility::makeInstance(StandaloneView::class);
-        $this->view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(static::TEMPLATE));
-        $this->languageService = $languageService ?? $GLOBALS['LANG'];
+        $this->datasetConverter = GeneralUtility::makeInstance(DatasetConverter::class);
+        $this->siteFinder = GeneralUtility::makeInstance(SiteFinder::class);
+        $this->tableRepository = GeneralUtility::makeInstance(TableRepository::class);
+        $this->view = GeneralUtility::makeInstance(StandaloneView::class);
+        $this->view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName(self::TEMPLATE));
+        $this->languageService = $GLOBALS['LANG'];
     }
 
     public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row): void
@@ -75,12 +90,16 @@ final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
         $this->flexFormData = GeneralUtility::xml2array($row['pi_flexform']);
 
         $tableId = (int)$this->getValueFromFlexform('table');
-        $table = null;
-        if ($tableId !== 0) {
-            $table = $this->tableRepository->findByIdentifier($tableId);
-        }
+        /** @var Table|null $table */
+        $table = $this->tableRepository->findByIdentifier($tableId);
+
+        $site = $this->siteFinder->getSiteByPageId($row['pid']);
+        $locale = $site->getLanguageById($row['sys_language_uid'])->getLocale();
 
         $this->view->assign('table', $table);
+        if ($table instanceof Table) {
+            $this->view->assign('rows', $this->datasetConverter->convertFromJsonToArray($table, $locale));
+        }
 
         return $this->view->render();
     }
