@@ -66,11 +66,6 @@ parameters:
 			path: Classes/Hooks/TableUpdateHook.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Service\\\\CustomTables\\:\\:getTables\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Service/CustomTables.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
@@ -213,6 +208,11 @@ parameters:
 			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 2
 			path: Classes/Transfer/Transmitter.php
+
+		-
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\UserFunctions\\\\FormEngine\\\\CustomTables\\:\\:getTables\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/UserFunctions/FormEngine/CustomTables.php
 
 		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\SubtractViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"

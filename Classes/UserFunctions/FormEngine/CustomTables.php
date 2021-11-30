@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Service;
+namespace Brotkrueml\JobRouterData\UserFunctions\FormEngine;
 
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use TYPO3\CMS\Core\Database\ConnectionPool;

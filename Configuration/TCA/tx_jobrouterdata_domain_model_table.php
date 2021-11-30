@@ -117,10 +117,11 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '' => '',
+                        '',
+                        '',
                     ],
                 ],
-                'itemsProcFunc' => Brotkrueml\JobRouterData\Service\CustomTables::class . '->getTables',
+                'itemsProcFunc' => Brotkrueml\JobRouterData\UserFunctions\FormEngine\CustomTables::class . '->getTables',
                 'eval' => 'required',
             ],
         ],
