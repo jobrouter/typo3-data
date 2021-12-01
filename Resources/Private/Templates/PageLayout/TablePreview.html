@@ -45,7 +45,7 @@
             </thead>
             <tbody>
                 <f:for each="{rows}" as="row" iteration="i">
-                    <f:if condition="{iterator.index} < {MAX_ROWS}">
+                    <f:if condition="{i.index} < {MAX_ROWS}">
                         <tr>
                             <f:for each="{table.columns}" as="column">
                                 <td>{row.{column.name}}</td>
@@ -53,8 +53,9 @@
                         </tr>
                     </f:if>
                 </f:for>
-                <f:if condition="{rows -> f:count()} > {MAX_ROWS}">
-                    <f:variable name="remainingRows"><jobRouterData:subtract minuend="{rows -> f:count()}" subtrahend="{MAX_ROWS}"/></f:variable>
+                <f:variable name="totalRows" value="{rows -> f:count()}"/>
+                <f:if condition="{totalRows} > {MAX_ROWS}">
+                    <f:variable name="remainingRows" value="{totalRows - MAX_ROWS}"/>
                     <tr>
                         <td colspan="{table.columns -> f:count()}">
                             <f:if condition="{remainingRows} == 1">

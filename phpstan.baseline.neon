@@ -213,9 +213,3 @@ parameters:
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\UserFunctions\\\\FormEngine\\\\CustomTables\\:\\:getTables\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/UserFunctions/FormEngine/CustomTables.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\ViewHelpers\\\\SubtractViewHelper\\:\\:renderStatic\\(\\) has parameter \\$arguments with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/ViewHelpers/SubtractViewHelper.php
-
