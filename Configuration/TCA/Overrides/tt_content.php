@@ -55,5 +55,5 @@ defined('TYPO3') || die();
 
     $GLOBALS['TCA']['tt_content']['types'] += $tempTypes;
 
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentType] = 'jobrouterdata-ce-table';
+    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentType] = 'jobrouter-data-ce-table';
 })();
