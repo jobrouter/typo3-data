@@ -21,7 +21,7 @@
 		"ext-json": "*",
 		"ext-pdo": "*",
 		"brotkrueml/jobrouter-client": "^1.0",
-		"brotkrueml/typo3-jobrouter-base": "^1.1",
+		"brotkrueml/typo3-jobrouter-base": "^1.2@dev",
 		"brotkrueml/typo3-jobrouter-connector": "^1.0",
 		"symfony/polyfill-intl-icu": "^1.15",
 		"symfony/polyfill-php80": "^1.17",

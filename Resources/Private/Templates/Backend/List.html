@@ -132,6 +132,10 @@
                                 <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
                                 <f:else>{column.name}</f:else>
                             </f:if>
+                            (<f:translate key="LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.{column.type}"/><f:spaceless>
+                                <f:if condition="{column.type} == 1 && {column.fieldSize} > 0">, {column.fieldSize}</f:if>
+                                <f:if condition="{column.type} == 3">, {column.decimalPlaces}</f:if>
+                            </f:spaceless>)
                         </li>
                     </f:for>
                 </ul>
