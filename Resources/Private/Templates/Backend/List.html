@@ -52,23 +52,7 @@
             </thead>
             <tbody>
                 <f:for each="{simpleTables}" as="table">
-                    <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
-                    <tr>
-                        <f:render section="defaultColumns" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
-                        <td id="jobrouter-data-list-columns-{table.uid}">
-                            <ul>
-                                <f:for each="{table.columns}" as="column">
-                                    <li>
-                                        <f:if condition="{column.label}">
-                                            <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
-                                            <f:else>{column.name}</f:else>
-                                        </f:if>
-                                    </li>
-                                </f:for>
-                            </ul>
-                        </td>
-                        <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
-                    </tr>
+                    <f:render section="rowWithColumnsDisplayed" arguments="{table: table}"/>
                 </f:for>
             </tbody>
         </table>
@@ -108,25 +92,9 @@
             </tr>
             </thead>
             <tbody>
-            <f:for each="{formFinisherTables}" as="table">
-                <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
-                <tr>
-                    <f:render section="defaultColumns" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
-                    <td>
-                        <ul>
-                            <f:for each="{table.columns}" as="column">
-                                <li>
-                                    <f:if condition="{column.label}">
-                                        <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
-                                        <f:else>{column.name}</f:else>
-                                    </f:if>
-                                </li>
-                            </f:for>
-                        </ul>
-                    </td>
-                    <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
-                </tr>
-            </f:for>
+                <f:for each="{formFinisherTables}" as="table">
+                    <f:render section="rowWithColumnsDisplayed" arguments="{table: table}"/>
+                </f:for>
             </tbody>
         </table>
     </f:section>
@@ -150,6 +118,26 @@
                 </f:for>
             </tbody>
         </table>
+    </f:section>
+
+    <f:section name="rowWithColumnsDisplayed">
+        <f:variable name="manageJobDataTableLink">{table.connection.baseUrl}?cmd=JobData&module=jobdata&modcmd=ManageTables_EditTables&guid={table.tableGuid}</f:variable>
+        <tr>
+            <f:render section="defaultColumns" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
+            <td id="jobrouter-data-list-columns-{table.uid}">
+                <ul>
+                    <f:for each="{table.columns}" as="column">
+                        <li>
+                            <f:if condition="{column.label}">
+                                <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
+                                <f:else>{column.name}</f:else>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </td>
+            <f:render section="buttonsColumn" arguments="{table: table, manageJobDataTableLink: manageJobDataTableLink}"/>
+        </tr>
     </f:section>
 
     <f:section name="defaultColumnsHeader">
