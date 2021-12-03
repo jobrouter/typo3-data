@@ -47,9 +47,9 @@ You can also synchronise just one table:
 
 ::
 
-   vendor/bin/typo3 jobrouter:data:sync 1
+   vendor/bin/typo3 jobrouter:data:sync jobs
 
-Where `1` is the uid of the table.
+Where `jobs` is the handle of the table.
 
 If an error occurs, the command issues a warning:
 
