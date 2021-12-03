@@ -37,7 +37,11 @@ Hopefully you will receive a successful response:
 
 .. code-block:: text
 
-   [OK] 2 table(s) synchronised successfully
+   [OK] 2 table(s) processed
+
+.. hint::
+   Only tables with changed datasets are really synchronised. The result only
+   says that - in the example - two tables were considered for synchronization.
 
 You can also synchronise just one table:
 
@@ -51,7 +55,7 @@ If an error occurs, the command issues a warning:
 
 .. code-block:: text
 
-   [WARNING] 1 out of 2 table(s) had errors on synchronisation
+   [WARNING] 1 out of 2 table(s) had errors during processing
 
 Other synchronisations are not affected by an error in one synchronisation.
 According to your :ref:`logging configuration <configuration-extension>`, the

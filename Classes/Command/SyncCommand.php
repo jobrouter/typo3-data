@@ -107,15 +107,15 @@ final class SyncCommand extends Command
 
         if ($result->errors > 0) {
             $this->outputStyle->warning(
-                \sprintf('%d out of %d table(s) had errors on synchronisation', $result->errors, $result->total)
+                \sprintf('%d out of %d table(s) had errors during processing', $result->errors, $result->total)
             );
 
             return self::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
         }
 
         $message = $tableHandle !== ''
-            ? \sprintf('Table with handle "%s" synchronised successfully', $tableHandle)
-            : \sprintf('%d table(s) synchronised successfully', $result->total);
+            ? \sprintf('Table with handle "%s" processed', $tableHandle)
+            : \sprintf('%d table(s) processed', $result->total);
 
         $this->outputStyle->success($message);
 

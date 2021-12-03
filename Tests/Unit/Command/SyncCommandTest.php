@@ -94,7 +94,7 @@ class SyncCommandTest extends TestCase
         $this->commandTester->execute([]);
 
         self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
-        self::assertStringContainsString('2 table(s) synchronised successfully', $this->commandTester->getDisplay());
+        self::assertStringContainsString('2 table(s) processed', $this->commandTester->getDisplay());
     }
 
     /**
@@ -135,7 +135,7 @@ class SyncCommandTest extends TestCase
 
         self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            'Table with handle "some_handle" synchronised successfully',
+            'Table with handle "some_handle" processed',
             $this->commandTester->getDisplay()
         );
     }
@@ -175,7 +175,7 @@ class SyncCommandTest extends TestCase
 
         self::assertSame(SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
-            '[WARNING] 1 out of 3 table(s) had errors on synchronisation',
+            '[WARNING] 1 out of 3 table(s) had errors during processing',
             $this->commandTester->getDisplay()
         );
     }
