@@ -3,11 +3,11 @@
 
     <f:section name="Main">
         <f:if condition="{table} && {rows}">
-            <table class="ce-table">
+            <table class="{settings.cssClasses.table}">
                 <thead>
                     <tr>
                         <f:for each="{table.columns}" as="column">
-                            <th scope="col">
+                            <th scope="col"{f:if(condition: '{column.alignment}', then: ' class="{settings.cssClasses.{column.alignment}}"')}>
                                 <f:if condition="{column.label}">
                                     <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
                                     <f:else>{column.name}</f:else>
@@ -20,7 +20,7 @@
                     <f:for as="row" each="{rows}">
                         <tr>
                             <f:for as="column" each="{table.columns}">
-                                <td>{row.{column.name}}</td>
+                                <td{f:if(condition: '{column.alignment}', then: ' class="{settings.cssClasses.{column.alignment}}"')}>{row.{column.name}}</td>
                             </f:for>
                         </tr>
                     </f:for>

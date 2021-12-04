@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-11-27T18:17:49Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-12-04T10:27:36Z" product-name="jobrouter_data">
 		<body>
 			<trans-unit id="palette.last_synchronisation" resname="palette.last_synchronisation">
 				<source><![CDATA[Last Synchronisation]]></source>
@@ -10,6 +10,18 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column" resname="tx_jobrouterdata_domain_model_column">
 				<source><![CDATA[JobData Column]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment" resname="tx_jobrouterdata_domain_model_column.alignment">
+				<source><![CDATA[Alignment]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.center" resname="tx_jobrouterdata_domain_model_column.alignment.center">
+				<source><![CDATA[center]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.left" resname="tx_jobrouterdata_domain_model_column.alignment.left">
+				<source><![CDATA[left]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.right" resname="tx_jobrouterdata_domain_model_column.alignment.right">
+				<source><![CDATA[right]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.decimal_places" resname="tx_jobrouterdata_domain_model_column.decimal_places">
 				<source><![CDATA[Decimal places]]></source>

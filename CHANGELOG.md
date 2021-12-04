@@ -7,7 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Extensible formatters for table content in content element (#10)
+- Extensible formatters for table columns in content element (#10)
+- Selectable alignment for table columns in content element (#11)
 
 ## [0.14.0] - 2021-11-21
 

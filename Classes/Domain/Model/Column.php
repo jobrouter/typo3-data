@@ -43,6 +43,11 @@ class Column extends AbstractEntity
      */
     protected $fieldSize = 0;
 
+    /**
+     * @var string
+     */
+    protected $alignment = '';
+
     public function getName(): string
     {
         return $this->name;
@@ -91,5 +96,15 @@ class Column extends AbstractEntity
     public function setFieldSize(int $fieldSize): void
     {
         $this->fieldSize = $fieldSize;
+    }
+
+    public function getAlignment(): string
+    {
+        return $this->alignment;
+    }
+
+    public function setAlignment(string $alignment): void
+    {
+        $this->alignment = $alignment;
     }
 }

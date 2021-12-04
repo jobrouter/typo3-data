@@ -1,0 +1,33 @@
+Columns (required)
+   Define the columns that should be synchronised. Each column has the following
+   fields:
+
+   JobData Column Name (required)
+      The name of the column as defined in the JobData table.
+
+   Label (optional)
+      The label of the column. It will be shown as header of the table when
+      using the plugin.
+
+   Type (required)
+      Select the column type (:guilabel:`Text`, :guilabel:`Integer`,
+      :guilabel:`Decimal`, :guilabel:`Date`, :guilabel:`DateTime`) as defined
+      in the JobData table.
+
+   Decimal places
+      This option is only shown with type :guilabel:`Decimal`. Select the number
+      of decimals to be used.
+
+   Field size
+      This option is only shown with type :guilabel:`Text`. Enter the size of
+      the field. When sending the fields of a form to a JobData table with
+      the :ref:`form finisher <form-finisher>` the values are truncated if too
+      long to prevent errors when transmitting the data. To disable the
+      truncation enter 0.
+
+   Alignment
+      Select the alignment for the column. This value is used in the
+      :ref:`table content element <editor-content-element>`.
+
+   .. important::
+      The `jrid` column must not be defined as it is available by default.

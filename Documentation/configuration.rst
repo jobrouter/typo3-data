@@ -82,23 +82,34 @@ The messages are then written to the
 :file:`var/log/typo3_jobrouter_data_<hash>.log` file.
 
 
-.. _configuration-templates:
+.. _configuration-content-element:
 
-Templates
-=========
+Content element
+===============
 
-It is possible to adjust the layout of the :ref:`content element
-<editor-content-element>` table. By default the layout from the
-core content element `Table` is used.
-
-If you want to use other classes, you have to override the template. Just
-copy the template file
-:file:`Resources/Private/Template/ContentElement/Table.html` into your own
-site package extension and add the path via TypoScript, e.g.::
+It is possible to adjust the CSS classes of the :ref:`content element
+<editor-content-element>` table via TypoScript::
 
    tt_content.tx_jobrouterdata_table {
-      templateRootPaths.10 = EXT:your_extension/Resources/Private/Template/JobRouterData/
+      settings {
+         cssClasses {
+            # The class of the table tag
+            table = ce-table
+
+            # The class of table cells which should be aligned left
+            left = ce-align-left
+
+            # The class of table cells which should be aligned centered
+            center = ce-align-center
+
+            # The class of table cells which should be aligned right
+            right = ce-align-right
+         }
+      }
    }
+
+The alignment is selected when configuring the :ref:`table columns
+<module-create-table-link-simple>`.
 
 
 .. _co-stack/logs: https://extensions.typo3.org/extension/logs

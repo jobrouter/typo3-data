@@ -206,44 +206,62 @@ return [
     ],
     'types' => [
         (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => [
+            'columnsOverrides' => [
+                'columns' => [
+                    'config' => [
+                        'overrideChildTca' => [
+                            'types' => [
+                                '0' => [
+                                    'showitem' => '
+                                        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                                        --palette--;;nameLabel,
+                                        --palette--;;type,
+                                        --palette--;;visual,
+                                    ',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
             'showitem' => '
-            type, connection, name, handle, table_guid, columns,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            disabled,
-            --div--;' . Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
-            --palette--;;synchronisationStatus,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            description,
-        ',
+                type, connection, name, handle, table_guid, columns,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                disabled,
+                --div--;' . Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
+                --palette--;;synchronisationStatus,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                description,
+            ',
         ],
         (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_CUSTOM_TABLE => [
             'showitem' => '
-            type, connection, name, handle, table_guid, custom_table,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            disabled,
-            --div--;' . Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
-            --palette--;;synchronisationStatus,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            description,
-        ',
+                type, connection, name, handle, table_guid, custom_table,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                disabled,
+                --div--;' . Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
+                --palette--;;synchronisationStatus,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                description,
+            ',
         ],
         (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_FORM_FINISHER => [
             'showitem' => '
-            type, connection, name, handle, table_guid, columns,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            disabled,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            description,
-        ',
+                type, connection, name, handle, table_guid, columns,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                disabled,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                description,
+            ',
         ],
         (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => [
             'showitem' => '
-            type, connection, name, handle, table_guid,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-            disabled,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
-            description,
-        ',
+                type, connection, name, handle, table_guid,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                disabled,
+                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
+                description,
+            ',
         ],
     ],
     'palettes' => [

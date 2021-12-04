@@ -85,4 +85,16 @@ final class ColumnTest extends TestCase
 
         self::assertSame(50, $this->subject->getFieldSize());
     }
+
+    /**
+     * @test
+     */
+    public function getAndSetAlignment(): void
+    {
+        self::assertSame('', $this->subject->getAlignment());
+
+        $this->subject->setAlignment('center');
+
+        self::assertSame('center', $this->subject->getAlignment());
+    }
 }

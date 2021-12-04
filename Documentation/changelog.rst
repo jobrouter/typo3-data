@@ -15,7 +15,8 @@ Added
 ^^^^^
 
 
-* Extensible formatters for table content in content element (#10)
+* Extensible formatters for table columns in content element (#10)
+* Selectable alignment for table columns in content element (#11)
 
 `0.14.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.13.0...v0.14.0>`_ - 2021-11-21
 ---------------------------------------------------------------------------------------------------------

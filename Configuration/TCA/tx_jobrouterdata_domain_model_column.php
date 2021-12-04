@@ -133,6 +133,32 @@ return [
                 'default' => 0,
             ],
         ],
+        'alignment' => [
+            'exclude' => true,
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        '',
+                        '',
+                    ],
+                    [
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.left',
+                        'left',
+                    ],
+                    [
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.center',
+                        'center',
+                    ],
+                    [
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.right',
+                        'right',
+                    ],
+                ],
+            ],
+        ],
     ],
     'types' => [
         '0' => [
@@ -149,6 +175,10 @@ return [
         ],
         'type' => [
             'showitem' => 'type, decimal_places, field_size',
+        ],
+        'visual' => [
+            // Palette is used in columnOverrides of tx_jobrouterdata_domain_model_column for simple table type
+            'showitem' => 'alignment',
         ],
     ],
 ];

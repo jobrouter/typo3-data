@@ -76,7 +76,7 @@ General
 .. include:: table-link-columns/handle.txt
 .. include:: table-link-columns/name.txt
 .. include:: table-link-columns/jobdata-table-guid.txt
-.. include:: table-link-columns/columns.txt
+.. include:: table-link-columns/columns-simple.txt
 
 Access
 ''''''
