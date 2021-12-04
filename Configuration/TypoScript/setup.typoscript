@@ -25,13 +25,3 @@ tt_content.tx_jobrouterdata_table {
     10 = Brotkrueml\JobRouterData\DataProcessing\TableProcessor
   }
 }
-
-config.tx_extbase {
-  persistence.classes {
-    Brotkrueml\JobRouterData\Domain\Model\Transfer {
-      mapping {
-        tableName = tx_jobrouterdata_domain_model_transfer
-      }
-    }
-  }
-}
