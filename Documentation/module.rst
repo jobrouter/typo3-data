@@ -72,24 +72,24 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.txt
-.. include:: table-link-columns/handle.txt
-.. include:: table-link-columns/name.txt
-.. include:: table-link-columns/jobdata-table-guid.txt
-.. include:: table-link-columns/columns-simple.txt
+.. include:: table-link-columns/connection.rst.txt
+.. include:: table-link-columns/handle.rst.txt
+.. include:: table-link-columns/name.rst.txt
+.. include:: table-link-columns/jobdata-table-guid.rst.txt
+.. include:: table-link-columns/columns-simple.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.txt
+.. include:: table-link-columns/enabled.rst.txt
 
 Status
 ''''''
-.. include:: table-link-columns/last-sync-date.txt
-.. include:: table-link-columns/last-sync-error.txt
+.. include:: table-link-columns/last-sync-date.rst.txt
+.. include:: table-link-columns/last-sync-error.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.txt
+.. include:: table-link-columns/description.rst.txt
 
 
 .. _module-create-table-link-custom:
@@ -112,24 +112,24 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.txt
-.. include:: table-link-columns/handle.txt
-.. include:: table-link-columns/name.txt
-.. include:: table-link-columns/jobdata-table-guid.txt
-.. include:: table-link-columns/custom-table.txt
+.. include:: table-link-columns/connection.rst.txt
+.. include:: table-link-columns/handle.rst.txt
+.. include:: table-link-columns/name.rst.txt
+.. include:: table-link-columns/jobdata-table-guid.rst.txt
+.. include:: table-link-columns/custom-table.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.txt
+.. include:: table-link-columns/enabled.rst.txt
 
 Status
 ''''''
-.. include:: table-link-columns/last-sync-date.txt
-.. include:: table-link-columns/last-sync-error.txt
+.. include:: table-link-columns/last-sync-date.rst.txt
+.. include:: table-link-columns/last-sync-error.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.txt
+.. include:: table-link-columns/description.rst.txt
 
 
 .. _module-create-table-link-form-finisher:
@@ -150,24 +150,24 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.txt
-.. include:: table-link-columns/handle.txt
-.. include:: table-link-columns/name.txt
-.. include:: table-link-columns/jobdata-table-guid.txt
-.. include:: table-link-columns/columns.txt
+.. include:: table-link-columns/connection.rst.txt
+.. include:: table-link-columns/handle.rst.txt
+.. include:: table-link-columns/name.rst.txt
+.. include:: table-link-columns/jobdata-table-guid.rst.txt
+.. include:: table-link-columns/columns.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.txt
+.. include:: table-link-columns/enabled.rst.txt
 
 Status
 ''''''
-.. include:: table-link-columns/last-sync-date.txt
-.. include:: table-link-columns/last-sync-error.txt
+.. include:: table-link-columns/last-sync-date.rst.txt
+.. include:: table-link-columns/last-sync-error.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.txt
+.. include:: table-link-columns/description.rst.txt
 
 
 .. _module-create-table-link-other:
@@ -189,18 +189,18 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.txt
-.. include:: table-link-columns/handle.txt
-.. include:: table-link-columns/name.txt
-.. include:: table-link-columns/jobdata-table-guid.txt
+.. include:: table-link-columns/connection.rst.txt
+.. include:: table-link-columns/handle.rst.txt
+.. include:: table-link-columns/name.rst.txt
+.. include:: table-link-columns/jobdata-table-guid.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.txt
+.. include:: table-link-columns/enabled.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.txt
+.. include:: table-link-columns/description.rst.txt
 
 
 .. _module-table-links-overview:
