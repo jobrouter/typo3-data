@@ -63,7 +63,7 @@ Logging
 =======
 
 If logging is necessary to track synchronisations and possible warnings or
-errors, you can set up :ref:`log writers <t3api:logging-writers>` depending on
+errors, you can set up :ref:`log writers <t3coreapi:logging-writers>` depending on
 your needs.
 
 **Example:** To log all warnings and higher levels of this extension into a
