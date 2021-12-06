@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extensible formatters for table columns in content element (#10)
 - Selectable alignment for table columns in content element (#11)
 
+### Removed
+- Configuration of log writers in the extension configuration
+
 ## [0.14.0] - 2021-11-21
 
 ### Added

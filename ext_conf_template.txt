@@ -1,8 +1,0 @@
-# cat=Log; type=boolean; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logIntoFile
-logIntoFile = 0
-
-# cat=Log; type=boolean; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logIntoTable
-logIntoTable = 0
-
-# cat=Log; type=options[emergency,alert,critical,error,warning,notice,info,debug]; label=LLL:EXT:jobrouter_data/Resources/Private/Language/ExtensionConfiguration.xlf:logLevel
-logLevel = warning
