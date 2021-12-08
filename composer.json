@@ -1,7 +1,8 @@
 {
 	"name": "brotkrueml/typo3-jobrouter-data",
-	"type": "typo3-cms-extension",
 	"description": "Connect JobRouter® JobData tables with TYPO3",
+	"license": "GPL-2.0-or-later",
+	"type": "typo3-cms-extension",
 	"keywords": [
 		"TYPO3 CMS",
 		"TYPO3 extension",
@@ -9,13 +10,17 @@
 		"Data",
 		"Workflow"
 	],
-	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
 			"name": "Chris Müller",
 			"role": "Developer"
 		}
 	],
+	"support": {
+		"issues": "https://github.com/brotkrueml/typo3-jobrouter-data/issues",
+		"source": "https://github.com/brotkrueml/typo3-jobrouter-data",
+		"docs": "https://typo3-jobrouter.readthedocs.io/projects/data/"
+	},
 	"require": {
 		"php": ">=7.3",
 		"ext-json": "*",
@@ -38,7 +43,7 @@
 		"codeception/module-webdriver": "^1.4",
 		"dg/bypass-finals": "^1.3",
 		"donatj/mock-webserver": "^2.2",
-		"ergebnis/composer-normalize": "^2.15",
+		"ergebnis/composer-normalize": "^2.18",
 		"mikey179/vfsstream": "^1.6",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpstan/extension-installer": "^1.1",
@@ -59,6 +64,16 @@
 		"typo3/cms-fluid-styled-content": "Necessary when using the table content element",
 		"typo3/cms-form": "Use form finisher with TYPO3 form framework"
 	},
+	"autoload": {
+		"psr-4": {
+			"Brotkrueml\\JobRouterData\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Brotkrueml\\JobRouterData\\Tests\\": "Tests"
+		}
+	},
 	"config": {
 		"bin-dir": ".Build/bin",
 		"sort-packages": true,
@@ -74,24 +89,9 @@
 			"web-dir": ".Build/Web"
 		}
 	},
-	"autoload": {
-		"psr-4": {
-			"Brotkrueml\\JobRouterData\\": "Classes"
-		}
-	},
-	"autoload-dev": {
-		"psr-4": {
-			"Brotkrueml\\JobRouterData\\Tests\\": "Tests"
-		}
-	},
 	"scripts": {
 		"post-autoload-dump": [
 			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
 		]
-	},
-	"support": {
-		"issues": "https://github.com/brotkrueml/typo3-jobrouter-data/issues",
-		"source": "https://github.com/brotkrueml/typo3-jobrouter-data",
-		"docs": "https://typo3-jobrouter.readthedocs.io/projects/data/"
 	}
 }
