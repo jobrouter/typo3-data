@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Repository;
 
+use Brotkrueml\JobRouterData\Domain\Model\Transfer;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -18,7 +19,7 @@ use TYPO3\CMS\Extbase\Persistence\Repository;
 class TransferRepository extends Repository
 {
     /**
-     * @return mixed[]|QueryResultInterface
+     * @return mixed[]|QueryResultInterface<Transfer>
      */
     public function findErroneousTransfers()
     {

@@ -31,7 +31,7 @@ class TableRepository extends Repository
     ];
 
     /**
-     * @return mixed[]|QueryResultInterface
+     * @return mixed[]|QueryResultInterface<Table>
      */
     public function findAllByTypeWithHidden(int $type)
     {
@@ -52,7 +52,7 @@ class TableRepository extends Repository
     }
 
     /**
-     * @return mixed[]|QueryResultInterface
+     * @return mixed[]|QueryResultInterface<Table>
      */
     public function findAllSyncTables()
     {
@@ -67,7 +67,7 @@ class TableRepository extends Repository
         return $query->execute();
     }
 
-    public function findByHandle(string $handle): object
+    public function findByHandle(string $handle): ?Table
     {
         $query = $this->createQuery();
         $query->matching($query->equals('handle', $handle));

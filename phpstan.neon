@@ -6,7 +6,7 @@ includes:
     - .Build/vendor/symplify/phpstan-rules/config/size-rules.neon
 
 parameters:
-    phpVersion: 70400
+    phpVersion: 80000
     level: 8
     paths:
         - Classes

@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Class has a static method must so must contains \"Static\" in its name$#"
+			count: 1
+			path: Classes/Cache/Cache.php
+
+		-
 			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:getModuleTemplate\\(\\)\\.$#"
 			count: 1
 			path: Classes/Controller/BackendController.php
@@ -36,6 +41,16 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
+			message: "#^Parameter \\#1 \\$num of method NumberFormatter\\:\\:format\\(\\) expects float\\|int, float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: Classes/EventListener/DecimalFormatter.php
+
+		-
+			message: "#^Parameter \\#1 \\$num of method NumberFormatter\\:\\:format\\(\\) expects float\\|int, float\\|int\\|string\\|null given\\.$#"
+			count: 1
+			path: Classes/EventListener/IntegerFormatter.php
+
+		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\TablePreviewRenderer\\:\\:getItemContent\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
@@ -46,22 +61,22 @@ parameters:
 			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$command with no typehint specified\\.$#"
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$command with no type specified\\.$#"
 			count: 1
 			path: Classes/Hooks/TableUpdateHook.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$commandValue with no typehint specified\\.$#"
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$commandValue with no type specified\\.$#"
 			count: 1
 			path: Classes/Hooks/TableUpdateHook.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$recordId with no typehint specified\\.$#"
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$recordId with no type specified\\.$#"
 			count: 1
 			path: Classes/Hooks/TableUpdateHook.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$table with no typehint specified\\.$#"
+			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$table with no type specified\\.$#"
 			count: 1
 			path: Classes/Hooks/TableUpdateHook.php
 
@@ -213,3 +228,4 @@ parameters:
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\UserFunctions\\\\FormEngine\\\\CustomTables\\:\\:getTables\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/UserFunctions/FormEngine/CustomTables.php
+
