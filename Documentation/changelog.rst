@@ -18,6 +18,12 @@ Added
 * Extensible formatters for table columns in content element (#10)
 * Selectable alignment for table columns in content element (#11)
 
+Fixed
+^^^^^
+
+
+* Domain model Table::setHandle() sets the correct property
+
 Removed
 ^^^^^^^
 

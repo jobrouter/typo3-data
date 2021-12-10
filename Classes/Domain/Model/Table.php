@@ -117,7 +117,7 @@ class Table extends AbstractEntity
 
     public function setHandle(string $handle): void
     {
-        $this->name = $handle;
+        $this->handle = $handle;
     }
 
     public function getName(): string

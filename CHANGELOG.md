@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extensible formatters for table columns in content element (#10)
 - Selectable alignment for table columns in content element (#11)
 
+### Fixed
+- Domain model Table::setHandle() sets the correct property
+
 ### Removed
 - Configuration of log writers in the extension configuration
 

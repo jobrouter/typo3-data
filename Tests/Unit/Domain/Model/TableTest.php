@@ -57,6 +57,18 @@ class TableTest extends TestCase
     /**
      * @test
      */
+    public function getAndSetHandle(): void
+    {
+        self::assertSame('', $this->subject->getHandle());
+
+        $this->subject->setHandle('some handle');
+
+        self::assertSame('some handle', $this->subject->getHandle());
+    }
+
+    /**
+     * @test
+     */
     public function getAndSetConnection(): void
     {
         self::assertNull($this->subject->getConnection());
