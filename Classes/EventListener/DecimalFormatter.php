@@ -23,9 +23,22 @@ final class DecimalFormatter
             return;
         }
 
+        $content = $event->getContent();
+        if ($content === null) {
+            return;
+        }
+
+        if (\is_string($content) && \is_numeric($content)) {
+            $content = (float)$content;
+        }
+
+        if (\is_string($content)) {
+            return;
+        }
+
         $formatter = new \NumberFormatter($event->getLocale(), \NumberFormatter::DECIMAL);
         $formatter->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, $column->getDecimalPlaces());
         $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $column->getDecimalPlaces());
-        $event->setContent($formatter->format($event->getContent()));
+        $event->setContent($formatter->format($content));
     }
 }

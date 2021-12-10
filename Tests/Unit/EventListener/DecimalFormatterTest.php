@@ -32,51 +32,72 @@ final class DecimalFormatterTest extends TestCase
 
     /**
      * @test
+     * @dataProvider dataProviderForInvoke
      */
-    public function contentIsFormattedIfColumnTypeIsDecimalAndFractionIsCut(): void
+    public function invoke(int $type, int $decimalPlaces, $content, string $locale, $expected): void
     {
         $table = new Table();
         $column = new Column();
-        $column->setType(FieldTypeEnumeration::DECIMAL);
-        $column->setDecimalPlaces(3);
+        $column->setType($type);
+        $column->setDecimalPlaces($decimalPlaces);
 
-        $event = new ModifyColumnContentEvent($table, $column, 123456789.12345, 'de_CH');
-
+        $event = new ModifyColumnContentEvent($table, $column, $content, $locale);
         $this->subject->__invoke($event);
 
-        self::assertSame('123’456’789.123', $event->getContent());
+        self::assertSame($expected, $event->getContent());
     }
 
     /**
-     * @test
+     * @return \Iterator<array<string, float|int|string|null>
      */
-    public function contentIsFormattedIfColumnTypeIsDecimalAndFractionIsPadded(): void
+    public function dataProviderForInvoke(): iterable
     {
-        $table = new Table();
-        $column = new Column();
-        $column->setType(FieldTypeEnumeration::DECIMAL);
-        $column->setDecimalPlaces(4);
+        yield 'Column type is decimal and fraction is cut' => [
+            'type' => FieldTypeEnumeration::DECIMAL,
+            'decimalPlaces' => 3,
+            'content' => 123456789.12345,
+            'locale' => 'de_CH',
+            'expected' => '123’456’789.123',
+        ];
 
-        $event = new ModifyColumnContentEvent($table, $column, 123456789.1, 'de_CH');
+        yield 'Column type is decimal and fraction is padded' => [
+            'type' => FieldTypeEnumeration::DECIMAL,
+            'decimalPlaces' => 4,
+            'content' => 123456789.1,
+            'locale' => 'de_CH',
+            'expected' => '123’456’789.1000',
+        ];
 
-        $this->subject->__invoke($event);
+        yield 'Column type is decimal and content is null, content is not changed' => [
+            'type' => FieldTypeEnumeration::DECIMAL,
+            'decimalPlaces' => 2,
+            'content' => null,
+            'locale' => 'de_CH',
+            'expected' => null,
+        ];
 
-        self::assertSame('123’456’789.1000', $event->getContent());
-    }
+        yield 'Column type is decimal and content is a numeric string, content is formatted' => [
+            'type' => FieldTypeEnumeration::DECIMAL,
+            'decimalPlaces' => 2,
+            'content' => '123456.789',
+            'locale' => 'de_DE',
+            'expected' => '123.456,79',
+        ];
 
-    /**
-     * @test
-     */
-    public function contentIsNotChangedIfColumnTypeIsNotInteger(): void
-    {
-        $table = new Table();
-        $column = new Column();
-        $column->setType(FieldTypeEnumeration::INTEGER);
+        yield 'Column type is decimal and content is a non-numeric string, content is not changed' => [
+            'type' => FieldTypeEnumeration::DECIMAL,
+            'decimalPlaces' => 2,
+            'content' => 'some content',
+            'locale' => 'de_DE',
+            'expected' => 'some content',
+        ];
 
-        $event = new ModifyColumnContentEvent($table, $column, 123456789, 'de_CH');
-
-        $this->subject->__invoke($event);
-
-        self::assertSame(123456789, $event->getContent());
+        yield 'Column type is integer, content is not changed' => [
+            'type' => FieldTypeEnumeration::INTEGER,
+            'decimalPlaces' => 2,
+            'content' => 123456789,
+            'locale' => 'de_CH',
+            'expected' => 123456789,
+        ];
     }
 }

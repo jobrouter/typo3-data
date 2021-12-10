@@ -43,11 +43,6 @@ parameters:
 		-
 			message: "#^Parameter \\#1 \\$num of method NumberFormatter\\:\\:format\\(\\) expects float\\|int, float\\|int\\|string\\|null given\\.$#"
 			count: 1
-			path: Classes/EventListener/DecimalFormatter.php
-
-		-
-			message: "#^Parameter \\#1 \\$num of method NumberFormatter\\:\\:format\\(\\) expects float\\|int, float\\|int\\|string\\|null given\\.$#"
-			count: 1
 			path: Classes/EventListener/IntegerFormatter.php
 
 		-
