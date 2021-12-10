@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
 
 use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 
 /**
@@ -58,13 +59,13 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
             return;
         }
 
-        $connection = $this->connectionPool->getConnectionForTable(static::DATASET_TABLE_NAME);
+        $connection = $this->connectionPool->getConnectionForTable(self::DATASET_TABLE_NAME);
         $connection->setAutoCommit(false);
         $connection->beginTransaction();
 
         try {
             $connection->delete(
-                static::DATASET_TABLE_NAME,
+                self::DATASET_TABLE_NAME,
                 [
                     'table_uid' => $table->getUid(),
                 ],
@@ -78,6 +79,14 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
             ]);
 
             foreach ($datasets as $dataset) {
+                $event = new ModifyDatasetOnSynchronisationEvent(clone $table, $dataset);
+                /** @var ModifyDatasetOnSynchronisationEvent $event */
+                $event = $this->eventDispatcher->dispatch($event);
+                if ($event->isRejected()) {
+                    continue;
+                }
+
+                $dataset = $event->getDataset();
                 $jrid = $dataset['jrid'];
                 unset($dataset['jrid']);
 
@@ -89,7 +98,7 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
                 ];
 
                 $connection->insert(
-                    static::DATASET_TABLE_NAME,
+                    self::DATASET_TABLE_NAME,
                     $data,
                     [
                         'pid' => \PDO::PARAM_INT,

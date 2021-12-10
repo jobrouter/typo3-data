@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
 use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 
@@ -83,8 +84,15 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
             ]);
 
             foreach ($datasets as $dataset) {
-                $data = [];
+                $event = new ModifyDatasetOnSynchronisationEvent(clone $table, $dataset);
+                /** @var ModifyDatasetOnSynchronisationEvent $event */
+                $event = $this->eventDispatcher->dispatch($event);
+                if ($event->isRejected()) {
+                    continue;
+                }
 
+                $dataset = $event->getDataset();
+                $data = [];
                 foreach ($dataset as $column => $content) {
                     $column = \strtolower($column);
                     if (! \in_array($column, $customTableColumns, true)) {

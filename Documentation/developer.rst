@@ -13,6 +13,72 @@ Target group: **Developers**
    :local:
 
 
+Modify data sets on synchronisation
+===================================
+
+.. versionadded:: 1.0.0
+
+The records that are synchronised with the table types
+:ref:`module-create-table-link-simple` or :ref:`module-create-table-link-custom`
+can be adapted to the needs of the website or rejected during synchronisation.
+This can be useful if only records with a date column are used where the date is
+relevant in the future. Another scenario would be to match the content of one
+column with the content of another table.
+
+
+Example
+-------
+
+A :ref:`PSR-14 event listener <t3coreapi:EventDispatcher>` can be used for this
+case. In the following example, a record is rejected under a certain condition
+and a static string is added to each "position" column value.
+
+.. rst-class:: bignums-xxl
+
+#. Create the event listener
+
+   ::
+
+      <?php
+         declare(strict_types=1);
+
+         namespace YourVendor\YourExtension\EventListener;
+
+         use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
+
+         final class AdjustJobsDataset
+         {
+            public function __invoke(ModifyDatasetOnSynchronisationEvent $event): void
+            {
+               // Only the table with the handle "jobs" should be considered
+               if ($event->getTable()->getHandle() !== 'jobs') {
+                  return;
+               }
+
+               $dataset = $event->getDataset();
+               if ($dataset['jrid'] === 3) {
+                  // For some reason we don't like jrid = 3, so we reject it
+                  // and it doesn't get synchronised
+                  $event->setRejected();
+               }
+
+               $dataset['POSITION'] .= ' (approved by me™)';
+               $event->setDataset($dataset);
+            }
+         }
+
+#. Register your event listener in :file:`Configuration/Services.yaml`
+
+   .. code-block:: yaml
+
+      services:
+         YourVendor\YourExtension\EventListener\AdjustJobsDataset:
+            tags:
+               - name: event.listener
+                 identifier: 'adjustJobsDataset'
+                 event: event: Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent
+
+
 Retrieve data sets from the different table link types
 ======================================================
 
@@ -339,6 +405,8 @@ appropriate method:
 
 Customising the formatting of a table column in the content element
 ===================================================================
+
+.. versionadded:: 1.0.0
 
 The extension comes with four formatters that are used when rendering the
 column content in the :ref:`content element <editor-content-element>`:
