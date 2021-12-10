@@ -15,19 +15,47 @@ use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
  */
-final class CustomTableSynchroniser extends AbstractSynchroniser
+final class CustomTableSynchroniser implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
+    /**
+     * @var ConnectionPool
+     */
+    private $connectionPool;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var SynchronisationService
+     */
+    private $synchronisationService;
+
+    public function __construct(ConnectionPool $connectionPool, EventDispatcherInterface $eventDispatcher, SynchronisationService $synchronisationService)
+    {
+        $this->connectionPool = $connectionPool;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->synchronisationService = $synchronisationService;
+    }
+
     public function synchroniseTable(Table $table): bool
     {
         try {
-            $datasets = $this->retrieveDatasetsFromJobRouter($table);
+            $datasets = $this->synchronisationService->retrieveDatasetsFromJobDataTable($table);
             $columns = $this->getCustomTableColumns($table);
             $this->storeDatasets($table, $columns, $datasets);
-            $this->updateSynchronisationStatus($table);
+            $this->synchronisationService->updateSynchronisationStatus($table);
         } catch (\Exception $e) {
             $message = \sprintf(
                 'Table link with uid "%d" cannot be synchronised: %s',
@@ -36,7 +64,7 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
             );
 
             $this->logger->error($message);
-            $this->updateSynchronisationStatus($table, null, $message);
+            $this->synchronisationService->updateSynchronisationStatus($table, null, $message);
 
             return false;
         }
@@ -61,10 +89,10 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
 
     private function storeDatasets(Table $table, array $customTableColumns, array $datasets): void
     {
-        $datasetsHash = $this->hashDatasets($datasets);
+        $datasetsHash = $this->synchronisationService->hashDatasets($datasets);
 
         if ($datasetsHash === $table->getDatasetsSyncHash()) {
-            $this->updateSynchronisationStatus($table);
+            $this->synchronisationService->updateSynchronisationStatus($table);
             $this->logger->info('Datasets have not changed', [
                 'table_uid' => $table->getUid(),
             ]);
@@ -107,17 +135,17 @@ final class CustomTableSynchroniser extends AbstractSynchroniser
                 $this->logger->debug('Inserted table record in transaction', $data);
             }
 
-            $this->updateSynchronisationStatus($table, $datasetsHash);
+            $this->synchronisationService->updateSynchronisationStatus($table, $datasetsHash);
         } catch (\Exception $e) {
             $connection->rollBack();
             $connection->setAutoCommit(true);
 
-            $this->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
+            $this->synchronisationService->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
                 [
-                    'table uid' => $table->getUid(),
+                    'table handle' => $table->getHandle(),
                     'custom table' => $customTable,
                     'message' => $e->getMessage(),
                 ]

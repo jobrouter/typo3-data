@@ -22,7 +22,7 @@ final class ModifyDatasetOnSynchronisationEvent
     private $table;
 
     /**
-     * @var array<string, float|int|string|null>
+     * @var array<string, float|int|string|bool|null>
      */
     private $dataset;
 
@@ -32,7 +32,7 @@ final class ModifyDatasetOnSynchronisationEvent
     private $rejected = false;
 
     /**
-     * @param array<string, float|int|string|null> $dataset
+     * @param array<string, float|int|string|bool|null> $dataset
      */
     public function __construct(Table $table, array $dataset)
     {
@@ -46,7 +46,7 @@ final class ModifyDatasetOnSynchronisationEvent
     }
 
     /**
-     * @return array<string, float|int|string|null>
+     * @return array<string, float|int|string|bool|null>
      */
     public function getDataset(): array
     {
@@ -54,7 +54,7 @@ final class ModifyDatasetOnSynchronisationEvent
     }
 
     /**
-     * @param array<string, float|int|string|null> $dataset
+     * @param array<string, float|int|string|bool|null> $dataset
      */
     public function setDataset(array $dataset): void
     {
@@ -64,7 +64,7 @@ final class ModifyDatasetOnSynchronisationEvent
     }
 
     /**
-     * @param array<string, float|int|string|null> $dataset
+     * @param array<string, float|int|string|bool|null> $dataset
      */
     private function compareOriginalWithGivenDatasetKeys(array $dataset): void
     {
@@ -84,7 +84,7 @@ final class ModifyDatasetOnSynchronisationEvent
     }
 
     /**
-     * @param array<string, float|int|string|null> $dataset
+     * @param array<string, float|int|string|bool|null> $dataset
      */
     private function compareOriginalJridWithGivenJrid(array $dataset): void
     {

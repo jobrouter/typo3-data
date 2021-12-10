@@ -15,20 +15,48 @@ use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
+use TYPO3\CMS\Core\Database\Connection;
 
 /**
  * @internal
  */
-final class SimpleTableSynchroniser extends AbstractSynchroniser
+final class SimpleTableSynchroniser implements LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
+
+    /**
+     * @var Connection
+     */
+    private $datasetConnection;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var SynchronisationService
+     */
+    private $synchronisationService;
+
+    public function __construct(Connection $datasetConnection, EventDispatcherInterface $eventDispatcher, SynchronisationService $synchronisationService)
+    {
+        $this->datasetConnection = $datasetConnection;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->synchronisationService = $synchronisationService;
+    }
 
     public function synchroniseTable(Table $table): bool
     {
         try {
-            $datasets = $this->retrieveDatasetsFromJobRouter($table);
+            $datasets = $this->synchronisationService->retrieveDatasetsFromJobDataTable($table);
             $this->storeDatasets($table, $datasets);
-            $this->updateSynchronisationStatus($table);
+            $this->synchronisationService->updateSynchronisationStatus($table);
         } catch (\Exception $e) {
             $message = \sprintf(
                 'Table link with uid "%d" cannot be synchronised: %s',
@@ -37,7 +65,7 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
             );
 
             $this->logger->error($message);
-            $this->updateSynchronisationStatus($table, null, $message);
+            $this->synchronisationService->updateSynchronisationStatus($table, null, $message);
 
             return false;
         }
@@ -47,81 +75,37 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
 
     private function storeDatasets(Table $table, array $datasets): void
     {
-        $datasetsHash = $this->hashDatasets($datasets);
+        $datasetsHash = $this->synchronisationService->hashDatasets($datasets);
 
         $this->logger->debug('Data sets hash: ' . $datasetsHash . ' vs existing: ' . $table->getDatasetsSyncHash());
 
         if ($datasetsHash === $table->getDatasetsSyncHash()) {
-            $this->updateSynchronisationStatus($table);
+            $this->synchronisationService->updateSynchronisationStatus($table);
             $this->logger->info('Data sets have not changed', [
                 'table_uid' => $table->getUid(),
             ]);
             return;
         }
 
-        $connection = $this->connectionPool->getConnectionForTable(self::DATASET_TABLE_NAME);
-        $connection->setAutoCommit(false);
-        $connection->beginTransaction();
+        $this->datasetConnection->setAutoCommit(false);
+        $this->datasetConnection->beginTransaction();
 
         try {
-            $connection->delete(
-                self::DATASET_TABLE_NAME,
-                [
-                    'table_uid' => $table->getUid(),
-                ],
-                [
-                    'table_uid' => \PDO::PARAM_INT,
-                ]
-            );
-
-            $this->logger->debug('Deleted existing data sets in transaction', [
-                'table_uid' => $table->getUid(),
-            ]);
-
+            $this->deleteAllOldDatasets($table);
             foreach ($datasets as $dataset) {
-                $event = new ModifyDatasetOnSynchronisationEvent(clone $table, $dataset);
-                /** @var ModifyDatasetOnSynchronisationEvent $event */
-                $event = $this->eventDispatcher->dispatch($event);
-                if ($event->isRejected()) {
-                    continue;
-                }
-
-                $dataset = $event->getDataset();
-                $jrid = $dataset['jrid'];
-                unset($dataset['jrid']);
-
-                $data = [
-                    'pid' => 0,
-                    'table_uid' => $table->getUid(),
-                    'jrid' => $jrid,
-                    'dataset' => \json_encode($dataset, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
-                ];
-
-                $connection->insert(
-                    self::DATASET_TABLE_NAME,
-                    $data,
-                    [
-                        'pid' => \PDO::PARAM_INT,
-                        'table_uid' => \PDO::PARAM_INT,
-                        'jrid' => \PDO::PARAM_INT,
-                        'dataset' => \PDO::PARAM_STR,
-                    ]
-                );
-
-                $this->logger->debug('Inserted data set in transaction', $data);
+                $this->insertNewDataset($table, $dataset);
             }
-
-            $this->updateSynchronisationStatus($table, $datasetsHash);
+            $this->synchronisationService->updateSynchronisationStatus($table, $datasetsHash);
         } catch (\Exception $e) {
-            $connection->rollBack();
-            $connection->setAutoCommit(true);
+            $this->datasetConnection->rollBack();
+            $this->datasetConnection->setAutoCommit(true);
 
-            $this->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
+            $this->synchronisationService->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
                 [
-                    'table uid' => $table->getUid(),
+                    'table handle' => $table->getHandle(),
                     'message' => $e->getMessage(),
                 ]
             );
@@ -129,9 +113,63 @@ final class SimpleTableSynchroniser extends AbstractSynchroniser
             throw new SynchronisationException($e->getMessage(), 1567014608, $e);
         }
 
-        $connection->commit();
-        $connection->setAutoCommit(true);
+        $this->datasetConnection->commit();
+        $this->datasetConnection->setAutoCommit(true);
 
         Cache::clearCacheByTable($table->getUid());
+    }
+
+    private function deleteAllOldDatasets(Table $table): void
+    {
+        $this->datasetConnection->delete(
+            self::DATASET_TABLE_NAME,
+            [
+                'table_uid' => $table->getUid(),
+            ],
+            [
+                'table_uid' => \PDO::PARAM_INT,
+            ]
+        );
+
+        $this->logger->debug('Deleted existing data sets in transaction', [
+            'table_uid' => $table->getUid(),
+        ]);
+    }
+
+    /**
+     * @param array<string, string|int|float|bool|null> $dataset
+     */
+    private function insertNewDataset(Table $table, array $dataset): void
+    {
+        $event = new ModifyDatasetOnSynchronisationEvent(clone $table, $dataset);
+        /** @var ModifyDatasetOnSynchronisationEvent $event */
+        $event = $this->eventDispatcher->dispatch($event);
+        if ($event->isRejected()) {
+            return;
+        }
+
+        $dataset = $event->getDataset();
+        $jrid = $dataset['jrid'];
+        unset($dataset['jrid']);
+
+        $data = [
+            'pid' => 0,
+            'table_uid' => $table->getUid(),
+            'jrid' => $jrid,
+            'dataset' => \json_encode($dataset, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+        ];
+
+        $this->datasetConnection->insert(
+            self::DATASET_TABLE_NAME,
+            $data,
+            [
+                'pid' => \PDO::PARAM_INT,
+                'table_uid' => \PDO::PARAM_INT,
+                'jrid' => \PDO::PARAM_INT,
+                'dataset' => \PDO::PARAM_STR,
+            ]
+        );
+
+        $this->logger->debug('Inserted data set in transaction', $data);
     }
 }

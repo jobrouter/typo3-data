@@ -7,6 +7,22 @@ services:
   Brotkrueml\JobRouterData\:
     resource: '../Classes/*'
 
+  connection.tx_jobrouterdata_domain_model_dataset:
+    class: 'TYPO3\CMS\Core\Database\Connection'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getConnectionForTable'
+    arguments:
+      - 'tx_jobrouterdata_domain_model_dataset'
+
+  connection.tx_jobrouterdata_domain_model_table:
+    class: 'TYPO3\CMS\Core\Database\Connection'
+    factory:
+      - '@TYPO3\CMS\Core\Database\ConnectionPool'
+      - 'getConnectionForTable'
+    arguments:
+      - 'tx_jobrouterdata_domain_model_table'
+
   querybuilder.tx_jobrouterdata_domain_model_transfer:
     class: 'TYPO3\CMS\Core\Database\Query\QueryBuilder'
     factory:
@@ -75,3 +91,11 @@ services:
       - name: event.listener
         identifier: 'jobrouter-data/datetime-formatter'
         event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
+
+  Brotkrueml\JobRouterData\Synchronisation\SimpleTableSynchroniser:
+    arguments:
+      $datasetConnection: '@connection.tx_jobrouterdata_domain_model_dataset'
+
+  Brotkrueml\JobRouterData\Synchronisation\SynchronisationService:
+    arguments:
+      $tableConnection: '@connection.tx_jobrouterdata_domain_model_table'
