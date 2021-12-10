@@ -22,7 +22,20 @@ final class IntegerFormatter
             return;
         }
 
+        $content = $event->getContent();
+        if ($content === null) {
+            return;
+        }
+
+        if (\is_string($content) && \is_numeric($content)) {
+            $content = (int)$content;
+        }
+
+        if (\is_string($content)) {
+            return;
+        }
+
         $formatter = new \NumberFormatter($event->getLocale(), \NumberFormatter::DEFAULT_STYLE);
-        $event->setContent($formatter->format($event->getContent()));
+        $event->setContent($formatter->format($content));
     }
 }

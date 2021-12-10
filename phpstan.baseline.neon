@@ -41,11 +41,6 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
-			message: "#^Parameter \\#1 \\$num of method NumberFormatter\\:\\:format\\(\\) expects float\\|int, float\\|int\\|string\\|null given\\.$#"
-			count: 1
-			path: Classes/EventListener/IntegerFormatter.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\TablePreviewRenderer\\:\\:getItemContent\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Hooks/PageLayoutView/TablePreviewRenderer.php

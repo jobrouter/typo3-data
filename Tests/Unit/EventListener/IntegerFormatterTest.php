@@ -32,33 +32,58 @@ final class IntegerFormatterTest extends TestCase
 
     /**
      * @test
+     * @dataProvider dataProviderForInvoke
      */
-    public function contentIsFormattedIfColumnTypeIsInteger(): void
+    public function invoke(int $type, $content, string $locale, $expected): void
     {
         $table = new Table();
         $column = new Column();
-        $column->setType(FieldTypeEnumeration::INTEGER);
+        $column->setType($type);
 
-        $event = new ModifyColumnContentEvent($table, $column, 123456789, 'nl_BE.utf8');
-
+        $event = new ModifyColumnContentEvent($table, $column, $content, $locale);
         $this->subject->__invoke($event);
 
-        self::assertSame('123.456.789', $event->getContent());
+        self::assertSame($expected, $event->getContent());
     }
 
     /**
-     * @test
+     * @return \Iterator<array<string, float|int|string|null>
      */
-    public function contentIsNotChangedIfColumnTypeIsNotInteger(): void
+    public function dataProviderForInvoke(): iterable
     {
-        $table = new Table();
-        $column = new Column();
-        $column->setType(FieldTypeEnumeration::DECIMAL);
+        yield 'Column type is integer, content is formatted' => [
+            'type' => FieldTypeEnumeration::INTEGER,
+            'content' => 123456789,
+            'locale' => 'nl_BE.utf8',
+            'expected' => '123.456.789',
+        ];
 
-        $event = new ModifyColumnContentEvent($table, $column, 123456789, 'nl_BE.utf8');
+        yield 'Column type is integer and content is null, content is not changed' => [
+            'type' => FieldTypeEnumeration::INTEGER,
+            'content' => null,
+            'locale' => 'nl_BE.utf8',
+            'expected' => null,
+        ];
 
-        $this->subject->__invoke($event);
+        yield 'Column type is integer and content is a numeric string, content is formatted' => [
+            'type' => FieldTypeEnumeration::INTEGER,
+            'content' => '123456789',
+            'locale' => 'en_US',
+            'expected' => '123,456,789',
+        ];
 
-        self::assertSame(123456789, $event->getContent());
+        yield 'Column type is integer and content is a non-numeric string, content is not changed' => [
+            'type' => FieldTypeEnumeration::INTEGER,
+            'content' => 'some content',
+            'locale' => 'en_US',
+            'expected' => 'some content',
+        ];
+
+        yield 'Column type is decimal, content is not changed' => [
+            'type' => FieldTypeEnumeration::DECIMAL,
+            'content' => 123456789,
+            'locale' => 'nl_BE.utf8',
+            'expected' => 123456789,
+        ];
     }
 }
