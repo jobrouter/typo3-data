@@ -51,11 +51,11 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
         $this->synchronisationService = $synchronisationService;
     }
 
-    public function synchroniseTable(Table $table): bool
+    public function synchroniseTable(Table $table, bool $force): bool
     {
         try {
             $datasets = $this->synchronisationService->retrieveDatasetsFromJobDataTable($table);
-            $this->storeDatasets($table, $datasets);
+            $this->storeDatasets($table, $datasets, $force);
             $this->synchronisationService->updateSynchronisationStatus($table);
         } catch (\Exception $e) {
             $message = \sprintf(
@@ -73,15 +73,15 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
         return true;
     }
 
-    private function storeDatasets(Table $table, array $datasets): void
+    private function storeDatasets(Table $table, array $datasets, bool $force): void
     {
         $datasetsHash = $this->synchronisationService->hashDatasets($datasets);
 
         $this->logger->debug('Data sets hash: ' . $datasetsHash . ' vs existing: ' . $table->getDatasetsSyncHash());
 
-        if ($datasetsHash === $table->getDatasetsSyncHash()) {
+        if (! $force && $datasetsHash === $table->getDatasetsSyncHash()) {
             $this->synchronisationService->updateSynchronisationStatus($table);
-            $this->logger->info('Data sets have not changed', [
+            $this->logger->info('Datasets have not changed', [
                 'table_uid' => $table->getUid(),
             ]);
             return;

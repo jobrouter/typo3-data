@@ -49,12 +49,12 @@ final class CustomTableSynchroniser implements LoggerAwareInterface
         $this->synchronisationService = $synchronisationService;
     }
 
-    public function synchroniseTable(Table $table): bool
+    public function synchroniseTable(Table $table, bool $force): bool
     {
         try {
             $datasets = $this->synchronisationService->retrieveDatasetsFromJobDataTable($table);
             $columns = $this->getCustomTableColumns($table);
-            $this->storeDatasets($table, $columns, $datasets);
+            $this->storeDatasets($table, $columns, $datasets, $force);
             $this->synchronisationService->updateSynchronisationStatus($table);
         } catch (\Exception $e) {
             $message = \sprintf(
@@ -87,11 +87,11 @@ final class CustomTableSynchroniser implements LoggerAwareInterface
         return \array_keys($schemaManager->listTableColumns($customTable));
     }
 
-    private function storeDatasets(Table $table, array $customTableColumns, array $datasets): void
+    private function storeDatasets(Table $table, array $customTableColumns, array $datasets, bool $force): void
     {
         $datasetsHash = $this->synchronisationService->hashDatasets($datasets);
 
-        if ($datasetsHash === $table->getDatasetsSyncHash()) {
+        if (! $force && $datasetsHash === $table->getDatasetsSyncHash()) {
             $this->synchronisationService->updateSynchronisationStatus($table);
             $this->logger->info('Datasets have not changed', [
                 'table_uid' => $table->getUid(),

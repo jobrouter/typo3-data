@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Locking\Exception as LockException;
@@ -33,6 +34,7 @@ final class SyncCommand extends Command
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
     private const ARGUMENT_TABLE = 'table';
+    private const OPTION_FORCE = 'force';
 
     /**
      * @var int
@@ -72,11 +74,12 @@ final class SyncCommand extends Command
 
     protected function configure(): void
     {
-        // @todo Remove when compatibility is set to TYPO3 v11+ as it is defined in Configuration/Services.yaml
+        // @todo Remove description when compatibility is set to TYPO3 v11+ as it is defined in Configuration/Services.yaml
         $this
             ->setDescription('Synchronise JobData data sets from JobRouter installations')
             ->setHelp('This command synchronises JobData tables from JobRouter instances into TYPO3. You can set a specific table name as argument. If the table argument is omitted, all enabled tables are processed.')
-            ->addArgument(self::ARGUMENT_TABLE, InputArgument::OPTIONAL, 'The handle of a table (optional)');
+            ->addArgument(self::ARGUMENT_TABLE, InputArgument::OPTIONAL, 'The handle of a table (optional)')
+            ->addOption(self::OPTION_FORCE, null, InputOption::VALUE_NONE, 'Force a full synchronisation of all datasets');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -89,7 +92,8 @@ final class SyncCommand extends Command
             $locker->acquire(LockingStrategyInterface::LOCK_CAPABILITY_EXCLUSIVE | LockingStrategyInterface::LOCK_CAPABILITY_NOBLOCK);
 
             $tableHandle = $input->getArgument(self::ARGUMENT_TABLE) ?: '';
-            $exitCode = $this->runSynchronisation($tableHandle);
+            $force = $input->getOption(self::OPTION_FORCE);
+            $exitCode = $this->runSynchronisation($tableHandle, $force);
             $locker->release();
             $this->recordLastRun($exitCode);
 
@@ -101,9 +105,9 @@ final class SyncCommand extends Command
         }
     }
 
-    private function runSynchronisation(string $tableHandle): int
+    private function runSynchronisation(string $tableHandle, bool $force): int
     {
-        $result = $this->synchronisationRunner->run($tableHandle);
+        $result = $this->synchronisationRunner->run($tableHandle, $force);
 
         if ($result->errors > 0) {
             $this->outputStyle->warning(

@@ -59,48 +59,50 @@ class SynchronisationRunner implements LoggerAwareInterface
         $this->tableRepository = $tableRepository;
     }
 
-    public function run(string $tableHandle): CountResult
+    public function run(string $tableHandle, bool $force): CountResult
     {
         if ($tableHandle === '') {
             $tables = $this->tableRepository->findAll();
             /** @var Table $table */
             foreach ($tables as $table) {
-                $this->synchroniseTable($table);
+                $this->synchroniseTable($table, $force);
             }
         } else {
-            $this->synchroniseTable($this->getTable($tableHandle));
+            $this->synchroniseTable($this->getTable($tableHandle), $force);
         }
 
         return new CountResult($this->totalTables, $this->erroneousTables);
     }
 
-    private function synchroniseTable(Table $table): void
+    private function synchroniseTable(Table $table, bool $force): void
     {
-        switch ($table->getType()) {
-            case Table::TYPE_SIMPLE:
-                $this->totalTables++;
-                if (! $this->simpleTableSynchroniser->synchroniseTable($table)) {
-                    $this->erroneousTables++;
-                }
-                break;
+        $type = $table->getType();
 
-            case Table::TYPE_CUSTOM_TABLE:
-                $this->totalTables++;
-                if (! $this->customTableSynchroniser->synchroniseTable($table)) {
-                    $this->erroneousTables++;
-                }
-                break;
-
-            case Table::TYPE_OTHER_USAGE:
-            case Table::TYPE_FORM_FINISHER:
-                // do nothing
-                break;
-
-            default:
-                $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
-                $this->logger->error($message);
+        if ($type === Table::TYPE_SIMPLE) {
+            $this->totalTables++;
+            if (! $this->simpleTableSynchroniser->synchroniseTable($table, $force)) {
                 $this->erroneousTables++;
+            }
+            return;
         }
+
+        if ($type === Table::TYPE_CUSTOM_TABLE) {
+            $this->totalTables++;
+            if (! $this->customTableSynchroniser->synchroniseTable($table, $force)) {
+                $this->erroneousTables++;
+            }
+            return;
+        }
+        if ($type === Table::TYPE_OTHER_USAGE) {
+            return;
+        }
+        if ($type === Table::TYPE_FORM_FINISHER) {
+            return;
+        }
+
+        $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
+        $this->logger->error($message);
+        $this->erroneousTables++;
     }
 
     private function getTable(string $tableHandle): Table

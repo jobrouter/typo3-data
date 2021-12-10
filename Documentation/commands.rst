@@ -39,17 +39,21 @@ Hopefully you will receive a successful response:
 
    [OK] 2 table(s) processed
 
-.. hint::
-   Only tables with changed datasets are really synchronised. The result only
-   says that - in the example - two tables were considered for synchronization.
+.. note::
+   By default, only tables with changed datasets are really synchronised. The
+   result only says that - in the example - two tables were considered for
+   synchronization.
 
-You can also synchronise just one table:
-
-::
+You can also synchronise just one table::
 
    vendor/bin/typo3 jobrouter:data:sync jobs
 
 Where `jobs` is the handle of the table.
+
+It is also possible to force the synchronisation of one or all tables. By
+default, only changed datasets are synchronised. Use the force option::
+
+   vendor/bin/typo3 jobrouter:data:sync --force
 
 If an error occurs, the command issues a warning:
 
@@ -58,13 +62,13 @@ If an error occurs, the command issues a warning:
    [WARNING] 1 out of 2 table(s) had errors during processing
 
 Other synchronisations are not affected by an error in one synchronisation.
-According to your :ref:`logging configuration <configuration-extension>`, the
+According to your :ref:`logging configuration <configuration-logging>`, the
 error is also logged.
 
 .. note::
-   Only one synchronisation can run at a time. If a synchronisation starts while
-   another is in progress, the second synchronisation is terminated and a
-   warning is displayed.
+   Only one synchronisation command can run at a time. If a synchronisation
+   starts while another is in progress, the second synchronisation is terminated
+   and a warning is displayed.
 
 The last run of the command is shown in the system information toolbar
 (:guilabel:`Last Data Sync.`):
@@ -103,7 +107,7 @@ If an error occurs, the command issues a warning:
    [WARNING] 2 out of 6 transfer(s) had errors on transmission
 
 Other transmissions are not affected by an error in one transmission. According
-to your :ref:`logging configuration <configuration-extension>`, the error is
+to your :ref:`logging configuration <configuration-logging>`, the error is
 also logged.
 
 .. note::
