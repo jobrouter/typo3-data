@@ -23,6 +23,8 @@ CREATE TABLE tx_jobrouterdata_domain_model_column (
 	decimal_places smallint(5) unsigned DEFAULT '0' NOT NULL,
 	field_size smallint(5) unsigned DEFAULT '0' NOT NULL,
 	alignment varchar(10) DEFAULT ''  NOT NULL,
+	sorting_priority smallint(5) unsigned DEFAULT '0' NOT NULL,
+	sorting_order varchar(5) DEFAULT ''  NOT NULL,
 
 	KEY table_uid (table_uid)
 );

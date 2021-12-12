@@ -21,6 +21,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
+ * @phpstan-type ProcessedData array{data: array<string, int|string|null>, current: null, table?: Table, rows?: array<int, array<string, float|int|string>>}
  * @internal
  */
 final class TableProcessor implements DataProcessorInterface
@@ -40,6 +41,16 @@ final class TableProcessor implements DataProcessorInterface
      */
     private $tableRepository;
 
+    /**
+     * @var ContentObjectRenderer
+     */
+    private $cObj;
+
+    /**
+     * @var ProcessedData
+     */
+    private $processedData;
+
     public function __construct(
         DatasetConverter $datasetConverter = null,
         FlexFormService $flexFormService = null,
@@ -51,7 +62,10 @@ final class TableProcessor implements DataProcessorInterface
     }
 
     /**
-     * @return mixed[]
+     * @param array<string, mixed> $contentObjectConfiguration
+     * @param array<string, mixed> $processorConfiguration
+     * @param ProcessedData $processedData
+     * @return array<string, mixed>
      */
     public function process(
         ContentObjectRenderer $cObj,
@@ -59,18 +73,25 @@ final class TableProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ): array {
-        $flexForm = $this->flexFormService->convertFlexFormContentToArray($cObj->data['pi_flexform']);
+        $this->cObj = $cObj;
+        $this->processedData = $processedData;
 
+        $flexForm = $this->flexFormService->convertFlexFormContentToArray($cObj->data['pi_flexform']);
         $tableUid = (int)($flexForm['table'] ?? 0);
         if ($tableUid > 0) {
-            $locale = $cObj->getRequest()->getAttribute('language')->getLocale();
-            /** @var Table $table */
-            $table = $this->tableRepository->findByIdentifier($tableUid);
-            $processedData['table'] = $table;
-            $processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
-            Cache::addCacheTagByTable($tableUid);
+            $this->enrichProcessedDataWithTableInformation($tableUid);
         }
 
-        return $processedData;
+        return $this->processedData;
+    }
+
+    private function enrichProcessedDataWithTableInformation(int $tableUid): void
+    {
+        $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale();
+        /** @var Table $table */
+        $table = $this->tableRepository->findByIdentifier($tableUid);
+        $this->processedData['table'] = $table;
+        $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
+        Cache::addCacheTagByTable($tableUid);
     }
 }

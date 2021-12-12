@@ -204,7 +204,7 @@ return [
                                         --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                                         --palette--;;nameLabel,
                                         --palette--;;type,
-                                        --palette--;;visual,
+                                        --palette--;;rendering,
                                     ',
                                 ],
                             ],

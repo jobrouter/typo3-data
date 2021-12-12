@@ -48,6 +48,16 @@ class Column extends AbstractEntity
      */
     protected $alignment = '';
 
+    /**
+     * @var int
+     */
+    protected $sortingPriority = 0;
+
+    /**
+     * @var string
+     */
+    protected $sortingOrder = '';
+
     public function getName(): string
     {
         return $this->name;
@@ -106,5 +116,25 @@ class Column extends AbstractEntity
     public function setAlignment(string $alignment): void
     {
         $this->alignment = $alignment;
+    }
+
+    public function getSortingPriority(): int
+    {
+        return $this->sortingPriority;
+    }
+
+    public function setSortingPriority(int $sortingPriority): void
+    {
+        $this->sortingPriority = $sortingPriority;
+    }
+
+    public function getSortingOrder(): string
+    {
+        return $this->sortingOrder;
+    }
+
+    public function setSortingOrder(string $sortingOrder): void
+    {
+        $this->sortingOrder = $sortingOrder;
     }
 }

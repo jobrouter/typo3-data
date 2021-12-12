@@ -29,5 +29,16 @@ Columns (required)
       Select the alignment for the column. This value is used in the
       :ref:`table content element <editor-content-element>`.
 
+   Sorting Priority
+      Select a sorting priority for the column. :guilabel:`1` has the highest
+      priority (content is sorted first by this column) and :guilabel:`3` the
+      lowest priority (content is sorted by this column only when the content
+      of the other selected columns are equal).
+
+   Sorting Order
+      Select the sorting order for the column. This is only applicable if a
+      sorting priority is selected. If no order is selected,
+      :guilabel:`ascending` is assumed.
+
    .. important::
       The `jrid` column must not be defined as it is available by default.

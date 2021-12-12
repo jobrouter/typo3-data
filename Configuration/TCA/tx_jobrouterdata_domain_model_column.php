@@ -153,6 +153,52 @@ return [
                 ],
             ],
         ],
+        'sorting_priority' => [
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_priority',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        '',
+                        0,
+                    ],
+                    [
+                        '1',
+                        1,
+                    ],
+                    [
+                        '2',
+                        2,
+                    ],
+                    [
+                        '3',
+                        3,
+                    ],
+                ],
+            ],
+        ],
+        'sorting_order' => [
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        '',
+                        '',
+                    ],
+                    [
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.asc',
+                        'asc',
+                    ],
+                    [
+                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.desc',
+                        'desc',
+                    ],
+                ],
+            ],
+        ],
     ],
     'types' => [
         '0' => [
@@ -170,9 +216,10 @@ return [
         'type' => [
             'showitem' => 'type, decimal_places, field_size',
         ],
-        'visual' => [
+        'rendering' => [
             // Palette is used in columnOverrides of tx_jobrouterdata_domain_model_column for simple table type
-            'showitem' => 'alignment',
+            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':palette.rendering_ce',
+            'showitem' => 'alignment, sorting_priority, sorting_order',
         ],
     ],
 ];

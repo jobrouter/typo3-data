@@ -97,4 +97,28 @@ final class ColumnTest extends TestCase
 
         self::assertSame('center', $this->subject->getAlignment());
     }
+
+    /**
+     * @test
+     */
+    public function getAndSetSortingPriority(): void
+    {
+        self::assertSame(0, $this->subject->getSortingPriority());
+
+        $this->subject->setSortingPriority(42);
+
+        self::assertSame(42, $this->subject->getSortingPriority());
+    }
+
+    /**
+     * @test
+     */
+    public function getAndSetSortingOrder(): void
+    {
+        self::assertSame('', $this->subject->getSortingOrder());
+
+        $this->subject->setSortingOrder('desc');
+
+        self::assertSame('desc', $this->subject->getSortingOrder());
+    }
 }

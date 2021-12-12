@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-12-12T09:12:39Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-12-12T10:41:08Z" product-name="jobrouter_data">
 		<body>
 			<trans-unit id="palette.last_synchronisation" resname="palette.last_synchronisation">
 				<source><![CDATA[Last Synchronisation]]></source>
+			</trans-unit>
+			<trans-unit id="palette.rendering_ce" resname="palette.rendering_ce">
+				<source><![CDATA[Rendering in the Content Element]]></source>
 			</trans-unit>
 			<trans-unit id="tab.status" resname="tab.status">
 				<source><![CDATA[Status]]></source>
@@ -34,6 +37,18 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.name" resname="tx_jobrouterdata_domain_model_column.name">
 				<source><![CDATA[JobData Column Name]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order" resname="tx_jobrouterdata_domain_model_column.sorting_order">
+				<source><![CDATA[Sorting Order]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order.asc" resname="tx_jobrouterdata_domain_model_column.sorting_order.asc">
+				<source><![CDATA[ascending]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order.desc" resname="tx_jobrouterdata_domain_model_column.sorting_order.desc">
+				<source><![CDATA[descending]]></source>
+			</trans-unit>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_priority" resname="tx_jobrouterdata_domain_model_column.sorting_priority">
+				<source><![CDATA[Sorting Priority]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.type" resname="tx_jobrouterdata_domain_model_column.type">
 				<source><![CDATA[Type]]></source>

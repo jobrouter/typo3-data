@@ -136,6 +136,13 @@
                                 <f:if condition="{column.type} == 1 && {column.fieldSize} > 0">, {column.fieldSize}</f:if>
                                 <f:if condition="{column.type} == 3">, {column.decimalPlaces}</f:if>
                             </f:spaceless>)
+                            <f:if condition="{column.sortingPriority}">
+                                | <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.sorting_priority"/>:
+                                {column.sortingPriority}
+                                <f:if condition="{column.sortingOrder}">
+                                    (<f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_column.sorting_order.{column.sortingOrder}"/>)
+                                </f:if>
+                            </f:if>
                         </li>
                     </f:for>
                 </ul>
