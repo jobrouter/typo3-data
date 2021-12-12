@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-12-04T10:27:36Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-12-12T09:12:39Z" product-name="jobrouter_data">
 		<body>
 			<trans-unit id="palette.last_synchronisation" resname="palette.last_synchronisation">
 				<source><![CDATA[Last Synchronisation]]></source>
@@ -37,21 +37,6 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.type" resname="tx_jobrouterdata_domain_model_column.type">
 				<source><![CDATA[Type]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.type.date" resname="tx_jobrouterdata_domain_model_column.type.date">
-				<source><![CDATA[Date]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.type.datetime" resname="tx_jobrouterdata_domain_model_column.type.datetime">
-				<source><![CDATA[Date/Time]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.type.decimal" resname="tx_jobrouterdata_domain_model_column.type.decimal">
-				<source><![CDATA[Decimal]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.type.integer" resname="tx_jobrouterdata_domain_model_column.type.integer">
-				<source><![CDATA[Integer]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.type.text" resname="tx_jobrouterdata_domain_model_column.type.text">
-				<source><![CDATA[Text]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_dataset" resname="tx_jobrouterdata_domain_model_dataset">
 				<source><![CDATA[JobData Dataset]]></source>

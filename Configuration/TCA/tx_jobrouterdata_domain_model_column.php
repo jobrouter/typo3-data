@@ -71,23 +71,23 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.text',
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.integer',
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.decimal',
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.date',
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE,
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type.datetime',
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
                     ],
                 ],
