@@ -25,7 +25,6 @@ return [
         ],
 
         'jrid' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset.jrid',
             'config' => [
                 'type' => 'input',
@@ -36,7 +35,6 @@ return [
             ],
         ],
         'dataset' => [
-            'exclude' => true,
             'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset.dataset',
             'config' => [
                 'type' => 'text',
