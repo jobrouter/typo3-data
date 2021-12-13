@@ -10,8 +10,8 @@
 return [
     'ctrl' => [
         'title' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column',
-        'label' => 'label',
-        'label_alt' => 'name',
+        'label' => 'name',
+        'label_userFunc' => Brotkrueml\JobRouterData\UserFunctions\TCA\Column::class . '->getLabel',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
