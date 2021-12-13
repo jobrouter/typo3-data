@@ -65,7 +65,6 @@ final class TransmitCommand extends Command
 
     protected function configure(): void
     {
-        // @todo Remove when compatibility is set to TYPO3 v11+ as it is defined in Configuration/Services.yaml
         $this
             ->setDescription('Transmit data sets to JobData tables')
             ->setHelp('This command transmits data sets from TYPO3 to JobData tables in JobRouter installations.');

@@ -74,7 +74,6 @@ final class SyncCommand extends Command
 
     protected function configure(): void
     {
-        // @todo Remove description when compatibility is set to TYPO3 v11+ as it is defined in Configuration/Services.yaml
         $this
             ->setDescription('Synchronise JobData data sets from JobRouter installations')
             ->setHelp('This command synchronises JobData tables from JobRouter instances into TYPO3. You can set a specific table name as argument. If the table argument is omitted, all enabled tables are processed.')
