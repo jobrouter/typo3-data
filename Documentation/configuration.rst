@@ -46,9 +46,9 @@ The alignment is selected when configuring the :ref:`table columns
 Logging
 =======
 
-If logging is necessary to track synchronisations and possible warnings or
-errors, you can set up :ref:`log writers <t3coreapi:logging-writers>` depending on
-your needs.
+If separate logging is necessary to track synchronisations and possible warnings
+or errors, you can set up :ref:`log writers <t3coreapi:logging-writers>`
+depending on your needs.
 
 **Example:** To log all warnings and higher levels of this extension into a
 separate file, add this snippet to the :file:`ext_localconf.php` file of your

@@ -10,11 +10,6 @@ Introduction
 and documents. The TYPO3 extension `TYPO3 JobRouter Data`_ connects JobRouter®
 JobData tables with TYPO3.
 
-.. admonition:: Work In Progress
-
-   Currently the TYPO3 JobRouter Data extension is in a beta phase. Although it
-   can already be used, the API is still subject to changes.
-
 
 What does it do?
 ================

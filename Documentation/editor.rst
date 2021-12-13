@@ -14,10 +14,6 @@ Target group: **Editors**
 Content element
 ===============
 
-.. caution::
-   The content element is considered experimental. It can change in the next
-   major releases!
-
 Content of JobData tables that are synchronised with the :ref:`simple type
 <module-create-table-link-simple>` can be easily displayed on the website
 with the content element `JobData Table`.
@@ -56,6 +52,6 @@ Switch to the web page to see the content of the table displayed:
    Content of the table on the web page
 
 .. hint::
-   The formatting of the content in the table is customised to match the page's
-   locale (date and numbers). It can be customized by a developer, see section
+   The formatting of the content in the table is adjusted to match the page's
+   locale (date and numbers). It can be customised by a developer, see section
    :ref:`customise-column-formatting`.
