@@ -21,6 +21,8 @@ use Psr\EventDispatcher\EventDispatcherInterface;
  */
 final class DatasetConverter
 {
+    private const UNFORMATTED_FIELD_NAME_PREFIX = '_original_';
+
     /**
      * @var EventDispatcherInterface
      */
@@ -44,13 +46,13 @@ final class DatasetConverter
             foreach ($table->getColumns() as $column) {
                 $columnName = $column->getName();
                 if ($datasetArray[$columnName] ?? false) {
-                    $row['_original_' . $columnName] = $datasetArray[$column->getName()];
-                    if ($row['_original_' . $columnName] === null || $row['_original_' . $columnName] === '') {
+                    $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] = $datasetArray[$column->getName()];
+                    if ($row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] === null || $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] === '') {
                         $row[$columnName] = '';
                         continue;
                     }
 
-                    $event = new ModifyColumnContentEvent($table, $column, $row['_original_' . $columnName], $locale);
+                    $event = new ModifyColumnContentEvent($table, $column, $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName], $locale);
                     /** @var ModifyColumnContentEvent $event */
                     $event = $this->eventDispatcher->dispatch($event);
                     $row[$column->getName()] = $event->getContent();
@@ -74,7 +76,7 @@ final class DatasetConverter
             \usort($rows, static function (array $a, array $b) use ($columnsToSortBy): int {
                 foreach ($columnsToSortBy as $column) {
                     $order = $column->getSortingOrder() === 'desc' ? -1 : 1;
-                    $result = ($a['_original_' . $column->getName()] <=> $b['_original_' . $column->getName()]) * $order;
+                    $result = ($a[self::UNFORMATTED_FIELD_NAME_PREFIX . $column->getName()] <=> $b[self::UNFORMATTED_FIELD_NAME_PREFIX . $column->getName()]) * $order;
                     if ($result !== 0) {
                         return $result;
                     }
