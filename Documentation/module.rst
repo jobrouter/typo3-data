@@ -63,6 +63,11 @@ the developer corner to see the :ref:`schema <developer-simple-sync-table>` of
 the table and how to use it in your code. The synchronisation is done with the
 available :ref:`synchronisation command <sync-command>`.
 
+.. note::
+   The simple synchronisation should only be used for an overseeable number of
+   data sets, especially when using the content element. The reason is that
+   extracting and sorting data sets is done in PHP and not by the database.
+
 .. figure:: _images/create-table-link-simple-synchronisation.png
    :alt: Create a table link of type Simple synchronisation
 
