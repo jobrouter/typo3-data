@@ -62,7 +62,7 @@ class SyncCommandTest extends TestCase
     /**
      * @test
      */
-    public function okIsDisplayedWhenAllSynchronisationsAreSuccessful()
+    public function okIsDisplayedWhenAllSynchronisationsAreSuccessful(): void
     {
         $this->lockerMock
             ->expects(self::once())
@@ -100,7 +100,7 @@ class SyncCommandTest extends TestCase
     /**
      * @test
      */
-    public function okIsDisplayedWhenSynchronisationForOneTableIsSuccessful()
+    public function okIsDisplayedWhenSynchronisationForOneTableIsSuccessful(): void
     {
         $this->lockerMock
             ->expects(self::once())
