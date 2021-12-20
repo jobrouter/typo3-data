@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Toolbar.xlf" date="2020-02-28T20:47:06Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Toolbar.xlf" date="2021-12-20T16:07:52Z" product-name="jobrouter_data">
 		<body>
 			<trans-unit id="status.overdue" resname="status.overdue">
 				<source><![CDATA[overdue]]></source>
@@ -17,17 +17,14 @@
 			<trans-unit id="syncCommand.lastRunMessage" resname="syncCommand.lastRunMessage">
 				<source><![CDATA[%s at %s (%s)]]></source>
 			</trans-unit>
-			<trans-unit id="syncCommand.neverRun" resname="syncCommand.neverRun">
-				<source><![CDATA[The sync command has never been executed.]]></source>
+			<trans-unit id="toolbar.neverExecuted" resname="toolbar.neverExecuted">
+				<source><![CDATA[Never executed]]></source>
 			</trans-unit>
 			<trans-unit id="transmitCommand.lastRunLabel" resname="transmitCommand.lastRunLabel">
 				<source><![CDATA[Last Data Transmiss.]]></source>
 			</trans-unit>
 			<trans-unit id="transmitCommand.lastRunMessage" resname="transmitCommand.lastRunMessage">
 				<source><![CDATA[%s at %s (%s)]]></source>
-			</trans-unit>
-			<trans-unit id="transmitCommand.neverRun" resname="transmitCommand.neverRun">
-				<source><![CDATA[The transmit command has never been executed.]]></source>
 			</trans-unit>
 		</body>
 	</file>

@@ -72,7 +72,7 @@ final class ToolbarItemProvider
     {
         if ($this->lastRunInformation === []) {
             return $this->languageService->sL(
-                \sprintf('%s:%s.neverRun', Extension::LANGUAGE_PATH_TOOLBAR, $commandName)
+                \sprintf('%s:toolbar.neverExecuted', Extension::LANGUAGE_PATH_TOOLBAR)
             );
         }
 
