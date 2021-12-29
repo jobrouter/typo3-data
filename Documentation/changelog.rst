@@ -26,6 +26,7 @@ Fixed
 
 
 * Domain model Table::setHandle() sets the correct property
+* Database error in module DB Check > Records Statistics due to wrong labels in TCA
 
 Removed
 ^^^^^^^

@@ -10,7 +10,7 @@
 return [
     'ctrl' => [
         'title' => 'JobData Transfer',
-        'label' => 'identifier',
+        'label' => 'uid',
         'crdate' => 'crdate',
         'rootLevel' => 1,
         'hideTable' => true,

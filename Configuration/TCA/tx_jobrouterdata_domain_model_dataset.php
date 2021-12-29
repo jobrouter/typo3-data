@@ -10,9 +10,8 @@
 return [
     'ctrl' => [
         'title' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset',
-        'label' => 'name',
+        'label' => 'uid',
         'rootLevel' => 1,
-        'searchFields' => 'name,label',
         'iconfile' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_dataset.svg',
         'hideTable' => true,
     ],
