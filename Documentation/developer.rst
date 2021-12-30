@@ -76,7 +76,7 @@ and a static string is added to each "position" column value.
             tags:
                - name: event.listener
                  identifier: 'adjustJobsDataset'
-                 event: event: Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent
+                 event: Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent
 
 
 Retrieve data sets from the different table link types
