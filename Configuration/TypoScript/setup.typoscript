@@ -18,7 +18,7 @@ module.tx_jobrouterdata {
 
 tt_content.tx_jobrouterdata_table =< lib.contentElement
 tt_content.tx_jobrouterdata_table {
-  templateName = Table
+  templateName = JobDataTable
   templateRootPaths.0 = EXT:jobrouter_data/Resources/Private/Templates/ContentElement/
   settings {
     cssClasses {

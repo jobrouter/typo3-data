@@ -46,7 +46,7 @@ defined('TYPO3') || die();
     );
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['tx_jobrouterdata_table'] =
-        Brotkrueml\JobRouterData\Hooks\PageLayoutView\TablePreviewRenderer::class;
+        Brotkrueml\JobRouterData\Hooks\PageLayoutView\JobDataTablePreviewRenderer::class;
 
     $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass'][] =
         Brotkrueml\JobRouterData\Hooks\TableUpdateHook::class;

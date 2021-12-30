@@ -25,9 +25,9 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 /**
  * @internal
  */
-final class TablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
+final class JobDataTablePreviewRenderer implements PageLayoutViewDrawItemHookInterface
 {
-    private const TEMPLATE = 'EXT:' . Extension::KEY . '/Resources/Private/Templates/PageLayout/TablePreview.html';
+    private const TEMPLATE = 'EXT:' . Extension::KEY . '/Resources/Private/Templates/PageLayout/JobDataTablePreview.html';
 
     /**
      * @var mixed|null
