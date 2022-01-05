@@ -48,7 +48,7 @@
                     <f:if condition="{i.index} < {MAX_ROWS}">
                         <tr>
                             <f:for each="{table.columns}" as="column">
-                                <td>{row.{column.name}}</td>
+                                <td>{row.{column.name} -> f:format.stripTags()}</td>
                             </f:for>
                         </tr>
                     </f:if>
