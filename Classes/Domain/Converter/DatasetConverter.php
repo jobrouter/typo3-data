@@ -45,7 +45,7 @@ final class DatasetConverter
             $row = [];
             foreach ($table->getColumns() as $column) {
                 $columnName = $column->getName();
-                if ($datasetArray[$columnName] ?? false) {
+                if (isset($datasetArray[$columnName])) {
                     $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] = $datasetArray[$column->getName()];
                     if ($row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] === null || $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] === '') {
                         $row[$columnName] = '';
