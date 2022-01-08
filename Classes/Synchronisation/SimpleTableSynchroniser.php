@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
 use Brotkrueml\JobRouterData\Cache\Cache;
+use Brotkrueml\JobRouterData\Domain\Model\Column;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
@@ -149,14 +150,19 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
         }
 
         $dataset = $event->getDataset();
-        $jrid = $dataset['jrid'];
-        unset($dataset['jrid']);
+        $datasetToStore = [];
+        foreach ($table->getColumns() as $column) {
+            /** @var Column $column */
+            if (\array_key_exists($column->getName(), $dataset)) {
+                $datasetToStore[$column->getName()] = $dataset[$column->getName()];
+            }
+        }
 
         $data = [
             'pid' => 0,
             'table_uid' => $table->getUid(),
-            'jrid' => $jrid,
-            'dataset' => \json_encode($dataset, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            'jrid' => $dataset['jrid'],
+            'dataset' => \json_encode($datasetToStore, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR),
         ];
 
         $this->datasetConnection->insert(

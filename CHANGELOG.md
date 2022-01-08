@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PSR-14 event to adjust or reject a dataset on synchronisation (#13)
 - Option in sync command for forcing a synchronisation
 
+### Changed
+- Store only configured columns with simple synchronisation
+
 ### Fixed
 - Domain model Table::setHandle() sets the correct property
 - Database error in module DB Check > Records Statistics due to wrong labels in TCA

@@ -21,6 +21,12 @@ Added
 * PSR-14 event to adjust or reject a dataset on synchronisation (#13)
 * Option in sync command for forcing a synchronisation
 
+Changed
+^^^^^^^
+
+
+* Store only configured columns with simple synchronisation
+
 Fixed
 ^^^^^
 
