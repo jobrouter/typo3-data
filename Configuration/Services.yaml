@@ -6,6 +6,7 @@ services:
 
   Brotkrueml\JobRouterData\:
     resource: '../Classes/*'
+    exclude: '../Classes/{Domain/Entity,Domain/Model,Exception,Extension.php,Hooks,UserFunctions}'
 
   connection.tx_jobrouterdata_domain_model_dataset:
     class: 'TYPO3\CMS\Core\Database\Connection'
