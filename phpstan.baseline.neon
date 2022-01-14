@@ -26,6 +26,16 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
+			message: "#^Parameter \\#1 \\.\\.\\.\\$predicates of method TYPO3\\\\CMS\\\\Core\\\\Database\\\\Query\\\\QueryBuilder\\:\\:where\\(\\) expects array\\<int, mixed\\>\\|Doctrine\\\\DBAL\\\\Query\\\\Expression\\\\CompositeExpression, string given\\.$#"
+			count: 2
+			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+
+		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$predicates of method TYPO3\\\\CMS\\\\Core\\\\Database\\\\Query\\\\QueryBuilder\\:\\:where\\(\\) expects array\\<int, mixed\\>\\|Doctrine\\\\DBAL\\\\Query\\\\Expression\\\\CompositeExpression, string given\\.$#"
+			count: 2
+			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+
+		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\JobDataTablePreviewRenderer\\:\\:getItemContent\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Hooks/PageLayoutView/JobDataTablePreviewRenderer.php
