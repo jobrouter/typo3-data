@@ -80,7 +80,7 @@ final class JobDataTablePreviewRenderer implements PageLayoutViewDrawItemHookInt
             $this->languageService->sL(Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title')
         );
 
-        $itemContent = $headerContent . $parentObject->linkEditContent($this->getItemContent($row), $row);
+        $itemContent = $parentObject->linkEditContent($this->getItemContent($row), $row);
 
         $drawItem = false;
     }
