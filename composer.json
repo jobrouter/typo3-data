@@ -43,7 +43,7 @@
 		"codeception/module-webdriver": "^1.4",
 		"dg/bypass-finals": "^1.3",
 		"donatj/mock-webserver": "^2.2",
-		"ergebnis/composer-normalize": "^2.18",
+		"ergebnis/composer-normalize": "~2.20.0",
 		"mikey179/vfsstream": "^1.6",
 		"php-coveralls/php-coveralls": "^2.4",
 		"phpstan/extension-installer": "^1.1",
