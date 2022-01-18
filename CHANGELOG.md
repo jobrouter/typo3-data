@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2022-01-18
+
 ### Added
 - Formatters for table columns in content element (#10)
 - Alignment for table columns in content element (#11)
@@ -192,7 +194,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial pre-release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.14.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.14.0...v1.0.0
 [0.14.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.13.0...v0.14.0
 [0.13.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.3...v0.13.0
 [0.12.3]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.2...v0.12.3
