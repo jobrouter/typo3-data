@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.0.0...HEAD>`_
 --------------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Handle multibyte characters correctly when cutting string to given length for transmission
+
 `1.0.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.14.0...v1.0.0>`_ - 2022-01-18
 -------------------------------------------------------------------------------------------------------
 

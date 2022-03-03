@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Handle multibyte characters correctly when cutting string to given length for transmission
+
 ## [1.0.0] - 2022-01-18
 
 ### Added

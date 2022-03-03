@@ -155,7 +155,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             $value = (string)$value;
 
             if ($fieldSize !== 0) {
-                $value = \substr($value, 0, $fieldSize);
+                $value = \mb_substr($value, 0, $fieldSize);
             }
 
             return $value;
