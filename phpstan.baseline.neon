@@ -11,6 +11,11 @@ parameters:
 			path: Classes/Controller/BackendController.php
 
 		-
+			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\DatasetRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/DatasetRepository.php
+
+		-
 			message: "#^Cannot call method fetchAll\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
 			count: 1
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
@@ -26,14 +31,14 @@ parameters:
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
-			message: "#^Parameter \\#1 \\.\\.\\.\\$predicates of method TYPO3\\\\CMS\\\\Core\\\\Database\\\\Query\\\\QueryBuilder\\:\\:where\\(\\) expects array\\<int, mixed\\>\\|Doctrine\\\\DBAL\\\\Query\\\\Expression\\\\CompositeExpression, string given\\.$#"
-			count: 2
-			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/TableRepository.php
 
 		-
-			message: "#^Parameter \\#2 \\.\\.\\.\\$predicates of method TYPO3\\\\CMS\\\\Core\\\\Database\\\\Query\\\\QueryBuilder\\:\\:where\\(\\) expects array\\<int, mixed\\>\\|Doctrine\\\\DBAL\\\\Query\\\\Expression\\\\CompositeExpression, string given\\.$#"
-			count: 2
-			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
+			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TransferRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
+			count: 1
+			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\JobDataTablePreviewRenderer\\:\\:getItemContent\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
