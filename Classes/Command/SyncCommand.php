@@ -37,7 +37,7 @@ final class SyncCommand extends Command
     private const OPTION_FORCE = 'force';
 
     /**
-     * @var int
+     * @var int|null
      */
     private $startTime;
 
@@ -57,6 +57,7 @@ final class SyncCommand extends Command
     private $synchronisationRunner;
     /**
      * @var SymfonyStyle
+     * @noRector
      */
     private $outputStyle;
 

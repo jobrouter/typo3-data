@@ -26,7 +26,7 @@ class CleanUpTransfersCommandTest extends TestCase
     private $commandTester;
 
     /**
-     * @var Deleter|MockObject
+     * @var Deleter&MockObject
      */
     private $deleterMock;
 

@@ -24,12 +24,12 @@ use PHPUnit\Framework\TestCase;
 class JobDataRepositoryTest extends TestCase
 {
     /**
-     * @var RestClientFactory|Stub
+     * @var RestClientFactory&Stub
      */
     private $restClientFactoryStub;
 
     /**
-     * @var TableRepository|MockObject
+     * @var TableRepository&MockObject
      */
     private $tableRepositoryStub;
 

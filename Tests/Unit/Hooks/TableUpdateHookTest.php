@@ -21,17 +21,17 @@ use TYPO3\CMS\Core\DataHandling\DataHandler;
 class TableUpdateHookTest extends TestCase
 {
     /**
-     * @var MockObject|Connection
+     * @var MockObject&Connection
      */
     private $connectionMock;
 
     /**
-     * @var MockObject|ConnectionPool
+     * @var MockObject&ConnectionPool
      */
     private $connectionPoolMock;
 
     /**
-     * @var MockObject|DataHandler
+     * @var MockObject&DataHandler
      */
     private $dataHandlerMock;
 

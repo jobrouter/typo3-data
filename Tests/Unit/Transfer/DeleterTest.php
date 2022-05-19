@@ -26,7 +26,7 @@ class DeleterTest extends TestCase
     private $subject;
 
     /**
-     * @var Stub|TransferRepository
+     * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
 

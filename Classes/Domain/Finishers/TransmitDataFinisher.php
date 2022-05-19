@@ -30,11 +30,13 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
 {
     /**
      * @var Preparer
+     * @noRector
      */
     private $preparer;
 
     /**
      * @var TableRepository
+     * @noRector
      */
     private $tableRepository;
 

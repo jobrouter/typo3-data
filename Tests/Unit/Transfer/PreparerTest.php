@@ -28,12 +28,12 @@ class PreparerTest extends TestCase
     private $subject;
 
     /**
-     * @var MockObject|PersistenceManager
+     * @var MockObject&PersistenceManager
      */
     private $persistenceManagerMock;
 
     /**
-     * @var MockObject|TransferRepository
+     * @var MockObject&TransferRepository
      */
     private $transferRepositoryMock;
 

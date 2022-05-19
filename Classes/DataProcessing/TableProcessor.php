@@ -43,11 +43,13 @@ final class TableProcessor implements DataProcessorInterface
 
     /**
      * @var ContentObjectRenderer
+     * @noRector
      */
     private $cObj;
 
     /**
      * @var ProcessedData
+     * @noRector
      */
     private $processedData;
 

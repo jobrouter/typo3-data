@@ -31,7 +31,7 @@ final class TransmitCommand extends Command
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
     /**
-     * @var int
+     * @var int|null
      */
     private $startTime;
 
@@ -51,6 +51,7 @@ final class TransmitCommand extends Command
     private $transmitter;
     /**
      * @var SymfonyStyle
+     * @noRector
      */
     private $outputStyle;
 

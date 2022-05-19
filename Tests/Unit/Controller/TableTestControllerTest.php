@@ -17,6 +17,7 @@ use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
 use Brotkrueml\JobRouterData\Controller\TableTestController;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
@@ -26,23 +27,23 @@ use TYPO3\CMS\Core\Http\StreamFactory;
 final class TableTestControllerTest extends TestCase
 {
     /**
-     * @var TableRepository|Stub
+     * @var TableRepository&Stub
      */
     private $tableRepositoryStub;
     /**
-     * @var ClientInterface|Stub
+     * @var ClientInterface&Stub
      */
     private $clientStub;
     /**
-     * @var RestClientFactoryInterface|Stub
+     * @var RestClientFactoryInterface&MockObject
      */
-    private $restClientFactoryStub;
+    private $restClientFactoryMock;
     /**
      * @var TableTestController
      */
     private $subject;
     /**
-     * @var ServerRequestInterface|Stub
+     * @var ServerRequestInterface&Stub
      */
     private $requestStub;
 
@@ -163,7 +164,7 @@ final class TableTestControllerTest extends TestCase
             ->method('request')
             ->with('HEAD', 'application/jobdata/tables/sometableguid/datasets')
             ->willThrowException(new \Exception('some exception message'));
-        $this->restClientFactoryStub
+        $this->restClientFactoryMock
             ->method('create')
             ->with($connection)
             ->willReturn($this->clientStub);
@@ -181,11 +182,11 @@ final class TableTestControllerTest extends TestCase
     {
         $this->tableRepositoryStub = $this->createStub(TableRepository::class);
         $this->clientStub = $this->createStub(ClientInterface::class);
-        $this->restClientFactoryStub = $this->createMock(RestClientFactoryInterface::class);
+        $this->restClientFactoryMock = $this->createMock(RestClientFactoryInterface::class);
 
         $this->subject = new TableTestController(
             $this->tableRepositoryStub,
-            $this->restClientFactoryStub,
+            $this->restClientFactoryMock,
             new ResponseFactory(),
             new StreamFactory()
         );

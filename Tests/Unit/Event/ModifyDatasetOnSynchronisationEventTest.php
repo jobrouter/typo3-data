@@ -23,7 +23,7 @@ final class ModifyDatasetOnSynchronisationEventTest extends TestCase
      */
     private $table;
     /**
-     * @var array
+     * @var array<string, int>|array<string, string>
      */
     private $dataset;
     /**

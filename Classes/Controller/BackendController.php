@@ -60,11 +60,13 @@ final class BackendController extends ActionController
 
     /**
      * @var ModuleTemplate
+     * @noRector
      */
     private $moduleTemplate;
 
     /**
      * @var ButtonBar
+     * @noRector
      */
     private $buttonBar;
 

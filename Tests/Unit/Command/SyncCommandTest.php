@@ -30,17 +30,17 @@ class SyncCommandTest extends TestCase
     private $commandTester;
 
     /**
-     * @var MockObject|LockingStrategyInterface
+     * @var MockObject&LockingStrategyInterface
      */
     private $lockerMock;
 
     /**
-     * @var MockObject|SynchronisationRunner
+     * @var MockObject&SynchronisationRunner
      */
     private $synchronisationRunnerMock;
 
     /**
-     * @var MockObject|Registry
+     * @var MockObject&Registry
      */
     private $registryMock;
 

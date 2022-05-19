@@ -21,6 +21,7 @@ use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\DatasetNotAvailableException;
 use donatj\MockWebServer\MockWebServer;
 use donatj\MockWebServer\Response;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
@@ -44,11 +45,11 @@ class JobDataRepositoryTest extends TestCase
     private static $configuration;
 
     /**
-     * @var TableRepository|Stub
+     * @var TableRepository&MockObject
      */
     private $tableRepositoryMock;
     /**
-     * @var RestClientFactory|Stub
+     * @var RestClientFactory&Stub
      */
     private $restClientFactoryStub;
     /**

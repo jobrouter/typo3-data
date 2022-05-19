@@ -31,17 +31,17 @@ class TransmitCommandTest extends TestCase
     private $commandTester;
 
     /**
-     * @var LockingStrategyInterface|MockObject
+     * @var LockingStrategyInterface&MockObject
      */
     private $lockerMock;
 
     /**
-     * @var Transmitter|MockObject
+     * @var Transmitter&MockObject
      */
     private $transmitterMock;
 
     /**
-     * @var MockObject|Registry
+     * @var MockObject&Registry
      */
     private $registryMock;
 
