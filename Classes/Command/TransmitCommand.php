@@ -105,7 +105,7 @@ final class TransmitCommand extends Command
         }
 
         $this->outputStyle->success(
-            $message = \sprintf('%d transfer(s) transmitted successfully', $result->total)
+            \sprintf('%d transfer(s) transmitted successfully', $result->total)
         );
 
         return self::EXIT_CODE_OK;
