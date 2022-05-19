@@ -1,7 +1,6 @@
 # Connect JobRouter® JobData tables with TYPO3
 
 [![CI Status](https://github.com/brotkrueml/typo3-jobrouter-data/workflows/CI/badge.svg?branch=main)](https://github.com/brotkrueml/typo3-jobrouter-data/actions?query=workflow%3ACI)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=typo3-jobrouter-data&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=typo3-jobrouter-data)
 [![Coverage Status](https://coveralls.io/repos/github/brotkrueml/typo3-jobrouter-data/badge.svg?branch=main)](https://coveralls.io/github/brotkrueml/typo3-jobrouter-data?branch=main)
 [![Documentation Status](https://readthedocs.org/projects/typo3-jobrouter-data/badge/?version=latest)](https://typo3-jobrouter.readthedocs.io/projects/data/)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-jobrouterdata/localized.svg)](https://crowdin.com/project/typo3-extension-jobrouterdata)
