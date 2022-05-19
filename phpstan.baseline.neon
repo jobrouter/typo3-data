@@ -11,6 +11,11 @@ parameters:
 			path: Classes/Controller/BackendController.php
 
 		-
+			message: "#^Parameter \\#1 \\$href of method TYPO3\\\\CMS\\\\Backend\\\\Template\\\\Components\\\\Buttons\\\\LinkButton\\:\\:setHref\\(\\) expects string, array\\<string, bool\\|string\\|null\\>\\|bool\\|string\\|null given\\.$#"
+			count: 1
+			path: Classes/Controller/BackendController.php
+
+		-
 			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\DatasetRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
 			count: 1
 			path: Classes/Domain/Repository/DatasetRepository.php
