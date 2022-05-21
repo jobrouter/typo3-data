@@ -27,15 +27,8 @@ class SynchronisationService
      */
     protected $tableConnection;
 
-    /**
-     * @var RestClientFactory
-     */
-    private $restClientFactory;
-
-    /**
-     * @var TableRepository
-     */
-    private $tableRepository;
+    private RestClientFactory $restClientFactory;
+    private TableRepository $tableRepository;
 
     public function __construct(
         Connection $tableConnection,

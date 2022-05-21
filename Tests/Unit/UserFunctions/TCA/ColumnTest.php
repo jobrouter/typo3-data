@@ -17,10 +17,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
 
 final class ColumnTest extends TestCase
 {
-    /**
-     * @var Column
-     */
-    private $subject;
+    private Column $subject;
 
     protected function setUp(): void
     {

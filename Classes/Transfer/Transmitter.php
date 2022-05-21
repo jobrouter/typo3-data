@@ -30,34 +30,12 @@ class Transmitter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var PersistenceManagerInterface
-     */
-    private $persistenceManager;
-
-    /**
-     * @var TransferRepository
-     */
-    private $transferRepository;
-
-    /**
-     * @var TableRepository
-     */
-    private $tableRepository;
-
-    /**
-     * @var RestClientFactory
-     */
-    private $restClientFactory;
-
-    /**
-     * @var int
-     */
-    private $totalTransfers = 0;
-    /**
-     * @var int
-     */
-    private $erroneousTransfers = 0;
+    private PersistenceManagerInterface $persistenceManager;
+    private TransferRepository $transferRepository;
+    private TableRepository $tableRepository;
+    private RestClientFactory $restClientFactory;
+    private int $totalTransfers = 0;
+    private int $erroneousTransfers = 0;
 
     public function __construct(
         PersistenceManagerInterface $persistenceManager,

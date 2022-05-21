@@ -16,10 +16,7 @@ namespace Brotkrueml\JobRouterData\Domain\Entity;
  */
 final class TableTestResult
 {
-    /**
-     * @var string
-     */
-    private $errorMessage = '';
+    private string $errorMessage = '';
 
     public function __construct(string $errorMessage)
     {

@@ -17,30 +17,14 @@ use Psr\EventDispatcher\StoppableEventInterface;
 
 final class ModifyColumnContentEvent implements StoppableEventInterface
 {
-    /**
-     * @var Table
-     */
-    private $table;
-
-    /**
-     * @var Column
-     */
-    private $column;
-
+    private Table $table;
+    private Column $column;
     /**
      * @var float|int|string|null
      */
     private $content;
-
-    /**
-     * @var bool
-     */
-    private $contentFormatted = false;
-
-    /**
-     * @var string
-     */
-    private $locale;
+    private bool $contentFormatted = false;
+    private string $locale;
 
     /**
      * @param float|int|string|null $content

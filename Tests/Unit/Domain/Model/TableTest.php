@@ -20,10 +20,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 class TableTest extends TestCase
 {
-    /**
-     * @var Table
-     */
-    private $subject;
+    private Table $subject;
 
     protected function setUp(): void
     {

@@ -22,7 +22,7 @@
 		"docs": "https://typo3-jobrouter.readthedocs.io/projects/data/"
 	},
 	"require": {
-		"php": ">=7.3",
+		"php": ">=7.4",
 		"ext-json": "*",
 		"ext-pdo": "*",
 		"brotkrueml/jobrouter-client": "^1.0",

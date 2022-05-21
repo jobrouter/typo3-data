@@ -20,10 +20,7 @@ class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_transfer';
 
-    /**
-     * @var QueryBuilder
-     */
-    private $queryBuilder;
+    private QueryBuilder $queryBuilder;
 
     public function __construct(QueryBuilder $queryBuilder)
     {

@@ -9,17 +9,20 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Brotkrueml\JobRouterData\Extension;
+use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
+
 return [
     'jobrouter-module-data' => [
-        'provider' => TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/jobrouter-data-module.svg',
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/jobrouter-data-module.svg',
     ],
     'jobrouter-data-ce-table' => [
-        'provider' => TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
     ],
     'jobrouter-data-toolbar' => [
-        'provider' => TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-        'source' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/jobrouter-data-toolbar.svg',
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/jobrouter-data-toolbar.svg',
     ],
 ];

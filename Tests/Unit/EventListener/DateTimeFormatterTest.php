@@ -20,10 +20,7 @@ use PHPUnit\Framework\TestCase;
 
 final class DateTimeFormatterTest extends TestCase
 {
-    /**
-     * @var DateTimeFormatter
-     */
-    private $subject;
+    private DateTimeFormatter $subject;
 
     protected function setUp(): void
     {

@@ -20,10 +20,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class CleanUpTransfersCommandTest extends TestCase
 {
-    /**
-     * @var CommandTester
-     */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     /**
      * @var Deleter&MockObject

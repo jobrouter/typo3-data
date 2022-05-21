@@ -25,29 +25,11 @@ class SynchronisationRunner implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var TableRepository
-     */
-    private $tableRepository;
-
-    /**
-     * @var SimpleTableSynchroniser
-     */
-    private $simpleTableSynchroniser;
-
-    /**
-     * @var CustomTableSynchroniser
-     */
-    private $customTableSynchroniser;
-
-    /**
-     * @var int
-     */
-    private $totalTables = 0;
-    /**
-     * @var int
-     */
-    private $erroneousTables = 0;
+    private TableRepository $tableRepository;
+    private SimpleTableSynchroniser $simpleTableSynchroniser;
+    private CustomTableSynchroniser $customTableSynchroniser;
+    private int $totalTables = 0;
+    private int $erroneousTables = 0;
 
     public function __construct(
         CustomTableSynchroniser $customTableSynchroniser,

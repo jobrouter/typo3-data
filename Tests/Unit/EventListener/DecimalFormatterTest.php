@@ -20,10 +20,7 @@ use PHPUnit\Framework\TestCase;
 
 final class DecimalFormatterTest extends TestCase
 {
-    /**
-     * @var DecimalFormatter
-     */
-    private $subject;
+    private DecimalFormatter $subject;
 
     protected function setUp(): void
     {
@@ -55,7 +52,7 @@ final class DecimalFormatterTest extends TestCase
         yield 'Column type is decimal and fraction is cut' => [
             'type' => FieldTypeEnumeration::DECIMAL,
             'decimalPlaces' => 3,
-            'content' => 123456789.12345,
+            'content' => 123_456_789.12345,
             'locale' => 'de_CH',
             'expected' => '123’456’789.123',
         ];
@@ -63,7 +60,7 @@ final class DecimalFormatterTest extends TestCase
         yield 'Column type is decimal and fraction is padded' => [
             'type' => FieldTypeEnumeration::DECIMAL,
             'decimalPlaces' => 4,
-            'content' => 123456789.1,
+            'content' => 123_456_789.1,
             'locale' => 'de_CH',
             'expected' => '123’456’789.1000',
         ];
@@ -95,9 +92,9 @@ final class DecimalFormatterTest extends TestCase
         yield 'Column type is integer, content is not changed' => [
             'type' => FieldTypeEnumeration::INTEGER,
             'decimalPlaces' => 2,
-            'content' => 123456789,
+            'content' => 123_456_789,
             'locale' => 'de_CH',
-            'expected' => 123456789,
+            'expected' => 123_456_789,
         ];
     }
 }

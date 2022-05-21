@@ -27,20 +27,9 @@ final class CustomTableSynchroniser implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var ConnectionPool
-     */
-    private $connectionPool;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
-     * @var SynchronisationService
-     */
-    private $synchronisationService;
+    private ConnectionPool $connectionPool;
+    private EventDispatcherInterface $eventDispatcher;
+    private SynchronisationService $synchronisationService;
 
     public function __construct(ConnectionPool $connectionPool, EventDispatcherInterface $eventDispatcher, SynchronisationService $synchronisationService)
     {

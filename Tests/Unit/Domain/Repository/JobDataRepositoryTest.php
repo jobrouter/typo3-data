@@ -27,16 +27,11 @@ class JobDataRepositoryTest extends TestCase
      * @var RestClientFactory&Stub
      */
     private $restClientFactoryStub;
-
     /**
      * @var TableRepository&MockObject
      */
     private $tableRepositoryStub;
-
-    /**
-     * @var Table
-     */
-    private $table;
+    private Table $table;
 
     protected function setUp(): void
     {

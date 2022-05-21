@@ -26,20 +26,9 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 final class TableProcessor implements DataProcessorInterface
 {
-    /**
-     * @var DatasetConverter
-     */
-    private $datasetConverter;
-
-    /**
-     * @var FlexFormService
-     */
-    private $flexFormService;
-
-    /**
-     * @var TableRepository
-     */
-    private $tableRepository;
+    private DatasetConverter $datasetConverter;
+    private FlexFormService $flexFormService;
+    private TableRepository $tableRepository;
 
     /**
      * @var ContentObjectRenderer

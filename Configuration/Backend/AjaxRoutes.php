@@ -9,9 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use Brotkrueml\JobRouterData\Controller\TableTestController;
+
 return [
     'jobrouter_data_table_test' => [
         'path' => '/jobrouter/data/table/test',
-        'target' => Brotkrueml\JobRouterData\Controller\TableTestController::class,
+        'target' => TableTestController::class,
     ],
 ];

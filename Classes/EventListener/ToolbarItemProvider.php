@@ -25,25 +25,16 @@ final class ToolbarItemProvider
     /**
      * @var string[]
      */
-    private $commandNames = [
+    private array $commandNames = [
         'syncCommand',
         'transmitCommand',
     ];
-
     /**
      * @var array{exitCode?: int, start?: int}
      */
-    private $lastRunInformation = [];
-
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
-
-    /**
-     * @var Registry
-     */
-    private $registry;
+    private array $lastRunInformation = [];
+    private LanguageService $languageService;
+    private Registry $registry;
 
     public function __construct(LanguageService $languageService, Registry $registry)
     {
@@ -106,7 +97,7 @@ final class ToolbarItemProvider
 
     private function getSeverity(): string
     {
-        if ($this->lastRunInformation === null) {
+        if ($this->lastRunInformation === []) {
             return InformationStatus::STATUS_WARNING;
         }
 

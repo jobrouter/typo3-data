@@ -24,10 +24,7 @@ use TYPO3\CMS\Core\Registry;
 
 class SyncCommandTest extends TestCase
 {
-    /**
-     * @var CommandTester
-     */
-    private $commandTester;
+    private CommandTester $commandTester;
 
     /**
      * @var MockObject&LockingStrategyInterface
@@ -85,9 +82,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static function ($subject): bool {
-                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
-                    }
+                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_OK
                 )
             );
 
@@ -123,9 +118,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static function ($subject): bool {
-                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_OK;
-                    }
+                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_OK
                 )
             );
 
@@ -165,9 +158,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static function ($subject): bool {
-                        return $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
-                    }
+                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION
                 )
             );
 

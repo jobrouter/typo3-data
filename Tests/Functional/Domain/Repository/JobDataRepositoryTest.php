@@ -29,21 +29,9 @@ class JobDataRepositoryTest extends TestCase
 {
     private const TEST_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqYXQiOjE1NzAyMjAwNzIsImp0aSI6IjhWMGtaSzJ5RzRxdGlhbjdGbGZTNUhPTGZaeGtZXC9obG1SVEV2VXIxVmwwPSIsImlzcyI6IkpvYlJvdXRlciIsIm5iZiI6MTU3MDIyMDA3MiwiZXhwIjoxNTcwMjIwMTAyLCJkYXRhIjp7InVzZXJuYW1lIjoicmVzdCJ9fQ.cbAyj36f9MhAwOMzlTEheRkHhuuIEOeb1Uy8i0KfUhU';
 
-    /**
-     * @var MockWebServer
-     */
-    private static $server;
-
-    /**
-     * @var RestClient
-     */
-    private static $restClient;
-
-    /**
-     * @var ClientConfiguration
-     */
-    private static $configuration;
-
+    private static MockWebServer $server;
+    private static RestClient $restClient;
+    private static ClientConfiguration $configuration;
     /**
      * @var TableRepository&MockObject
      */
@@ -52,10 +40,7 @@ class JobDataRepositoryTest extends TestCase
      * @var RestClientFactory&Stub
      */
     private $restClientFactoryStub;
-    /**
-     * @var JobDataRepository
-     */
-    private $subject;
+    private JobDataRepository $subject;
 
     public static function setUpBeforeClass(): void
     {

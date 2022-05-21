@@ -20,10 +20,7 @@ use Psr\Log\NullLogger;
 
 class DeleterTest extends TestCase
 {
-    /**
-     * @var Deleter
-     */
-    private $subject;
+    private Deleter $subject;
 
     /**
      * @var Stub&TransferRepository

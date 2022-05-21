@@ -18,18 +18,12 @@ use PHPUnit\Framework\TestCase;
 
 final class ModifyDatasetOnSynchronisationEventTest extends TestCase
 {
-    /**
-     * @var Table
-     */
-    private $table;
+    private Table $table;
     /**
      * @var array<string, int>|array<string, string>
      */
     private $dataset;
-    /**
-     * @var ModifyDatasetOnSynchronisationEvent
-     */
-    private $subject;
+    private ModifyDatasetOnSynchronisationEvent $subject;
 
     protected function setUp(): void
     {

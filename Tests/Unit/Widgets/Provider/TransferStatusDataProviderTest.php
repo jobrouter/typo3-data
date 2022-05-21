@@ -24,16 +24,11 @@ class TransferStatusDataProviderTest extends TestCase
      * @var Stub&Registry
      */
     private $registryStub;
-
     /**
      * @var Stub&TransferRepository
      */
     private $transferRepositoryStub;
-
-    /**
-     * @var TransferStatusDataProvider
-     */
-    private $subject;
+    private TransferStatusDataProvider $subject;
 
     protected function setUp(): void
     {
@@ -201,8 +196,8 @@ class TransferStatusDataProviderTest extends TestCase
             ->method('get')
             ->with(Extension::REGISTRY_NAMESPACE, 'transmitCommand.lastRun')
             ->willReturn([
-                'start' => 1601889643,
-                'end' => 1601889645,
+                'start' => 1_601_889_643,
+                'end' => 1_601_889_645,
                 'exitCode' => 0,
             ]);
 

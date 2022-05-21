@@ -33,31 +33,11 @@ final class JobDataTablePreviewRenderer implements PageLayoutViewDrawItemHookInt
      * @var mixed|null
      */
     private $flexFormData;
-
-    /**
-     * @var StandaloneView
-     */
-    private $view;
-
-    /**
-     * @var DatasetConverter
-     */
-    private $datasetConverter;
-
-    /**
-     * @var SiteFinder
-     */
-    private $siteFinder;
-
-    /**
-     * @var TableRepository
-     */
-    private $tableRepository;
-
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
+    private StandaloneView $view;
+    private DatasetConverter $datasetConverter;
+    private SiteFinder $siteFinder;
+    private TableRepository $tableRepository;
+    private LanguageService $languageService;
 
     public function __construct()
     {

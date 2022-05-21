@@ -20,10 +20,7 @@ use PHPUnit\Framework\TestCase;
 
 final class IntegerFormatterTest extends TestCase
 {
-    /**
-     * @var IntegerFormatter
-     */
-    private $subject;
+    private IntegerFormatter $subject;
 
     protected function setUp(): void
     {
@@ -53,7 +50,7 @@ final class IntegerFormatterTest extends TestCase
     {
         yield 'Column type is integer, content is formatted' => [
             'type' => FieldTypeEnumeration::INTEGER,
-            'content' => 123456789,
+            'content' => 123_456_789,
             'locale' => 'nl_BE.utf8',
             'expected' => '123.456.789',
         ];
@@ -81,9 +78,9 @@ final class IntegerFormatterTest extends TestCase
 
         yield 'Column type is decimal, content is not changed' => [
             'type' => FieldTypeEnumeration::DECIMAL,
-            'content' => 123456789,
+            'content' => 123_456_789,
             'locale' => 'nl_BE.utf8',
-            'expected' => 123456789,
+            'expected' => 123_456_789,
         ];
     }
 }

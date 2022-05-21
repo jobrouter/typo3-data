@@ -35,25 +35,10 @@ class JobDataRepository
      */
     protected $table;
 
-    /**
-     * @var ClientInterface|null
-     */
-    private $client;
-
-    /**
-     * @var RestClientFactory
-     */
-    private $restClientFactory;
-
-    /**
-     * @var TableRepository
-     */
-    private $tableRepository;
-
-    /**
-     * @var string
-     */
-    private $tableHandle;
+    private ?ClientInterface $client = null;
+    private RestClientFactory $restClientFactory;
+    private TableRepository $tableRepository;
+    private string $tableHandle;
 
     public function __construct(
         RestClientFactory $restClientFactory,

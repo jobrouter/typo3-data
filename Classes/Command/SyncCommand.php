@@ -36,25 +36,10 @@ final class SyncCommand extends Command
     private const ARGUMENT_TABLE = 'table';
     private const OPTION_FORCE = 'force';
 
-    /**
-     * @var int|null
-     */
-    private $startTime;
-
-    /**
-     * @var LockFactory
-     */
-    private $lockFactory;
-
-    /**
-     * @var Registry
-     */
-    private $registry;
-
-    /**
-     * @var SynchronisationRunner
-     */
-    private $synchronisationRunner;
+    private ?int $startTime = null;
+    private LockFactory $lockFactory;
+    private Registry $registry;
+    private SynchronisationRunner $synchronisationRunner;
     /**
      * @var SymfonyStyle
      * @noRector

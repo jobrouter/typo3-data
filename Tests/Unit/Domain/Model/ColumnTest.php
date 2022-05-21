@@ -16,10 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ColumnTest extends TestCase
 {
-    /**
-     * @var Column
-     */
-    private $subject;
+    private Column $subject;
 
     protected function setUp(): void
     {

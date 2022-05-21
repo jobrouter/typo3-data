@@ -30,25 +30,10 @@ final class TransmitCommand extends Command
     public const EXIT_CODE_ERRORS_ON_TRANSMISSION = 1;
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
-    /**
-     * @var int|null
-     */
-    private $startTime;
-
-    /**
-     * @var LockFactory
-     */
-    private $lockFactory;
-
-    /**
-     * @var Registry
-     */
-    private $registry;
-
-    /**
-     * @var Transmitter
-     */
-    private $transmitter;
+    private ?int $startTime = null;
+    private LockFactory $lockFactory;
+    private Registry $registry;
+    private Transmitter $transmitter;
     /**
      * @var SymfonyStyle
      * @noRector

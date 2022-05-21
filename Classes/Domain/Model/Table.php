@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Domain\Model;
 
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
+use TYPO3\CMS\Extbase\Annotation\ORM as Extbase;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -41,7 +42,7 @@ class Table extends AbstractEntity
     protected $name = '';
 
     /**
-     * @var \Brotkrueml\JobRouterConnector\Domain\Model\Connection|null
+     * @var Connection|null
      */
     protected $connection;
 
@@ -56,16 +57,16 @@ class Table extends AbstractEntity
     protected $customTable = '';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Column>
+     * @Extbase\Cascade
+     * @Extbase\Lazy
      */
     protected $columns;
 
     /**
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Dataset>
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade
-     * @TYPO3\CMS\Extbase\Annotation\ORM\Lazy
+     * @var ObjectStorage<Dataset>
+     * @Extbase\Cascade
+     * @Extbase\Lazy
      */
     protected $datasets;
 
@@ -171,7 +172,7 @@ class Table extends AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column>
+     * @return ObjectStorage<Column>
      */
     public function getColumns(): ObjectStorage
     {
@@ -179,7 +180,7 @@ class Table extends AbstractEntity
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Column> $columns
+     * @param ObjectStorage<Column> $columns
      */
     public function setColumns(ObjectStorage $columns): void
     {
@@ -197,7 +198,7 @@ class Table extends AbstractEntity
     }
 
     /**
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Dataset>
+     * @return ObjectStorage<Dataset>
      */
     public function getDatasets(): ObjectStorage
     {
@@ -205,7 +206,7 @@ class Table extends AbstractEntity
     }
 
     /**
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Brotkrueml\JobRouterData\Domain\Model\Dataset> $datasets
+     * @param ObjectStorage<Dataset> $datasets
      */
     public function setDatasets(ObjectStorage $datasets): void
     {

@@ -34,29 +34,14 @@ final class BackendController extends ActionController
     private const MODULE_NAME = 'jobrouter_JobRouterDataTables';
 
     /**
-     * @var class-string<\TYPO3\CMS\Backend\View\BackendTemplateView>
+     * @var class-string<BackendTemplateView>
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    /**
-     * @var IconFactory
-     */
-    private $iconFactory;
-
-    /**
-     * @var LanguageService
-     */
-    private $languageService;
-
-    /**
-     * @var TableRepository
-     */
-    private $tableRepository;
-
-    /**
-     * @var UriBuilder
-     */
-    private $backendUriBuilder;
+    private IconFactory $iconFactory;
+    private LanguageService $languageService;
+    private TableRepository $tableRepository;
+    private UriBuilder $backendUriBuilder;
 
     /**
      * @var ModuleTemplate

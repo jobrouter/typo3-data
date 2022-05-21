@@ -22,11 +22,7 @@ class TransferRepositoryTest extends TestCase
      * @var Stub&QueryBuilder
      */
     private $queryBuilderStub;
-
-    /**
-     * @var TransferRepository
-     */
-    private $subject;
+    private TransferRepository $subject;
 
     protected function setUp(): void
     {

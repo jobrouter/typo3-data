@@ -7,16 +7,17 @@ use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
+use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector;
 
 return static function (RectorConfig $config): void {
-    $config->phpVersion(PhpVersion::PHP_73);
+    $config->phpVersion(PhpVersion::PHP_74);
 
     $config->sets([
-        LevelSetList::UP_TO_PHP_73,
+        LevelSetList::UP_TO_PHP_74,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
@@ -40,6 +41,7 @@ return static function (RectorConfig $config): void {
     ]);
     $config->skip([
         __DIR__ . '/Tests/Acceptance/*',
+        AddLiteralSeparatorToNumberRector::class,
         DateTimeToDateTimeInterfaceRector::class => [
             __DIR__ . '/Classes/Domain/Model/Table.php',
             __DIR__ . '/Classes/Domain/Model/Transfer.php',

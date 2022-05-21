@@ -30,20 +30,9 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
 
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
-    /**
-     * @var Connection
-     */
-    private $datasetConnection;
-
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
-
-    /**
-     * @var SynchronisationService
-     */
-    private $synchronisationService;
+    private Connection $datasetConnection;
+    private EventDispatcherInterface $eventDispatcher;
+    private SynchronisationService $synchronisationService;
 
     public function __construct(Connection $datasetConnection, EventDispatcherInterface $eventDispatcher, SynchronisationService $synchronisationService)
     {

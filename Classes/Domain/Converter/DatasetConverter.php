@@ -23,10 +23,7 @@ final class DatasetConverter
 {
     private const UNFORMATTED_FIELD_NAME_PREFIX = '_original_';
 
-    /**
-     * @var EventDispatcherInterface
-     */
-    private $eventDispatcher;
+    private EventDispatcherInterface $eventDispatcher;
 
     public function __construct(EventDispatcherInterface $eventDispatcher)
     {
@@ -96,13 +93,15 @@ final class DatasetConverter
     public function getSortingColumns(array $columns): array
     {
         $columnsToSortBy = \array_values(
-            \array_filter($columns, static function (Column $column): bool {
-                return $column->getSortingPriority() > 0;
-            })
+            \array_filter(
+                $columns,
+                static fn (Column $column): bool => $column->getSortingPriority() > 0
+            )
         );
-        \usort($columnsToSortBy, static function (Column $a, Column $b): int {
-            return $a->getSortingPriority() <=> $b->getSortingPriority();
-        });
+        \usort(
+            $columnsToSortBy,
+            static fn (Column $a, Column $b): int => $a->getSortingPriority() <=> $b->getSortingPriority()
+        );
 
         return $columnsToSortBy;
     }

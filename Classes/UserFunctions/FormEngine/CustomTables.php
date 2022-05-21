@@ -20,10 +20,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class CustomTables
 {
-    /**
-     * @var ConnectionPool
-     */
-    private $connectionPool;
+    private ConnectionPool $connectionPool;
 
     public function __construct()
     {

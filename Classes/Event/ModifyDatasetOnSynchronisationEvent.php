@@ -16,20 +16,12 @@ use Brotkrueml\JobRouterData\Exception\ModifyDatasetException;
 
 final class ModifyDatasetOnSynchronisationEvent
 {
-    /**
-     * @var Table
-     */
-    private $table;
-
+    private Table $table;
     /**
      * @var array<string, float|int|string|bool|null>
      */
-    private $dataset;
-
-    /**
-     * @var bool
-     */
-    private $rejected = false;
+    private array $dataset;
+    private bool $rejected = false;
 
     /**
      * @param array<string, float|int|string|bool|null> $dataset

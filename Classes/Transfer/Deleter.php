@@ -23,10 +23,7 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    /**
-     * @var TransferRepository
-     */
-    private $transferRepository;
+    private TransferRepository $transferRepository;
 
     public function __construct(TransferRepository $transferRepository)
     {

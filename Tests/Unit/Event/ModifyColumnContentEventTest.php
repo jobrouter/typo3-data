@@ -18,15 +18,8 @@ use PHPUnit\Framework\TestCase;
 
 final class ModifyColumnContentEventTest extends TestCase
 {
-    /**
-     * @var Column
-     */
-    private $column;
-
-    /**
-     * @var Table
-     */
-    private $table;
+    private Column $column;
+    private Table $table;
 
     protected function setUp(): void
     {
