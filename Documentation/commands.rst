@@ -1,6 +1,6 @@
 .. include:: _includes.rst.txt
 
-.. highlight:: shell
+.. highlight:: bash
 
 .. _commands:
 
