@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2022-06-02
+
 ### Removed
 - Compatibility with PHP 7.3
 
@@ -202,7 +204,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial pre-release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.0.1...v1.1.0
 [1.0.1]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.14.0...v1.0.0
 [0.14.0]: https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.13.0...v0.14.0
