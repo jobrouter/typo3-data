@@ -39,6 +39,9 @@ final class DecimalFormatter
         $formatter = new \NumberFormatter($event->getLocale(), \NumberFormatter::DECIMAL);
         $formatter->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, $column->getDecimalPlaces());
         $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $column->getDecimalPlaces());
-        $event->setContent($formatter->format($content));
+        $formattedContent = $formatter->format($content);
+        if ($formattedContent !== false) {
+            $event->setContent($formattedContent);
+        }
     }
 }

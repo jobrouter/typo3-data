@@ -36,6 +36,9 @@ final class IntegerFormatter
         }
 
         $formatter = new \NumberFormatter($event->getLocale(), \NumberFormatter::DEFAULT_STYLE);
-        $event->setContent($formatter->format($content));
+        $formattedContent = $formatter->format($content);
+        if ($formattedContent !== false) {
+            $event->setContent($formattedContent);
+        }
     }
 }
