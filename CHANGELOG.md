@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Exception in frontend using JobData Table plugin in TYPO3 v10 (#22)
+
 ## [1.1.0] - 2022-06-02
 
 ### Removed

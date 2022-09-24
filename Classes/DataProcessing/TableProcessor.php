@@ -15,6 +15,8 @@ use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -78,11 +80,20 @@ final class TableProcessor implements DataProcessorInterface
 
     private function enrichProcessedDataWithTableInformation(int $tableUid): void
     {
-        $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale();
+        $locale = $this->getRequest()->getAttribute('language')->getLocale();
         /** @var Table $table */
         $table = $this->tableRepository->findByIdentifier($tableUid);
         $this->processedData['table'] = $table;
         $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
         Cache::addCacheTagByTable($tableUid);
+    }
+
+    private function getRequest(): ServerRequestInterface
+    {
+        if ((new Typo3Version())->getMajorVersion() >= 11) {
+            return $this->cObj->getRequest();
+        }
+
+        return $GLOBALS['TYPO3_REQUEST'];
     }
 }
