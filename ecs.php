@@ -26,6 +26,7 @@ HEADER;
         'separate' => 'both',
     ]);
     $config->skip([
+        __DIR__ . '/Tests/Acceptance/Support/_generated',
         \PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer::class => [
             __DIR__ . '/Configuration/TCA/*',
         ],
