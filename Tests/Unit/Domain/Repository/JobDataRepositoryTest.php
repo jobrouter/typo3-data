@@ -30,7 +30,7 @@ class JobDataRepositoryTest extends TestCase
     /**
      * @var TableRepository&MockObject
      */
-    private $tableRepositoryStub;
+    private MockObject $tableRepositoryStub;
     private Table $table;
 
     protected function setUp(): void

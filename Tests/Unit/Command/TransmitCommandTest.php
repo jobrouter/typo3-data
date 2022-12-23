@@ -30,17 +30,17 @@ class TransmitCommandTest extends TestCase
     /**
      * @var LockingStrategyInterface&MockObject
      */
-    private $lockerMock;
+    private MockObject $lockerMock;
 
     /**
      * @var Transmitter&MockObject
      */
-    private $transmitterMock;
+    private MockObject $transmitterMock;
 
     /**
      * @var MockObject&Registry
      */
-    private $registryMock;
+    private MockObject $registryMock;
 
     protected function setUp(): void
     {

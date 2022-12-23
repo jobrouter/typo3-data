@@ -29,17 +29,17 @@ class SyncCommandTest extends TestCase
     /**
      * @var MockObject&LockingStrategyInterface
      */
-    private $lockerMock;
+    private MockObject $lockerMock;
 
     /**
      * @var MockObject&SynchronisationRunner
      */
-    private $synchronisationRunnerMock;
+    private MockObject $synchronisationRunnerMock;
 
     /**
      * @var MockObject&Registry
      */
-    private $registryMock;
+    private MockObject $registryMock;
 
     protected function setUp(): void
     {

@@ -23,15 +23,15 @@ class TableUpdateHookTest extends TestCase
     /**
      * @var MockObject&Connection
      */
-    private $connectionMock;
+    private MockObject $connectionMock;
     /**
      * @var MockObject&ConnectionPool
      */
-    private $connectionPoolMock;
+    private MockObject $connectionPoolMock;
     /**
      * @var MockObject&DataHandler
      */
-    private $dataHandlerMock;
+    private MockObject $dataHandlerMock;
     private TableUpdateHook $subject;
 
     protected function setUp(): void

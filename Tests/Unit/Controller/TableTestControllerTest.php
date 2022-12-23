@@ -37,7 +37,7 @@ final class TableTestControllerTest extends TestCase
     /**
      * @var RestClientFactoryInterface&MockObject
      */
-    private $restClientFactoryMock;
+    private MockObject $restClientFactoryMock;
     private TableTestController $subject;
     /**
      * @var ServerRequestInterface&Stub

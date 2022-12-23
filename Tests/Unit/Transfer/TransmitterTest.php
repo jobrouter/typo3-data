@@ -27,17 +27,17 @@ class TransmitterTest extends TestCase
     /**
      * @var MockObject&PersistenceManagerInterface
      */
-    private $persistenceManagerMock;
+    private MockObject $persistenceManagerMock;
 
     /**
      * @var MockObject&TransferRepository
      */
-    private $transferRepositoryMock;
+    private MockObject $transferRepositoryMock;
 
     /**
      * @var MockObject&TableRepository
      */
-    private $tableRepositoryMock;
+    private MockObject $tableRepositoryMock;
 
     protected function setUp(): void
     {
