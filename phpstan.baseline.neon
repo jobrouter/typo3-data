@@ -16,6 +16,11 @@ parameters:
 			path: Classes/Controller/BackendController.php
 
 		-
+			message: "#^Cannot call method getLocale\\(\\) on TYPO3\\\\CMS\\\\Core\\\\Site\\\\Entity\\\\SiteLanguage\\|null\\.$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
 			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\DatasetRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
 			count: 1
 			path: Classes/Domain/Repository/DatasetRepository.php
