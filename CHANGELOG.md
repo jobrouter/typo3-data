@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Avoid injecting the query builder
+
 ## [1.1.1] - 2022-09-24
 
 ### Fixed

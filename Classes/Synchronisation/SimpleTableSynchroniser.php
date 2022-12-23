@@ -19,7 +19,7 @@ use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
-use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
@@ -30,13 +30,13 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
 
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
-    private Connection $datasetConnection;
+    private ConnectionPool $connectionPool;
     private EventDispatcherInterface $eventDispatcher;
     private SynchronisationService $synchronisationService;
 
-    public function __construct(Connection $datasetConnection, EventDispatcherInterface $eventDispatcher, SynchronisationService $synchronisationService)
+    public function __construct(ConnectionPool $connectionPool, EventDispatcherInterface $eventDispatcher, SynchronisationService $synchronisationService)
     {
-        $this->datasetConnection = $datasetConnection;
+        $this->connectionPool = $connectionPool;
         $this->eventDispatcher = $eventDispatcher;
         $this->synchronisationService = $synchronisationService;
     }
@@ -77,8 +77,9 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
             return;
         }
 
-        $this->datasetConnection->setAutoCommit(false);
-        $this->datasetConnection->beginTransaction();
+        $datasetConnection = $this->connectionPool->getConnectionForTable(self::DATASET_TABLE_NAME);
+        $datasetConnection->setAutoCommit(false);
+        $datasetConnection->beginTransaction();
 
         try {
             $this->deleteAllOldDatasets($table);
@@ -87,8 +88,8 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
             }
             $this->synchronisationService->updateSynchronisationStatus($table, $datasetsHash);
         } catch (\Exception $e) {
-            $this->datasetConnection->rollBack();
-            $this->datasetConnection->setAutoCommit(true);
+            $datasetConnection->rollBack();
+            $datasetConnection->setAutoCommit(true);
 
             $this->synchronisationService->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
 
@@ -103,15 +104,16 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
             throw new SynchronisationException($e->getMessage(), 1567014608, $e);
         }
 
-        $this->datasetConnection->commit();
-        $this->datasetConnection->setAutoCommit(true);
+        $datasetConnection->commit();
+        $datasetConnection->setAutoCommit(true);
 
         Cache::clearCacheByTable($table->getUid());
     }
 
     private function deleteAllOldDatasets(Table $table): void
     {
-        $this->datasetConnection->delete(
+        $datasetConnection = $this->connectionPool->getConnectionForTable(self::DATASET_TABLE_NAME);
+        $datasetConnection->delete(
             self::DATASET_TABLE_NAME,
             [
                 'table_uid' => $table->getUid(),
@@ -154,7 +156,8 @@ final class SimpleTableSynchroniser implements LoggerAwareInterface
             'dataset' => \json_encode($datasetToStore, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR),
         ];
 
-        $this->datasetConnection->insert(
+        $datasetConnection = $this->connectionPool->getConnectionForTable(self::DATASET_TABLE_NAME);
+        $datasetConnection->insert(
             self::DATASET_TABLE_NAME,
             $data,
             [

@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.1...HEAD>`_
 --------------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Avoid injecting the query builder
+
 `1.1.1 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.0...v1.1.1>`_ - 2022-09-24
 ------------------------------------------------------------------------------------------------------
 

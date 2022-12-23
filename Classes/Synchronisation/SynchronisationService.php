@@ -15,27 +15,23 @@ use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
  */
 class SynchronisationService
 {
-    /**
-     * @var Connection
-     */
-    protected $tableConnection;
-
+    private ConnectionPool $connectionPool;
     private RestClientFactory $restClientFactory;
     private TableRepository $tableRepository;
 
     public function __construct(
-        Connection $tableConnection,
+        ConnectionPool $connectionPool,
         RestClientFactory $restClientFactory,
         TableRepository $tableRepository
     ) {
-        $this->tableConnection = $tableConnection;
+        $this->connectionPool = $connectionPool;
         $this->restClientFactory = $restClientFactory;
         $this->tableRepository = $tableRepository;
     }
@@ -75,7 +71,8 @@ class SynchronisationService
             $types['datasets_sync_hash'] = \PDO::PARAM_STR;
         }
 
-        $this->tableConnection->update(
+        $tableConnection = $this->connectionPool->getConnectionForTable('tx_jobrouterdata_domain_model_table');
+        $tableConnection->update(
             'tx_jobrouterdata_domain_model_table',
             $data,
             [
