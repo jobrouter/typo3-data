@@ -97,10 +97,5 @@
 			"extension-key": "jobrouter_data",
 			"web-dir": ".Build/Web"
 		}
-	},
-	"scripts": {
-		"post-autoload-dump": [
-			"TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
-		]
 	}
 }
