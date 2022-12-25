@@ -49,7 +49,6 @@ final class CleanUpTransfersCommand extends Command
         );
 
         $this
-            ->setDescription('Delete old entries in the transfer table')
             ->setHelp($help)
             ->addArgument(
                 self::ARGUMENT_AGE_IN_DAYS,

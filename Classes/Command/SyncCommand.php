@@ -61,7 +61,6 @@ final class SyncCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Synchronise JobData data sets from JobRouter installations')
             ->setHelp('This command synchronises JobData tables from JobRouter instances into TYPO3. You can set a specific table name as argument. If the table argument is omitted, all enabled tables are processed.')
             ->addArgument(self::ARGUMENT_TABLE, InputArgument::OPTIONAL, 'The handle of a table (optional)')
             ->addOption(self::OPTION_FORCE, null, InputOption::VALUE_NONE, 'Force a full synchronisation of all datasets');

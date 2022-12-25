@@ -52,7 +52,6 @@ final class TransmitCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Transmit data sets to JobData tables')
             ->setHelp('This command transmits data sets from TYPO3 to JobData tables in JobRouter installations.');
     }
 
