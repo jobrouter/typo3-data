@@ -25,20 +25,14 @@ class SynchronisationRunner implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private TableRepository $tableRepository;
-    private SimpleTableSynchroniser $simpleTableSynchroniser;
-    private CustomTableSynchroniser $customTableSynchroniser;
     private int $totalTables = 0;
     private int $erroneousTables = 0;
 
     public function __construct(
-        CustomTableSynchroniser $customTableSynchroniser,
-        SimpleTableSynchroniser $simpleTableSynchroniser,
-        TableRepository $tableRepository
+        private readonly CustomTableSynchroniser $customTableSynchroniser,
+        private readonly SimpleTableSynchroniser $simpleTableSynchroniser,
+        private readonly TableRepository $tableRepository
     ) {
-        $this->customTableSynchroniser = $customTableSynchroniser;
-        $this->simpleTableSynchroniser = $simpleTableSynchroniser;
-        $this->tableRepository = $tableRepository;
     }
 
     public function run(string $tableHandle, bool $force): CountResult

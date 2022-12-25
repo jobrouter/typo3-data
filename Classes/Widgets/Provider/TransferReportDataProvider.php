@@ -21,11 +21,9 @@ use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
  */
 final class TransferReportDataProvider implements ListDataProviderInterface
 {
-    private TransferRepository $transferRepository;
-
-    public function __construct(TransferRepository $transferRepository)
-    {
-        $this->transferRepository = $transferRepository;
+    public function __construct(
+        private readonly TransferRepository $transferRepository
+    ) {
     }
 
     /**

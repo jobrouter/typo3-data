@@ -147,11 +147,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
         return $tableFields;
     }
 
-    /**
-     * @param mixed $value
-     * @return string|int|float
-     */
-    private function considerTypeForFieldValue($value, int $type, int $fieldSize)
+    private function considerTypeForFieldValue(mixed $value, int $type, int $fieldSize): string|int|float
     {
         if ($type === FieldTypeEnumeration::TEXT) {
             $value = (string)$value;

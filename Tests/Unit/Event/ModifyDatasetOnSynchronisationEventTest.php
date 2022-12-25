@@ -22,7 +22,7 @@ final class ModifyDatasetOnSynchronisationEventTest extends TestCase
     /**
      * @var array<string, int>|array<string, string>
      */
-    private $dataset;
+    private array $dataset;
     private ModifyDatasetOnSynchronisationEvent $subject;
 
     protected function setUp(): void

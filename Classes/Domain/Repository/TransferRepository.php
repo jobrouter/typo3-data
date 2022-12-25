@@ -21,7 +21,7 @@ class TransferRepository extends Repository
     /**
      * @return mixed[]|QueryResultInterface<Transfer>
      */
-    public function findErroneousTransfers()
+    public function findErroneousTransfers(): array|QueryResultInterface
     {
         $query = $this->createQuery();
 

@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class TableUpdateHook
 {
-    private ConnectionPool $connectionPool;
+    private readonly ConnectionPool $connectionPool;
 
     public function __construct(ConnectionPool $connectionPool = null)
     {

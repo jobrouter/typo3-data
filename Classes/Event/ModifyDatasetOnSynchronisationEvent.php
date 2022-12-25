@@ -16,20 +16,15 @@ use Brotkrueml\JobRouterData\Exception\ModifyDatasetException;
 
 final class ModifyDatasetOnSynchronisationEvent
 {
-    private Table $table;
-    /**
-     * @var array<string, float|int|string|bool|null>
-     */
-    private array $dataset;
     private bool $rejected = false;
 
     /**
      * @param array<string, float|int|string|bool|null> $dataset
      */
-    public function __construct(Table $table, array $dataset)
-    {
-        $this->table = $table;
-        $this->dataset = $dataset;
+    public function __construct(
+        private readonly Table $table,
+        private array $dataset
+    ) {
     }
 
     public function getTable(): Table

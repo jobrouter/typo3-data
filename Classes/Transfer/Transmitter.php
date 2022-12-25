@@ -29,24 +29,15 @@ use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 class Transmitter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
-
-    private PersistenceManagerInterface $persistenceManager;
-    private TransferRepository $transferRepository;
-    private TableRepository $tableRepository;
-    private RestClientFactory $restClientFactory;
     private int $totalTransfers = 0;
     private int $erroneousTransfers = 0;
 
     public function __construct(
-        PersistenceManagerInterface $persistenceManager,
-        RestClientFactory $restClientFactory,
-        TransferRepository $transferRepository,
-        TableRepository $tableRepository
+        private readonly PersistenceManagerInterface $persistenceManager,
+        private readonly RestClientFactory $restClientFactory,
+        private readonly TransferRepository $transferRepository,
+        private readonly TableRepository $tableRepository
     ) {
-        $this->persistenceManager = $persistenceManager;
-        $this->restClientFactory = $restClientFactory;
-        $this->transferRepository = $transferRepository;
-        $this->tableRepository = $tableRepository;
     }
 
     public function run(): CountResult
@@ -83,7 +74,7 @@ class Transmitter implements LoggerAwareInterface
             // @phpstan-ignore-next-line
             $context = [
                 'transfer uid' => $transfer->getUid(),
-                'exception class' => \get_class($e),
+                'exception class' => $e::class,
                 'exception code' => $e->getCode(),
             ];
             $this->logger->error($e->getMessage(), $context);

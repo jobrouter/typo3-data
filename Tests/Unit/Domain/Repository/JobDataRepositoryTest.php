@@ -23,14 +23,8 @@ use PHPUnit\Framework\TestCase;
 
 class JobDataRepositoryTest extends TestCase
 {
-    /**
-     * @var RestClientFactory&Stub
-     */
-    private $restClientFactoryStub;
-    /**
-     * @var TableRepository&MockObject
-     */
-    private MockObject $tableRepositoryStub;
+    private RestClientFactory&Stub $restClientFactoryStub;
+    private TableRepository&MockObject $tableRepositoryStub;
     private Table $table;
 
     protected function setUp(): void

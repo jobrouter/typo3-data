@@ -6,6 +6,11 @@ parameters:
 			path: Classes/Cache/Cache.php
 
 		-
+			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, Doctrine\\\\DBAL\\\\Result\\|int\\<min, \\-1\\>\\|int\\<1, max\\> given\\.$#"
+			count: 1
+			path: Classes/Command/CleanUpTransfersCommand.php
+
+		-
 			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Extbase\\\\Mvc\\\\View\\\\ViewInterface\\:\\:getModuleTemplate\\(\\)\\.$#"
 			count: 1
 			path: Classes/Controller/BackendController.php
@@ -33,11 +38,6 @@ parameters:
 		-
 			message: "#^Cannot call method fetchColumn\\(\\) on Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
 			count: 2
-			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\QueryBuilder\\\\TransferRepository\\:\\:deleteOldSuccessfulTransfers\\(\\) should return int but returns Doctrine\\\\DBAL\\\\Result\\|int\\.$#"
-			count: 1
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
 
 		-
@@ -154,6 +154,11 @@ parameters:
 			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 1
 			path: Classes/Synchronisation/SynchronisationRunner.php
+
+		-
+			message: "#^Binary operation \"\\.\" between 'Affected rows\\: ' and Doctrine\\\\DBAL\\\\Result\\|int\\<min, \\-1\\>\\|int\\<1, max\\> results in an error\\.$#"
+			count: 1
+			path: Classes/Transfer/Deleter.php
 
 		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"

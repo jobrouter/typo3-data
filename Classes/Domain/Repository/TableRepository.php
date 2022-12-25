@@ -33,7 +33,7 @@ class TableRepository extends Repository
     /**
      * @return mixed[]|QueryResultInterface<Table>
      */
-    public function findAllByTypeWithHidden(int $type)
+    public function findAllByTypeWithHidden(int $type): array|QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setIgnoreEnableFields(true);
@@ -54,7 +54,7 @@ class TableRepository extends Repository
     /**
      * @return mixed[]|QueryResultInterface<Table>
      */
-    public function findAllSyncTables()
+    public function findAllSyncTables(): array|QueryResultInterface
     {
         $query = $this->createQuery();
         $query->matching(

@@ -26,21 +26,12 @@ use Psr\Http\Message\StreamFactoryInterface;
  */
 final class TableTestController
 {
-    private TableRepository $tableRepository;
-    private RestClientFactoryInterface $restClientFactory;
-    private ResponseFactoryInterface $responseFactory;
-    private StreamFactoryInterface $streamFactory;
-
     public function __construct(
-        TableRepository $tableRepository,
-        RestClientFactoryInterface $restClientFactory,
-        ResponseFactoryInterface $responseFactory,
-        StreamFactoryInterface $streamFactory
+        private readonly TableRepository $tableRepository,
+        private readonly RestClientFactoryInterface $restClientFactory,
+        private readonly ResponseFactoryInterface $responseFactory,
+        private readonly StreamFactoryInterface $streamFactory
     ) {
-        $this->tableRepository = $tableRepository;
-        $this->restClientFactory = $restClientFactory;
-        $this->responseFactory = $responseFactory;
-        $this->streamFactory = $streamFactory;
     }
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface

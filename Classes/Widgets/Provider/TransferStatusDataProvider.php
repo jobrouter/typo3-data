@@ -22,17 +22,12 @@ use TYPO3\CMS\Core\Registry;
  */
 final class TransferStatusDataProvider implements TransferStatusDataProviderInterface
 {
-    private Registry $registry;
-    private TransferRepository $transferRepository;
-    private TransferStatus $status;
+    private readonly TransferStatus $status;
 
     public function __construct(
-        Registry $registry,
-        TransferRepository $transferRepository
+        private readonly Registry $registry,
+        private readonly TransferRepository $transferRepository
     ) {
-        $this->registry = $registry;
-        $this->transferRepository = $transferRepository;
-
         $this->status = new TransferStatus();
     }
 

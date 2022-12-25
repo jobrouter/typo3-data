@@ -26,23 +26,11 @@ use TYPO3\CMS\Core\Http\StreamFactory;
 
 final class TableTestControllerTest extends TestCase
 {
-    /**
-     * @var TableRepository&Stub
-     */
-    private $tableRepositoryStub;
-    /**
-     * @var ClientInterface&Stub
-     */
-    private $clientStub;
-    /**
-     * @var RestClientFactoryInterface&MockObject
-     */
-    private MockObject $restClientFactoryMock;
+    private TableRepository&Stub $tableRepositoryStub;
+    private ClientInterface&Stub $clientStub;
+    private RestClientFactoryInterface&MockObject $restClientFactoryMock;
     private TableTestController $subject;
-    /**
-     * @var ServerRequestInterface&Stub
-     */
-    private $requestStub;
+    private ServerRequestInterface&Stub $requestStub;
 
     /**
      * @test

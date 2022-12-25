@@ -17,24 +17,17 @@ use Psr\EventDispatcher\StoppableEventInterface;
 
 final class ModifyColumnContentEvent implements StoppableEventInterface
 {
-    private Table $table;
-    private Column $column;
-    /**
-     * @var float|int|string|null
-     */
-    private $content;
     private bool $contentFormatted = false;
-    private string $locale;
 
     /**
      * @param float|int|string|null $content
      */
-    public function __construct(Table $table, Column $column, $content, string $locale)
-    {
-        $this->table = $table;
-        $this->column = $column;
-        $this->content = $content;
-        $this->locale = $locale;
+    public function __construct(
+        private readonly Table $table,
+        private readonly Column $column,
+        private $content,
+        private readonly string $locale
+    ) {
     }
 
     public function getTable(): Table

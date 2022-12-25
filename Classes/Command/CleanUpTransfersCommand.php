@@ -31,12 +31,9 @@ final class CleanUpTransfersCommand extends Command
     private const ARGUMENT_AGE_IN_DAYS = 'ageInDays';
     private const DEFAULT_AGE_IN_DAYS = 30;
 
-    private Deleter $deleter;
-
-    public function __construct(Deleter $deleter)
-    {
-        $this->deleter = $deleter;
-
+    public function __construct(
+        private readonly Deleter $deleter
+    ) {
         parent::__construct();
     }
 

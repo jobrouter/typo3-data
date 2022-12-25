@@ -23,14 +23,12 @@ class Deleter implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private TransferRepository $transferRepository;
-
-    public function __construct(TransferRepository $transferRepository)
-    {
-        $this->transferRepository = $transferRepository;
+    public function __construct(
+        private readonly TransferRepository $transferRepository
+    ) {
     }
 
-    public function run(int $ageInDays): int
+    public function run(int $ageInDays): \Doctrine\DBAL\Result|int
     {
         $this->logger->info('Starting clean up of old transfers');
 

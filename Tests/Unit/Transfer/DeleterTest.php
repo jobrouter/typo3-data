@@ -22,10 +22,7 @@ class DeleterTest extends TestCase
 {
     private Deleter $subject;
 
-    /**
-     * @var Stub&TransferRepository
-     */
-    private $transferRepositoryStub;
+    private TransferRepository&Stub $transferRepositoryStub;
 
     protected function setUp(): void
     {

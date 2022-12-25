@@ -37,9 +37,6 @@ final class SyncCommand extends Command
     private const OPTION_FORCE = 'force';
 
     private ?int $startTime = null;
-    private LockFactory $lockFactory;
-    private Registry $registry;
-    private SynchronisationRunner $synchronisationRunner;
     /**
      * @var SymfonyStyle
      * @noRector
@@ -47,14 +44,10 @@ final class SyncCommand extends Command
     private $outputStyle;
 
     public function __construct(
-        LockFactory $lockFactory,
-        Registry $registry,
-        SynchronisationRunner $synchronisationRunner
+        private readonly LockFactory $lockFactory,
+        private readonly Registry $registry,
+        private readonly SynchronisationRunner $synchronisationRunner
     ) {
-        $this->lockFactory = $lockFactory;
-        $this->registry = $registry;
-        $this->synchronisationRunner = $synchronisationRunner;
-
         parent::__construct();
     }
 
@@ -82,7 +75,7 @@ final class SyncCommand extends Command
             $this->recordLastRun($exitCode);
 
             return $exitCode;
-        } catch (LockException $e) {
+        } catch (LockException) {
             $this->outputStyle->note('Could not acquire lock, another process is running');
 
             return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;

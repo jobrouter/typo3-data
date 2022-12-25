@@ -23,11 +23,9 @@ final class DatasetConverter
 {
     private const UNFORMATTED_FIELD_NAME_PREFIX = '_original_';
 
-    private EventDispatcherInterface $eventDispatcher;
-
-    public function __construct(EventDispatcherInterface $eventDispatcher)
-    {
-        $this->eventDispatcher = $eventDispatcher;
+    public function __construct(
+        private readonly EventDispatcherInterface $eventDispatcher
+    ) {
     }
 
     /**

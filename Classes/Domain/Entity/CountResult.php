@@ -16,20 +16,9 @@ namespace Brotkrueml\JobRouterData\Domain\Entity;
  */
 final class CountResult
 {
-    /**
-     * @var int
-     * @readonly
-     */
-    public $total;
-    /**
-     * @var int
-     * @readonly
-     */
-    public $errors;
-
-    public function __construct(int $total, int $errors)
-    {
-        $this->total = $total;
-        $this->errors = $errors;
+    public function __construct(
+        public readonly int $total,
+        public readonly int $errors
+    ) {
     }
 }

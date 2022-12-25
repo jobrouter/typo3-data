@@ -38,11 +38,6 @@ final class BackendController extends ActionController
      */
     protected $defaultViewObjectName = BackendTemplateView::class;
 
-    private IconFactory $iconFactory;
-    private LanguageService $languageService;
-    private TableRepository $tableRepository;
-    private UriBuilder $backendUriBuilder;
-
     /**
      * @var ModuleTemplate
      * @noRector
@@ -56,15 +51,11 @@ final class BackendController extends ActionController
     private $buttonBar;
 
     public function __construct(
-        IconFactory $iconFactory,
-        LanguageService $languageService,
-        TableRepository $tableRepository,
-        UriBuilder $uriBuilder
+        private readonly IconFactory $iconFactory,
+        private readonly LanguageService $languageService,
+        private readonly TableRepository $tableRepository,
+        private readonly UriBuilder $backendUriBuilder
     ) {
-        $this->iconFactory = $iconFactory;
-        $this->languageService = $languageService;
-        $this->tableRepository = $tableRepository;
-        $this->backendUriBuilder = $uriBuilder;
     }
 
     /**

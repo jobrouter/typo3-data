@@ -71,7 +71,7 @@ class Dataset extends AbstractEntity
         if ($this->decodedDataset === null) {
             try {
                 $this->decodedDataset = \json_decode($this->dataset, true, 512, \JSON_THROW_ON_ERROR);
-            } catch (\JsonException $e) {
+            } catch (\JsonException) {
             }
         }
 

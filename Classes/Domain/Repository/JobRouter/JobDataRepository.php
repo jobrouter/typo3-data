@@ -36,18 +36,12 @@ class JobDataRepository
     protected $table;
 
     private ?ClientInterface $client = null;
-    private RestClientFactory $restClientFactory;
-    private TableRepository $tableRepository;
-    private string $tableHandle;
 
     public function __construct(
-        RestClientFactory $restClientFactory,
-        TableRepository $tableRepository,
-        string $tableHandle
+        private readonly RestClientFactory $restClientFactory,
+        private readonly TableRepository $tableRepository,
+        private readonly string $tableHandle
     ) {
-        $this->restClientFactory = $restClientFactory;
-        $this->tableRepository = $tableRepository;
-        $this->tableHandle = $tableHandle;
     }
 
     protected function getClient(): ClientInterface
@@ -170,7 +164,7 @@ class JobDataRepository
     {
         try {
             $decodedJson = \json_decode($json, true, 512, \JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+        } catch (\JsonException) {
             $decodedJson = [];
         }
         if (! \array_key_exists('datasets', $decodedJson)) {

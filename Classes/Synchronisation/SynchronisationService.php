@@ -22,18 +22,11 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  */
 class SynchronisationService
 {
-    private ConnectionPool $connectionPool;
-    private RestClientFactory $restClientFactory;
-    private TableRepository $tableRepository;
-
     public function __construct(
-        ConnectionPool $connectionPool,
-        RestClientFactory $restClientFactory,
-        TableRepository $tableRepository
+        private readonly ConnectionPool $connectionPool,
+        private readonly RestClientFactory $restClientFactory,
+        private readonly TableRepository $tableRepository
     ) {
-        $this->connectionPool = $connectionPool;
-        $this->restClientFactory = $restClientFactory;
-        $this->tableRepository = $tableRepository;
     }
 
     /**

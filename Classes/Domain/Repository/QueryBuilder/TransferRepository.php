@@ -20,11 +20,9 @@ class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_transfer';
 
-    private ConnectionPool $connectionPool;
-
-    public function __construct(ConnectionPool $connectionPool)
-    {
-        $this->connectionPool = $connectionPool;
+    public function __construct(
+        private readonly ConnectionPool $connectionPool
+    ) {
     }
 
     /**
@@ -72,7 +70,7 @@ class TransferRepository
         return $count;
     }
 
-    public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): int
+    public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): \Doctrine\DBAL\Result|int
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 

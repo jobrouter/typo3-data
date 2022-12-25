@@ -25,13 +25,10 @@ final class Preparer implements LoggerAwareInterface
 {
     use LoggerAwareTrait;
 
-    private PersistenceManager $persistenceManager;
-    private TransferRepository $transferRepository;
-
-    public function __construct(PersistenceManager $persistenceManager, TransferRepository $transferRepository)
-    {
-        $this->persistenceManager = $persistenceManager;
-        $this->transferRepository = $transferRepository;
+    public function __construct(
+        private readonly PersistenceManager $persistenceManager,
+        private readonly TransferRepository $transferRepository
+    ) {
     }
 
     public function store(int $tableUid, string $correlationId, string $data): void

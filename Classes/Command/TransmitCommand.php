@@ -31,21 +31,17 @@ final class TransmitCommand extends Command
     public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
 
     private ?int $startTime = null;
-    private LockFactory $lockFactory;
-    private Registry $registry;
-    private Transmitter $transmitter;
     /**
      * @var SymfonyStyle
      * @noRector
      */
     private $outputStyle;
 
-    public function __construct(LockFactory $lockFactory, Registry $registry, Transmitter $transmitter)
-    {
-        $this->lockFactory = $lockFactory;
-        $this->registry = $registry;
-        $this->transmitter = $transmitter;
-
+    public function __construct(
+        private readonly LockFactory $lockFactory,
+        private readonly Registry $registry,
+        private readonly Transmitter $transmitter
+    ) {
         parent::__construct();
     }
 
@@ -69,7 +65,7 @@ final class TransmitCommand extends Command
             $this->recordLastRun($exitCode);
 
             return $exitCode;
-        } catch (LockException $e) {
+        } catch (LockException) {
             $this->outputStyle->note('Could not acquire lock, another process is running');
 
             return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;

@@ -13,10 +13,10 @@ use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector;
 
 return static function (RectorConfig $config): void {
-    $config->phpVersion(PhpVersion::PHP_74);
+    $config->phpVersion(PhpVersion::PHP_81);
 
     $config->sets([
-        LevelSetList::UP_TO_PHP_74,
+        LevelSetList::UP_TO_PHP_81,
         SetList::CODE_QUALITY,
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
@@ -41,7 +41,6 @@ return static function (RectorConfig $config): void {
     $config->skip([
         __DIR__ . '/Tests/Acceptance/*',
         AddLiteralSeparatorToNumberRector::class,
-        RemoveUnusedPromotedPropertyRector::class, // Skip until compatibility with PHP >= 8.0
         ReturnTypeDeclarationRector::class => [
             __DIR__ . '/Classes/Domain/Repository/TableRepository.php',
             __DIR__ . '/Classes/Domain/Repository/TransferRepository.php',

@@ -20,14 +20,8 @@ use TYPO3\CMS\Core\Registry;
 
 class TransferStatusDataProviderTest extends TestCase
 {
-    /**
-     * @var Stub&Registry
-     */
-    private $registryStub;
-    /**
-     * @var Stub&TransferRepository
-     */
-    private $transferRepositoryStub;
+    private Registry&Stub $registryStub;
+    private TransferRepository&Stub $transferRepositoryStub;
     private TransferStatusDataProvider $subject;
 
     protected function setUp(): void

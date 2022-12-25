@@ -36,10 +36,7 @@ class JobDataRepositoryTest extends TestCase
      * @var TableRepository&MockObject
      */
     private MockObject $tableRepositoryMock;
-    /**
-     * @var RestClientFactory&Stub
-     */
-    private $restClientFactoryStub;
+    private RestClientFactory&Stub $restClientFactoryStub;
     private JobDataRepository $subject;
 
     public static function setUpBeforeClass(): void
