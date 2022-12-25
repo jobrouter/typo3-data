@@ -93,7 +93,7 @@
 			"dev-main": "2.0.x-dev"
 		},
 		"typo3/cms": {
-			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"app-dir": ".Build",
 			"extension-key": "jobrouter_data",
 			"web-dir": ".Build/Web"
 		}
