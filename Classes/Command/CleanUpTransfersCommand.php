@@ -24,10 +24,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  */
 final class CleanUpTransfersCommand extends Command
 {
-    public const EXIT_CODE_OK = 0;
-    public const EXIT_CODE_INVALID_ARGUMENT = 1;
-    public const EXIT_CODE_DELETION_FAILED = 2;
-
     private const ARGUMENT_AGE_IN_DAYS = 'ageInDays';
     private const DEFAULT_AGE_IN_DAYS = 30;
 
@@ -63,7 +59,7 @@ final class CleanUpTransfersCommand extends Command
         } catch (\InvalidArgumentException $e) {
             $outputStyle->error($e->getMessage());
 
-            return self::EXIT_CODE_INVALID_ARGUMENT;
+            return self::INVALID;
         }
 
         try {
@@ -71,7 +67,7 @@ final class CleanUpTransfersCommand extends Command
         } catch (DeleteException $e) {
             $outputStyle->error($e->getMessage());
 
-            return self::EXIT_CODE_DELETION_FAILED;
+            return self::FAILURE;
         }
 
         if ($numberOfDeletedTransfers === 0) {
@@ -90,7 +86,7 @@ final class CleanUpTransfersCommand extends Command
 
         $outputStyle->success($message);
 
-        return self::EXIT_CODE_OK;
+        return self::SUCCESS;
     }
 
     protected function getAgeInDays(InputInterface $input): int

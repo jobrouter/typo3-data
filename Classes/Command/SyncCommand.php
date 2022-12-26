@@ -29,10 +29,6 @@ use TYPO3\CMS\Core\Registry;
  */
 final class SyncCommand extends Command
 {
-    public const EXIT_CODE_OK = 0;
-    public const EXIT_CODE_ERRORS_ON_SYNCHRONISATION = 1;
-    public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
-
     private const ARGUMENT_TABLE = 'table';
     private const OPTION_FORCE = 'force';
 
@@ -74,7 +70,7 @@ final class SyncCommand extends Command
         } catch (LockException) {
             $this->outputStyle->note('Could not acquire lock, another process is running');
 
-            return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
+            return self::FAILURE;
         }
     }
 
@@ -87,7 +83,7 @@ final class SyncCommand extends Command
                 \sprintf('%d out of %d table(s) had errors during processing', $result->errors, $result->total)
             );
 
-            return self::EXIT_CODE_ERRORS_ON_SYNCHRONISATION;
+            return self::FAILURE;
         }
 
         $message = $tableHandle !== ''
@@ -96,7 +92,7 @@ final class SyncCommand extends Command
 
         $this->outputStyle->success($message);
 
-        return self::EXIT_CODE_OK;
+        return self::SUCCESS;
     }
 
     private function recordLastRun(int $exitCode): void

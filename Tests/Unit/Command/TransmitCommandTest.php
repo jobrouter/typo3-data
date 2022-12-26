@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 
-use Brotkrueml\JobRouterData\Command\SyncCommand;
 use Brotkrueml\JobRouterData\Command\TransmitCommand;
 use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Locking\Exception\LockAcquireException;
 use TYPO3\CMS\Core\Locking\LockFactory;
@@ -83,13 +83,13 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_OK
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
                 )
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(TransmitCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 0 transfer(s) transmitted successfully',
             $this->commandTester->getDisplay()
@@ -122,13 +122,13 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_OK
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
                 )
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(TransmitCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 3 transfer(s) transmitted successfully',
             $this->commandTester->getDisplay()
@@ -161,13 +161,13 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION
+                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE
                 )
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(TransmitCommand::EXIT_CODE_ERRORS_ON_TRANSMISSION, $this->commandTester->getStatusCode());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[WARNING] 1 out of 3 transfer(s) had errors on transmission',
             $this->commandTester->getDisplay()
@@ -198,7 +198,7 @@ class TransmitCommandTest extends TestCase
 
         $this->commandTester->execute([]);
 
-        self::assertSame(TransmitCommand::EXIT_CODE_CANNOT_ACQUIRE_LOCK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '! [NOTE] Could not acquire lock, another process is running',
             $this->commandTester->getDisplay()

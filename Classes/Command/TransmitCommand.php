@@ -26,10 +26,6 @@ use TYPO3\CMS\Core\Registry;
  */
 final class TransmitCommand extends Command
 {
-    public const EXIT_CODE_OK = 0;
-    public const EXIT_CODE_ERRORS_ON_TRANSMISSION = 1;
-    public const EXIT_CODE_CANNOT_ACQUIRE_LOCK = 2;
-
     private ?int $startTime = null;
     private ?SymfonyStyle $outputStyle = null;
 
@@ -64,7 +60,7 @@ final class TransmitCommand extends Command
         } catch (LockException) {
             $this->outputStyle->note('Could not acquire lock, another process is running');
 
-            return self::EXIT_CODE_CANNOT_ACQUIRE_LOCK;
+            return self::FAILURE;
         }
     }
 
@@ -77,14 +73,14 @@ final class TransmitCommand extends Command
                 \sprintf('%d out of %d transfer(s) had errors on transmission', $result->errors, $result->total)
             );
 
-            return self::EXIT_CODE_ERRORS_ON_TRANSMISSION;
+            return self::FAILURE;
         }
 
         $this->outputStyle->success(
             \sprintf('%d transfer(s) transmitted successfully', $result->total)
         );
 
-        return self::EXIT_CODE_OK;
+        return self::SUCCESS;
     }
 
     private function recordLastRun(int $exitCode): void

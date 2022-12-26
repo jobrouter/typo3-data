@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Locking\Exception\LockAcquireException;
 use TYPO3\CMS\Core\Locking\LockFactory;
@@ -82,13 +83,13 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_OK
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
                 )
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString('2 table(s) processed', $this->commandTester->getDisplay());
     }
 
@@ -118,7 +119,7 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_OK
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
                 )
             );
 
@@ -126,7 +127,7 @@ class SyncCommandTest extends TestCase
             'table' => 'some_handle',
         ]);
 
-        self::assertSame(SyncCommand::EXIT_CODE_OK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             'Table with handle "some_handle" processed',
             $this->commandTester->getDisplay()
@@ -158,13 +159,13 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION
+                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE
                 )
             );
 
         $this->commandTester->execute([]);
 
-        self::assertSame(SyncCommand::EXIT_CODE_ERRORS_ON_SYNCHRONISATION, $this->commandTester->getStatusCode());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[WARNING] 1 out of 3 table(s) had errors during processing',
             $this->commandTester->getDisplay()
@@ -195,7 +196,7 @@ class SyncCommandTest extends TestCase
 
         $this->commandTester->execute([]);
 
-        self::assertSame(SyncCommand::EXIT_CODE_CANNOT_ACQUIRE_LOCK, $this->commandTester->getStatusCode());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '! [NOTE] Could not acquire lock, another process is running',
             $this->commandTester->getDisplay()
