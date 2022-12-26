@@ -17,22 +17,20 @@ use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
  */
-final class SimpleTableSynchroniser implements LoggerAwareInterface
+final class SimpleTableSynchroniser
 {
-    use LoggerAwareTrait;
-
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
         private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly LoggerInterface $logger,
         private readonly SynchronisationService $synchronisationService
     ) {
     }

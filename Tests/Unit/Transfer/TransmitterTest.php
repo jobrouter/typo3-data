@@ -56,12 +56,12 @@ class TransmitterTest extends TestCase
             ->getMock();
 
         $this->subject = new Transmitter(
+            new NullLogger(),
             $this->persistenceManagerMock,
             $restClientStub,
             $this->transferRepositoryMock,
             $this->tableRepositoryMock
         );
-        $this->subject->setLogger(new NullLogger());
     }
 
     /**

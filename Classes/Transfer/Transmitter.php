@@ -19,20 +19,19 @@ use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
  * @internal Only to be used within the jobrouter_data extension, not part of the public API
  */
-class Transmitter implements LoggerAwareInterface
+class Transmitter
 {
-    use LoggerAwareTrait;
     private int $totalTransfers = 0;
     private int $erroneousTransfers = 0;
 
     public function __construct(
+        private readonly LoggerInterface $logger,
         private readonly PersistenceManagerInterface $persistenceManager,
         private readonly RestClientFactory $restClientFactory,
         private readonly TransferRepository $transferRepository,

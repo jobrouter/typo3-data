@@ -13,17 +13,15 @@ namespace Brotkrueml\JobRouterData\Transfer;
 
 use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\DeleteException;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 
 /**
  * @internal Only to be used within the jobrouter_data extension, not part of the public API
  */
-class Deleter implements LoggerAwareInterface
+class Deleter
 {
-    use LoggerAwareTrait;
-
     public function __construct(
+        private readonly LoggerInterface $logger,
         private readonly TransferRepository $transferRepository
     ) {
     }

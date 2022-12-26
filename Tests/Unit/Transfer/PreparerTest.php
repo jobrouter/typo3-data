@@ -37,8 +37,7 @@ class PreparerTest extends TestCase
         $this->persistenceManagerMock = $this->createMock(PersistenceManager::class);
         $this->transferRepositoryMock = $this->createMock(TransferRepository::class);
 
-        $this->subject = new Preparer($this->persistenceManagerMock, $this->transferRepositoryMock);
-        $this->subject->setLogger(new NullLogger());
+        $this->subject = new Preparer(new NullLogger(), $this->persistenceManagerMock, $this->transferRepositoryMock);
     }
 
     /**

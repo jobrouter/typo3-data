@@ -15,21 +15,19 @@ use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 
 /**
  * @internal
  */
-class SynchronisationRunner implements LoggerAwareInterface
+class SynchronisationRunner
 {
-    use LoggerAwareTrait;
-
     private int $totalTables = 0;
     private int $erroneousTables = 0;
 
     public function __construct(
         private readonly CustomTableSynchroniser $customTableSynchroniser,
+        private readonly LoggerInterface $logger,
         private readonly SimpleTableSynchroniser $simpleTableSynchroniser,
         private readonly TableRepository $tableRepository
     ) {

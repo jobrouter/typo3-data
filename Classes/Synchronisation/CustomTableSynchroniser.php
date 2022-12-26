@@ -16,20 +16,18 @@ use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Psr\Log\LoggerAwareInterface;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
  */
-final class CustomTableSynchroniser implements LoggerAwareInterface
+final class CustomTableSynchroniser
 {
-    use LoggerAwareTrait;
-
     public function __construct(
         private readonly ConnectionPool $connectionPool,
         private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly LoggerInterface $logger,
         private readonly SynchronisationService $synchronisationService
     ) {
     }

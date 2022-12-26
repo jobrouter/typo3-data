@@ -106,26 +106,6 @@ parameters:
 			path: Classes/Hooks/TableUpdateHook.php
 
 		-
-			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Synchronisation/CustomTableSynchroniser.php
-
-		-
-			message: "#^Cannot call method emergency\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/CustomTableSynchroniser.php
-
-		-
-			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/CustomTableSynchroniser.php
-
-		-
-			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/CustomTableSynchroniser.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
@@ -134,26 +114,6 @@ parameters:
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
-
-		-
-			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 3
-			path: Classes/Synchronisation/SimpleTableSynchroniser.php
-
-		-
-			message: "#^Cannot call method emergency\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SimpleTableSynchroniser.php
-
-		-
-			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SimpleTableSynchroniser.php
-
-		-
-			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SimpleTableSynchroniser.php
 
 		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SimpleTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
@@ -166,59 +126,9 @@ parameters:
 			path: Classes/Synchronisation/SimpleTableSynchroniser.php
 
 		-
-			message: "#^Cannot call method emergency\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SynchronisationRunner.php
-
-		-
-			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SynchronisationRunner.php
-
-		-
 			message: "#^Binary operation \"\\.\" between 'Affected rows\\: ' and Doctrine\\\\DBAL\\\\Result\\|int\\<min, \\-1\\>\\|int\\<1, max\\> results in an error\\.$#"
 			count: 1
 			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method notice\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Deleter.php
-
-		-
-			message: "#^Cannot call method critical\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Preparer.php
-
-		-
-			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^Cannot call method error\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 1
-			path: Classes/Transfer/Transmitter.php
-
-		-
-			message: "#^Cannot call method info\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
-			count: 2
-			path: Classes/Transfer/Transmitter.php
 
 		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\UserFunctions\\\\FormEngine\\\\CustomTables\\:\\:getTables\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
