@@ -71,7 +71,6 @@ class Transmitter implements LoggerAwareInterface
             $this->transmitTransfer($transfer);
         } catch (\Exception $e) {
             $this->erroneousTransfers++;
-            // @phpstan-ignore-next-line
             $context = [
                 'transfer uid' => $transfer->getUid(),
                 'exception class' => $e::class,

@@ -91,7 +91,6 @@ class JobDataRepository
     {
         $datasets = [];
         foreach ($jrids as $jrid) {
-            // @phpstan-ignore-next-line
             $datasets[] = [
                 'jrid' => $jrid,
             ];

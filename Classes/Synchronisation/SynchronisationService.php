@@ -48,12 +48,10 @@ class SynchronisationService
 
     public function updateSynchronisationStatus(Table $table, ?string $datasetsHash = null, string $error = ''): void
     {
-        // @phpstan-ignore-next-line
         $data = [
             'last_sync_date' => \time(),
             'last_sync_error' => $error,
         ];
-        // @phpstan-ignore-next-line
         $types = [
             'last_sync_date' => \PDO::PARAM_INT,
             'last_sync_error' => \PDO::PARAM_STR,

@@ -156,11 +156,6 @@ parameters:
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
 
 		-
-			message: "#^Array with keys is not allowed\\. Use value object to pass data instead$#"
-			count: 1
-			path: Classes/Synchronisation/SimpleTableSynchroniser.php
-
-		-
 			message: "#^Cannot call method debug\\(\\) on Psr\\\\Log\\\\LoggerInterface\\|null\\.$#"
 			count: 3
 			path: Classes/Synchronisation/SimpleTableSynchroniser.php
