@@ -51,16 +51,6 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^Cannot call method findOneByHandle\\(\\) on Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/TransmitDataFinisher.php
-
-		-
-			message: "#^Cannot call method store\\(\\) on Brotkrueml\\\\JobRouterData\\\\Transfer\\\\Preparer\\|null\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/TransmitDataFinisher.php
-
-		-
 			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\DatasetRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
 			count: 1
 			path: Classes/Domain/Repository/DatasetRepository.php

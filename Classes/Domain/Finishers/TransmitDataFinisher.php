@@ -28,17 +28,13 @@ use Brotkrueml\JobRouterData\Transfer\Preparer;
  */
 final class TransmitDataFinisher extends AbstractTransferFinisher
 {
-    private ?Preparer $preparer = null;
-    private ?TableRepository $tableRepository = null;
-
-    public function injectPreparer(Preparer $preparer): void
-    {
-        $this->preparer = $preparer;
-    }
-
-    public function injectTableRepository(TableRepository $tableRepository): void
-    {
-        $this->tableRepository = $tableRepository;
+    /**
+     * @noinspection PhpMissingParentConstructorInspection
+     */
+    public function __construct(
+        private readonly Preparer $preparer,
+        private readonly TableRepository $tableRepository
+    ) {
     }
 
     protected function process(): void
