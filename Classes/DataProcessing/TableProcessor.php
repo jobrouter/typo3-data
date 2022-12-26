@@ -16,7 +16,6 @@ use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use TYPO3\CMS\Core\Service\FlexFormService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
@@ -26,20 +25,14 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
  */
 final class TableProcessor implements DataProcessorInterface
 {
-    private readonly DatasetConverter $datasetConverter;
-    private readonly FlexFormService $flexFormService;
-    private readonly TableRepository $tableRepository;
     private ?ContentObjectRenderer $cObj = null;
     private ?array $processedData = null;
 
     public function __construct(
-        DatasetConverter $datasetConverter = null,
-        FlexFormService $flexFormService = null,
-        TableRepository $tableRepository = null
+        private readonly DatasetConverter $datasetConverter,
+        private readonly FlexFormService $flexFormService,
+        private readonly TableRepository $tableRepository
     ) {
-        $this->datasetConverter = $datasetConverter ?? GeneralUtility::makeInstance(DatasetConverter::class);
-        $this->flexFormService = $flexFormService ?? GeneralUtility::makeInstance(FlexFormService::class);
-        $this->tableRepository = $tableRepository ?? GeneralUtility::makeInstance(TableRepository::class);
     }
 
     /**

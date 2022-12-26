@@ -35,6 +35,9 @@ services:
   Brotkrueml\JobRouterData\Controller\TableTestController:
     tags: [ 'backend.controller' ]
 
+  Brotkrueml\JobRouterData\DataProcessing\TableProcessor:
+    public: true
+
   Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter:
     public: true
 
