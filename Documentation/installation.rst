@@ -18,7 +18,8 @@ Target group: **Administrators**
 Requirements
 ============
 
-The extension in version |release| is available for TYPO3 v11 LTS.
+The extension in version |release| is available for TYPO3 v11 LTS and requires
+at least PHP 8.1.
 
 To use the :ref:`dashboard widgets <dashboard-widgets>`, install and activate
 the Dashboard system extension. To use the :ref:`form finisher <form-finisher>`
@@ -33,7 +34,7 @@ Version matrix
 ============== ========== ===========
 JobRouter Data PHP        TYPO3
 ============== ========== ===========
-2.0            7.4 - 8.2  11.5
+2.0            8.1 - 8.2  11.5
 -------------- ---------- -----------
 1.1            7.4 - 8.2  10.4 / 11.5
 -------------- ---------- -----------
