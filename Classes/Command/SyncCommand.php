@@ -37,11 +37,7 @@ final class SyncCommand extends Command
     private const OPTION_FORCE = 'force';
 
     private ?int $startTime = null;
-    /**
-     * @var SymfonyStyle
-     * @noRector
-     */
-    private $outputStyle;
+    private ?SymfonyStyle $outputStyle = null;
 
     public function __construct(
         private readonly LockFactory $lockFactory,

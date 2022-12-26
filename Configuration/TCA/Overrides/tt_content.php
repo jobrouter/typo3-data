@@ -9,7 +9,7 @@
 
 defined('TYPO3') || die();
 
-(static function ($contentType = 'tx_jobrouterdata_table') {
+(static function ($contentType = 'tx_jobrouterdata_table'): void {
     TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
         [
             Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title',

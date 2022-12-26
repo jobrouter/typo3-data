@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUnusedPromotedPropertyRector;
 use Rector\Php55\Rector\String_\StringClassNameToClassConstantRector;
 use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector;
+use Rector\TypeDeclaration\Rector\FunctionLike\AddReturnTypeDeclarationFromYieldsRector;
+use Rector\TypeDeclaration\Rector\Property\TypedPropertyFromStrictGetterMethodReturnTypeRector;
 
 return static function (RectorConfig $config): void {
     $config->phpVersion(PhpVersion::PHP_81);
@@ -41,9 +41,11 @@ return static function (RectorConfig $config): void {
     $config->skip([
         __DIR__ . '/Tests/Acceptance/*',
         AddLiteralSeparatorToNumberRector::class,
-        ReturnTypeDeclarationRector::class => [
-            __DIR__ . '/Classes/Domain/Repository/TableRepository.php',
-            __DIR__ . '/Classes/Domain/Repository/TransferRepository.php',
+        AddReturnTypeDeclarationFromYieldsRector::class => [
+            __DIR__ . '/Tests/*',
+        ],
+        TypedPropertyFromStrictGetterMethodReturnTypeRector::class => [
+            __DIR__ . '/Classes/Domain/Model/Table.php',
         ],
     ]);
 };

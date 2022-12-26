@@ -15,40 +15,13 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Transfer extends AbstractEntity
 {
-    /**
-     * @var int
-     */
-    protected $crdate = 0;
-
-    /**
-     * @var int
-     */
-    protected $tableUid = 0;
-
-    /**
-     * @var string
-     */
-    protected $correlationId = '';
-
-    /**
-     * @var string
-     */
-    protected $data = '';
-
-    /**
-     * @var bool
-     */
-    protected $transmitSuccess = false;
-
-    /**
-     * @var \DateTime|null
-     */
-    protected $transmitDate;
-
-    /**
-     * @var string
-     */
-    protected $transmitMessage = '';
+    protected int $crdate = 0;
+    protected int $tableUid = 0;
+    protected string $correlationId = '';
+    protected string $data = '';
+    protected bool $transmitSuccess = false;
+    protected ?\DateTime $transmitDate = null;
+    protected string $transmitMessage = '';
 
     public function getCrdate(): int
     {

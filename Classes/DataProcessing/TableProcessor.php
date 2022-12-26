@@ -31,18 +31,8 @@ final class TableProcessor implements DataProcessorInterface
     private readonly DatasetConverter $datasetConverter;
     private readonly FlexFormService $flexFormService;
     private readonly TableRepository $tableRepository;
-
-    /**
-     * @var ContentObjectRenderer
-     * @noRector
-     */
-    private $cObj;
-
-    /**
-     * @var ProcessedData
-     * @noRector
-     */
-    private $processedData;
+    private ?ContentObjectRenderer $cObj = null;
+    private ?array $processedData = null;
 
     public function __construct(
         DatasetConverter $datasetConverter = null,
@@ -58,7 +48,7 @@ final class TableProcessor implements DataProcessorInterface
      * @param array<string, mixed> $contentObjectConfiguration
      * @param array<string, mixed> $processorConfiguration
      * @param ProcessedData $processedData
-     * @return array<string, mixed>
+     * @return array{data: int[]|string[]|null[], current: null, table?: \Brotkrueml\JobRouterData\Domain\Model\Table, rows?: array<int, array<float|int|string>>}
      */
     public function process(
         ContentObjectRenderer $cObj,

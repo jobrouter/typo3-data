@@ -15,21 +15,9 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class Dataset extends AbstractEntity
 {
-    /**
-     * @var int
-     */
-    protected $tableUid = 0;
-
-    /**
-     * @var int
-     */
-    protected $jrid = 0;
-
-    /**
-     * @var string
-     */
-    protected $dataset = '';
-
+    protected int $tableUid = 0;
+    protected int $jrid = 0;
+    protected string $dataset = '';
     /**
      * @var array<string, mixed>|null
      */

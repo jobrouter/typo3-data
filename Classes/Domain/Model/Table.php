@@ -26,36 +26,12 @@ class Table extends AbstractEntity
     final public const TYPE_OTHER_USAGE = 3;
     final public const TYPE_FORM_FINISHER = 4;
 
-    /**
-     * @var int
-     */
-    protected $type = 0;
-
-    /**
-     * @var string
-     */
-    protected $handle = '';
-
-    /**
-     * @var string
-     */
-    protected $name = '';
-
-    /**
-     * @var Connection|null
-     */
-    protected $connection;
-
-    /**
-     * @var string
-     */
-    protected $tableGuid = '';
-
-    /**
-     * @var string
-     */
-    protected $customTable = '';
-
+    protected int $type = 0;
+    protected string $handle = '';
+    protected string $name = '';
+    protected ?Connection $connection = null;
+    protected string $tableGuid = '';
+    protected string $customTable = '';
     /**
      * @var ObjectStorage<Column>
      * @Extbase\Cascade
@@ -70,25 +46,10 @@ class Table extends AbstractEntity
      */
     protected $datasets;
 
-    /**
-     * @var string
-     */
-    protected $datasetsSyncHash = '';
-
-    /**
-     * @var bool
-     */
-    protected $disabled = false;
-
-    /**
-     * @var \DateTime|null
-     */
-    protected $lastSyncDate;
-
-    /**
-     * @var string
-     */
-    protected $lastSyncError = '';
+    protected string $datasetsSyncHash = '';
+    protected bool $disabled = false;
+    protected ?\DateTime $lastSyncDate = null;
+    protected string $lastSyncError = '';
 
     public function __construct()
     {

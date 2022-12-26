@@ -18,45 +18,14 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
  */
 class Column extends AbstractEntity
 {
-    /**
-     * @var string
-     */
-    protected $name = '';
-
-    /**
-     * @var string
-     */
-    protected $label = '';
-
-    /**
-     * @var int
-     */
-    protected $type = 0;
-
-    /**
-     * @var int
-     */
-    protected $decimalPlaces = 0;
-
-    /**
-     * @var int
-     */
-    protected $fieldSize = 0;
-
-    /**
-     * @var string
-     */
-    protected $alignment = '';
-
-    /**
-     * @var int
-     */
-    protected $sortingPriority = 0;
-
-    /**
-     * @var string
-     */
-    protected $sortingOrder = '';
+    protected string $name = '';
+    protected string $label = '';
+    protected int $type = 0;
+    protected int $decimalPlaces = 0;
+    protected int $fieldSize = 0;
+    protected string $alignment = '';
+    protected int $sortingPriority = 0;
+    protected string $sortingOrder = '';
 
     public function getName(): string
     {
