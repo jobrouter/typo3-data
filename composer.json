@@ -37,9 +37,9 @@
 	},
 	"require-dev": {
 		"brotkrueml/coding-standards": "~3.0.0",
-		"codeception/codeception": "^4.1",
-		"codeception/module-asserts": "^1.3",
-		"codeception/module-webdriver": "^1.4",
+		"codeception/codeception": "^5.0",
+		"codeception/module-asserts": "^3.0",
+		"codeception/module-webdriver": "^3.2",
 		"dg/bypass-finals": "^1.3",
 		"donatj/mock-webserver": "^2.6",
 		"ergebnis/composer-normalize": "~2.29.0",
