@@ -1,4 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<span class="exampleContent">
+    <strong><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:ce.title"/></strong>
     <br>
     <f:if condition="{table.name}">
         <strong class="jobrouter-data-ce-info">{table.name -> f:format.case(mode: 'upper')}</strong>
@@ -75,4 +78,6 @@
             </tbody>
         </table>
     </f:section>
+</span>
+
 </html>

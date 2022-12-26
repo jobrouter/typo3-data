@@ -76,16 +76,6 @@ parameters:
 			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\JobDataTablePreviewRenderer\\:\\:getItemContent\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Hooks/PageLayoutView/JobDataTablePreviewRenderer.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\PageLayoutView\\\\JobDataTablePreviewRenderer\\:\\:preProcess\\(\\) has parameter \\$row with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Hooks/PageLayoutView/JobDataTablePreviewRenderer.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$command with no type specified\\.$#"
 			count: 1
 			path: Classes/Hooks/TableUpdateHook.php

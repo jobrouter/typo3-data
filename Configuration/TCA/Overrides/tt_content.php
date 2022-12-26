@@ -16,7 +16,7 @@ defined('TYPO3') || die();
             $contentType,
             'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
         ],
-        TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT,
+        'CType',
         Brotkrueml\JobRouterData\Extension::KEY
     );
 
@@ -27,33 +27,30 @@ defined('TYPO3') || die();
         $contentType
     );
 
-    $tempTypes = [
-        $contentType => [
-            'columnsOverrides' => [
-                'pi_flexform' => [
-                    'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table',
-                ],
+    $GLOBALS['TCA']['tt_content']['types'][$contentType] = [
+        'columnsOverrides' => [
+            'pi_flexform' => [
+                'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table',
             ],
-            'showitem' => '
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    --palette--;;general,
-                    --palette--;;headers,
-                --div--;' . Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table,
-                    pi_flexform,
-                --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
-                    --palette--;;frames,
-                    --palette--;;appearanceLinks,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
-                    --palette--;;language,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
-                    --palette--;;hidden,
-                    --palette--;;access,
-                --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended
-            ',
         ],
+        'previewRenderer' => Brotkrueml\JobRouterData\Preview\ContentElementPreviewRenderer::class,
+        'showitem' => '
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
+                --palette--;;general,
+                --palette--;;headers,
+            --div--;' . Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table,
+                pi_flexform,
+            --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
+                --palette--;;frames,
+                --palette--;;appearanceLinks,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
+                --palette--;;language,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
+                --palette--;;hidden,
+                --palette--;;access,
+            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:extended
+        ',
     ];
-
-    $GLOBALS['TCA']['tt_content']['types'] += $tempTypes;
 
     $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentType] = 'jobrouter-data-ce-table';
 })();

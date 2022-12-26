@@ -73,3 +73,6 @@ services:
 
   Brotkrueml\JobRouterData\Hooks\TableUpdateHook:
     public: true
+
+  Brotkrueml\JobRouterData\Preview\ContentElementPreviewRenderer:
+    public: true
