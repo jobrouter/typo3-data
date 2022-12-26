@@ -70,3 +70,6 @@ services:
       - name: event.listener
         identifier: 'jobrouter-data/datetime-formatter'
         event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
+
+  Brotkrueml\JobRouterData\Hooks\TableUpdateHook:
+    public: true

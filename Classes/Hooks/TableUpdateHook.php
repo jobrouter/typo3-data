@@ -14,18 +14,15 @@ namespace Brotkrueml\JobRouterData\Hooks;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * @internal
  */
 final class TableUpdateHook
 {
-    private readonly ConnectionPool $connectionPool;
-
-    public function __construct(ConnectionPool $connectionPool = null)
-    {
-        $this->connectionPool = $connectionPool ?? GeneralUtility::makeInstance(ConnectionPool::class);
+    public function __construct(
+        private readonly ConnectionPool $connectionPool
+    ) {
     }
 
     public function processCmdmap_postProcess($command, $table, $recordId, $commandValue, DataHandler $dataHandler): void
