@@ -44,7 +44,6 @@
 		"donatj/mock-webserver": "^2.6",
 		"ergebnis/composer-normalize": "~2.29.0",
 		"mikey179/vfsstream": "^1.6",
-		"php-coveralls/php-coveralls": "^2.5",
 		"phpstan/extension-installer": "^1.1",
 		"phpstan/phpstan": "1.9.4",
 		"phpunit/phpunit": "^9.5.23",
