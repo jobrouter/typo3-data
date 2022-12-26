@@ -29,6 +29,9 @@ services:
         description: 'Transmit data sets to JobData tables'
         schedulable: true
 
+  Brotkrueml\JobRouterData\Controller\TableListController:
+    tags: [ 'backend.controller' ]
+
   Brotkrueml\JobRouterData\Controller\TableTestController:
     tags: [ 'backend.controller' ]
 

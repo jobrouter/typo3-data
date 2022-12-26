@@ -15,7 +15,7 @@ use Brotkrueml\JobRouterData\Tests\Acceptance\Support\BackendTester;
 
 class DataModuleCest
 {
-    private const DATA_MODULE_SELECTOR = '#jobrouter_JobRouterDataTables';
+    private const DATA_MODULE_SELECTOR = '#jobrouter_data';
 
     public function _before(BackendTester $I): void
     {

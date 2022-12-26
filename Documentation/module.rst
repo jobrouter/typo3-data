@@ -33,9 +33,9 @@ screen:
 Create a table link
 -------------------
 
-To create a new table link, click the :guilabel:`+` button on the top menu bar,
-which opens a form. Alternatively, you can use the :guilabel:`Create new table
-link` button.
+To create a new table link, click the :guilabel:`+ Add table link` button on the
+upper menu bar, which opens a form. Alternatively, you can use the
+:guilabel:`Create new table link` button.
 
 
 .. _module-create-table-link-types:
