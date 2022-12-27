@@ -23,9 +23,9 @@ use donatj\MockWebServer\MockWebServer;
 use donatj\MockWebServer\Response;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
-use PHPUnit\Framework\TestCase;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class JobDataRepositoryTest extends TestCase
+final class JobDataRepositoryTest extends FunctionalTestCase
 {
     private const TEST_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqYXQiOjE1NzAyMjAwNzIsImp0aSI6IjhWMGtaSzJ5RzRxdGlhbjdGbGZTNUhPTGZaeGtZXC9obG1SVEV2VXIxVmwwPSIsImlzcyI6IkpvYlJvdXRlciIsIm5iZiI6MTU3MDIyMDA3MiwiZXhwIjoxNTcwMjIwMTAyLCJkYXRhIjp7InVzZXJuYW1lIjoicmVzdCJ9fQ.cbAyj36f9MhAwOMzlTEheRkHhuuIEOeb1Uy8i0KfUhU';
 
@@ -41,6 +41,8 @@ class JobDataRepositoryTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
+        self::markTestSkipped('PHP sockets extension is not available yet');
+
         self::$server = new MockWebServer();
         self::$server->start();
 
