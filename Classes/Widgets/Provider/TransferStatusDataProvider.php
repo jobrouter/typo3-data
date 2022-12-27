@@ -52,7 +52,7 @@ final class TransferStatusDataProvider implements TransferStatusDataProviderInte
             }
         }
 
-        if ($toBeClassified) {
+        if ($toBeClassified > 0) {
             $this->status->setFailedCount($this->transferRepository->countTransmitFailed());
             $this->status->setPendingCount($toBeClassified - $this->status->getFailedCount());
         }
