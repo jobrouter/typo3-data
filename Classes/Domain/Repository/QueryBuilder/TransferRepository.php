@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
@@ -37,8 +38,8 @@ class TransferRepository
             ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
             ->from(self::TABLE_NAME)
             ->groupBy('transmit_success')
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     public function countTransmitFailed(): int
@@ -48,11 +49,11 @@ class TransferRepository
         $whereExpressions = [
             $queryBuilder->expr()->eq(
                 'transmit_success',
-                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
             ),
             $queryBuilder->expr()->gt(
                 'transmit_date',
-                $queryBuilder->createNamedParameter(0, \PDO::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
             ),
         ];
 
@@ -60,11 +61,11 @@ class TransferRepository
             ->count('*')
             ->from(self::TABLE_NAME)
             ->where(...$whereExpressions)
-            ->execute()
-            ->fetchColumn();
+            ->executeQuery()
+            ->fetchOne();
     }
 
-    public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): \Doctrine\DBAL\Result|int
+    public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): int
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
@@ -73,26 +74,24 @@ class TransferRepository
             ->where(
                 $queryBuilder->expr()->eq(
                     'transmit_success',
-                    $queryBuilder->createNamedParameter(1, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter(1, Connection::PARAM_INT)
                 ),
                 $queryBuilder->expr()->lt(
                     'crdate',
-                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, \PDO::PARAM_INT)
+                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, Connection::PARAM_INT)
                 )
             )
-            ->execute();
+            ->executeStatement();
     }
 
     public function findFirstCreationDate(): int
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
-        $quotedCrdate = $queryBuilder->quoteIdentifier('crdate');
-
         return $queryBuilder
-            ->selectLiteral(\sprintf('MIN(%s)', $quotedCrdate))
+            ->selectLiteral(\sprintf('MIN(%s)', $queryBuilder->quoteIdentifier('crdate')))
             ->from(self::TABLE_NAME)
-            ->execute()
-            ->fetchColumn() ?: 0;
+            ->executeQuery()
+            ->fetchOne() ?: 0;
     }
 }
