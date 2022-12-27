@@ -29,6 +29,14 @@ final class JobDataRepositoryTest extends FunctionalTestCase
 {
     private const TEST_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqYXQiOjE1NzAyMjAwNzIsImp0aSI6IjhWMGtaSzJ5RzRxdGlhbjdGbGZTNUhPTGZaeGtZXC9obG1SVEV2VXIxVmwwPSIsImlzcyI6IkpvYlJvdXRlciIsIm5iZiI6MTU3MDIyMDA3MiwiZXhwIjoxNTcwMjIwMTAyLCJkYXRhIjp7InVzZXJuYW1lIjoicmVzdCJ9fQ.cbAyj36f9MhAwOMzlTEheRkHhuuIEOeb1Uy8i0KfUhU';
 
+    /**
+     * @var string[]
+     */
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/jobrouter_connector',
+        'typo3conf/ext/jobrouter_data',
+    ];
+
     private static MockWebServer $server;
     private static RestClient $restClient;
     private static ClientConfiguration $configuration;
@@ -41,8 +49,6 @@ final class JobDataRepositoryTest extends FunctionalTestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::markTestSkipped('PHP sockets extension is not available yet');
-
         self::$server = new MockWebServer();
         self::$server->start();
 
@@ -73,6 +79,8 @@ final class JobDataRepositoryTest extends FunctionalTestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $connection = new Connection();
         $connection->setBaseUrl((string)self::$configuration->getJobRouterSystem());
         $connection->setUsername(self::$configuration->getUsername());

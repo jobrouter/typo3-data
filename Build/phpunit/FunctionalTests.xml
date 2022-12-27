@@ -34,4 +34,7 @@
         <ini name="error_reporting" value="E_ALL" />
         <env name="TYPO3_CONTEXT" value="Testing" />
     </php>
+    <extensions>
+        <extension class="\Brotkrueml\JobRouterData\Tests\Hooks\BypassFinalHook"/>
+    </extensions>
 </phpunit>
