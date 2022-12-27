@@ -53,17 +53,9 @@ Options:
             - lint: PHP linting
             - unit (default): PHP unit tests
 
-    -t <10|11>
+    -t <11>
         Only with -s composerInstall|acceptance
         TYPO3 core major version the extension is embedded in for testing.
-
-    -d <mariadb|mssql|postgres|sqlite>
-        Only with -s functional
-        Specifies on which DBMS tests are performed
-            - mariadb (default): use mariadb
-            - mssql: use mssql microsoft sql server
-            - postgres: use postgres
-            - sqlite: use sqlite
 
     -p <8.1|8.2>
         Specifies the PHP minor version to be used
@@ -137,13 +129,10 @@ OPTIND=1
 # Array for invalid options
 INVALID_OPTIONS=();
 # Simple option parsing based on getopts (! not getopt)
-while getopts ":s:d:p:e:t:xy:huv" OPT; do
+while getopts ":s:p:e:t:xy:huv" OPT; do
     case ${OPT} in
         s)
             TEST_SUITE=${OPTARG}
-            ;;
-        d)
-            DBMS=${OPTARG}
             ;;
         p)
             PHP_VERSION=${OPTARG}
@@ -225,29 +214,8 @@ case ${TEST_SUITE} in
         ;;
     functional)
         setUpDockerComposeDotEnv
-        case ${DBMS} in
-            mariadb)
-                docker-compose run functional_mariadb10
-                SUITE_EXIT_CODE=$?
-                ;;
-            mssql)
-                docker-compose run functional_mssql2019latest
-                SUITE_EXIT_CODE=$?
-                ;;
-            postgres)
-                docker-compose run functional_postgres10
-                SUITE_EXIT_CODE=$?
-                ;;
-            sqlite)
-                docker-compose run functional_sqlite
-                SUITE_EXIT_CODE=$?
-                ;;
-            *)
-                echo "Invalid -d option argument ${DBMS}" >&2
-                echo >&2
-                echo "${HELP}" >&2
-                exit 1
-        esac
+        docker-compose run functional_mariadb10
+        SUITE_EXIT_CODE=$?
         docker-compose down
         ;;
     lint)

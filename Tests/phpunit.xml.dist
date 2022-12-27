@@ -16,9 +16,6 @@
         <testsuite name="Unit tests">
             <directory>Unit/</directory>
         </testsuite>
-        <testsuite name="Functional tests">
-            <directory>Functional/</directory>
-        </testsuite>
     </testsuites>
     <extensions>
         <extension class="\Brotkrueml\JobRouterData\Tests\Hooks\BypassFinalHook"/>

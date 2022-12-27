@@ -26,7 +26,7 @@ class TransferRepository
     }
 
     /**
-     * @return mixed[]
+     * @return list<array{transmit_success: int, count: int}>
      */
     public function countGroupByTransmitSuccess(): array
     {
@@ -56,18 +56,12 @@ class TransferRepository
             ),
         ];
 
-        $count = $queryBuilder
+        return $queryBuilder
             ->count('*')
             ->from(self::TABLE_NAME)
             ->where(...$whereExpressions)
             ->execute()
             ->fetchColumn();
-
-        if ($count === false) {
-            return 0;
-        }
-
-        return $count;
     }
 
     public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): \Doctrine\DBAL\Result|int
