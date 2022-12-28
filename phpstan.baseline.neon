@@ -71,26 +71,6 @@ parameters:
 			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$command with no type specified\\.$#"
-			count: 1
-			path: Classes/Hooks/TableUpdateHook.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$commandValue with no type specified\\.$#"
-			count: 1
-			path: Classes/Hooks/TableUpdateHook.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$recordId with no type specified\\.$#"
-			count: 1
-			path: Classes/Hooks/TableUpdateHook.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Hooks\\\\TableUpdateHook\\:\\:processCmdmap_postProcess\\(\\) has parameter \\$table with no type specified\\.$#"
-			count: 1
-			path: Classes/Hooks/TableUpdateHook.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php

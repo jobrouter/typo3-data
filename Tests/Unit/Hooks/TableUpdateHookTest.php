@@ -11,36 +11,21 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Hooks;
 
+use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\DatasetRepository;
 use Brotkrueml\JobRouterData\Hooks\TableUpdateHook;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Database\Connection;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\DataHandling\DataHandler;
 
 class TableUpdateHookTest extends TestCase
 {
-    /**
-     * @var MockObject&Connection
-     */
-    private MockObject $connectionMock;
-    /**
-     * @var MockObject&ConnectionPool
-     */
-    private MockObject $connectionPoolMock;
-    /**
-     * @var MockObject&DataHandler
-     */
-    private MockObject $dataHandlerMock;
+    private DatasetRepository&MockObject $datasetRepository;
     private TableUpdateHook $subject;
 
     protected function setUp(): void
     {
-        $this->connectionMock = $this->createMock(Connection::class);
-        $this->connectionPoolMock = $this->createMock(ConnectionPool::class);
-        $this->dataHandlerMock = $this->createMock(DataHandler::class);
+        $this->datasetRepository = $this->createMock(DatasetRepository::class);
 
-        $this->subject = new TableUpdateHook($this->connectionPoolMock);
+        $this->subject = new TableUpdateHook($this->datasetRepository);
     }
 
     /**
@@ -48,31 +33,15 @@ class TableUpdateHookTest extends TestCase
      */
     public function tableIsDeletedRemovesDatasets(): void
     {
-        $this->connectionMock
+        $this->datasetRepository
             ->expects(self::once())
-            ->method('delete')
-            ->with(
-                self::equalTo('tx_jobrouterdata_domain_model_dataset'),
-                self::equalTo([
-                    'table_uid' => 42,
-                ]),
-                self::equalTo([
-                    'table_uid' => Connection::PARAM_INT,
-                ])
-            );
-
-        $this->connectionPoolMock
-            ->expects(self::once())
-            ->method('getConnectionForTable')
-            ->with('tx_jobrouterdata_domain_model_dataset')
-            ->willReturn($this->connectionMock);
+            ->method('deleteByTableUid')
+            ->with(42);
 
         $this->subject->processCmdmap_postProcess(
             'delete',
             'tx_jobrouterdata_domain_model_table',
-            42,
-            '1',
-            $this->dataHandlerMock
+            42
         );
     }
 
@@ -81,34 +50,30 @@ class TableUpdateHookTest extends TestCase
      */
     public function otherTableIsProcessedDoesNothing(): void
     {
-        $this->connectionPoolMock
+        $this->datasetRepository
             ->expects(self::never())
-            ->method('getConnectionForTable');
+            ->method('deleteByTableUid');
 
         $this->subject->processCmdmap_postProcess(
             'delete',
             'some_other_table',
-            42,
-            '1',
-            $this->dataHandlerMock
+            42
         );
     }
 
     /**
      * @test
      */
-    public function otherActionThanDeletDoesNothing(): void
+    public function otherActionThanDeleteDoesNothing(): void
     {
-        $this->connectionPoolMock
+        $this->datasetRepository
             ->expects(self::never())
-            ->method('getConnectionForTable');
+            ->method('deleteByTableUid');
 
         $this->subject->processCmdmap_postProcess(
             'copy',
             'tx_jobrouterdata_domain_model_table',
-            42,
-            '1',
-            $this->dataHandlerMock
+            42
         );
     }
 }
