@@ -11,61 +11,39 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\UserFunctions\FormEngine;
 
-use Doctrine\DBAL\Schema\AbstractSchemaManager;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TableRepository;
+use Brotkrueml\JobRouterData\Table\TableProvider;
 
 /**
  * @internal
  */
 final class CustomTables
 {
-    private readonly ConnectionPool $connectionPool;
-
-    public function __construct()
-    {
-        $this->connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
+    public function __construct(
+        private readonly TableProvider $tableProvider,
+        private readonly TableRepository $tableRepository
+    ) {
     }
 
     /**
-     * @return mixed[]
+     * @param array<string, mixed> $config
+     * @return array<string, mixed>
      */
     public function getTables(array $config): array
     {
-        $connection = $this->connectionPool->getConnectionForTable('tx_jobrouterdata_domain_model_table');
-
-        $alreadyAssignedTables = \array_column(
-            $connection->fetchAll(
-                'SELECT custom_table FROM tx_jobrouterdata_domain_model_table WHERE custom_table != ""'
-            ),
-            'custom_table'
-        );
-
+        $alreadyAssignedTables = $this->tableRepository->findAssignedCustomTables();
         $alreadyAssignedTables = \array_diff(
             $alreadyAssignedTables,
             [$config['row']['custom_table']]
         );
 
-        /** @var AbstractSchemaManager $schemaManager */
-        $schemaManager = $connection->getSchemaManager();
-
         $tables = [];
-        foreach ($schemaManager->listTableNames() as $tableName) {
-            if (! \str_starts_with($tableName, 'tx_')) {
-                continue;
-            }
-
-            if ($tableName === 'tx_jobrouterdata_domain_model_dataset') {
-                continue;
-            }
-
+        foreach ($this->tableProvider->getCustomTables() as $tableName) {
             if (\in_array($tableName, $alreadyAssignedTables, true)) {
                 continue;
             }
 
-            if (\array_key_exists('jrid', $schemaManager->listTableColumns($tableName))) {
-                $tables[] = [$tableName, $tableName];
-            }
+            $tables[] = [$tableName, $tableName];
         }
 
         $config['items'] = \array_merge($config['items'], $tables);

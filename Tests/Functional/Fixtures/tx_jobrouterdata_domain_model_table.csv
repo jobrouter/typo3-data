@@ -1,0 +1,7 @@
+tx_jobrouterdata_domain_model_table
+,uid,handle,custom_table
+,1,"handle_1",""
+,2,"handle_2",""
+,3,"handle_3","tx_someext_domain_model_sometable"
+,4,"handle_4",""
+,5,"handle_5","tx_anothertable"

@@ -76,3 +76,6 @@ services:
 
   Brotkrueml\JobRouterData\Preview\ContentElementPreviewRenderer:
     public: true
+
+  Brotkrueml\JobRouterData\UserFunctions\FormEngine\CustomTables:
+    public: true
