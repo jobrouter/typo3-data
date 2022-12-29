@@ -25,7 +25,6 @@ final class Extension
     public const LANGUAGE_PATH_CONTENT_ELEMENT = self::LANGUAGE_PATH . 'ContentElement.xlf';
     public const LANGUAGE_PATH_DASHBOARD = self::LANGUAGE_PATH . 'Dashboard.xlf';
     public const LANGUAGE_PATH_DATABASE = self::LANGUAGE_PATH . 'Database.xlf';
-    public const LANGUAGE_PATH_FORMAT = self::LANGUAGE_PATH . 'Format.xlf';
     public const LANGUAGE_PATH_TOOLBAR = self::LANGUAGE_PATH . 'Toolbar.xlf';
 
     public const REGISTRY_NAMESPACE = 'tx_' . self::KEY;
