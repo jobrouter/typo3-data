@@ -36,17 +36,12 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^Cannot call method getRequest\\(\\) on TYPO3\\\\CMS\\\\Frontend\\\\ContentObject\\\\ContentObjectRenderer\\|null\\.$#"
-			count: 1
-			path: Classes/DataProcessing/TableProcessor.php
-
-		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:process\\(\\) should return array\\{data\\: array\\<int\\|string\\|null\\>, current\\: null, table\\?\\: Brotkrueml\\\\JobRouterData\\\\Domain\\\\Model\\\\Table, rows\\?\\: array\\<int, array\\<float\\|int\\|string\\>\\>\\} but returns array\\|null\\.$#"
-			count: 1
-			path: Classes/DataProcessing/TableProcessor.php
-
-		-
 			message: "#^Property Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:\\$processedData type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: Classes/DataProcessing/TableProcessor.php
+
+		-
+			message: "#^There is no request attribute \"frontend\\.controller\" configured so we can't figure out the exact type to return when calling Psr\\\\Http\\\\Message\\\\ServerRequestInterface\\:\\:getAttribute$#"
 			count: 1
 			path: Classes/DataProcessing/TableProcessor.php
 

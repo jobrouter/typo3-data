@@ -11,22 +11,21 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\DataProcessing;
 
-use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
- * @phpstan-type ProcessedData array{data: array<string, int|string|null>, current: null, table?: Table, rows?: array<int, array<string, float|int|string>>}
  * @internal
  */
 final class TableProcessor implements DataProcessorInterface
 {
-    private ?ContentObjectRenderer $cObj = null;
-    private ?array $processedData = null;
+    private ContentObjectRenderer $cObj;
+    private array $processedData;
 
     public function __construct(
         private readonly DatasetConverter $datasetConverter,
@@ -38,8 +37,8 @@ final class TableProcessor implements DataProcessorInterface
     /**
      * @param array<string, mixed> $contentObjectConfiguration
      * @param array<string, mixed> $processorConfiguration
-     * @param ProcessedData $processedData
-     * @return array{data: int[]|string[]|null[], current: null, table?: \Brotkrueml\JobRouterData\Domain\Model\Table, rows?: array<int, array<float|int|string>>}
+     * @param array<string, mixed> $processedData
+     * @return array<string, mixed>
      */
     public function process(
         ContentObjectRenderer $cObj,
@@ -66,6 +65,14 @@ final class TableProcessor implements DataProcessorInterface
         $table = $this->tableRepository->findByIdentifier($tableUid);
         $this->processedData['table'] = $table;
         $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
-        Cache::addCacheTagByTable($tableUid);
+        $this->addCacheTag($tableUid);
+    }
+
+    private function addCacheTag(int $tableUid): void
+    {
+        $cacheTags = [
+            \sprintf(Extension::CACHE_TAG_TABLE_TEMPLATE, $tableUid),
+        ];
+        $this->cObj->getRequest()->getAttribute('frontend.controller')->addCacheTags($cacheTags);
     }
 }

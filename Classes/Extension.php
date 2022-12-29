@@ -29,4 +29,6 @@ final class Extension
     public const LANGUAGE_PATH_TOOLBAR = self::LANGUAGE_PATH . 'Toolbar.xlf';
 
     public const REGISTRY_NAMESPACE = 'tx_' . self::KEY;
+
+    public const CACHE_TAG_TABLE_TEMPLATE = 'tx_jobrouterdata_table_%d';
 }

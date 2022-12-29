@@ -13,7 +13,6 @@ namespace Brotkrueml\JobRouterData\Cache;
 
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * @internal
@@ -21,12 +20,6 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 final class Cache
 {
     private const CACHE_TAG_TEMPLATE = 'tx_jobrouterdata_table_%d';
-
-    public static function addCacheTagByTable(int $tableUid): void
-    {
-        $cacheTags = [static::getCacheTagForTable($tableUid)];
-        static::getTypoScriptFrontendController()->addCacheTags($cacheTags);
-    }
 
     public static function clearCacheByTable(int $tableUid): void
     {
@@ -37,11 +30,6 @@ final class Cache
     private static function getCacheTagForTable(int $tableUid): string
     {
         return \sprintf(static::CACHE_TAG_TEMPLATE, $tableUid);
-    }
-
-    private static function getTypoScriptFrontendController(): TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'];
     }
 
     private static function getCacheManager(): CacheManager
