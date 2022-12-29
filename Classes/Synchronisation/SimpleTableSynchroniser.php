@@ -11,13 +11,14 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
-use Brotkrueml\JobRouterData\Cache\Cache;
 use Brotkrueml\JobRouterData\Domain\Model\Column;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
+use Brotkrueml\JobRouterData\Extension;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
+use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
@@ -28,6 +29,7 @@ final class SimpleTableSynchroniser
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
     public function __construct(
+        private readonly FrontendInterface $cache,
         private readonly ConnectionPool $connectionPool,
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly LoggerInterface $logger,
@@ -101,7 +103,7 @@ final class SimpleTableSynchroniser
         $datasetConnection->commit();
         $datasetConnection->setAutoCommit(true);
 
-        Cache::clearCacheByTable($table->getUid());
+        $this->clearCacheForTable($table->getUid());
     }
 
     private function deleteAllOldDatasets(Table $table): void
@@ -163,5 +165,11 @@ final class SimpleTableSynchroniser
         );
 
         $this->logger->debug('Inserted data set in transaction', $data);
+    }
+
+    private function clearCacheForTable(int $tableUid): void
+    {
+        $tag = \sprintf(Extension::CACHE_TAG_TABLE_TEMPLATE, $tableUid);
+        $this->cache->flushByTag($tag);
     }
 }

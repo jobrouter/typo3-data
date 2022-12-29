@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Class has a static method must so must contains \"Static\" in its name$#"
-			count: 1
-			path: Classes/Cache/Cache.php
-
-		-
 			message: "#^Parameter \\#2 \\.\\.\\.\\$values of function sprintf expects bool\\|float\\|int\\|string\\|null, Doctrine\\\\DBAL\\\\Result\\|int\\<min, \\-1\\>\\|int\\<1, max\\> given\\.$#"
 			count: 1
 			path: Classes/Command/CleanUpTransfersCommand.php
@@ -81,7 +76,7 @@ parameters:
 			path: Classes/Synchronisation/SimpleTableSynchroniser.php
 
 		-
-			message: "#^Parameter \\#1 \\$tableUid of static method Brotkrueml\\\\JobRouterData\\\\Cache\\\\Cache\\:\\:clearCacheByTable\\(\\) expects int, int\\|null given\\.$#"
+			message: "#^Parameter \\#1 \\$tableUid of method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SimpleTableSynchroniser\\:\\:clearCacheForTable\\(\\) expects int, int\\|null given\\.$#"
 			count: 1
 			path: Classes/Synchronisation/SimpleTableSynchroniser.php
 
