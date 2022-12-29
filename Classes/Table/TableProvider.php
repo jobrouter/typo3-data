@@ -51,4 +51,17 @@ class TableProvider
 
         return $customTables;
     }
+
+    /**
+     * @return string[]
+     */
+    public function getColumnsForCustomTable(string $customTable): array
+    {
+        $connection = $this->connectionPool->getConnectionForTable($customTable);
+
+        /** @var AbstractSchemaManager $schemaManager */
+        $schemaManager = $connection->createSchemaManager();
+
+        return \array_keys($schemaManager->listTableColumns($customTable));
+    }
 }

@@ -14,7 +14,7 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
-use Doctrine\DBAL\Schema\AbstractSchemaManager;
+use Brotkrueml\JobRouterData\Table\TableProvider;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -28,7 +28,8 @@ final class CustomTableSynchroniser
         private readonly ConnectionPool $connectionPool,
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly LoggerInterface $logger,
-        private readonly SynchronisationService $synchronisationService
+        private readonly SynchronisationService $synchronisationService,
+        private readonly TableProvider $tableProvider
     ) {
     }
 
@@ -36,7 +37,7 @@ final class CustomTableSynchroniser
     {
         try {
             $datasets = $this->synchronisationService->retrieveDatasetsFromJobDataTable($table);
-            $columns = $this->getCustomTableColumns($table);
+            $columns = $this->tableProvider->getColumnsForCustomTable($table->getCustomTable());
             $this->storeDatasets($table, $columns, $datasets, $force);
             $this->synchronisationService->updateSynchronisationStatus($table);
         } catch (\Exception $e) {
@@ -53,21 +54,6 @@ final class CustomTableSynchroniser
         }
 
         return true;
-    }
-
-    /**
-     * @return int[]|string[]
-     */
-    private function getCustomTableColumns(Table $table): array
-    {
-        $customTable = $table->getCustomTable();
-
-        $connection = $this->connectionPool->getConnectionForTable($customTable);
-
-        /** @var AbstractSchemaManager $schemaManager */
-        $schemaManager = $connection->getSchemaManager();
-
-        return \array_keys($schemaManager->listTableColumns($customTable));
     }
 
     private function storeDatasets(Table $table, array $customTableColumns, array $datasets, bool $force): void
