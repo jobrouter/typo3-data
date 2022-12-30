@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\EventListener;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 
 final class DecimalFormatter
@@ -19,7 +19,7 @@ final class DecimalFormatter
     public function __invoke(ModifyColumnContentEvent $event): void
     {
         $column = $event->getColumn();
-        if ($column->getType() !== FieldTypeEnumeration::DECIMAL) {
+        if ($column->getType() !== FieldType::Decimal->value) {
             return;
         }
 

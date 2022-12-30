@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\EventListener;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterData\Domain\Model\Column;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
@@ -34,7 +34,7 @@ final class DateTimeFormatterTest extends TestCase
     {
         $table = new Table();
         $column = new Column();
-        $column->setType(FieldTypeEnumeration::DATETIME);
+        $column->setType(FieldType::DateTime->value);
 
         $event = new ModifyColumnContentEvent($table, $column, '2021-11-29T12:34:56+00:00', 'de');
 
@@ -50,7 +50,7 @@ final class DateTimeFormatterTest extends TestCase
     {
         $table = new Table();
         $column = new Column();
-        $column->setType(FieldTypeEnumeration::DATE);
+        $column->setType(FieldType::Date->value);
 
         $event = new ModifyColumnContentEvent($table, $column, '2021-11-29T12:34:56+00:00', 'de');
 

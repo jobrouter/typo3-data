@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\EventListener;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterData\Domain\Model\Column;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
@@ -31,11 +31,11 @@ final class DecimalFormatterTest extends TestCase
      * @test
      * @dataProvider dataProviderForInvoke
      */
-    public function invoke(int $type, int $decimalPlaces, $content, string $locale, $expected): void
+    public function invoke(FieldType $type, int $decimalPlaces, $content, string $locale, $expected): void
     {
         $table = new Table();
         $column = new Column();
-        $column->setType($type);
+        $column->setType($type->value);
         $column->setDecimalPlaces($decimalPlaces);
 
         $event = new ModifyColumnContentEvent($table, $column, $content, $locale);
@@ -50,7 +50,7 @@ final class DecimalFormatterTest extends TestCase
     public function dataProviderForInvoke(): iterable
     {
         yield 'Column type is decimal and fraction is cut' => [
-            'type' => FieldTypeEnumeration::DECIMAL,
+            'type' => FieldType::Decimal,
             'decimalPlaces' => 3,
             'content' => 123_456_789.12345,
             'locale' => 'de_CH',
@@ -58,7 +58,7 @@ final class DecimalFormatterTest extends TestCase
         ];
 
         yield 'Column type is decimal and fraction is padded' => [
-            'type' => FieldTypeEnumeration::DECIMAL,
+            'type' => FieldType::Decimal,
             'decimalPlaces' => 4,
             'content' => 123_456_789.1,
             'locale' => 'de_CH',
@@ -66,7 +66,7 @@ final class DecimalFormatterTest extends TestCase
         ];
 
         yield 'Column type is decimal and content is null, content is not changed' => [
-            'type' => FieldTypeEnumeration::DECIMAL,
+            'type' => FieldType::Decimal,
             'decimalPlaces' => 2,
             'content' => null,
             'locale' => 'de_CH',
@@ -74,7 +74,7 @@ final class DecimalFormatterTest extends TestCase
         ];
 
         yield 'Column type is decimal and content is a numeric string, content is formatted' => [
-            'type' => FieldTypeEnumeration::DECIMAL,
+            'type' => FieldType::Decimal,
             'decimalPlaces' => 2,
             'content' => '123456.789',
             'locale' => 'de_DE',
@@ -82,7 +82,7 @@ final class DecimalFormatterTest extends TestCase
         ];
 
         yield 'Column type is decimal and content is a non-numeric string, content is not changed' => [
-            'type' => FieldTypeEnumeration::DECIMAL,
+            'type' => FieldType::Decimal,
             'decimalPlaces' => 2,
             'content' => 'some content',
             'locale' => 'de_DE',
@@ -90,7 +90,7 @@ final class DecimalFormatterTest extends TestCase
         ];
 
         yield 'Column type is integer, content is not changed' => [
-            'type' => FieldTypeEnumeration::INTEGER,
+            'type' => FieldType::Integer,
             'decimalPlaces' => 2,
             'content' => 123_456_789,
             'locale' => 'de_CH',

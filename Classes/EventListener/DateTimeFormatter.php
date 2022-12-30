@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\EventListener;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 
 final class DateTimeFormatter
 {
     public function __invoke(ModifyColumnContentEvent $event): void
     {
-        if ($event->getColumn()->getType() !== FieldTypeEnumeration::DATETIME) {
+        if ($event->getColumn()->getType() !== FieldType::DateTime->value) {
             return;
         }
 

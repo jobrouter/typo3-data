@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterData\Domain\Finishers;
 
 use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
-use Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration;
+use Brotkrueml\JobRouterBase\Enumeration\FieldType;
 use Brotkrueml\JobRouterData\Domain\Model\Column;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
@@ -102,7 +102,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             }
 
             $value = $this->variableResolver->resolve(
-                $definedTableColumns[$column]->getType(),
+                FieldType::from($definedTableColumns[$column]->getType()),
                 $value
             );
 
@@ -110,7 +110,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
 
             $data[$column] = $this->considerTypeForFieldValue(
                 $value,
-                $definedTableColumns[$column]->getType(),
+                FieldType::from($definedTableColumns[$column]->getType()),
                 $definedTableColumns[$column]->getFieldSize()
             );
         }
@@ -119,7 +119,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
     }
 
     /**
-     * @return Column[]
+     * @return array<string, Column>
      */
     private function getTableColumns(Table $table): array
     {
@@ -130,40 +130,34 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             $tableFields[$column->getName()] = $column;
         }
 
-        // @phpstan-ignore-next-line
+        // @phpstan-ignore-next-line Use another value object over array with string-keys and objects, array<string, ValueObject>
         return $tableFields;
     }
 
-    private function considerTypeForFieldValue(mixed $value, int $type, int $fieldSize): string|int|float
+    private function considerTypeForFieldValue(mixed $value, FieldType $type, int $fieldSize): string|int|float
     {
-        if ($type === FieldTypeEnumeration::TEXT) {
-            $value = (string)$value;
-
-            if ($fieldSize !== 0) {
-                return \mb_substr($value, 0, $fieldSize);
-            }
-
-            return $value;
-        }
-
-        if ($type === FieldTypeEnumeration::INTEGER) {
-            return $value === '' ? '' : (int)$value;
-        }
-
-        if ($type === FieldTypeEnumeration::DECIMAL) {
-            return $value === '' ? '' : (float)$value;
-        }
-
-        if ($type === FieldTypeEnumeration::DATE || $type === FieldTypeEnumeration::DATETIME) {
-            throw new InvalidFieldTypeException(
-                \sprintf('The field type "%d" is not implemented in the form finisher yet', $type),
+        return match ($type) {
+            FieldType::Text => $this->cutStringValueToLength((string)$value, $fieldSize),
+            FieldType::Integer => $value === '' ? '' : (int)$value,
+            FieldType::Decimal => $value === '' ? '' : (float)$value,
+            FieldType::Date,
+            FieldType::DateTime => throw new InvalidFieldTypeException(
+                \sprintf('The field type "%d" is not implemented in the form finisher', $type->name),
                 1601884157
-            );
+            ),
+            FieldType::Attachment => throw new InvalidFieldTypeException(
+                'The field type "Attachment" cannot be used in the form finisher',
+                1672405347
+            ),
+        };
+    }
+
+    private function cutStringValueToLength(string $value, int $fieldSize): string
+    {
+        if ($fieldSize !== 0) {
+            return \mb_substr($value, 0, $fieldSize);
         }
 
-        throw new InvalidFieldTypeException(
-            \sprintf('The field type "%d" is invalid', $type),
-            1601728329
-        );
+        return $value;
     }
 }

@@ -15,14 +15,15 @@ Changed
 ^^^^^^^
 
 
-* Require JobRouter Client version 2
-* Require JobRouter Connector version 2
+* Require JobRouter Client in version 2
+* Require JobRouter Connector extension in version 2
+* Require JobRouter Base extension in version 2
 
 Fixed
 ^^^^^
 
 
-* Error in content element when table is disabled or deleted
+* Error in content element when table link is disabled or deleted
 
 Removed
 ^^^^^^^

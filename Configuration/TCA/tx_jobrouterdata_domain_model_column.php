@@ -69,24 +69,24 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::INTEGER,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Decimal->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Decimal->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATE,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::DateTime->value,
+                        Brotkrueml\JobRouterBase\Enumeration\FieldType::DateTime->value,
                     ],
                 ],
                 'required' => true,
@@ -94,7 +94,7 @@ return [
         ],
         'decimal_places' => [
             'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
-            'displayCond' => 'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DECIMAL,
+            'displayCond' => 'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Decimal->value,
             'config' => [
                 'type' => 'input',
                 'size' => 3,
@@ -115,7 +115,7 @@ return [
             'displayCond' => [
                 'OR' => [
                     'REC:NEW:true',
-                    'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::TEXT,
+                    'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
                 ],
             ],
             'config' => [
