@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Error in content element when table is disabled or deleted
+
 ### Removed
 - Compatibility with TYPO3 v10 (#14)
 - Compatibility with PHP 7.4 and 8.0

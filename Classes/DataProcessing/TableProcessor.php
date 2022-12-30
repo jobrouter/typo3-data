@@ -60,9 +60,13 @@ final class TableProcessor implements DataProcessorInterface
 
     private function enrichProcessedDataWithTableInformation(int $tableUid): void
     {
-        $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale();
-        /** @var Table $table */
+        /** @var Table|null $table */
         $table = $this->tableRepository->findByIdentifier($tableUid);
+        if (! $table instanceof Table) {
+            return;
+        }
+
+        $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale();
         $this->processedData['table'] = $table;
         $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
         $this->addCacheTag($tableUid);
