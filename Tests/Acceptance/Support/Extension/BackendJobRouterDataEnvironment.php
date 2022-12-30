@@ -39,9 +39,9 @@ class BackendJobRouterDataEnvironment extends BackendEnvironment
             'typo3conf/ext/jobrouter_connector',
             'typo3conf/ext/jobrouter_data',
         ],
-        'xmlDatabaseFixtures' => [
-            'PACKAGE:typo3/testing-framework/Resources/Core/Acceptance/Fixtures/be_users.xml',
-            'EXT:jobrouter_data/Tests/Acceptance/Fixtures/tx_jobrouterconnector_domain_model_connection.xml',
+        'csvDatabaseFixtures' => [
+            __DIR__ . '/../../Fixtures/be_users.csv',
+            __DIR__ . '/../../Fixtures/tx_jobrouterconnector_domain_model_connection.csv',
         ],
         'pathsToLinkInTestInstance' => [
             'typo3conf/ext/jobrouter_data/Tests/Acceptance/Fixtures/jobrouterkey' => '.jobrouterkey',

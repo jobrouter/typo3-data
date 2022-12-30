@@ -1,0 +1,2 @@
+The encrypted password "XPa1uhmp6ow/sohbGqlHNLSCHeQ+10odSZp9GILkrtoT1PpceNIGvCxWbJ2mKUseuQ=="
+in clear text: "secretPwd"

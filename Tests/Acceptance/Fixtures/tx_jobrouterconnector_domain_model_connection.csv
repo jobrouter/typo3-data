@@ -1,0 +1,3 @@
+tx_jobrouterconnector_domain_model_connection
+,uid,pid,crdate,tstamp,name,handle,base_url,username,password
+,1,0,1603481421,1603481421,"Mockserver","mockserver","http://mockserver:1080/","john.doe","XPa1uhmp6ow/sohbGqlHNLSCHeQ+10odSZp9GILkrtoT1PpceNIGvCxWbJ2mKUseuQ=="
