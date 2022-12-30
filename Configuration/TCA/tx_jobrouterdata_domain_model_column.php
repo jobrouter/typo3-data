@@ -48,7 +48,8 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 20,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'label' => [
@@ -88,7 +89,7 @@ return [
                         Brotkrueml\JobRouterBase\Enumeration\FieldTypeEnumeration::DATETIME,
                     ],
                 ],
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
         'decimal_places' => [

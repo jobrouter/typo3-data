@@ -73,7 +73,8 @@ return [
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_jobrouterconnector_domain_model_connection',
                 'foreign_table_where' => ' ORDER BY tx_jobrouterconnector_domain_model_connection.name',
-                'eval' => 'int,required',
+                'eval' => 'int',
+                'required' => true,
             ],
         ],
         'handle' => [
@@ -82,7 +83,8 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 30,
-                'eval' => 'alphanum_x,required,trim,unique',
+                'eval' => 'alphanum_x,trim,unique',
+                'required' => 'true',
             ],
         ],
         'name' => [
@@ -91,7 +93,8 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 255,
-                'eval' => 'required,trim',
+                'eval' => 'trim',
+                'required' => true,
             ],
         ],
         'table_guid' => [
@@ -100,7 +103,8 @@ return [
                 'type' => 'input',
                 'size' => 20,
                 'max' => 36,
-                'eval' => 'alphanum_x,required,trim,upper',
+                'eval' => 'alphanum_x,trim,upper',
+                'required' => true,
             ],
         ],
         'custom_table' => [
@@ -115,7 +119,7 @@ return [
                     ],
                 ],
                 'itemsProcFunc' => Brotkrueml\JobRouterData\UserFunctions\FormEngine\CustomTables::class . '->getTables',
-                'eval' => 'required',
+                'required' => true,
             ],
         ],
         'columns' => [

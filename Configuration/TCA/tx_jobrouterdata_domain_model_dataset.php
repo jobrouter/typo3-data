@@ -29,7 +29,8 @@ return [
                 'type' => 'input',
                 'size' => 30,
                 'max' => 20,
-                'eval' => 'required,int',
+                'eval' => 'int',
+                'required' => true,
                 'readOnly' => true,
             ],
         ],
@@ -37,7 +38,7 @@ return [
             'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_dataset.dataset',
             'config' => [
                 'type' => 'text',
-                'eval' => 'required',
+                'required' => true,
                 'readOnly' => true,
             ],
         ],
