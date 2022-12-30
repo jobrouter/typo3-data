@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Require JobRouter Client version 2
+- Require JobRouter Connector version 2
+
 ### Fixed
 - Error in content element when table is disabled or deleted
 
