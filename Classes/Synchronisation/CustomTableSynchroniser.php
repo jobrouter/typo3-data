@@ -48,7 +48,7 @@ final class CustomTableSynchroniser
             );
 
             $this->logger->error($message);
-            $this->synchronisationService->updateSynchronisationStatus($table, null, $message);
+            $this->synchronisationService->updateSynchronisationStatus($table, '', $message);
 
             return false;
         }

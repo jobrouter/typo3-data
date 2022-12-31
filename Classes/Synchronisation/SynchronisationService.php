@@ -14,8 +14,8 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TableRepository as QueryBuilderTableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
@@ -23,7 +23,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 class SynchronisationService
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private readonly QueryBuilderTableRepository $queryBuilderTableRepository,
         private readonly RestClientFactory $restClientFactory,
         private readonly TableRepository $tableRepository
     ) {
@@ -46,30 +46,16 @@ class SynchronisationService
         return \sha1(\json_encode($datasets, \JSON_THROW_ON_ERROR));
     }
 
-    public function updateSynchronisationStatus(Table $table, ?string $datasetsHash = null, string $error = ''): void
+    public function updateSynchronisationStatus(Table $table, string $datasetsHash = '', string $error = ''): void
     {
-        $data = [
-            'last_sync_date' => \time(),
-            'last_sync_error' => $error,
-        ];
-        $types = [
-            'last_sync_date' => \PDO::PARAM_INT,
-            'last_sync_error' => \PDO::PARAM_STR,
-        ];
+        /** @var int $uid */
+        $uid = $table->getUid();
 
-        if ($datasetsHash) {
-            $data['datasets_sync_hash'] = $datasetsHash;
-            $types['datasets_sync_hash'] = \PDO::PARAM_STR;
-        }
-
-        $tableConnection = $this->connectionPool->getConnectionForTable('tx_jobrouterdata_domain_model_table');
-        $tableConnection->update(
-            'tx_jobrouterdata_domain_model_table',
-            $data,
-            [
-                'uid' => $table->getUid(),
-            ],
-            $types
+        $this->queryBuilderTableRepository->updateSynchronisationStatus(
+            $uid,
+            \time(),
+            $datasetsHash,
+            $error
         );
     }
 }

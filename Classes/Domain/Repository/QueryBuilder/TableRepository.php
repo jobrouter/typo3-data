@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
@@ -40,5 +41,33 @@ class TableRepository
             )
             ->executeQuery()
             ->fetchFirstColumn();
+    }
+
+    public function updateSynchronisationStatus(int $tableUid, int $date, string $hash, string $error): int
+    {
+        $data = [
+            'last_sync_date' => $date,
+            'last_sync_error' => $error,
+        ];
+        $types = [
+            'last_sync_date' => Connection::PARAM_INT,
+            'last_sync_error' => Connection::PARAM_STR,
+        ];
+
+        if ($hash !== '') {
+            $data['datasets_sync_hash'] = $hash;
+            $types['datasets_sync_hash'] = Connection::PARAM_STR;
+        }
+
+        return $this->connectionPool
+            ->getConnectionForTable(self::TABLE_NAME)
+            ->update(
+                self::TABLE_NAME,
+                $data,
+                [
+                    'uid' => $tableUid,
+                ],
+                $types
+            );
     }
 }
