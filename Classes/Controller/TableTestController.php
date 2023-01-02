@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterData\Controller;
 
 use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
-use Brotkrueml\JobRouterData\Domain\Entity\TableTestResult;
+use Brotkrueml\JobRouterData\Domain\Dto\TableTestResult;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Psr\Http\Message\ResponseFactoryInterface;

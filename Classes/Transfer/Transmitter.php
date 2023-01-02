@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Transfer;
 
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
-use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
+use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Model\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;

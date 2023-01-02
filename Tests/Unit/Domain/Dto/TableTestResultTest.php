@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Entity;
+namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Dto;
 
-use Brotkrueml\JobRouterData\Domain\Entity\TableTestResult;
+use Brotkrueml\JobRouterData\Domain\Dto\TableTestResult;
 use PHPUnit\Framework\TestCase;
 
 final class TableTestResultTest extends TestCase

@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 
 use Brotkrueml\JobRouterData\Command\SyncCommand;
-use Brotkrueml\JobRouterData\Domain\Entity\CountResult;
+use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
