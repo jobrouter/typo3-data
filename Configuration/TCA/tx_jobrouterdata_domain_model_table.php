@@ -49,19 +49,19 @@ return [
                 'items' => [
                     [
                         Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.simple_synchronisation',
-                        Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE,
+                        Brotkrueml\JobRouterData\Enumerations\TableType::Simple->value,
                     ],
                     [
                         Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table',
-                        Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_CUSTOM_TABLE,
+                        Brotkrueml\JobRouterData\Enumerations\TableType::CustomTable->value,
                     ],
                     [
                         Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.form_finisher',
-                        Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_FORM_FINISHER,
+                        Brotkrueml\JobRouterData\Enumerations\TableType::FormFinisher->value,
                     ],
                     [
                         Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.other_usage',
-                        Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE,
+                        Brotkrueml\JobRouterData\Enumerations\TableType::OtherUsage->value,
                     ],
                 ],
             ],
@@ -197,7 +197,7 @@ return [
         ],
     ],
     'types' => [
-        (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_SIMPLE => [
+        (string)Brotkrueml\JobRouterData\Enumerations\TableType::Simple->value => [
             'columnsOverrides' => [
                 'columns' => [
                     'config' => [
@@ -226,7 +226,7 @@ return [
                 description,
             ',
         ],
-        (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_CUSTOM_TABLE => [
+        (string)Brotkrueml\JobRouterData\Enumerations\TableType::CustomTable->value => [
             'showitem' => '
                 type, connection, name, handle, table_guid, custom_table,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
@@ -237,7 +237,7 @@ return [
                 description,
             ',
         ],
-        (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_FORM_FINISHER => [
+        (string)Brotkrueml\JobRouterData\Enumerations\TableType::FormFinisher->value => [
             'showitem' => '
                 type, connection, name, handle, table_guid, columns,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
@@ -246,7 +246,7 @@ return [
                 description,
             ',
         ],
-        (string)Brotkrueml\JobRouterData\Domain\Model\Table::TYPE_OTHER_USAGE => [
+        (string)Brotkrueml\JobRouterData\Enumerations\TableType::OtherUsage->value => [
             'showitem' => '
                 type, connection, name, handle, table_guid,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,

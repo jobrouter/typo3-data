@@ -21,11 +21,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Table extends AbstractEntity
 {
-    final public const TYPE_SIMPLE = 1;
-    final public const TYPE_CUSTOM_TABLE = 2;
-    final public const TYPE_OTHER_USAGE = 3;
-    final public const TYPE_FORM_FINISHER = 4;
-
     protected int $type = 0;
     protected string $handle = '';
     protected string $name = '';

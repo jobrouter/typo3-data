@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Domain\Repository;
 
 use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Enumerations\TableType;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
 use TYPO3\CMS\Extbase\Persistence\Repository;
@@ -33,11 +34,11 @@ class TableRepository extends Repository
     /**
      * @return mixed[]|QueryResultInterface<Table>
      */
-    public function findAllByTypeWithHidden(int $type): array|QueryResultInterface
+    public function findAllByTypeWithHidden(TableType $type): array|QueryResultInterface
     {
         $query = $this->createQuery();
         $query->getQuerySettings()->setIgnoreEnableFields(true);
-        $query->matching($query->equals('type', $type));
+        $query->matching($query->equals('type', $type->value));
 
         return $query->execute();
     }
@@ -59,8 +60,8 @@ class TableRepository extends Repository
         $query = $this->createQuery();
         $query->matching(
             $query->logicalOr([
-                $query->equals('type', Table::TYPE_SIMPLE),
-                $query->equals('type', Table::TYPE_CUSTOM_TABLE),
+                $query->equals('type', TableType::Simple->value),
+                $query->equals('type', TableType::CustomTable->value),
             ])
         );
 

@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterData\Synchronisation;
 use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Enumerations\TableType;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Psr\Log\LoggerInterface;
 
@@ -52,7 +53,7 @@ class SynchronisationRunner
     {
         $type = $table->getType();
 
-        if ($type === Table::TYPE_SIMPLE) {
+        if ($type === TableType::Simple->value) {
             $this->totalTables++;
             if (! $this->simpleTableSynchroniser->synchroniseTable($table, $force)) {
                 $this->erroneousTables++;
@@ -60,17 +61,17 @@ class SynchronisationRunner
             return;
         }
 
-        if ($type === Table::TYPE_CUSTOM_TABLE) {
+        if ($type === TableType::CustomTable->value) {
             $this->totalTables++;
             if (! $this->customTableSynchroniser->synchroniseTable($table, $force)) {
                 $this->erroneousTables++;
             }
             return;
         }
-        if ($type === Table::TYPE_OTHER_USAGE) {
+        if ($type === TableType::OtherUsage->value) {
             return;
         }
-        if ($type === Table::TYPE_FORM_FINISHER) {
+        if ($type === TableType::FormFinisher->value) {
             return;
         }
 

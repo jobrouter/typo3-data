@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Controller;
 
-use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Enumerations\TableType;
 use Brotkrueml\JobRouterData\Extension;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -103,10 +103,10 @@ final class TableListController
 
     private function listAction(): void
     {
-        $simpleTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_SIMPLE);
-        $customTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_CUSTOM_TABLE);
-        $formFinisherTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_FORM_FINISHER);
-        $otherTables = $this->tableRepository->findAllByTypeWithHidden(Table::TYPE_OTHER_USAGE);
+        $simpleTables = $this->tableRepository->findAllByTypeWithHidden(TableType::Simple);
+        $customTables = $this->tableRepository->findAllByTypeWithHidden(TableType::CustomTable);
+        $formFinisherTables = $this->tableRepository->findAllByTypeWithHidden(TableType::FormFinisher);
+        $otherTables = $this->tableRepository->findAllByTypeWithHidden(TableType::OtherUsage);
 
         $this->view->assignMultiple([
             'simpleTables' => $simpleTables,
