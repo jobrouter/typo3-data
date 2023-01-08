@@ -109,4 +109,99 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame($date->getTimestamp(), $row['transmit_date']);
         self::assertSame('some message', $row['transmit_message']);
     }
+
+    /**
+     * @test
+     */
+    public function countGroupByTransmitSuccessWithValuesForBoth(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
+
+        $actual = $this->subject->countGroupByTransmitSuccess();
+
+        self::assertCount(2, $actual);
+        self::assertSame(0, $actual[0]['transmit_success']);
+        self::assertSame(2, $actual[0]['count']);
+        self::assertSame(1, $actual[1]['transmit_success']);
+        self::assertSame(4, $actual[1]['count']);
+    }
+
+    /**
+     * @test
+     */
+    public function countGroupByTransmitSuccessWithNoEntriesAvailable(): void
+    {
+        $actual = $this->subject->countGroupByTransmitSuccess();
+
+        self::assertCount(0, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function countTransmitFailedWithAvailableFailedTransfers(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
+
+        $actual = $this->subject->countTransmitFailed();
+
+        self::assertSame(1, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function countTransmitFailedWithNoAvailableFailedTransfers(): void
+    {
+        $actual = $this->subject->countTransmitFailed();
+
+        self::assertSame(0, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function deleteOldSuccessfulTransfers(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
+
+        $actual = $this->subject->deleteOldSuccessfulTransfers(1600000003);
+
+        self::assertSame(2, $actual);
+
+        $rows = $this->getConnectionPool()
+            ->getConnectionForTable('tx_jobrouterdata_domain_model_transfer')
+            ->select(
+                ['uid'],
+                'tx_jobrouterdata_domain_model_transfer'
+            )
+            ->fetchAllAssociative();
+
+        $availableUids = \array_map(static fn (array $row): int => (int)$row['uid'], $rows);
+
+        self::assertNotContains(1, $availableUids);
+        self::assertNotContains(3, $availableUids);
+    }
+
+    /**
+     * @test
+     */
+    public function findFirstCreationDateWithAvailableTransfers(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
+
+        $actual = $this->subject->findFirstCreationDate();
+
+        self::assertSame(1600000000, $actual);
+    }
+
+    /**
+     * @test
+     */
+    public function findFirstCreationDateWithNoAvailableTransfers(): void
+    {
+        $actual = $this->subject->findFirstCreationDate();
+
+        self::assertSame(0, $actual);
+    }
 }

@@ -41,11 +41,6 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\QueryBuilder\\\\TransferRepository\\:\\:countGroupByTransmitSuccess\\(\\) should return array\\<int, array\\{transmit_success\\: int, count\\: int\\}\\> but returns array\\<int, array\\<string, mixed\\>\\>\\.$#"
-			count: 1
-			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php

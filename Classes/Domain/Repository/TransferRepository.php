@@ -115,4 +115,73 @@ class TransferRepository
                 ]
             );
     }
+
+    /**
+     * @return list<array<string, mixed>>
+     */
+    public function countGroupByTransmitSuccess(): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+
+        return $queryBuilder
+            ->select('transmit_success')
+            ->addSelectLiteral('COUNT(*) AS ' . $queryBuilder->quoteIdentifier('count'))
+            ->from(self::TABLE_NAME)
+            ->groupBy('transmit_success')
+            ->executeQuery()
+            ->fetchAllAssociative();
+    }
+
+    public function countTransmitFailed(): int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+
+        $whereExpressions = [
+            $queryBuilder->expr()->eq(
+                'transmit_success',
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
+            ),
+            $queryBuilder->expr()->gt(
+                'transmit_date',
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
+            ),
+        ];
+
+        return $queryBuilder
+            ->count('*')
+            ->from(self::TABLE_NAME)
+            ->where(...$whereExpressions)
+            ->executeQuery()
+            ->fetchOne();
+    }
+
+    public function deleteOldSuccessfulTransfers(int $maximumTimestampForDeletion): int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+
+        return $queryBuilder
+            ->delete(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'transmit_success',
+                    $queryBuilder->createNamedParameter(1, Connection::PARAM_INT)
+                ),
+                $queryBuilder->expr()->lt(
+                    'crdate',
+                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, Connection::PARAM_INT)
+                )
+            )
+            ->executeStatement();
+    }
+
+    public function findFirstCreationDate(): int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+
+        return $queryBuilder
+            ->selectLiteral(\sprintf('MIN(%s)', $queryBuilder->quoteIdentifier('crdate')))
+            ->from(self::TABLE_NAME)
+            ->executeQuery()
+            ->fetchOne() ?: 0;
+    }
 }

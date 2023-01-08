@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Transfer;
 
-use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\DeleteException;
 use Psr\Log\LoggerInterface;
 

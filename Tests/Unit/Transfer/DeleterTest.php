@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Transfer;
 
-use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\DeleteException;
 use Brotkrueml\JobRouterData\Transfer\Deleter;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 
-class DeleterTest extends TestCase
+final class DeleterTest extends TestCase
 {
     private Deleter $subject;
 

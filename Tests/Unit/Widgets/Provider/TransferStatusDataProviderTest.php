@@ -11,14 +11,14 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Widgets\Provider;
 
-use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TransferRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Extension;
 use Brotkrueml\JobRouterData\Widgets\Provider\TransferStatusDataProvider;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Registry;
 
-class TransferStatusDataProviderTest extends TestCase
+final class TransferStatusDataProviderTest extends TestCase
 {
     private Registry&Stub $registryStub;
     private TransferRepository&Stub $transferRepositoryStub;
