@@ -38,7 +38,7 @@ class ColumnRepository
                 ],
                 orderBy: [
                     'sorting' => 'DESC',
-                ]
+                ],
             )->fetchAllAssociative();
 
         $columns = [];

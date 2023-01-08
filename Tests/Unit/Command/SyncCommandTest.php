@@ -83,8 +83,8 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -119,8 +119,8 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                ),
             );
 
         $this->commandTester->execute([
@@ -130,7 +130,7 @@ class SyncCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             'Table with handle "some_handle" processed',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -159,8 +159,8 @@ class SyncCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'syncCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -168,7 +168,7 @@ class SyncCommandTest extends TestCase
         self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[WARNING] 1 out of 3 table(s) had errors during processing',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -199,7 +199,7 @@ class SyncCommandTest extends TestCase
         self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '! [NOTE] Could not acquire lock, another process is running',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 }

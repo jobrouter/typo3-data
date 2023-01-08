@@ -17,7 +17,7 @@ namespace Brotkrueml\JobRouterData\Domain\Dto;
 final class TableTestResult
 {
     public function __construct(
-        private readonly string $errorMessage
+        private readonly string $errorMessage,
     ) {
     }
 

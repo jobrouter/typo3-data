@@ -34,7 +34,7 @@ final class SimpleTableSynchroniser
         private readonly ConnectionPool $connectionPool,
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly LoggerInterface $logger,
-        private readonly SynchronisationService $synchronisationService
+        private readonly SynchronisationService $synchronisationService,
     ) {
     }
 
@@ -48,7 +48,7 @@ final class SimpleTableSynchroniser
             $message = \sprintf(
                 'Table link with uid "%d" cannot be synchronised: %s',
                 $table->uid,
-                $e->getMessage()
+                $e->getMessage(),
             );
 
             $this->logger->error($message);
@@ -95,7 +95,7 @@ final class SimpleTableSynchroniser
                 [
                     'table handle' => $table->handle,
                     'message' => $e->getMessage(),
-                ]
+                ],
             );
 
             throw new SynchronisationException($e->getMessage(), 1567014608, $e);
@@ -117,7 +117,7 @@ final class SimpleTableSynchroniser
             ],
             [
                 'table_uid' => \PDO::PARAM_INT,
-            ]
+            ],
         );
 
         $this->logger->debug('Deleted existing data sets in transaction', [
@@ -162,7 +162,7 @@ final class SimpleTableSynchroniser
                 'table_uid' => \PDO::PARAM_INT,
                 'jrid' => \PDO::PARAM_INT,
                 'dataset' => \PDO::PARAM_STR,
-            ]
+            ],
         );
 
         $this->logger->debug('Inserted data set in transaction', $data);

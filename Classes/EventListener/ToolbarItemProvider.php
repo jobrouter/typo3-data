@@ -35,7 +35,7 @@ final class ToolbarItemProvider
     private array $lastRunInformation = [];
 
     public function __construct(
-        private readonly Registry $registry
+        private readonly Registry $registry,
     ) {
     }
 
@@ -47,11 +47,11 @@ final class ToolbarItemProvider
             $this->lastRunInformation = $this->registry->get(Extension::REGISTRY_NAMESPACE, $commandName . '.lastRun', []);
             $systemInformationToolbarItem->addSystemInformation(
                 $this->getLanguageService()->sL(
-                    \sprintf('%s:%s.lastRunLabel', Extension::LANGUAGE_PATH_TOOLBAR, $commandName)
+                    \sprintf('%s:%s.lastRunLabel', Extension::LANGUAGE_PATH_TOOLBAR, $commandName),
                 ),
                 $this->getMessage($commandName),
                 'jobrouter-data-toolbar',
-                $this->getSeverity()
+                $this->getSeverity(),
             );
         }
     }
@@ -60,7 +60,7 @@ final class ToolbarItemProvider
     {
         if ($this->lastRunInformation === []) {
             return $this->getLanguageService()->sL(
-                \sprintf('%s:toolbar.neverExecuted', Extension::LANGUAGE_PATH_TOOLBAR)
+                \sprintf('%s:toolbar.neverExecuted', Extension::LANGUAGE_PATH_TOOLBAR),
             );
         }
 
@@ -74,11 +74,11 @@ final class ToolbarItemProvider
 
         return \sprintf(
             $this->getLanguageService()->sL(
-                \sprintf('%s:%s.lastRunMessage', Extension::LANGUAGE_PATH_TOOLBAR, $commandName)
+                \sprintf('%s:%s.lastRunMessage', Extension::LANGUAGE_PATH_TOOLBAR, $commandName),
             ),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['ddmmyy'], $this->lastRunInformation['start'] ?? 0),
             \date($GLOBALS['TYPO3_CONF_VARS']['SYS']['hhmm'], $this->lastRunInformation['start'] ?? 0),
-            $status
+            $status,
         );
     }
 

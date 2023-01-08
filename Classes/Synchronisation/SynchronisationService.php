@@ -25,7 +25,7 @@ class SynchronisationService
     public function __construct(
         private readonly ConnectionRepository $connectionRepository,
         private readonly RestClientFactory $restClientFactory,
-        private readonly TableRepository $tableRepository
+        private readonly TableRepository $tableRepository,
     ) {
     }
 
@@ -52,7 +52,7 @@ class SynchronisationService
             $table->uid,
             \time(),
             $datasetsHash,
-            $error
+            $error,
         );
     }
 }

@@ -22,7 +22,7 @@ final class Preparer
 {
     public function __construct(
         private readonly LoggerInterface $logger,
-        private readonly TransferRepository $transferRepository
+        private readonly TransferRepository $transferRepository,
     ) {
     }
 

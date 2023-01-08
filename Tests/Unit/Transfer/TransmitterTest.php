@@ -52,7 +52,7 @@ class TransmitterTest extends TestCase
             new NullLogger(),
             $restClientStub,
             $this->transferRepositoryMock,
-            $this->tableRepositoryMock
+            $this->tableRepositoryMock,
         );
     }
 

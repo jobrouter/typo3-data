@@ -18,7 +18,7 @@ final class CountResult
 {
     public function __construct(
         public readonly int $total,
-        public readonly int $errors
+        public readonly int $errors,
     ) {
     }
 }

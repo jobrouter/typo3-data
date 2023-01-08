@@ -36,7 +36,7 @@ class Transmitter
         private readonly LoggerInterface $logger,
         private readonly RestClientFactoryInterface $restClientFactory,
         private readonly TransferRepository $transferRepository,
-        private readonly TableRepository $tableRepository
+        private readonly TableRepository $tableRepository,
     ) {
     }
 
@@ -55,8 +55,8 @@ class Transmitter
             \sprintf(
                 'Transmitted %d transfer(s) with %d errors',
                 $this->totalTransfers,
-                $this->erroneousTransfers
-            )
+                $this->erroneousTransfers,
+            ),
         );
 
         return new CountResult($this->totalTransfers, $this->erroneousTransfers);
@@ -111,7 +111,7 @@ class Transmitter
             $this->connectionRepository,
             $this->restClientFactory,
             $this->tableRepository,
-            $table->handle
+            $table->handle,
         );
     }
 
@@ -123,9 +123,9 @@ class Transmitter
             throw new TableNotAvailableException(
                 \sprintf(
                     'Table link with uid "%d" is not available',
-                    $tableUid
+                    $tableUid,
                 ),
-                1579886642
+                1579886642,
             );
         }
     }

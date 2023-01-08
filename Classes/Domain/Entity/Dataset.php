@@ -22,7 +22,7 @@ final class Dataset
         public readonly int $uid,
         public readonly int $tableUid,
         public readonly int $jrid,
-        string $dataset
+        string $dataset,
     ) {
         $this->dataset = \json_decode($dataset, true, flags: \JSON_THROW_ON_ERROR);
     }
@@ -36,7 +36,7 @@ final class Dataset
             (int)$data['uid'],
             (int)$data['table_uid'],
             (int)$data['jrid'],
-            (string)$data['dataset']
+            (string)$data['dataset'],
         );
     }
 }

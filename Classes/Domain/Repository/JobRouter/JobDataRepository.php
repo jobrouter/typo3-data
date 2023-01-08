@@ -43,7 +43,7 @@ class JobDataRepository
         private readonly ConnectionRepository $connectionRepository,
         private readonly RestClientFactoryInterface $restClientFactory,
         private readonly TableRepository $tableRepository,
-        private readonly string $tableHandle
+        private readonly string $tableHandle,
     ) {
     }
 
@@ -55,7 +55,7 @@ class JobDataRepository
             } catch (TableNotFoundException) {
                 throw new TableNotAvailableException(
                     \sprintf('Table with handle "%s" is not available!', $this->tableHandle),
-                    1595951023
+                    1595951023,
                 );
             }
 
@@ -65,7 +65,7 @@ class JobDataRepository
             } catch (ConnectionNotFoundException) {
                 throw new ConnectionNotAvailableException(
                     \sprintf('Connection for table with handle "%s" is not available!', $this->tableHandle),
-                    1595951024
+                    1595951024,
                 );
             }
 
@@ -86,7 +86,7 @@ class JobDataRepository
             \sprintf(self::RESOURCE_TEMPLATE_POST, $this->table->tableGuid),
             [
                 'dataset' => $dataset,
-            ]
+            ],
         );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
@@ -106,7 +106,7 @@ class JobDataRepository
             \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->table->tableGuid),
             [
                 'datasets' => $datasets,
-            ]
+            ],
         );
     }
 
@@ -121,7 +121,7 @@ class JobDataRepository
             \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->table->tableGuid, $jrid),
             [
                 'dataset' => $dataset,
-            ]
+            ],
         );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
@@ -134,7 +134,7 @@ class JobDataRepository
     {
         $response = $this->getClient()->request(
             'GET',
-            \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->table->tableGuid)
+            \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->table->tableGuid),
         );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
@@ -148,13 +148,13 @@ class JobDataRepository
         try {
             $response = $this->getClient()->request(
                 'GET',
-                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->tableGuid, $jrid)
+                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->tableGuid, $jrid),
             );
         } catch (ExceptionInterface $e) {
             throw new DatasetNotAvailableException(
                 \sprintf('Dataset with jrid "%d" is not available', $jrid),
                 1613047932,
-                $e
+                $e,
             );
         }
 
@@ -174,7 +174,7 @@ class JobDataRepository
         if (! \array_key_exists('datasets', $decodedJson)) {
             throw new DatasetsNotAvailableException(
                 \sprintf('Key "datasets" is not available in response, given: %s', $json),
-                1595954069
+                1595954069,
             );
         }
 

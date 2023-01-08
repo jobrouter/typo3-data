@@ -36,7 +36,7 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
             '$options',
             [
                 'refreshAvailable' => true,
-            ]
+            ],
         )
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_data.statusOfDataTransmissions',
@@ -56,7 +56,7 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
             '$options',
             [
                 'refreshAvailable' => true,
-            ]
+            ],
         )
         ->tag('dashboard.widget', [
             'identifier' => 'jobrouter_data.transferReport',

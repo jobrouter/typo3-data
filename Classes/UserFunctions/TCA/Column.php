@@ -34,7 +34,7 @@ final class Column
         if ($type > 0) {
             $label .= \sprintf(
                 ' (%s)',
-                $this->getLanguageService()->sL(self::L10N_TYPE_PREFIX . $type)
+                $this->getLanguageService()->sL(self::L10N_TYPE_PREFIX . $type),
             );
         }
 

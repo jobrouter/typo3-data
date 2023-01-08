@@ -17,7 +17,7 @@ use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
 final class TableColumnsHydrator
 {
     public function __construct(
-        private readonly ColumnRepository $columnRepository
+        private readonly ColumnRepository $columnRepository,
     ) {
     }
 

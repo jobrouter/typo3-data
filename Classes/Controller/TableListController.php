@@ -50,7 +50,7 @@ final class TableListController
         $this->moduleTemplate = $this->moduleTemplateFactory->create($request);
 
         $this->pageRenderer->addInlineLanguageLabelFile(
-            \str_replace('LLL:', '', Extension::LANGUAGE_PATH_BACKEND_MODULE)
+            \str_replace('LLL:', '', Extension::LANGUAGE_PATH_BACKEND_MODULE),
         );
         $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/JobrouterData/TableTest');
 
@@ -82,7 +82,7 @@ final class TableListController
                         'tx_jobrouterdata_domain_model_table' => ['new'],
                     ],
                     'returnUrl' => (string)$this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
-                ]
+                ],
             ))
             ->setTitle($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_table'))
             ->setShowLabelText(true)

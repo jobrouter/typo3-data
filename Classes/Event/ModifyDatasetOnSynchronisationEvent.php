@@ -23,7 +23,7 @@ final class ModifyDatasetOnSynchronisationEvent
      */
     public function __construct(
         private readonly Table $table,
-        private array $dataset
+        private array $dataset,
     ) {
     }
 
@@ -63,9 +63,9 @@ final class ModifyDatasetOnSynchronisationEvent
                     'Given dataset keys "%s" differ from original dataset keys "%s" when modfying dataset for table with handle "%s"',
                     \implode(', ', $newKeys),
                     \implode(', ', $originalKeys),
-                    $this->table->handle
+                    $this->table->handle,
                 ),
-                1639132693
+                1639132693,
             );
         }
     }
@@ -81,9 +81,9 @@ final class ModifyDatasetOnSynchronisationEvent
                     'jrid must not be overriden for table with handle "%s", original jrid is "%d", new jrid id "%d"',
                     $this->table->handle,
                     $this->dataset['jrid'],
-                    $dataset['jrid']
+                    $dataset['jrid'],
                 ),
-                1639132877
+                1639132877,
             );
         }
     }

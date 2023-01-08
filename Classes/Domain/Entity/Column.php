@@ -22,7 +22,7 @@ final class Column
         public readonly int $fieldSize,
         public readonly string $alignment,
         public readonly int $sortingPriority,
-        public readonly string $sortingOrder
+        public readonly string $sortingOrder,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class Column
             (int)$data['field_size'],
             $data['alignment'],
             (int)$data['sorting_priority'],
-            $data['sorting_order']
+            $data['sorting_order'],
         );
     }
 }

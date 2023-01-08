@@ -28,7 +28,7 @@ final class DatasetConverter
     public function __construct(
         private readonly ColumnRepository $columnRepository,
         private readonly DatasetRepository $datasetRepository,
-        private readonly EventDispatcherInterface $eventDispatcher
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {
     }
 
@@ -98,12 +98,12 @@ final class DatasetConverter
         $columnsToSortBy = \array_values(
             \array_filter(
                 $columns,
-                static fn (Column $column): bool => $column->sortingPriority > 0
-            )
+                static fn (Column $column): bool => $column->sortingPriority > 0,
+            ),
         );
         \usort(
             $columnsToSortBy,
-            static fn (Column $a, Column $b): int => $a->sortingPriority <=> $b->sortingPriority
+            static fn (Column $a, Column $b): int => $a->sortingPriority <=> $b->sortingPriority,
         );
 
         return $columnsToSortBy;

@@ -55,7 +55,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
         self::$configuration = new ClientConfiguration(
             self::$server->getServerRoot() . '/',
             'fake_username',
-            'fake_password'
+            'fake_password',
         );
 
         self::$server->setResponseOfPath(
@@ -65,8 +65,8 @@ final class JobDataRepositoryTest extends FunctionalTestCase
                 [
                     'content-type' => 'application/json',
                 ],
-                201
-            )
+                201,
+            ),
         );
 
         self::$restClient = new RestClient(self::$configuration);
@@ -85,7 +85,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
             1,
             (string)self::$configuration->getJobRouterSystem(),
             self::$configuration->getUsername(),
-            self::$configuration->getPassword()
+            self::$configuration->getPassword(),
         );
 
         $table = (new TableBuilder())->build(1, tableGuid: 'some-guid');
@@ -116,7 +116,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
     {
         self::$server->setResponseOfPath(
             '/api/rest/v2/application/jobdata/tables/some-guid/datasets',
-            new Response('{"datasets":{"jrid": "42","foo":"bar","qux":"qoo"}}', [], 201)
+            new Response('{"datasets":{"jrid": "42","foo":"bar","qux":"qoo"}}', [], 201),
         );
 
         $dataset = [
@@ -142,7 +142,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
     {
         self::$server->setResponseOfPath(
             '/api/rest/v2/application/jobdata/tables/some-guid/datasets',
-            new Response('', [], 204)
+            new Response('', [], 204),
         );
 
         $this->subject->remove(1, 2, 3);
@@ -161,7 +161,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
     {
         self::$server->setResponseOfPath(
             '/api/rest/v2/application/jobdata/tables/some-guid/datasets/42',
-            new Response('{"datasets":{"jrid": "42","foo":"bar","qux":"qoo"}}', [], 200)
+            new Response('{"datasets":{"jrid": "42","foo":"bar","qux":"qoo"}}', [], 200),
         );
 
         $dataset = [
@@ -190,7 +190,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
     {
         self::$server->setResponseOfPath(
             '/api/rest/v2/application/jobdata/tables/some-guid/datasets',
-            new Response('{"datasets":[{"jrid": "42","foo":"bar","qux":"qoo"}]}', [], 200)
+            new Response('{"datasets":[{"jrid": "42","foo":"bar","qux":"qoo"}]}', [], 200),
         );
 
         $actual = $this->subject->findAll();
@@ -213,7 +213,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
     {
         self::$server->setResponseOfPath(
             '/api/rest/v2/application/jobdata/tables/some-guid/datasets/42',
-            new Response('{"datasets":[{"jrid": "42","foo":"bar","qux":"qoo"}]}', [], 200)
+            new Response('{"datasets":[{"jrid": "42","foo":"bar","qux":"qoo"}]}', [], 200),
         );
 
         $actual = $this->subject->findByJrid(42);
@@ -240,7 +240,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
 
         self::$server->setResponseOfPath(
             '/api/rest/v2/application/jobdata/tables/some-guid/datasets/53',
-            new Response('{"errors":{"-": ["Record for given primary key not found."]}}', [], 404)
+            new Response('{"errors":{"-": ["Record for given primary key not found."]}}', [], 404),
         );
 
         $this->subject->findByJrid(53);

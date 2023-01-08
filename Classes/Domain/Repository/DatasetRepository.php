@@ -20,7 +20,7 @@ class DatasetRepository
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool
+        private readonly ConnectionPool $connectionPool,
     ) {
     }
 
@@ -39,7 +39,7 @@ class DatasetRepository
                 ],
                 orderBy: [
                     'jrid' => 'ASC',
-                ]
+                ],
             );
 
         $datasets = [];
@@ -61,7 +61,7 @@ class DatasetRepository
                 ],
                 [
                     'table_uid' => Connection::PARAM_INT,
-                ]
+                ],
             );
     }
 }

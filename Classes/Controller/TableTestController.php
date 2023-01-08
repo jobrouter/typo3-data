@@ -32,7 +32,7 @@ final class TableTestController
         private readonly TableRepository $tableRepository,
         private readonly RestClientFactoryInterface $restClientFactory,
         private readonly ResponseFactoryInterface $responseFactory,
-        private readonly StreamFactoryInterface $streamFactory
+        private readonly StreamFactoryInterface $streamFactory,
     ) {
     }
 
@@ -59,7 +59,7 @@ final class TableTestController
 
             $this->restClientFactory->create($connection)->request(
                 'HEAD',
-                \sprintf('application/jobdata/tables/%s/datasets', $table->tableGuid)
+                \sprintf('application/jobdata/tables/%s/datasets', $table->tableGuid),
             );
             return $this->buildResponse();
         } catch (\Throwable $t) {

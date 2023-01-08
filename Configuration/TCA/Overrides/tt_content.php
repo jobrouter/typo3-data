@@ -17,14 +17,14 @@ defined('TYPO3') || die();
             'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
         ],
         'CType',
-        Brotkrueml\JobRouterData\Extension::KEY
+        Brotkrueml\JobRouterData\Extension::KEY,
     );
 
     $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$contentType] = 'pi_flexform';
     TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
         '*',
         'FILE:EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Configuration/FlexForms/Table.xml',
-        $contentType
+        $contentType,
     );
 
     $GLOBALS['TCA']['tt_content']['types'][$contentType] = [

@@ -38,7 +38,7 @@ final class SyncCommand extends Command
     public function __construct(
         private readonly LockFactory $lockFactory,
         private readonly Registry $registry,
-        private readonly SynchronisationRunner $synchronisationRunner
+        private readonly SynchronisationRunner $synchronisationRunner,
     ) {
         parent::__construct();
     }
@@ -53,7 +53,7 @@ final class SyncCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->startTime = time();
+        $this->startTime = \time();
         $this->outputStyle = new SymfonyStyle($input, $output);
 
         try {
@@ -80,7 +80,7 @@ final class SyncCommand extends Command
 
         if ($result->errors > 0) {
             $this->outputStyle->warning(
-                \sprintf('%d out of %d table(s) had errors during processing', $result->errors, $result->total)
+                \sprintf('%d out of %d table(s) had errors during processing', $result->errors, $result->total),
             );
 
             return self::FAILURE;
@@ -99,7 +99,7 @@ final class SyncCommand extends Command
     {
         $runInformation = [
             'start' => $this->startTime,
-            'end' => time(),
+            'end' => \time(),
             'exitCode' => $exitCode,
         ];
         $this->registry->set(Extension::REGISTRY_NAMESPACE, 'syncCommand.lastRun', $runInformation);

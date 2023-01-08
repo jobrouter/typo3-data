@@ -24,7 +24,7 @@ final class TableRelationsHydrator
     public function hydrate(Table $table): Table
     {
         return $this->connectionHydrator->hydrate(
-            $this->columnsHydrator->hydrate($table)
+            $this->columnsHydrator->hydrate($table),
         );
     }
 

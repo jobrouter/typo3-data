@@ -18,9 +18,9 @@ final class TableNotFoundException extends \RuntimeException
         return new self(
             \sprintf(
                 'Table with uid "%d" not found.',
-                $uid
+                $uid,
             ),
-            1672647403
+            1672647403,
         );
     }
 
@@ -29,9 +29,9 @@ final class TableNotFoundException extends \RuntimeException
         return new self(
             \sprintf(
                 'Table with handle "%s" not found.',
-                $handle
+                $handle,
             ),
-            1672647404
+            1672647404,
         );
     }
 }

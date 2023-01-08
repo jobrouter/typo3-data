@@ -21,7 +21,7 @@ final class Transfer
         public readonly string $data,
         public readonly bool $transmitSuccess,
         public readonly ?\DateTimeImmutable $transmitDate,
-        public readonly string $transmitMessage
+        public readonly string $transmitMessage,
     ) {
     }
 
@@ -40,7 +40,7 @@ final class Transfer
             (string)$data['data'],
             (bool)($data['transmit_success'] ?? false),
             $transmitDate > 0 ? (new \DateTimeImmutable())->setTimestamp($transmitDate) : null,
-            (string)$data['transmit_message']
+            (string)$data['transmit_message'],
         );
     }
 }

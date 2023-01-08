@@ -23,7 +23,7 @@ class TableRepository
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_table';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool
+        private readonly ConnectionPool $connectionPool,
     ) {
     }
 
@@ -59,7 +59,7 @@ class TableRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('type', $queryBuilder->createNamedParameter($type->value, Connection::PARAM_INT))
+                $queryBuilder->expr()->eq('type', $queryBuilder->createNamedParameter($type->value, Connection::PARAM_INT)),
             )
             ->orderBy('disabled', 'ASC')
             ->addOrderBy('name', 'ASC')
@@ -81,7 +81,7 @@ class TableRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
             )
             ->executeQuery()
             ->fetchAssociative();
@@ -102,7 +102,7 @@ class TableRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
             )
             ->executeQuery()
             ->fetchAssociative();
@@ -122,7 +122,7 @@ class TableRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('handle', $queryBuilder->createNamedParameter($handle))
+                $queryBuilder->expr()->eq('handle', $queryBuilder->createNamedParameter($handle)),
             )
             ->executeQuery()
             ->fetchAssociative();
@@ -175,7 +175,7 @@ class TableRepository
                 [
                     'uid' => $tableUid,
                 ],
-                $types
+                $types,
             );
     }
 }

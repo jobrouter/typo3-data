@@ -83,8 +83,8 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -92,7 +92,7 @@ class TransmitCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 0 transfer(s) transmitted successfully',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -122,8 +122,8 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -131,7 +131,7 @@ class TransmitCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 3 transfer(s) transmitted successfully',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -161,8 +161,8 @@ class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE
-                )
+                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE,
+                ),
             );
 
         $this->commandTester->execute([]);
@@ -170,7 +170,7 @@ class TransmitCommandTest extends TestCase
         self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[WARNING] 1 out of 3 transfer(s) had errors on transmission',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -201,7 +201,7 @@ class TransmitCommandTest extends TestCase
         self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '! [NOTE] Could not acquire lock, another process is running',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 }

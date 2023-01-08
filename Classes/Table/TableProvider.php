@@ -20,7 +20,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 class TableProvider
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool
+        private readonly ConnectionPool $connectionPool,
     ) {
     }
 

@@ -20,7 +20,7 @@ class TransferRepository
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_transfer';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool
+        private readonly ConnectionPool $connectionPool,
     ) {
     }
 
@@ -36,7 +36,7 @@ class TransferRepository
                 self::TABLE_NAME,
                 [
                     'transmit_success' => 0,
-                ]
+                ],
             );
 
         $transfers = [];
@@ -59,7 +59,7 @@ class TransferRepository
             ->from(self::TABLE_NAME)
             ->where(
                 $queryBuilder->expr()->eq('transmit_success', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
-                $queryBuilder->expr()->neq('transmit_message', $queryBuilder->createNamedParameter(''))
+                $queryBuilder->expr()->neq('transmit_message', $queryBuilder->createNamedParameter('')),
             )
             ->orderBy('crdate', 'ASC')
             ->executeQuery();
@@ -89,7 +89,7 @@ class TransferRepository
                     Connection::PARAM_INT,
                     Connection::PARAM_STR,
                     Connection::PARAM_STR,
-                ]
+                ],
             );
     }
 
@@ -112,7 +112,7 @@ class TransferRepository
                     Connection::PARAM_INT,
                     Connection::PARAM_STR,
                     Connection::PARAM_INT,
-                ]
+                ],
             );
     }
 
@@ -139,11 +139,11 @@ class TransferRepository
         $whereExpressions = [
             $queryBuilder->expr()->eq(
                 'transmit_success',
-                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
             ),
             $queryBuilder->expr()->gt(
                 'transmit_date',
-                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)
+                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
             ),
         ];
 
@@ -164,12 +164,12 @@ class TransferRepository
             ->where(
                 $queryBuilder->expr()->eq(
                     'transmit_success',
-                    $queryBuilder->createNamedParameter(1, Connection::PARAM_INT)
+                    $queryBuilder->createNamedParameter(1, Connection::PARAM_INT),
                 ),
                 $queryBuilder->expr()->lt(
                     'crdate',
-                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, Connection::PARAM_INT)
-                )
+                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, Connection::PARAM_INT),
+                ),
             )
             ->executeStatement();
     }

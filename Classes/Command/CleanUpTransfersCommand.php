@@ -28,7 +28,7 @@ final class CleanUpTransfersCommand extends Command
     private const DEFAULT_AGE_IN_DAYS = 30;
 
     public function __construct(
-        private readonly Deleter $deleter
+        private readonly Deleter $deleter,
     ) {
         parent::__construct();
     }
@@ -38,7 +38,7 @@ final class CleanUpTransfersCommand extends Command
         $help = \sprintf(
             'This command deletes successful transfers. If the parameter "%s" is omitted transfers older than %d days are deleted.',
             self::ARGUMENT_AGE_IN_DAYS,
-            self::DEFAULT_AGE_IN_DAYS
+            self::DEFAULT_AGE_IN_DAYS,
         );
 
         $this
@@ -46,7 +46,7 @@ final class CleanUpTransfersCommand extends Command
             ->addArgument(
                 self::ARGUMENT_AGE_IN_DAYS,
                 InputArgument::OPTIONAL,
-                'The age in days (optional). Set to 0 to delete all successful transfers.'
+                'The age in days (optional). Set to 0 to delete all successful transfers.',
             );
     }
 
@@ -73,14 +73,14 @@ final class CleanUpTransfersCommand extends Command
         if ($numberOfDeletedTransfers === 0) {
             $message = \sprintf(
                 'No successful transfers older than %d days present',
-                $ageInDays
+                $ageInDays,
             );
         } else {
             $message = \sprintf(
                 '%d successful transfer%s older than %d days deleted',
                 $numberOfDeletedTransfers,
                 $numberOfDeletedTransfers > 1 ? 's' : '',
-                $ageInDays
+                $ageInDays,
             );
         }
 
@@ -97,9 +97,9 @@ final class CleanUpTransfersCommand extends Command
                 \sprintf(
                     'Argument "%s" must be a number, "%s" given',
                     self::ARGUMENT_AGE_IN_DAYS,
-                    $ageInDays
+                    $ageInDays,
                 ),
-                1582139568
+                1582139568,
             );
         }
 
@@ -109,9 +109,9 @@ final class CleanUpTransfersCommand extends Command
                 \sprintf(
                     'Argument "%s" must not be a negative number, "%d" given',
                     self::ARGUMENT_AGE_IN_DAYS,
-                    $ageInDays
+                    $ageInDays,
                 ),
-                1582139576
+                1582139576,
             );
         }
 

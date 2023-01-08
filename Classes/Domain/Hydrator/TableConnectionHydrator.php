@@ -24,7 +24,7 @@ final class TableConnectionHydrator
     private array $connectionsCache = [];
 
     public function __construct(
-        private readonly ConnectionRepository $connectionRepository
+        private readonly ConnectionRepository $connectionRepository,
     ) {
     }
 

@@ -21,7 +21,7 @@ final class CustomTables
 {
     public function __construct(
         private readonly TableProvider $tableProvider,
-        private readonly TableRepository $tableRepository
+        private readonly TableRepository $tableRepository,
     ) {
     }
 
@@ -34,7 +34,7 @@ final class CustomTables
         $alreadyAssignedTables = $this->tableRepository->findAssignedCustomTables();
         $alreadyAssignedTables = \array_diff(
             $alreadyAssignedTables,
-            [$config['row']['custom_table']]
+            [$config['row']['custom_table']],
         );
 
         $tables = [];

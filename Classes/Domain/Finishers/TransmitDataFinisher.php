@@ -36,7 +36,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
     public function __construct(
         private readonly Preparer $preparer,
         private readonly TableColumnsHydrator $tableColumnsHydrator,
-        private readonly TableRepository $tableRepository
+        private readonly TableRepository $tableRepository,
     ) {
     }
 
@@ -53,7 +53,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
         if (! \is_string($handle) || $handle === '') {
             $message = \sprintf(
                 'Table handle in TransmitDataFinisher of form with identifier "%s" is not defined correctly.',
-                $this->getFormIdentifier()
+                $this->getFormIdentifier(),
             );
 
             throw new MissingFinisherOptionException($message, 1601728021);
@@ -66,9 +66,9 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
                 \sprintf(
                     'Table with handle "%s" is not available, defined in form with identifier "%s"',
                     $handle,
-                    $this->getFormIdentifier()
+                    $this->getFormIdentifier(),
                 ),
-                1601728085
+                1601728085,
             );
         }
 
@@ -88,7 +88,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
         }
         $formValues = (new FormFieldValuesPreparer())->prepareForSubstitution(
             $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements(),
-            $this->finisherContext->getFormValues()
+            $this->finisherContext->getFormValues(),
         );
 
         $definedTableColumns = $this->getTableColumns($table);
@@ -100,15 +100,15 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
                         'Column "%s" is assigned in form with identifier "%s" but not defined in table link "%s"',
                         $column,
                         $this->getFormIdentifier(),
-                        $table->name
+                        $table->name,
                     ),
-                    1601736690
+                    1601736690,
                 );
             }
 
             $value = $this->variableResolver->resolve(
                 FieldType::from($definedTableColumns[$column]->type),
-                $value
+                $value,
             );
 
             $value = $this->resolveFormFields($formValues, (string)$value);
@@ -116,7 +116,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             $data[$column] = $this->considerTypeForFieldValue(
                 $value,
                 FieldType::from($definedTableColumns[$column]->type),
-                $definedTableColumns[$column]->fieldSize
+                $definedTableColumns[$column]->fieldSize,
             );
         }
 
@@ -149,11 +149,11 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             FieldType::Date,
             FieldType::DateTime => throw new InvalidFieldTypeException(
                 \sprintf('The field type "%d" is not implemented in the form finisher', $type->name),
-                1601884157
+                1601884157,
             ),
             FieldType::Attachment => throw new InvalidFieldTypeException(
                 'The field type "Attachment" cannot be used in the form finisher',
-                1672405347
+                1672405347,
             ),
         };
     }

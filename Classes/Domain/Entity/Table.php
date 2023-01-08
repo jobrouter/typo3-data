@@ -70,7 +70,7 @@ final class Table
             $this->lastSyncDate,
             $this->lastSyncError,
             $connection,
-            $this->columns
+            $this->columns,
         );
     }
 
@@ -91,7 +91,7 @@ final class Table
             $this->lastSyncDate,
             $this->lastSyncError,
             $this->connection,
-            $columns
+            $columns,
         );
     }
 }

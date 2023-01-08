@@ -44,7 +44,7 @@ final class TableTestControllerTest extends TestCase
             $this->tableRepositoryStub,
             $this->restClientFactoryMock,
             new ResponseFactory(),
-            new StreamFactory()
+            new StreamFactory(),
         );
 
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
@@ -64,7 +64,7 @@ final class TableTestControllerTest extends TestCase
 
         self::assertJsonStringEqualsJsonString(
             '{"error": "Request has no valid body!"}',
-            $actual->getBody()->getContents()
+            $actual->getBody()->getContents(),
         );
     }
 
@@ -84,7 +84,7 @@ final class TableTestControllerTest extends TestCase
 
         self::assertJsonStringEqualsJsonString(
             '{"error": "Table with id \"42\" not found!"}',
-            $actual->getBody()->getContents()
+            $actual->getBody()->getContents(),
         );
     }
 
@@ -110,7 +110,7 @@ final class TableTestControllerTest extends TestCase
 
         self::assertJsonStringEqualsJsonString(
             '{"error": "Connection with id \"42\" not found or disabled!"}',
-            $actual->getBody()->getContents()
+            $actual->getBody()->getContents(),
         );
     }
 
@@ -139,7 +139,7 @@ final class TableTestControllerTest extends TestCase
 
         self::assertJsonStringEqualsJsonString(
             '{"check": "ok"}',
-            $actual->getBody()->getContents()
+            $actual->getBody()->getContents(),
         );
     }
 
@@ -177,7 +177,7 @@ final class TableTestControllerTest extends TestCase
 
         self::assertJsonStringEqualsJsonString(
             '{"error":"some exception message"}',
-            $actual->getBody()->getContents()
+            $actual->getBody()->getContents(),
         );
     }
 }

@@ -36,7 +36,7 @@ trait DataActions
         $fixturePath = \sprintf(
             'EXT:%s/Tests/Acceptance/Fixtures/%s',
             Extension::KEY,
-            $fixtureFileName
+            $fixtureFileName,
         );
 
         (new TestBase())->importXmlDatabaseFixture($fixturePath);
@@ -51,7 +51,7 @@ trait DataActions
                 'body' => \sprintf(
                     '{"username":"%s","password":"%s","lifetime":600}',
                     'john.doe',
-                    'secretPwd'
+                    'secretPwd',
                 ),
             ],
             'httpResponse' => [

@@ -46,7 +46,7 @@ final class TableProcessor implements DataProcessorInterface
         ContentObjectRenderer $cObj,
         array $contentObjectConfiguration,
         array $processorConfiguration,
-        array $processedData
+        array $processedData,
     ): array {
         $this->cObj = $cObj;
         $this->processedData = $processedData;

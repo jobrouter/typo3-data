@@ -73,7 +73,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
             ->getConnectionForTable('tx_jobrouterdata_domain_model_transfer')
             ->select(
                 ['*'],
-                'tx_jobrouterdata_domain_model_transfer'
+                'tx_jobrouterdata_domain_model_transfer',
             )->fetchAllAssociative();
 
         self::assertCount(1, $rows);
@@ -102,7 +102,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
                 'tx_jobrouterdata_domain_model_transfer',
                 [
                     'uid' => 6,
-                ]
+                ],
             )->fetchAssociative();
 
         self::assertSame(1, $row['transmit_success']);
@@ -173,7 +173,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
             ->getConnectionForTable('tx_jobrouterdata_domain_model_transfer')
             ->select(
                 ['uid'],
-                'tx_jobrouterdata_domain_model_transfer'
+                'tx_jobrouterdata_domain_model_transfer',
             )
             ->fetchAllAssociative();
 

@@ -40,7 +40,7 @@ final class PreparerTest extends FunctionalTestCase
             ->getConnectionForTable('tx_jobrouterdata_domain_model_transfer')
             ->select(
                 ['*'],
-                'tx_jobrouterdata_domain_model_transfer'
+                'tx_jobrouterdata_domain_model_transfer',
             )
             ->fetchAllAssociative();
 

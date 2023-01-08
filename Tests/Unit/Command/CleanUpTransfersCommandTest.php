@@ -50,7 +50,7 @@ class CleanUpTransfersCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] No successful transfers older than 30 days present',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -69,7 +69,7 @@ class CleanUpTransfersCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 1 successful transfer older than 30 days deleted',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -88,7 +88,7 @@ class CleanUpTransfersCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 42 successful transfers older than 30 days deleted',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -109,7 +109,7 @@ class CleanUpTransfersCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[OK] 42 successful transfers older than 60 days deleted',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -129,7 +129,7 @@ class CleanUpTransfersCommandTest extends TestCase
         self::assertSame(Command::INVALID, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[ERROR] Argument "ageInDays" must be a number, "abc" given',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -149,7 +149,7 @@ class CleanUpTransfersCommandTest extends TestCase
         self::assertSame(Command::INVALID, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[ERROR] Argument "ageInDays" must not be a negative number, "-42" given',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 
@@ -168,7 +168,7 @@ class CleanUpTransfersCommandTest extends TestCase
         self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
         self::assertStringContainsString(
             '[ERROR] some deletion error',
-            $this->commandTester->getDisplay()
+            $this->commandTester->getDisplay(),
         );
     }
 }

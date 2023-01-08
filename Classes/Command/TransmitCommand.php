@@ -32,7 +32,7 @@ final class TransmitCommand extends Command
     public function __construct(
         private readonly LockFactory $lockFactory,
         private readonly Registry $registry,
-        private readonly Transmitter $transmitter
+        private readonly Transmitter $transmitter,
     ) {
         parent::__construct();
     }
@@ -70,14 +70,14 @@ final class TransmitCommand extends Command
 
         if ($result->errors > 0) {
             $this->outputStyle->warning(
-                \sprintf('%d out of %d transfer(s) had errors on transmission', $result->errors, $result->total)
+                \sprintf('%d out of %d transfer(s) had errors on transmission', $result->errors, $result->total),
             );
 
             return self::FAILURE;
         }
 
         $this->outputStyle->success(
-            \sprintf('%d transfer(s) transmitted successfully', $result->total)
+            \sprintf('%d transfer(s) transmitted successfully', $result->total),
         );
 
         return self::SUCCESS;
@@ -87,7 +87,7 @@ final class TransmitCommand extends Command
     {
         $runInformation = [
             'start' => $this->startTime,
-            'end' => time(),
+            'end' => \time(),
             'exitCode' => $exitCode,
         ];
         $this->registry->set('tx_jobrouter_data', 'transmitCommand.lastRun', $runInformation);

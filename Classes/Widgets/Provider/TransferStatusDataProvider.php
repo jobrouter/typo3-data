@@ -26,7 +26,7 @@ final class TransferStatusDataProvider implements TransferStatusDataProviderInte
 
     public function __construct(
         private readonly Registry $registry,
-        private readonly TransferRepository $transferRepository
+        private readonly TransferRepository $transferRepository,
     ) {
         $this->status = new TransferStatus();
     }
@@ -67,7 +67,7 @@ final class TransferStatusDataProvider implements TransferStatusDataProviderInte
 
         if ($lastRunInformation['start'] ?? false) {
             $this->status->setLastRun(
-                (new \DateTime('@' . $lastRunInformation['start']))->setTimezone(new \DateTimeZone(date_default_timezone_get()))
+                (new \DateTime('@' . $lastRunInformation['start']))->setTimezone(new \DateTimeZone(\date_default_timezone_get())),
             );
         }
     }

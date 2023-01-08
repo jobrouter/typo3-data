@@ -29,7 +29,7 @@ final class CustomTableSynchroniser
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly LoggerInterface $logger,
         private readonly SynchronisationService $synchronisationService,
-        private readonly TableProvider $tableProvider
+        private readonly TableProvider $tableProvider,
     ) {
     }
 
@@ -44,7 +44,7 @@ final class CustomTableSynchroniser
             $message = \sprintf(
                 'Table link with uid "%d" cannot be synchronised: %s',
                 $table->uid,
-                $e->getMessage()
+                $e->getMessage(),
             );
 
             $this->logger->error($message);
@@ -115,7 +115,7 @@ final class CustomTableSynchroniser
                     'table handle' => $table->handle,
                     'custom table' => $table->customTable,
                     'message' => $e->getMessage(),
-                ]
+                ],
             );
 
             throw new SynchronisationException($e->getMessage(), 1567799062, $e);

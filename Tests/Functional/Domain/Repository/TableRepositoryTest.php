@@ -226,7 +226,7 @@ final class TableRepositoryTest extends FunctionalTestCase
                 'tx_jobrouterdata_domain_model_table',
                 [
                     'uid' => 3,
-                ]
+                ],
             )
             ->fetchAssociative();
 
@@ -253,7 +253,7 @@ final class TableRepositoryTest extends FunctionalTestCase
                 'tx_jobrouterdata_domain_model_table',
                 [
                     'uid' => 3,
-                ]
+                ],
             )
             ->fetchAssociative();
 

@@ -22,7 +22,7 @@ use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 final class TransferReportDataProvider implements ListDataProviderInterface
 {
     public function __construct(
-        private readonly TransferRepository $transferRepository
+        private readonly TransferRepository $transferRepository,
     ) {
     }
 
@@ -39,7 +39,7 @@ final class TransferReportDataProvider implements ListDataProviderInterface
             $items[] = new TransferReportItem(
                 $transfer->crdate,
                 $transfer->transmitMessage,
-                $transfer->correlationId
+                $transfer->correlationId,
             );
         }
 

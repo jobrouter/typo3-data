@@ -31,7 +31,7 @@ class SynchronisationRunner
         private readonly CustomTableSynchroniser $customTableSynchroniser,
         private readonly LoggerInterface $logger,
         private readonly SimpleTableSynchroniser $simpleTableSynchroniser,
-        private readonly TableRepository $tableRepository
+        private readonly TableRepository $tableRepository,
     ) {
     }
 

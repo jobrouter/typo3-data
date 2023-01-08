@@ -41,7 +41,7 @@ final class TableUpdateHookTest extends TestCase
         $this->subject->processCmdmap_postProcess(
             'delete',
             'tx_jobrouterdata_domain_model_table',
-            42
+            42,
         );
     }
 
@@ -57,7 +57,7 @@ final class TableUpdateHookTest extends TestCase
         $this->subject->processCmdmap_postProcess(
             'delete',
             'some_other_table',
-            42
+            42,
         );
     }
 
@@ -73,7 +73,7 @@ final class TableUpdateHookTest extends TestCase
         $this->subject->processCmdmap_postProcess(
             'copy',
             'tx_jobrouterdata_domain_model_table',
-            42
+            42,
         );
     }
 }

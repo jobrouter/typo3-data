@@ -19,7 +19,7 @@ use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
 final class TableUpdateHook
 {
     public function __construct(
-        private readonly DatasetRepository $datasetRepository
+        private readonly DatasetRepository $datasetRepository,
     ) {
     }
 
