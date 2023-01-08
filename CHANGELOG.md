@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Constants from Table model are moved into the new TableType enum
 - Models are no longer Extbase-based and are moved to the Domain/Entity namespace
 - Repositories are no longer Extbase-based
+- JobDataRepository is now injectable, method signatures have changed
 
 ### Fixed
 - Error in content element when table link is disabled or deleted

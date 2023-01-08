@@ -322,24 +322,24 @@ in TYPO3, e.g. in a command or a controller.
 
 The following methods are available:
 
-.. option:: add(array $dataset): array
+.. option:: add(string $tableHandle, array $dataset): array
 
    Adds a dataset to a JobData table and returns the stored dataset.
 
-.. option:: remove(int ...$jrid): void
+.. option:: remove(string $tableHandle, int ...$jrid): void
 
    Removes one or more datasets from a JobData table.
 
-.. option:: update(int $jrid, array $dataset): array
+.. option:: update(string $tableHandle, int $jrid, array $dataset): array
 
    Updates the dataset with the given jrid for a JobData table and returns the
    stored dataset.
 
-.. option:: findAll(): array
+.. option:: findAll(string $tableHandle): array
 
    Returns all datasets of the JobData table;
 
-.. option:: findByJrId(int $jrid): array
+.. option:: findByJrId(string $tableHandle, int $jrid): array
 
    Returns the dataset for the given jrid of a JobData table.
 
@@ -347,48 +347,24 @@ The following methods are available:
 Example
 -------
 
-Configure in :file:`Configuration/Services.yaml` an alias for the
-:php:`JobDataRepository` and add it to the command configuration:
-
-.. code-block:: yaml
-
-   services:
-      jobDataRepository.yourTableHandle:
-         class: 'Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository'
-         arguments:
-            $tableHandle: 'yourTableHandle'
-
-      Vendor\Extension\Command\YourCommand:
-         tags:
-            - name: 'console.command'
-              command: 'vendor:yourcommand'
-         arguments:
-            $jobDataRepository: '@jobDataRepository.yourTableHandle'
-
-Then inject the :php:`JobDataRepository` into the command and use the
-appropriate method:
-
-::
+.. code-block:: php
 
    <?php
    declare(strict_types=1);
 
-   namespace Vendor\Extension\Command;
+   namespace YourVendor\YourExtension\Command;
 
    final class YourCommand extends Command
    {
-      private $jobDataRepository;
-
-      public function __construct(JobDataRepository $jobDataRepository)
-      {
-        $this->jobDataRepository = $jobDataRepository;
-
+      public function __construct(
+         private readonly JobDataRepository $jobDataRepository,
+      ) {
         parent::__construct();
       }
 
       protected function execute(InputInterface $input, OutputInterface $output): int
       {
-         $datasets = $this->jobDataRepository->findAll();
+         $datasets = $this->jobDataRepository->findAll('some_handle');
 
          // ... your logic
 

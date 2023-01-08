@@ -27,3 +27,6 @@ Version 2 of this extension introduced some breaking changes, notably:
    :php:`getDatasetContentForColumn()` method as the previous Extbase model.
    Instead the dataset property now always holds an array of the JSON-decoded
    dataset.
+
+-  The :php:`JobDataRepository` is now injectable via constructor. All method
+   signatures have changed and now require the table handle as first argument.

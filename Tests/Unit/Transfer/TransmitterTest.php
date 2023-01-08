@@ -11,48 +11,32 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Transfer;
 
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
+use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
-use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 
-class TransmitterTest extends TestCase
+final class TransmitterTest extends TestCase
 {
+    private Stub&JobDataRepository $jobDataRepositoryStub;
+    private Stub&TransferRepository $transferRepositoryStub;
+    private Stub&TableRepository $tableRepositoryStub;
     private Transmitter $subject;
-
-    /**
-     * @var MockObject&TransferRepository
-     */
-    private MockObject $transferRepositoryMock;
-
-    /**
-     * @var MockObject&TableRepository
-     */
-    private MockObject $tableRepositoryMock;
 
     protected function setUp(): void
     {
-        $restClientStub = $this->createStub(RestClientFactoryInterface::class);
-
-        $this->transferRepositoryMock = $this->getMockBuilder(TransferRepository::class)
-            ->disableOriginalConstructor()
-            ->onlyMethods(['findNotTransmitted', 'updateTransmitData'])
-            ->getMock();
-
-        $this->tableRepositoryMock = $this->getMockBuilder(TableRepository::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $this->jobDataRepositoryStub = $this->createStub(JobDataRepository::class);
+        $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
+        $this->tableRepositoryStub = $this->createStub(TableRepository::class);
 
         $this->subject = new Transmitter(
-            $this->createStub(ConnectionRepository::class),
+            $this->jobDataRepositoryStub,
             new NullLogger(),
-            $restClientStub,
-            $this->transferRepositoryMock,
-            $this->tableRepositoryMock,
+            $this->transferRepositoryStub,
+            $this->tableRepositoryStub,
         );
     }
 
@@ -61,7 +45,7 @@ class TransmitterTest extends TestCase
      */
     public function transmitWithNoTransfersAvailableReturns0TotalsAndErrors(): void
     {
-        $this->transferRepositoryMock
+        $this->transferRepositoryStub
             ->method('findNotTransmitted')
             ->willReturn([]);
 

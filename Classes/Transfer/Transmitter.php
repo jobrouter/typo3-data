@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Transfer;
 
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
 use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Entity\Transfer;
@@ -32,9 +30,8 @@ class Transmitter
     private int $erroneousTransfers = 0;
 
     public function __construct(
-        private readonly ConnectionRepository $connectionRepository,
+        private readonly JobDataRepository $jobDataRepository,
         private readonly LoggerInterface $logger,
-        private readonly RestClientFactoryInterface $restClientFactory,
         private readonly TransferRepository $transferRepository,
         private readonly TableRepository $tableRepository,
     ) {
@@ -89,30 +86,13 @@ class Transmitter
 
     private function transmitTransfer(Transfer $transfer): int
     {
-        $result = $this
-            ->getJobDataRepositoryForTableUid($transfer->tableUid)
-            ->add(\json_decode($transfer->data, true, flags: \JSON_THROW_ON_ERROR));
+        $result = $this->jobDataRepository
+            ->add(
+                $this->getTable($transfer->tableUid)->handle,
+                \json_decode($transfer->data, true, flags: \JSON_THROW_ON_ERROR),
+            );
 
         return (int)($result[0]['jrid'] ?? 0);
-    }
-
-    private function getJobDataRepositoryForTableUid(int $tableUid): JobDataRepository
-    {
-        /** @var JobDataRepository[] $jobDataRepositories */
-        static $jobDataRepositories = [];
-
-        $table = $this->getTable($tableUid);
-
-        if ($jobDataRepositories[$tableUid] ?? false) {
-            return $jobDataRepositories[$tableUid];
-        }
-
-        return $jobDataRepositories[$tableUid] = new JobDataRepository(
-            $this->connectionRepository,
-            $this->restClientFactory,
-            $this->tableRepository,
-            $table->handle,
-        );
     }
 
     private function getTable(int $tableUid): Table

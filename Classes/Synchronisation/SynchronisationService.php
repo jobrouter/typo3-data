@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
@@ -23,8 +21,7 @@ use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 class SynchronisationService
 {
     public function __construct(
-        private readonly ConnectionRepository $connectionRepository,
-        private readonly RestClientFactory $restClientFactory,
+        private readonly JobDataRepository $jobDataRepository,
         private readonly TableRepository $tableRepository,
     ) {
     }
@@ -34,8 +31,7 @@ class SynchronisationService
      */
     public function retrieveDatasetsFromJobDataTable(Table $table): array
     {
-        return (new JobDataRepository($this->connectionRepository, $this->restClientFactory, $this->tableRepository, $table->handle))
-            ->findAll();
+        return $this->jobDataRepository->findAll($table->handle);
     }
 
     /**

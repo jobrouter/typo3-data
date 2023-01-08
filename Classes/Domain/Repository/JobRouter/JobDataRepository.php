@@ -33,57 +33,58 @@ class JobDataRepository
     protected const RESOURCE_TEMPLATE_PUT = 'application/jobdata/tables/%s/datasets/%d';
 
     /**
-     * @var Table
+     * @var array<string, ClientInterface>
      */
-    protected $table;
-
-    private ?ClientInterface $client = null;
+    private array $clients = [];
+    /**
+     * @var array<string, Table>
+     */
+    private array $tables = [];
 
     public function __construct(
         private readonly ConnectionRepository $connectionRepository,
         private readonly RestClientFactoryInterface $restClientFactory,
         private readonly TableRepository $tableRepository,
-        private readonly string $tableHandle,
     ) {
     }
 
-    protected function getClient(): ClientInterface
+    protected function getClient(string $tableHandle): ClientInterface
     {
-        if (! $this->client instanceof ClientInterface) {
+        if (! isset($this->clients[$tableHandle])) {
             try {
-                $table = $this->tableRepository->findByHandle($this->tableHandle);
+                $table = $this->tableRepository->findByHandle($tableHandle);
             } catch (TableNotFoundException) {
                 throw new TableNotAvailableException(
-                    \sprintf('Table with handle "%s" is not available!', $this->tableHandle),
+                    \sprintf('Table with handle "%s" is not available!', $tableHandle),
                     1595951023,
                 );
             }
 
-            $this->table = $table;
             try {
                 $connection = $this->connectionRepository->findByUid($table->connectionUid);
             } catch (ConnectionNotFoundException) {
                 throw new ConnectionNotAvailableException(
-                    \sprintf('Connection for table with handle "%s" is not available!', $this->tableHandle),
+                    \sprintf('Connection for table with handle "%s" is not available!', $tableHandle),
                     1595951024,
                 );
             }
 
-            $this->client = $this->restClientFactory->create($connection);
+            $this->tables[$tableHandle] = $table;
+            $this->clients[$tableHandle] = $this->restClientFactory->create($connection);
         }
 
-        return $this->client;
+        return $this->clients[$tableHandle];
     }
 
     /**
      * @param array<string, string|int|float|bool|null> $dataset
      * @return list<array<string, string|int|float|bool|null>>
      */
-    public function add(array $dataset): array
+    public function add(string $tableHandle, array $dataset): array
     {
-        $response = $this->getClient()->request(
+        $response = $this->getClient($tableHandle)->request(
             'POST',
-            \sprintf(self::RESOURCE_TEMPLATE_POST, $this->table->tableGuid),
+            \sprintf(self::RESOURCE_TEMPLATE_POST, $this->tables[$tableHandle]->tableGuid),
             [
                 'dataset' => $dataset,
             ],
@@ -92,7 +93,7 @@ class JobDataRepository
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }
 
-    public function remove(int ...$jrids): void
+    public function remove(string $tableHandle, int ...$jrids): void
     {
         $datasets = [];
         foreach ($jrids as $jrid) {
@@ -101,9 +102,9 @@ class JobDataRepository
             ];
         }
 
-        $this->getClient()->request(
+        $this->getClient($tableHandle)->request(
             'DELETE',
-            \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->table->tableGuid),
+            \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->tables[$tableHandle]->tableGuid),
             [
                 'datasets' => $datasets,
             ],
@@ -114,11 +115,11 @@ class JobDataRepository
      * @param array<string, string|int|float|bool|null> $dataset
      * @return list<array<string, string|int|float|bool|null>>
      */
-    public function update(int $jrid, array $dataset): array
+    public function update(string $tableHandle, int $jrid, array $dataset): array
     {
-        $response = $this->getClient()->request(
+        $response = $this->getClient($tableHandle)->request(
             'PUT',
-            \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->table->tableGuid, $jrid),
+            \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->tables[$tableHandle]->tableGuid, $jrid),
             [
                 'dataset' => $dataset,
             ],
@@ -130,11 +131,11 @@ class JobDataRepository
     /**
      * @return list<array<string, string|int|float|bool|null>>
      */
-    public function findAll(): array
+    public function findAll(string $tableHandle): array
     {
-        $response = $this->getClient()->request(
+        $response = $this->getClient($tableHandle)->request(
             'GET',
-            \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->table->tableGuid),
+            \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->tables[$tableHandle]->tableGuid),
         );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
@@ -143,12 +144,12 @@ class JobDataRepository
     /**
      * @return list<array<string, string|int|float|bool|null>>
      */
-    public function findByJrid(int $jrid): array
+    public function findByJrid(string $tableHandle, int $jrid): array
     {
         try {
-            $response = $this->getClient()->request(
+            $response = $this->getClient($tableHandle)->request(
                 'GET',
-                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->tableGuid, $jrid),
+                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->tables[$tableHandle]->tableGuid, $jrid),
             );
         } catch (ExceptionInterface $e) {
             throw new DatasetNotAvailableException(
@@ -167,7 +168,7 @@ class JobDataRepository
     protected function buildDatasetsArrayFromJson(string $json): array
     {
         try {
-            $decodedJson = \json_decode($json, true, 512, \JSON_THROW_ON_ERROR);
+            $decodedJson = \json_decode($json, true, flags: \JSON_THROW_ON_ERROR);
         } catch (\JsonException) {
             $decodedJson = [];
         }

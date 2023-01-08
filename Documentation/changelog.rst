@@ -21,6 +21,7 @@ Changed
 * Constants from Table model are moved into the new TableType enum
 * Models are no longer Extbase-based and are moved to the Domain/Entity namespace
 * Repositories are no longer Extbase-based
+* JobDataRepository is now injectable, method signatures have changed
 
 Fixed
 ^^^^^
