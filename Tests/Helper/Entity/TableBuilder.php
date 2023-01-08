@@ -16,11 +16,11 @@ use Brotkrueml\JobRouterData\Enumerations\TableType;
 
 final class TableBuilder
 {
-    public function build(int $uid, string $handle = '', string $tableGuid = ''): Table
+    public function build(int $uid, string $handle = '', string $tableGuid = '', int $connection = 1): Table
     {
         return Table::fromArray([
             'uid' => $uid,
-            'connection' => 1,
+            'connection' => $connection,
             'type' => TableType::Simple->value,
             'handle' => $handle,
             'name' => '',

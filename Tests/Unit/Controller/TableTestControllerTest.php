@@ -12,11 +12,14 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\Controller;
 
 use Brotkrueml\JobRouterClient\Client\ClientInterface;
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
+use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
+use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
 use Brotkrueml\JobRouterData\Controller\TableTestController;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\ConnectionBuilder;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -26,6 +29,7 @@ use TYPO3\CMS\Core\Http\StreamFactory;
 
 final class TableTestControllerTest extends TestCase
 {
+    private ConnectionRepository&Stub $connectionRepositoryStub;
     private TableRepository&Stub $tableRepositoryStub;
     private ClientInterface&Stub $clientStub;
     private RestClientFactoryInterface&MockObject $restClientFactoryMock;
@@ -34,13 +38,13 @@ final class TableTestControllerTest extends TestCase
 
     protected function setUp(): void
     {
-        self::markTestSkipped('Subject will be refactored.');
-
+        $this->connectionRepositoryStub = $this->createStub(ConnectionRepository::class);
         $this->tableRepositoryStub = $this->createStub(TableRepository::class);
         $this->clientStub = $this->createStub(ClientInterface::class);
         $this->restClientFactoryMock = $this->createMock(RestClientFactoryInterface::class);
 
         $this->subject = new TableTestController(
+            $this->connectionRepositoryStub,
             $this->tableRepositoryStub,
             $this->restClientFactoryMock,
             new ResponseFactory(),
@@ -71,8 +75,13 @@ final class TableTestControllerTest extends TestCase
     /**
      * @test
      */
-    public function invokeReturnsResponseWithErrorWhenIdentifierCannotBeFoundInRepository(): void
+    public function invokeReturnsResponseWithErrorWhenTableIdentifierCannotBeFoundInRepository(): void
     {
+        $this->tableRepositoryStub
+            ->method('findByUidWithHidden')
+            ->with(42)
+            ->willThrowException(new TableNotFoundException('some error'));
+
         $this->requestStub
             ->method('getParsedBody')
             ->willReturn([
@@ -83,7 +92,7 @@ final class TableTestControllerTest extends TestCase
         $actual->getBody()->rewind();
 
         self::assertJsonStringEqualsJsonString(
-            '{"error": "Table with id \"42\" not found!"}',
+            '{"error": "Table with ID \"42\" not found!"}',
             $actual->getBody()->getContents(),
         );
     }
@@ -99,17 +108,21 @@ final class TableTestControllerTest extends TestCase
                 'tableId' => '42',
             ]);
 
-        $table = new Table();
         $this->tableRepositoryStub
             ->method('findByUidWithHidden')
             ->with(42)
-            ->willReturn($table);
+            ->willReturn((new TableBuilder())->build(42, connection: 21));
+
+        $this->connectionRepositoryStub
+            ->method('findByUidWithHidden')
+            ->with(21)
+            ->willThrowException(new ConnectionNotFoundException('some error'));
 
         $actual = $this->subject->__invoke($this->requestStub);
         $actual->getBody()->rewind();
 
         self::assertJsonStringEqualsJsonString(
-            '{"error": "Connection with id \"42\" not found or disabled!"}',
+            '{"error": "Connection with ID \"21\" not found!"}',
             $actual->getBody()->getContents(),
         );
     }
@@ -125,14 +138,15 @@ final class TableTestControllerTest extends TestCase
                 'tableId' => '42',
             ]);
 
-        $connection = new Connection();
-        $table = new Table();
-        $table->setConnection($connection);
-        $table->setTableGuid('sometableguid');
         $this->tableRepositoryStub
             ->method('findByUidWithHidden')
             ->with(42)
-            ->willReturn($table);
+            ->willReturn((new TableBuilder())->build(42, connection: 21));
+
+        $this->connectionRepositoryStub
+            ->method('findByUidWithHidden')
+            ->with(21)
+            ->willReturn((new ConnectionBuilder())->build(21));
 
         $actual = $this->subject->__invoke($this->requestStub);
         $actual->getBody()->rewind();
@@ -154,14 +168,16 @@ final class TableTestControllerTest extends TestCase
                 'tableId' => '42',
             ]);
 
-        $connection = new Connection();
-        $table = new Table();
-        $table->setConnection($connection);
-        $table->setTableGuid('sometableguid');
         $this->tableRepositoryStub
             ->method('findByUidWithHidden')
             ->with(42)
-            ->willReturn($table);
+            ->willReturn((new TableBuilder())->build(42, tableGuid: 'sometableguid', connection: 21));
+
+        $connection = (new ConnectionBuilder())->build(21);
+        $this->connectionRepositoryStub
+            ->method('findByUidWithHidden')
+            ->with(21)
+            ->willReturn($connection);
 
         $this->clientStub
             ->method('request')
