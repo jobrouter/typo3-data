@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\UserFunctions\FormEngine;
 
-use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TableRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Table\TableProvider;
 
 /**

@@ -15,7 +15,6 @@ use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
-use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TableRepository as QueryBuilderTableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 
 /**
@@ -25,7 +24,6 @@ class SynchronisationService
 {
     public function __construct(
         private readonly ConnectionRepository $connectionRepository,
-        private readonly QueryBuilderTableRepository $queryBuilderTableRepository,
         private readonly RestClientFactory $restClientFactory,
         private readonly TableRepository $tableRepository
     ) {
@@ -50,7 +48,7 @@ class SynchronisationService
 
     public function updateSynchronisationStatus(Table $table, string $datasetsHash = '', string $error = ''): void
     {
-        $this->queryBuilderTableRepository->updateSynchronisationStatus(
+        $this->tableRepository->updateSynchronisationStatus(
             $table->uid,
             \time(),
             $datasetsHash,
