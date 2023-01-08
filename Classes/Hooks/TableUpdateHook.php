@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Hooks;
 
-use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\DatasetRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
 
 /**
  * @internal

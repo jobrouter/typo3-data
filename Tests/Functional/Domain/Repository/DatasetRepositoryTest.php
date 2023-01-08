@@ -46,4 +46,22 @@ final class DatasetRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual[1]->uid);
         self::assertSame(4, $actual[2]->uid);
     }
+
+    /**
+     * @test
+     */
+    public function deleteByTableUid(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_dataset.csv');
+
+        $actual = $this->subject->deleteByTableUid(42);
+
+        self::assertSame(3, $actual);
+
+        $connection = $this->getConnectionPool()->getConnectionForTable('tx_jobrouterdata_domain_model_dataset');
+        $uids = $connection->select(['uid'], 'tx_jobrouterdata_domain_model_dataset')->fetchFirstColumn();
+
+        self::assertContains(3, $uids);
+        self::assertContains(5, $uids);
+    }
 }

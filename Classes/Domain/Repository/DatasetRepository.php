@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Domain\Repository;
 
 use Brotkrueml\JobRouterData\Domain\Entity\Dataset;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 class DatasetRepository
@@ -47,5 +48,20 @@ class DatasetRepository
         }
 
         return $datasets;
+    }
+
+    public function deleteByTableUid(int $tableUid): int
+    {
+        return $this->connectionPool
+            ->getConnectionForTable(self::TABLE_NAME)
+            ->delete(
+                self::TABLE_NAME,
+                [
+                    'table_uid' => $tableUid,
+                ],
+                [
+                    'table_uid' => Connection::PARAM_INT,
+                ]
+            );
     }
 }

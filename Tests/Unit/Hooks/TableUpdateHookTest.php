@@ -11,12 +11,12 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Hooks;
 
-use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\DatasetRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
 use Brotkrueml\JobRouterData\Hooks\TableUpdateHook;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class TableUpdateHookTest extends TestCase
+final class TableUpdateHookTest extends TestCase
 {
     private DatasetRepository&MockObject $datasetRepository;
     private TableUpdateHook $subject;
