@@ -11,8 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Converter;
 
-use Brotkrueml\JobRouterData\Domain\Model\Column;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Column;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
+use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
+use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
@@ -24,6 +26,8 @@ final class DatasetConverter
     private const UNFORMATTED_FIELD_NAME_PREFIX = '_original_';
 
     public function __construct(
+        private readonly ColumnRepository $columnRepository,
+        private readonly DatasetRepository $datasetRepository,
         private readonly EventDispatcherInterface $eventDispatcher
     ) {
     }
@@ -33,15 +37,16 @@ final class DatasetConverter
      */
     public function convertFromJsonToArray(Table $table, string $locale): array
     {
-        $rows = [];
-        foreach ($table->getDatasets() as $datasetJson) {
-            $datasetArray = \json_decode($datasetJson->getDataset(), true, 512, \JSON_THROW_ON_ERROR);
+        $columns = $this->columnRepository->findByTableUid($table->uid);
+        $datasets = $this->datasetRepository->findByTableUid($table->uid);
 
+        $rows = [];
+        foreach ($datasets as $dataset) {
             $row = [];
-            foreach ($table->getColumns() as $column) {
-                $columnName = $column->getName();
-                if (isset($datasetArray[$columnName])) {
-                    $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] = $datasetArray[$column->getName()];
+            foreach ($columns as $column) {
+                $columnName = $column->name;
+                if (isset($dataset->dataset[$columnName])) {
+                    $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] = $dataset->dataset[$column->name];
                     if ($row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] === null || $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName] === '') {
                         $row[$columnName] = '';
                         continue;
@@ -50,13 +55,13 @@ final class DatasetConverter
                     $event = new ModifyColumnContentEvent($table, $column, $row[self::UNFORMATTED_FIELD_NAME_PREFIX . $columnName], $locale);
                     /** @var ModifyColumnContentEvent $event */
                     $event = $this->eventDispatcher->dispatch($event);
-                    $row[$column->getName()] = $event->getContent();
+                    $row[$column->name] = $event->getContent();
                 }
             }
             $rows[] = $row;
         }
 
-        return $this->sortRowsByColumns($table->getColumns()->toArray(), $rows);
+        return $this->sortRowsByColumns($columns, $rows);
     }
 
     /**
@@ -70,8 +75,8 @@ final class DatasetConverter
         if ($columnsToSortBy !== []) {
             \usort($rows, static function (array $a, array $b) use ($columnsToSortBy): int {
                 foreach ($columnsToSortBy as $column) {
-                    $order = $column->getSortingOrder() === 'desc' ? -1 : 1;
-                    $result = ($a[self::UNFORMATTED_FIELD_NAME_PREFIX . $column->getName()] <=> $b[self::UNFORMATTED_FIELD_NAME_PREFIX . $column->getName()]) * $order;
+                    $order = $column->sortingOrder === 'desc' ? -1 : 1;
+                    $result = ($a[self::UNFORMATTED_FIELD_NAME_PREFIX . $column->name] <=> $b[self::UNFORMATTED_FIELD_NAME_PREFIX . $column->name]) * $order;
                     if ($result !== 0) {
                         return $result;
                     }
@@ -93,12 +98,12 @@ final class DatasetConverter
         $columnsToSortBy = \array_values(
             \array_filter(
                 $columns,
-                static fn (Column $column): bool => $column->getSortingPriority() > 0
+                static fn (Column $column): bool => $column->sortingPriority > 0
             )
         );
         \usort(
             $columnsToSortBy,
-            static fn (Column $a, Column $b): int => $a->getSortingPriority() <=> $b->getSortingPriority()
+            static fn (Column $a, Column $b): int => $a->sortingPriority <=> $b->sortingPriority
         );
 
         return $columnsToSortBy;

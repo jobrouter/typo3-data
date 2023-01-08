@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
-use Brotkrueml\JobRouterData\Domain\Model\Column;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
+use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Brotkrueml\JobRouterData\Extension;
@@ -30,6 +30,7 @@ final class SimpleTableSynchroniser
 
     public function __construct(
         private readonly FrontendInterface $cache,
+        private readonly ColumnRepository $columnRepository,
         private readonly ConnectionPool $connectionPool,
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly LoggerInterface $logger,
@@ -46,7 +47,7 @@ final class SimpleTableSynchroniser
         } catch (\Exception $e) {
             $message = \sprintf(
                 'Table link with uid "%d" cannot be synchronised: %s',
-                $table->getUid(),
+                $table->uid,
                 $e->getMessage()
             );
 
@@ -63,12 +64,12 @@ final class SimpleTableSynchroniser
     {
         $datasetsHash = $this->synchronisationService->hashDatasets($datasets);
 
-        $this->logger->debug('Data sets hash: ' . $datasetsHash . ' vs existing: ' . $table->getDatasetsSyncHash());
+        $this->logger->debug('Data sets hash: ' . $datasetsHash . ' vs existing: ' . $table->datasetsSyncHash);
 
-        if (! $force && $datasetsHash === $table->getDatasetsSyncHash()) {
+        if (! $force && $datasetsHash === $table->datasetsSyncHash) {
             $this->synchronisationService->updateSynchronisationStatus($table);
             $this->logger->info('Datasets have not changed', [
-                'table_uid' => $table->getUid(),
+                'table_uid' => $table->uid,
             ]);
             return;
         }
@@ -87,12 +88,12 @@ final class SimpleTableSynchroniser
             $datasetConnection->rollBack();
             $datasetConnection->setAutoCommit(true);
 
-            $this->synchronisationService->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
+            $this->synchronisationService->updateSynchronisationStatus($table, $table->datasetsSyncHash, $e->getMessage());
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
                 [
-                    'table handle' => $table->getHandle(),
+                    'table handle' => $table->handle,
                     'message' => $e->getMessage(),
                 ]
             );
@@ -103,7 +104,7 @@ final class SimpleTableSynchroniser
         $datasetConnection->commit();
         $datasetConnection->setAutoCommit(true);
 
-        $this->clearCacheForTable($table->getUid());
+        $this->clearCacheForTable($table->uid);
     }
 
     private function deleteAllOldDatasets(Table $table): void
@@ -112,7 +113,7 @@ final class SimpleTableSynchroniser
         $datasetConnection->delete(
             self::DATASET_TABLE_NAME,
             [
-                'table_uid' => $table->getUid(),
+                'table_uid' => $table->uid,
             ],
             [
                 'table_uid' => \PDO::PARAM_INT,
@@ -120,7 +121,7 @@ final class SimpleTableSynchroniser
         );
 
         $this->logger->debug('Deleted existing data sets in transaction', [
-            'table_uid' => $table->getUid(),
+            'table_uid' => $table->uid,
         ]);
     }
 
@@ -129,25 +130,25 @@ final class SimpleTableSynchroniser
      */
     private function insertNewDataset(Table $table, array $dataset): void
     {
-        $event = new ModifyDatasetOnSynchronisationEvent(clone $table, $dataset);
+        $event = new ModifyDatasetOnSynchronisationEvent($table, $dataset);
         /** @var ModifyDatasetOnSynchronisationEvent $event */
         $event = $this->eventDispatcher->dispatch($event);
         if ($event->isRejected()) {
             return;
         }
 
+        $columns = $this->columnRepository->findByTableUid($table->uid);
         $dataset = $event->getDataset();
         $datasetToStore = [];
-        foreach ($table->getColumns() as $column) {
-            /** @var Column $column */
-            if (\array_key_exists($column->getName(), $dataset)) {
-                $datasetToStore[$column->getName()] = $dataset[$column->getName()];
+        foreach ($columns as $column) {
+            if (\array_key_exists($column->name, $dataset)) {
+                $datasetToStore[$column->name] = $dataset[$column->name];
             }
         }
 
         $data = [
             'pid' => 0,
-            'table_uid' => $table->getUid(),
+            'table_uid' => $table->uid,
             'jrid' => $dataset['jrid'],
             'dataset' => \json_encode($datasetToStore, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR),
         ];

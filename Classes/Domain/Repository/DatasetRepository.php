@@ -11,16 +11,41 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Repository;
 
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
+use Brotkrueml\JobRouterData\Domain\Entity\Dataset;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 
-class DatasetRepository extends Repository
+class DatasetRepository
 {
+    private const TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
+
+    public function __construct(
+        private readonly ConnectionPool $connectionPool
+    ) {
+    }
+
     /**
-     * @var array<string, string>
-     * @phpstan-ignore-next-line
+     * @return Dataset[]
      */
-    protected $defaultOrderings = [
-        'jrid' => QueryInterface::ORDER_ASCENDING,
-    ];
+    public function findByTableUid(int $tableUid): array
+    {
+        $result = $this->connectionPool
+            ->getConnectionForTable(self::TABLE_NAME)
+            ->select(
+                ['*'],
+                self::TABLE_NAME,
+                [
+                    'table_uid' => $tableUid,
+                ],
+                orderBy: [
+                    'jrid' => 'ASC',
+                ]
+            );
+
+        $datasets = [];
+        while ($row = $result->fetchAssociative()) {
+            $datasets[] = Dataset::fromArray($row);
+        }
+
+        return $datasets;
+    }
 }

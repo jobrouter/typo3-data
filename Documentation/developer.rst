@@ -51,7 +51,7 @@ and a static string is added to each "position" column value.
             public function __invoke(ModifyDatasetOnSynchronisationEvent $event): void
             {
                // Only the table with the handle "jobs" should be considered
-               if ($event->getTable()->getHandle() !== 'jobs') {
+               if ($event->getTable()->handle !== 'jobs') {
                   return;
                }
 
@@ -76,7 +76,6 @@ and a static string is added to each "position" column value.
             tags:
                - name: event.listener
                  identifier: 'adjustJobsDataset'
-                 event: Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent
 
 
 Retrieve data sets from the different table link types
@@ -90,7 +89,7 @@ Simple synchronisation table
 When a JobData table is synchronised with the :ref:`Simple synchronisation
 <module-create-table-link-simple>` type, the data sets are stored in a table
 provided by this extension. This is the simplest type, as no programming
-knowledge is required. The data sets are stored JSON encoded in a provided table
+knowledge is required. The data sets are stored JSON-encoded in a provided table
 and can be displayed on the website with a :ref:`content element
 <editor-content-element>`.
 
@@ -118,8 +117,10 @@ dataset   JSON-encoded data set with the synchronised JobData table row
 Get the data sets of a table link programmatically
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There is an Extbase repository and a domain model available which you can use
-in a TYPO3 context::
+There is a repository and an entity class available which you can use in a
+TYPO3 context:
+
+.. code-block:: php
 
    <?php
    use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
@@ -130,13 +131,10 @@ in a TYPO3 context::
 
    foreach ($datasets as $dataset) {
       // Show the jrid
-      var_dump($dataset->getJrid());
+      var_dump($dataset->jrid);
 
-      // Show the JSON-encoded data set
-      var_dump($dataset->getDataset());
-
-      // Get the content of a column
-      var_dump($dataset->getDatasetContentForColumn('TRAINING'));
+      // Get the content of the column "TRAINING"
+      var_dump($dataset->dataset('TRAINING'));
    }
 
 
@@ -149,12 +147,12 @@ Synchronising a JobData table into an :ref:`custom table
 <module-create-table-link-custom>` has some advantages and disadvantages
 compared to the simple synchronisation type described above:
 
-- Flexibility: You can filter the content of a synchronised table with specific
-  SQL queries, because all JobData columns are stored in separate columns in the
-  TYPO3 table.
-- Joining data: You can join the table with other tables in your domain.
-- Easy usage: e.g. in TCA select boxes against the simple synchronisation.
-- More Work: You have to implement the logic yourself.
+-  Flexibility: You can filter the content of a synchronised table with specific
+   SQL queries, because all JobData columns are stored in separate columns in
+   the TYPO3 table.
+-  Joining data: You can join the table with other tables in your domain.
+-  Easy usage: e.g. in TCA select boxes against the simple synchronisation.
+-  More Work: You have to implement the logic yourself.
 
 But let's start:
 
@@ -213,10 +211,8 @@ Here is an example to get the table link and initialise the JobRouter Client:
    use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
    use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
    use TYPO3\CMS\Core\Utility\GeneralUtility;
-   use TYPO3\CMS\Extbase\Object\ObjectManager;
 
-   $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-   $tableRepository = $objectManager->get(TableRepository::class);
+   $tableRepository = GeneralUtility::makeInstance(TableRepository::class);
    $table = $tableRepository->findOneByHandle('contacts');
 
    $connection = $table->getConnection();
@@ -423,19 +419,19 @@ event with the following methods:
 
 .. option:: getTable()
 
-The table model.
+The table entity.
 
 Return value
-   The domain model of a table
-   (:php:`Brotkrueml\JobRouterData\Domain\Model\Table`).
+   The entity class of a table
+   (:php:`Brotkrueml\JobRouterData\Domain\Entity\Table`).
 
 .. option:: getColumn()
 
-The column model.
+The column entity.
 
 Return value
-   The domain model of a column
-   (:php:`Brotkrueml\JobRouterData\Domain\Model\Column`).
+   The entity class of a column
+   (:php:`Brotkrueml\JobRouterData\Domain\Entity\Column`).
 
 .. option:: getContent()
 

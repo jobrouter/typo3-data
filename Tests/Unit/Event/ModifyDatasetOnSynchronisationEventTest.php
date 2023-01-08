@@ -11,9 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Event;
 
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\ModifyDatasetException;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class ModifyDatasetOnSynchronisationEventTest extends TestCase
@@ -27,8 +28,7 @@ final class ModifyDatasetOnSynchronisationEventTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->table = new Table();
-        $this->table->setHandle('some handle');
+        $this->table = (new TableBuilder())->build(1, 'some handle');
 
         $this->dataset = [
             'jrid' => 42,

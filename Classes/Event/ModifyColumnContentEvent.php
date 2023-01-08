@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Event;
 
-use Brotkrueml\JobRouterData\Domain\Model\Column;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Column;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Psr\EventDispatcher\StoppableEventInterface;
 
 final class ModifyColumnContentEvent implements StoppableEventInterface

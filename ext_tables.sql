@@ -12,7 +12,8 @@ CREATE TABLE tx_jobrouterdata_domain_model_table (
 	last_sync_error text,
 	description text,
 
-	UNIQUE KEY handle (handle)
+	UNIQUE KEY handle (handle),
+	KEY type (type)
 );
 
 CREATE TABLE tx_jobrouterdata_domain_model_column (

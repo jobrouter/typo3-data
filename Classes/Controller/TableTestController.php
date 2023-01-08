@@ -11,11 +11,12 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Controller;
 
-use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
+use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
+use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
 use Brotkrueml\JobRouterData\Domain\Dto\TableTestResult;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -27,6 +28,7 @@ use Psr\Http\Message\StreamFactoryInterface;
 final class TableTestController
 {
     public function __construct(
+        private readonly ConnectionRepository $connectionRepository,
         private readonly TableRepository $tableRepository,
         private readonly RestClientFactoryInterface $restClientFactory,
         private readonly ResponseFactoryInterface $responseFactory,
@@ -43,20 +45,21 @@ final class TableTestController
 
         $tableId = (int)$body['tableId'];
         try {
-            /** @var Table|null $table */
-            $table = $this->tableRepository->findByIdentifierWithHidden($tableId);
-            if (! $table instanceof Table) {
-                return $this->buildResponse(\sprintf('Table with id "%s" not found!', $tableId));
+            try {
+                $table = $this->tableRepository->findByUidWithHidden($tableId);
+            } catch (TableNotFoundException) {
+                return $this->buildResponse(\sprintf('Table with ID "%s" not found!', $tableId));
             }
 
-            $connection = $table->getConnection();
-            if (! $connection instanceof Connection) {
-                return $this->buildResponse(\sprintf('Connection with id "%s" not found or disabled!', $tableId));
+            try {
+                $connection = $this->connectionRepository->findByUidWithHidden($table->connectionUid);
+            } catch (ConnectionNotFoundException) {
+                return $this->buildResponse(\sprintf('Connection with ID "%s" not found!', $table->connectionUid));
             }
 
             $this->restClientFactory->create($connection)->request(
                 'HEAD',
-                \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
+                \sprintf('application/jobdata/tables/%s/datasets', $table->tableGuid)
             );
             return $this->buildResponse();
         } catch (\Throwable $t) {
@@ -68,7 +71,7 @@ final class TableTestController
     {
         $result = new TableTestResult($errorMessage);
 
-        return $this->responseFactory->createResponse(200)
+        return $this->responseFactory->createResponse()
             ->withHeader('Content-Type', 'application/json; charset=utf-8')
             ->withBody($this->streamFactory->createStream($result->toJson()));
     }

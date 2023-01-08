@@ -41,24 +41,9 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\DatasetRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
-			count: 1
-			path: Classes/Domain/Repository/DatasetRepository.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\QueryBuilder\\\\TransferRepository\\:\\:countGroupByTransmitSuccess\\(\\) should return array\\<int, array\\{transmit_success\\: int, count\\: int\\}\\> but returns array\\<int, array\\<string, mixed\\>\\>\\.$#"
 			count: 1
 			path: Classes/Domain/Repository/QueryBuilder/TransferRepository.php
-
-		-
-			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TableRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
-			count: 1
-			path: Classes/Domain/Repository/TableRepository.php
-
-		-
-			message: "#^Class Brotkrueml\\\\JobRouterData\\\\Domain\\\\Repository\\\\TransferRepository extends generic class TYPO3\\\\CMS\\\\Extbase\\\\Persistence\\\\Repository but does not specify its types\\: TEntityClass$#"
-			count: 1
-			path: Classes/Domain/Repository/TransferRepository.php
 
 		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
@@ -72,11 +57,6 @@ parameters:
 
 		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SimpleTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: Classes/Synchronisation/SimpleTableSynchroniser.php
-
-		-
-			message: "#^Parameter \\#1 \\$tableUid of method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SimpleTableSynchroniser\\:\\:clearCacheForTable\\(\\) expects int, int\\|null given\\.$#"
 			count: 1
 			path: Classes/Synchronisation/SimpleTableSynchroniser.php
 

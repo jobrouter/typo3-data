@@ -11,68 +11,126 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Repository;
 
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Enumerations\TableType;
-use TYPO3\CMS\Extbase\Persistence\QueryInterface;
-use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
-use TYPO3\CMS\Extbase\Persistence\Repository;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use TYPO3\CMS\Core\Database\Connection;
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 
-/**
- * The repository for tables
- */
-class TableRepository extends Repository
+class TableRepository
 {
-    /**
-     * @var array<string, string>
-     * @phpstan-ignore-next-line
-     */
-    protected $defaultOrderings = [
-        'disabled' => QueryInterface::ORDER_ASCENDING,
-        'name' => QueryInterface::ORDER_ASCENDING,
-    ];
+    private const TABLE_NAME = 'tx_jobrouterdata_domain_model_table';
 
-    /**
-     * @return mixed[]|QueryResultInterface<Table>
-     */
-    public function findAllByTypeWithHidden(TableType $type): array|QueryResultInterface
-    {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setIgnoreEnableFields(true);
-        $query->matching($query->equals('type', $type->value));
-
-        return $query->execute();
-    }
-
-    public function findByIdentifierWithHidden(int $identifier): ?object
-    {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setIgnoreEnableFields(true);
-        $query->matching($query->equals('uid', $identifier));
-
-        return $query->execute()->getFirst();
+    public function __construct(
+        private readonly ConnectionPool $connectionPool
+    ) {
     }
 
     /**
-     * @return mixed[]|QueryResultInterface<Table>
+     * @return Table[]
      */
-    public function findAllSyncTables(): array|QueryResultInterface
+    public function findAll(): array
     {
-        $query = $this->createQuery();
-        $query->matching(
-            $query->logicalOr([
-                $query->equals('type', TableType::Simple->value),
-                $query->equals('type', TableType::CustomTable->value),
-            ])
-        );
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
-        return $query->execute();
+        $result = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->executeQuery();
+
+        $tables = [];
+        while ($row = $result->fetchAssociative()) {
+            $tables[] = Table::fromArray($row);
+        }
+
+        return $tables;
     }
 
-    public function findByHandle(string $handle): ?Table
+    /**
+     * @return Table[]
+     */
+    public function findAllByTypeWithHidden(TableType $type): array
     {
-        $query = $this->createQuery();
-        $query->matching($query->equals('handle', $handle));
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+        $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
 
-        return $query->execute()->getFirst();
+        $result = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('type', $queryBuilder->createNamedParameter($type->value, Connection::PARAM_INT))
+            )
+            ->orderBy('disabled', 'ASC')
+            ->addOrderBy('name', 'ASC')
+            ->executeQuery();
+
+        $tables = [];
+        while ($row = $result->fetchAssociative()) {
+            $tables[] = Table::fromArray($row);
+        }
+
+        return $tables;
+    }
+
+    public function findByUid(int $uid): Table
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+
+        $row = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
+            )
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if ($row === false) {
+            throw TableNotFoundException::forUid($uid);
+        }
+
+        return Table::fromArray($row);
+    }
+
+    public function findByUidWithHidden(int $uid): Table
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+        $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+
+        $row = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
+            )
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if ($row === false) {
+            throw TableNotFoundException::forUid($uid);
+        }
+
+        return Table::fromArray($row);
+    }
+
+    public function findByHandle(string $handle): Table
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
+
+        $row = $queryBuilder
+            ->select('*')
+            ->from(self::TABLE_NAME)
+            ->where(
+                $queryBuilder->expr()->eq('handle', $queryBuilder->createNamedParameter($handle))
+            )
+            ->executeQuery()
+            ->fetchAssociative();
+
+        if ($row === false) {
+            throw TableNotFoundException::forHandle($handle);
+        }
+
+        return Table::fromArray($row);
     }
 }

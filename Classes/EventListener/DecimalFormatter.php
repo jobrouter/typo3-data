@@ -19,7 +19,7 @@ final class DecimalFormatter
     public function __invoke(ModifyColumnContentEvent $event): void
     {
         $column = $event->getColumn();
-        if ($column->getType() !== FieldType::Decimal->value) {
+        if ($column->type !== FieldType::Decimal->value) {
             return;
         }
 
@@ -37,8 +37,8 @@ final class DecimalFormatter
         }
 
         $formatter = new \NumberFormatter($event->getLocale(), \NumberFormatter::DECIMAL);
-        $formatter->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, $column->getDecimalPlaces());
-        $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $column->getDecimalPlaces());
+        $formatter->setAttribute(\NumberFormatter::MIN_FRACTION_DIGITS, $column->decimalPlaces);
+        $formatter->setAttribute(\NumberFormatter::MAX_FRACTION_DIGITS, $column->decimalPlaces);
         $formattedContent = $formatter->format($content);
         if ($formattedContent !== false) {
             $event->setContent($formattedContent);

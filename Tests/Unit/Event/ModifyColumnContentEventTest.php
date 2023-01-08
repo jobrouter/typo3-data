@@ -11,9 +11,11 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Event;
 
-use Brotkrueml\JobRouterData\Domain\Model\Column;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Column;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\ColumnBuilder;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class ModifyColumnContentEventTest extends TestCase
@@ -23,8 +25,8 @@ final class ModifyColumnContentEventTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->table = new Table();
-        $this->column = new Column();
+        $this->table = (new TableBuilder())->build(1);
+        $this->column = (new ColumnBuilder())->build(1);
     }
 
     /**

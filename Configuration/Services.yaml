@@ -6,7 +6,7 @@ services:
 
   Brotkrueml\JobRouterData\:
     resource: '../Classes/*'
-    exclude: '../Classes/{Domain/Entity,Domain/Model,Exception,Extension.php,Hooks,UserFunctions}'
+    exclude: '../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php,Hooks,UserFunctions}'
 
   Brotkrueml\JobRouterData\Command\CleanUpTransfersCommand:
     tags:
@@ -39,6 +39,10 @@ services:
     public: true
 
   Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter:
+    public: true
+
+  # Set public for functional tests
+  Brotkrueml\JobRouterData\Domain\Repository\TransferRepository:
     public: true
 
   Brotkrueml\JobRouterData\EventListener\ToolbarItemProvider:

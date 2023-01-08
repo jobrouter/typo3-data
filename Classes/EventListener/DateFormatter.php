@@ -18,7 +18,7 @@ final class DateFormatter
 {
     public function __invoke(ModifyColumnContentEvent $event): void
     {
-        if ($event->getColumn()->getType() !== FieldType::Date->value) {
+        if ($event->getColumn()->type !== FieldType::Date->value) {
             return;
         }
 

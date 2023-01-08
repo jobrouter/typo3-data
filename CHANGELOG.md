@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Require JobRouter Connector extension in version 2
 - Require JobRouter Base extension in version 2
 - Constants from Table model are moved into the new TableType enum
+- Models are no longer Extbase-based and are moved to the Domain/Entity namespace
+- Repositories are no longer Extbase-based
 
 ### Fixed
 - Error in content element when table link is disabled or deleted

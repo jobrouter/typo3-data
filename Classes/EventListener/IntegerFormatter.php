@@ -18,7 +18,7 @@ final class IntegerFormatter
 {
     public function __invoke(ModifyColumnContentEvent $event): void
     {
-        if ($event->getColumn()->getType() !== FieldType::Integer->value) {
+        if ($event->getColumn()->type !== FieldType::Integer->value) {
             return;
         }
 

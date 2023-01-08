@@ -1,7 +1,7 @@
 tx_jobrouterdata_domain_model_dataset
-,uid,table_uid,jrid
-,1,42,100
-,2,42,101
-,3,21,102
-,4,42,103
-,5,10,58
+,uid,table_uid,jrid,dataset
+,1,42,100,"{""key"": ""value""}"
+,2,42,101,"{""key"": ""value""}"
+,3,21,102,"{""key"": ""value""}"
+,4,42,103,"{""key"": ""value""}"
+,5,10,58,"{""key"": ""value""}"

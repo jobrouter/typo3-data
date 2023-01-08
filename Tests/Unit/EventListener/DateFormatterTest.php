@@ -12,10 +12,10 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\EventListener;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterData\Domain\Model\Column;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 use Brotkrueml\JobRouterData\EventListener\DateFormatter;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\ColumnBuilder;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class DateFormatterTest extends TestCase
@@ -32,9 +32,8 @@ final class DateFormatterTest extends TestCase
      */
     public function contentIsFormattedIfColumnTypeIsDate(): void
     {
-        $table = new Table();
-        $column = new Column();
-        $column->setType(FieldType::Date->value);
+        $table = (new TableBuilder())->build(1);
+        $column = (new ColumnBuilder())->build(1, FieldType::Date);
 
         $event = new ModifyColumnContentEvent($table, $column, '2021-11-29T00:00:00+00:00', 'en_GB');
 
@@ -48,9 +47,8 @@ final class DateFormatterTest extends TestCase
      */
     public function contentIsNotChangedIfColumnTypeIsNotDate(): void
     {
-        $table = new Table();
-        $column = new Column();
-        $column->setType(FieldType::DateTime->value);
+        $table = (new TableBuilder())->build(1);
+        $column = (new ColumnBuilder())->build(1, FieldType::DateTime);
 
         $event = new ModifyColumnContentEvent($table, $column, '2021-11-29T00:00:00+00:00', 'en_GB');
 

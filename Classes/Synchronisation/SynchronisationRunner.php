@@ -12,10 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
 use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Enumerations\TableType;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -38,7 +39,6 @@ class SynchronisationRunner
     {
         if ($tableHandle === '') {
             $tables = $this->tableRepository->findAll();
-            /** @var Table $table */
             foreach ($tables as $table) {
                 $this->synchroniseTable($table, $force);
             }
@@ -51,9 +51,7 @@ class SynchronisationRunner
 
     private function synchroniseTable(Table $table, bool $force): void
     {
-        $type = $table->getType();
-
-        if ($type === TableType::Simple->value) {
+        if ($table->type === TableType::Simple) {
             $this->totalTables++;
             if (! $this->simpleTableSynchroniser->synchroniseTable($table, $force)) {
                 $this->erroneousTables++;
@@ -61,36 +59,23 @@ class SynchronisationRunner
             return;
         }
 
-        if ($type === TableType::CustomTable->value) {
+        if ($table->type === TableType::CustomTable) {
             $this->totalTables++;
             if (! $this->customTableSynchroniser->synchroniseTable($table, $force)) {
                 $this->erroneousTables++;
             }
-            return;
         }
-        if ($type === TableType::OtherUsage->value) {
-            return;
-        }
-        if ($type === TableType::FormFinisher->value) {
-            return;
-        }
-
-        $message = \sprintf('Table with uid "%d" has invalid type "%d"!', $table->getUid(), $table->getType());
-        $this->logger->error($message);
-        $this->erroneousTables++;
     }
 
     private function getTable(string $tableHandle): Table
     {
-        $table = $this->tableRepository->findByHandle($tableHandle);
-
-        if (! $table instanceof Table) {
+        try {
+            return $this->tableRepository->findByHandle($tableHandle);
+        } catch (TableNotFoundException) {
             $message = \sprintf('Table with handle "%s" not available (perhaps disabled?)!', $tableHandle);
             $this->logger->emergency($message);
 
             throw new SynchronisationException($message, 1567003394);
         }
-
-        return $table;
     }
 }

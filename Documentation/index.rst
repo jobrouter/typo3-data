@@ -46,6 +46,7 @@ Connect JobRouter® JobData tables with TYPO3
    dashboard
    editor
    developer
+   upgrade
    changelog
    copyright
 

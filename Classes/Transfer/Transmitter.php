@@ -11,16 +11,17 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Transfer;
 
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
 use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
-use Brotkrueml\JobRouterData\Domain\Model\Transfer;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Psr\Log\LoggerInterface;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 /**
  * @internal Only to be used within the jobrouter_data extension, not part of the public API
@@ -31,9 +32,9 @@ class Transmitter
     private int $erroneousTransfers = 0;
 
     public function __construct(
+        private readonly ConnectionRepository $connectionRepository,
         private readonly LoggerInterface $logger,
-        private readonly PersistenceManagerInterface $persistenceManager,
-        private readonly RestClientFactory $restClientFactory,
+        private readonly RestClientFactoryInterface $restClientFactory,
         private readonly TransferRepository $transferRepository,
         private readonly TableRepository $tableRepository
     ) {
@@ -42,7 +43,7 @@ class Transmitter
     public function run(): CountResult
     {
         $this->logger->info('Transmit data sets for all tables');
-        $transfers = $this->transferRepository->findByTransmitSuccess(0);
+        $transfers = $this->transferRepository->findNotTransmitted();
 
         $this->totalTransfers = 0;
         $this->erroneousTransfers = 0;
@@ -63,38 +64,36 @@ class Transmitter
 
     private function processTransfer(Transfer $transfer): void
     {
-        $this->logger->debug(\sprintf('Processing transfer with uid "%d"', $transfer->getUid()));
+        $this->logger->debug(\sprintf('Processing transfer with uid "%d"', $transfer->uid));
 
         $this->totalTransfers++;
         try {
-            $this->transmitTransfer($transfer);
+            $jrid = $this->transmitTransfer($transfer);
         } catch (\Exception $e) {
             $this->erroneousTransfers++;
             $context = [
-                'transfer uid' => $transfer->getUid(),
+                'transfer uid' => $transfer->uid,
                 'exception class' => $e::class,
                 'exception code' => $e->getCode(),
             ];
             $this->logger->error($e->getMessage(), $context);
-            $transfer->setTransmitMessage($e->getMessage());
+            $this->transferRepository->updateTransmitData($transfer->uid, false, new \DateTimeImmutable(), $e->getMessage());
+            return;
         }
 
-        $transfer->setTransmitDate(new \DateTime());
-        $this->transferRepository->update($transfer);
-        $this->persistenceManager->persistAll();
+        $message = \json_encode([
+            'jrid' => $jrid,
+        ], \JSON_THROW_ON_ERROR);
+        $this->transferRepository->updateTransmitData($transfer->uid, true, new \DateTimeImmutable(), $message);
     }
 
-    private function transmitTransfer(Transfer $transfer): void
+    private function transmitTransfer(Transfer $transfer): int
     {
         $result = $this
-            ->getJobDataRepositoryForTableUid($transfer->getTableUid())
-            ->add(\json_decode($transfer->getData(), true, 512, \JSON_THROW_ON_ERROR));
-        $jrid = $result[0]['jrid'] ?? null;
+            ->getJobDataRepositoryForTableUid($transfer->tableUid)
+            ->add(\json_decode($transfer->data, true, flags: \JSON_THROW_ON_ERROR));
 
-        $transfer->setTransmitSuccess(true);
-        $transfer->setTransmitMessage($jrid ? \json_encode([
-            'jrid' => $jrid,
-        ], \JSON_THROW_ON_ERROR) : '');
+        return (int)($result[0]['jrid'] ?? 0);
     }
 
     private function getJobDataRepositoryForTableUid(int $tableUid): JobDataRepository
@@ -109,18 +108,18 @@ class Transmitter
         }
 
         return $jobDataRepositories[$tableUid] = new JobDataRepository(
+            $this->connectionRepository,
             $this->restClientFactory,
             $this->tableRepository,
-            $table->getHandle()
+            $table->handle
         );
     }
 
     private function getTable(int $tableUid): Table
     {
-        /** @var Table|null $table */
-        $table = $this->tableRepository->findByIdentifier($tableUid);
-
-        if (! $table instanceof Table) {
+        try {
+            return $this->tableRepository->findByUid($tableUid);
+        } catch (TableNotFoundException) {
             throw new TableNotAvailableException(
                 \sprintf(
                     'Table link with uid "%d" is not available',
@@ -129,7 +128,5 @@ class Transmitter
                 1579886642
             );
         }
-
-        return $table;
     }
 }

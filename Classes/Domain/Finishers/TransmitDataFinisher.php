@@ -14,13 +14,15 @@ namespace Brotkrueml\JobRouterData\Domain\Finishers;
 use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterData\Domain\Model\Column;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Column;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
+use Brotkrueml\JobRouterData\Domain\Hydrator\TableColumnsHydrator;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterData\Exception\MissingColumnException;
 use Brotkrueml\JobRouterData\Exception\MissingFinisherOptionException;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Brotkrueml\JobRouterData\Transfer\Preparer;
 
 /**
@@ -33,6 +35,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
      */
     public function __construct(
         private readonly Preparer $preparer,
+        private readonly TableColumnsHydrator $tableColumnsHydrator,
         private readonly TableRepository $tableRepository
     ) {
     }
@@ -41,7 +44,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
     {
         $table = $this->getTable();
         $data = $this->prepareData($table);
-        $this->preparer->store((int)$table->getUid(), $this->correlationId, \json_encode($data, \JSON_THROW_ON_ERROR));
+        $this->preparer->store($table->uid, $this->correlationId, \json_encode($data, \JSON_THROW_ON_ERROR));
     }
 
     private function getTable(): Table
@@ -56,15 +59,17 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             throw new MissingFinisherOptionException($message, 1601728021);
         }
 
-        $table = $this->tableRepository->findOneByHandle($handle);
-        if (! $table instanceof Table) {
-            $message = \sprintf(
-                'Table with handle "%s" is not available, defined in form with identifier "%s"',
-                $handle,
-                $this->getFormIdentifier()
+        try {
+            $table = $this->tableColumnsHydrator->hydrate($this->tableRepository->findByHandle($handle));
+        } catch (TableNotFoundException) {
+            throw new TableNotAvailableException(
+                \sprintf(
+                    'Table with handle "%s" is not available, defined in form with identifier "%s"',
+                    $handle,
+                    $this->getFormIdentifier()
+                ),
+                1601728085
             );
-
-            throw new TableNotAvailableException($message, 1601728085);
         }
 
         return $table;
@@ -95,14 +100,14 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
                         'Column "%s" is assigned in form with identifier "%s" but not defined in table link "%s"',
                         $column,
                         $this->getFormIdentifier(),
-                        $table->getName()
+                        $table->name
                     ),
                     1601736690
                 );
             }
 
             $value = $this->variableResolver->resolve(
-                FieldType::from($definedTableColumns[$column]->getType()),
+                FieldType::from($definedTableColumns[$column]->type),
                 $value
             );
 
@@ -110,8 +115,8 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
 
             $data[$column] = $this->considerTypeForFieldValue(
                 $value,
-                FieldType::from($definedTableColumns[$column]->getType()),
-                $definedTableColumns[$column]->getFieldSize()
+                FieldType::from($definedTableColumns[$column]->type),
+                $definedTableColumns[$column]->fieldSize
             );
         }
 
@@ -123,11 +128,12 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
      */
     private function getTableColumns(Table $table): array
     {
-        $columns = $table->getColumns();
+        /** @var Column[] $columns */
+        $columns = $table->columns;
 
         $tableFields = [];
         foreach ($columns as $column) {
-            $tableFields[$column->getName()] = $column;
+            $tableFields[$column->name] = $column;
         }
 
         // @phpstan-ignore-next-line Use another value object over array with string-keys and objects, array<string, ValueObject>

@@ -11,8 +11,9 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
+use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
 use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\QueryBuilder\TableRepository as QueryBuilderTableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
@@ -23,6 +24,7 @@ use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 class SynchronisationService
 {
     public function __construct(
+        private readonly ConnectionRepository $connectionRepository,
         private readonly QueryBuilderTableRepository $queryBuilderTableRepository,
         private readonly RestClientFactory $restClientFactory,
         private readonly TableRepository $tableRepository
@@ -34,7 +36,7 @@ class SynchronisationService
      */
     public function retrieveDatasetsFromJobDataTable(Table $table): array
     {
-        return (new JobDataRepository($this->restClientFactory, $this->tableRepository, $table->getHandle()))
+        return (new JobDataRepository($this->connectionRepository, $this->restClientFactory, $this->tableRepository, $table->handle))
             ->findAll();
     }
 
@@ -48,11 +50,8 @@ class SynchronisationService
 
     public function updateSynchronisationStatus(Table $table, string $datasetsHash = '', string $error = ''): void
     {
-        /** @var int $uid */
-        $uid = $table->getUid();
-
         $this->queryBuilderTableRepository->updateSynchronisationStatus(
-            $uid,
+            $table->uid,
             \time(),
             $datasetsHash,
             $error

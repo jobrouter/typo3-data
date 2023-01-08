@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Preview;
 
 use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
@@ -40,14 +40,17 @@ final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
 
         $flexForm = GeneralUtility::xml2array($record['pi_flexform']);
         $tableId = (int)$this->getValueFromFlexform($flexForm, 'table');
-        $table = $this->tableRepository->findByIdentifier($tableId);
 
-        $site = $this->siteFinder->getSiteByPageId($record['pid']);
-        $locale = $site->getLanguageById($record['sys_language_uid'])->getLocale();
+        try {
+            $table = $this->tableRepository->findByUid($tableId);
+            $site = $this->siteFinder->getSiteByPageId($record['pid']);
+            $locale = $site->getLanguageById($record['sys_language_uid'])->getLocale();
 
-        $view->assign('table', $table);
-        if ($table instanceof Table) {
-            $view->assign('rows', $this->datasetConverter->convertFromJsonToArray($table, $locale));
+            $view->assignMultiple([
+                'table' => $table,
+                'rows' => $this->datasetConverter->convertFromJsonToArray($table, $locale),
+            ]);
+        } catch (TableNotFoundException) {
         }
 
         return $this->linkEditContent($view->render(), $item->getRecord());

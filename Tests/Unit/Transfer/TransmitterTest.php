@@ -11,23 +11,18 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Tests\Unit\Transfer;
 
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
-use TYPO3\CMS\Extbase\Persistence\PersistenceManagerInterface;
 
 class TransmitterTest extends TestCase
 {
     private Transmitter $subject;
-
-    /**
-     * @var MockObject&PersistenceManagerInterface
-     */
-    private MockObject $persistenceManagerMock;
 
     /**
      * @var MockObject&TransferRepository
@@ -41,14 +36,11 @@ class TransmitterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->persistenceManagerMock = $this->createMock(PersistenceManagerInterface::class);
-
-        $restClientStub = $this->createStub(RestClientFactory::class);
+        $restClientStub = $this->createStub(RestClientFactoryInterface::class);
 
         $this->transferRepositoryMock = $this->getMockBuilder(TransferRepository::class)
             ->disableOriginalConstructor()
-            ->addMethods(['findByTransmitSuccess'])
-            ->onlyMethods(['update'])
+            ->onlyMethods(['findNotTransmitted', 'updateTransmitData'])
             ->getMock();
 
         $this->tableRepositoryMock = $this->getMockBuilder(TableRepository::class)
@@ -56,8 +48,8 @@ class TransmitterTest extends TestCase
             ->getMock();
 
         $this->subject = new Transmitter(
+            $this->createStub(ConnectionRepository::class),
             new NullLogger(),
-            $this->persistenceManagerMock,
             $restClientStub,
             $this->transferRepositoryMock,
             $this->tableRepositoryMock
@@ -70,7 +62,7 @@ class TransmitterTest extends TestCase
     public function transmitWithNoTransfersAvailableReturns0TotalsAndErrors(): void
     {
         $this->transferRepositoryMock
-            ->method('findByTransmitSuccess')
+            ->method('findNotTransmitted')
             ->willReturn([]);
 
         $actual = $this->subject->run();

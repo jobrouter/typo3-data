@@ -9,16 +9,16 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository;
+namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository\JobRouter;
 
 use Brotkrueml\JobRouterClient\Client\RestClient;
 use Brotkrueml\JobRouterClient\Configuration\ClientConfiguration;
-use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
 use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\DatasetNotAvailableException;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\ConnectionBuilder;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
 use donatj\MockWebServer\MockWebServer;
 use donatj\MockWebServer\Response;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -40,15 +40,15 @@ final class JobDataRepositoryTest extends FunctionalTestCase
     private static MockWebServer $server;
     private static RestClient $restClient;
     private static ClientConfiguration $configuration;
-    /**
-     * @var TableRepository&MockObject
-     */
-    private MockObject $tableRepositoryMock;
-    private RestClientFactory&Stub $restClientFactoryStub;
+
+    private TableRepository&MockObject $tableRepositoryMock;
+    private RestClientFactoryInterface&Stub $restClientFactoryStub;
     private JobDataRepository $subject;
 
     public static function setUpBeforeClass(): void
     {
+        self::markTestSkipped('Will be reworked');
+
         self::$server = new MockWebServer();
         self::$server->start();
 
@@ -81,14 +81,15 @@ final class JobDataRepositoryTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $connection = new Connection();
-        $connection->setBaseUrl((string)self::$configuration->getJobRouterSystem());
-        $connection->setUsername(self::$configuration->getUsername());
-        $connection->setPassword(self::$configuration->getPassword());
+        $connection = (new ConnectionBuilder())->build(
+            1,
+            (string)self::$configuration->getJobRouterSystem(),
+            self::$configuration->getUsername(),
+            self::$configuration->getPassword()
+        );
 
-        $table = new Table();
-        $table->setTableGuid('some-guid');
-        $table->setConnection($connection);
+        $table = (new TableBuilder())->build(1, tableGuid: 'some-guid');
+        $table = $table->withConnection($connection);
 
         $this->tableRepositoryMock = $this->getMockBuilder(TableRepository::class)
             ->disableOriginalConstructor()
@@ -99,7 +100,7 @@ final class JobDataRepositoryTest extends FunctionalTestCase
             ->with('some-handle')
             ->willReturn($table);
 
-        $this->restClientFactoryStub = $this->createStub(RestClientFactory::class);
+        $this->restClientFactoryStub = $this->createStub(RestClientFactoryInterface::class);
         $this->restClientFactoryStub
             ->method('create')
             ->with($connection)

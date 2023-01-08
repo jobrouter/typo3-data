@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Event;
 
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Exception\ModifyDatasetException;
 
 final class ModifyDatasetOnSynchronisationEvent
@@ -63,7 +63,7 @@ final class ModifyDatasetOnSynchronisationEvent
                     'Given dataset keys "%s" differ from original dataset keys "%s" when modfying dataset for table with handle "%s"',
                     \implode(', ', $newKeys),
                     \implode(', ', $originalKeys),
-                    $this->table->getHandle()
+                    $this->table->handle
                 ),
                 1639132693
             );
@@ -79,7 +79,7 @@ final class ModifyDatasetOnSynchronisationEvent
             throw new ModifyDatasetException(
                 \sprintf(
                     'jrid must not be overriden for table with handle "%s", original jrid is "%d", new jrid id "%d"',
-                    $this->table->getHandle(),
+                    $this->table->handle,
                     $this->dataset['jrid'],
                     $dataset['jrid']
                 ),

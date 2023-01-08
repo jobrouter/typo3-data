@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Synchronisation;
 
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\SynchronisationException;
 use Brotkrueml\JobRouterData\Table\TableProvider;
@@ -37,13 +37,13 @@ final class CustomTableSynchroniser
     {
         try {
             $datasets = $this->synchronisationService->retrieveDatasetsFromJobDataTable($table);
-            $columns = $this->tableProvider->getColumnsForCustomTable($table->getCustomTable());
+            $columns = $this->tableProvider->getColumnsForCustomTable($table->customTable);
             $this->storeDatasets($table, $columns, $datasets, $force);
             $this->synchronisationService->updateSynchronisationStatus($table);
         } catch (\Exception $e) {
             $message = \sprintf(
                 'Table link with uid "%d" cannot be synchronised: %s',
-                $table->getUid(),
+                $table->uid,
                 $e->getMessage()
             );
 
@@ -60,24 +60,22 @@ final class CustomTableSynchroniser
     {
         $datasetsHash = $this->synchronisationService->hashDatasets($datasets);
 
-        if (! $force && $datasetsHash === $table->getDatasetsSyncHash()) {
+        if (! $force && $datasetsHash === $table->datasetsSyncHash) {
             $this->synchronisationService->updateSynchronisationStatus($table);
             $this->logger->info('Datasets have not changed', [
-                'table_uid' => $table->getUid(),
+                'table_uid' => $table->uid,
             ]);
             return;
         }
 
-        $customTable = $table->getCustomTable();
-
-        $connection = $this->connectionPool->getConnectionForTable($customTable);
+        $connection = $this->connectionPool->getConnectionForTable($table->customTable);
         $connection->setAutoCommit(false);
         $connection->beginTransaction();
 
         try {
-            $connection->truncate($customTable);
+            $connection->truncate($table->customTable);
             $this->logger->debug('Truncated table in transaction', [
-                'custom table' => $customTable,
+                'custom table' => $table->customTable,
             ]);
 
             foreach ($datasets as $dataset) {
@@ -99,7 +97,7 @@ final class CustomTableSynchroniser
                     $data[$column] = $content;
                 }
 
-                $connection->insert($customTable, $data);
+                $connection->insert($table->customTable, $data);
 
                 $this->logger->debug('Inserted table record in transaction', $data);
             }
@@ -109,13 +107,13 @@ final class CustomTableSynchroniser
             $connection->rollBack();
             $connection->setAutoCommit(true);
 
-            $this->synchronisationService->updateSynchronisationStatus($table, $table->getDatasetsSyncHash(), $e->getMessage());
+            $this->synchronisationService->updateSynchronisationStatus($table, $table->datasetsSyncHash, $e->getMessage());
 
             $this->logger->emergency(
                 'Error while synchronising, rollback',
                 [
-                    'table handle' => $table->getHandle(),
-                    'custom table' => $customTable,
+                    'table handle' => $table->handle,
+                    'custom table' => $table->customTable,
                     'message' => $e->getMessage(),
                 ]
             );

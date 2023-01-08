@@ -12,8 +12,9 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\DataProcessing;
 
 use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterData\Domain\Hydrator\TableColumnsHydrator;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Brotkrueml\JobRouterData\Extension;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -30,7 +31,8 @@ final class TableProcessor implements DataProcessorInterface
     public function __construct(
         private readonly DatasetConverter $datasetConverter,
         private readonly FlexFormService $flexFormService,
-        private readonly TableRepository $tableRepository
+        private readonly TableColumnsHydrator $tableColumnsHydrator,
+        private readonly TableRepository $tableRepository,
     ) {
     }
 
@@ -60,16 +62,16 @@ final class TableProcessor implements DataProcessorInterface
 
     private function enrichProcessedDataWithTableInformation(int $tableUid): void
     {
-        /** @var Table|null $table */
-        $table = $this->tableRepository->findByIdentifier($tableUid);
-        if (! $table instanceof Table) {
-            return;
-        }
+        try {
+            $table = $this->tableRepository->findByUid($tableUid);
+            $table = $this->tableColumnsHydrator->hydrate($table);
 
-        $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale();
-        $this->processedData['table'] = $table;
-        $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
-        $this->addCacheTag($tableUid);
+            $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale();
+            $this->processedData['table'] = $table;
+            $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
+            $this->addCacheTag($tableUid);
+        } catch (TableNotFoundException) {
+        }
     }
 
     private function addCacheTag(int $tableUid): void

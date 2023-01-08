@@ -12,10 +12,10 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\EventListener;
 
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterData\Domain\Model\Column;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 use Brotkrueml\JobRouterData\EventListener\IntegerFormatter;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\ColumnBuilder;
+use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\TestCase;
 
 final class IntegerFormatterTest extends TestCase
@@ -33,9 +33,8 @@ final class IntegerFormatterTest extends TestCase
      */
     public function invoke(FieldType $type, $content, string $locale, $expected): void
     {
-        $table = new Table();
-        $column = new Column();
-        $column->setType($type->value);
+        $table = (new TableBuilder())->build(1);
+        $column = (new ColumnBuilder())->build(1, $type);
 
         $event = new ModifyColumnContentEvent($table, $column, $content, $locale);
         $this->subject->__invoke($event);

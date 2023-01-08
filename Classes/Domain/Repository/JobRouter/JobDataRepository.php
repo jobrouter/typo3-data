@@ -13,14 +13,16 @@ namespace Brotkrueml\JobRouterData\Domain\Repository\JobRouter;
 
 use Brotkrueml\JobRouterClient\Client\ClientInterface;
 use Brotkrueml\JobRouterClient\Exception\ExceptionInterface;
-use Brotkrueml\JobRouterConnector\Domain\Model\Connection;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
-use Brotkrueml\JobRouterData\Domain\Model\Table;
+use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
+use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
+use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
+use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\ConnectionNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\DatasetNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\DatasetsNotAvailableException;
 use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
+use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 
 class JobDataRepository
 {
@@ -38,7 +40,8 @@ class JobDataRepository
     private ?ClientInterface $client = null;
 
     public function __construct(
-        private readonly RestClientFactory $restClientFactory,
+        private readonly ConnectionRepository $connectionRepository,
+        private readonly RestClientFactoryInterface $restClientFactory,
         private readonly TableRepository $tableRepository,
         private readonly string $tableHandle
     ) {
@@ -47,8 +50,9 @@ class JobDataRepository
     protected function getClient(): ClientInterface
     {
         if (! $this->client instanceof ClientInterface) {
-            $table = $this->tableRepository->findOneByHandle($this->tableHandle);
-            if (! $table instanceof Table) {
+            try {
+                $table = $this->tableRepository->findByHandle($this->tableHandle);
+            } catch (TableNotFoundException) {
                 throw new TableNotAvailableException(
                     \sprintf('Table with handle "%s" is not available!', $this->tableHandle),
                     1595951023
@@ -56,8 +60,9 @@ class JobDataRepository
             }
 
             $this->table = $table;
-            $connection = $this->table->getConnection();
-            if (! $connection instanceof Connection) {
+            try {
+                $connection = $this->connectionRepository->findByUid($table->connectionUid);
+            } catch (ConnectionNotFoundException) {
                 throw new ConnectionNotAvailableException(
                     \sprintf('Connection for table with handle "%s" is not available!', $this->tableHandle),
                     1595951024
@@ -78,7 +83,7 @@ class JobDataRepository
     {
         $response = $this->getClient()->request(
             'POST',
-            \sprintf(self::RESOURCE_TEMPLATE_POST, $this->table->getTableGuid()),
+            \sprintf(self::RESOURCE_TEMPLATE_POST, $this->table->tableGuid),
             [
                 'dataset' => $dataset,
             ]
@@ -98,7 +103,7 @@ class JobDataRepository
 
         $this->getClient()->request(
             'DELETE',
-            \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->table->getTableGuid()),
+            \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->table->tableGuid),
             [
                 'datasets' => $datasets,
             ]
@@ -113,7 +118,7 @@ class JobDataRepository
     {
         $response = $this->getClient()->request(
             'PUT',
-            \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->table->getTableGuid(), $jrid),
+            \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->table->tableGuid, $jrid),
             [
                 'dataset' => $dataset,
             ]
@@ -129,7 +134,7 @@ class JobDataRepository
     {
         $response = $this->getClient()->request(
             'GET',
-            \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->table->getTableGuid())
+            \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->table->tableGuid)
         );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
@@ -143,7 +148,7 @@ class JobDataRepository
         try {
             $response = $this->getClient()->request(
                 'GET',
-                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->getTableGuid(), $jrid)
+                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->table->tableGuid, $jrid)
             );
         } catch (ExceptionInterface $e) {
             throw new DatasetNotAvailableException(

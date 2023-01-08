@@ -1,7 +1,9 @@
 tx_jobrouterdata_domain_model_table
-,uid,handle,custom_table,datasets_sync_hash,last_sync_date,last_sync_error
-,1,"handle_1","","",0,""
-,2,"handle_2","","",0,""
-,3,"handle_3","tx_someext_domain_model_sometable","ahash",1234567890,"an error"
-,4,"handle_4","","",0,""
-,5,"handle_5","tx_anothertable","",0,""
+,uid,disabled,deleted,type,handle,custom_table,datasets_sync_hash,last_sync_date,last_sync_error
+,1,0,0,1,"handle_1","","",0,""
+,2,0,0,2,"handle_2","","",0,""
+,3,0,0,3,"handle_3","tx_someext_domain_model_sometable","ahash",1234567890,"an error"
+,4,0,0,4,"handle_4","","",0,""
+,5,0,0,1,"handle_5","tx_anothertable","",0,""
+,6,1,0,1,"handle_6","","",0,""
+,7,0,1,1,"handle_7","","",0,""

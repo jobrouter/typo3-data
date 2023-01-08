@@ -18,7 +18,7 @@ final class DateTimeFormatter
 {
     public function __invoke(ModifyColumnContentEvent $event): void
     {
-        if ($event->getColumn()->getType() !== FieldType::DateTime->value) {
+        if ($event->getColumn()->type !== FieldType::DateTime->value) {
             return;
         }
 
