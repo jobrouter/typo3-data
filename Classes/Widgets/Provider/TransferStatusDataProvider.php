@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Widgets\Provider;
 
-use Brotkrueml\JobRouterBase\Domain\Model\TransferStatus;
+use Brotkrueml\JobRouterBase\Domain\Dto\TransferStatus;
 use Brotkrueml\JobRouterBase\Widgets\Provider\TransferStatusDataProviderInterface;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Extension;
