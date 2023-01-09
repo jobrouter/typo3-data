@@ -22,8 +22,12 @@ jobs:
         include:
           - php-versions: '8.1'
             typo3-versions: '^11'
+          - php-versions: '8.1'
+            typo3-versions: '^12'
           - php-versions: '8.2'
             typo3-versions: '^11'
+          - php-versions: '8.2'
+            typo3-versions: '^12'
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -46,7 +50,6 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer update
           composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress --prefer-dist --optimize-autoloader
       - name: Run PHP linter
         run: |
@@ -63,8 +66,12 @@ jobs:
         include:
           - php-versions: '8.1'
             typo3-versions: '11'
+          - php-versions: '8.1'
+            typo3-versions: '12'
           - php-versions: '8.2'
             typo3-versions: '11'
+          - php-versions: '8.2'
+            typo3-versions: '12'
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -72,8 +79,7 @@ jobs:
           fetch-depth: 1
       - name: Install composer dependencies
         run: |
-          composer update
-          ./Build/Scripts/runTests.sh -s composerInstall -p ${{ matrix.php-versions }} -t ${{ matrix.typo3-versions }}
+          composer require typo3/cms-core=^${{ matrix.typo3-versions }} --no-progress --prefer-dist --optimize-autoloader
       - name: Run functional tests
         run: |
           ./Build/Scripts/runTests.sh -s functional -p ${{ matrix.php-versions }} -t ${{ matrix.typo3-versions }}
@@ -87,7 +93,7 @@ jobs:
           - php-versions: '8.1'
             typo3-versions: '11'
           - php-versions: '8.2'
-            typo3-versions: '11'
+            typo3-versions: '12'
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -95,8 +101,7 @@ jobs:
           fetch-depth: 1
       - name: Install composer dependencies
         run: |
-          composer update
-          ./Build/Scripts/runTests.sh -s composerInstall -p ${{ matrix.php-versions }} -t ${{ matrix.typo3-versions }}
+          composer require typo3/cms-core=^${{ matrix.typo3-versions }} --no-progress --prefer-dist --optimize-autoloader
       - name: Run acceptance tests
         run: |
           ./Build/Scripts/runTests.sh -s acceptance -p ${{ matrix.php-versions }} -t ${{ matrix.typo3-versions }}

@@ -10,7 +10,7 @@ $EM_CONF[$_EXTKEY] = [
     'constraints' => [
         'depends' => [
             'php' => '8.1.0-0.0.0',
-            'typo3' => '11.5.4-11.5.99',
+            'typo3' => '11.5.4-12.4.99',
             'jobrouter_base' => '2.0.0-2.99.99',
             'jobrouter_connector' => '2.0.0-2.99.99',
         ],
@@ -18,7 +18,6 @@ $EM_CONF[$_EXTKEY] = [
         'suggests' => [
             'dashboard' => '',
             'form' => '',
-            'logs' => ''
         ],
     ],
     'autoload' => [

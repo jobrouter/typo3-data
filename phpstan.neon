@@ -9,6 +9,7 @@ parameters:
     level: 8
     paths:
         - Classes
+    checkGenericClassInNonGenericObjectType: false
     cognitive_complexity:
         class: 20
         function: 10
