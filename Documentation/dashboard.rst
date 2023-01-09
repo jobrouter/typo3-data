@@ -26,7 +26,6 @@ The widgets are based on the transfer table. All entries are considered -
 successfully started, pending and erroneous entries.
 
 .. note::
-
    The available widgets depend on the access rights of user.
 
 

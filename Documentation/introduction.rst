@@ -16,10 +16,10 @@ What does it do?
 
 TYPO3 JobRouter Data is a TYPO3 extension that
 
-* Provides a module to manage JobData table links
-* Synchronises data sets from JobData tables into TYPO3
-* Transmits data sets from TYPO3 into JobData tables
-* Provides a form finisher to store form data into a JobData table
+*  Provides a module to manage JobData table links
+*  Synchronises data sets from JobData tables into TYPO3
+*  Transmits data sets from TYPO3 into JobData tables
+*  Provides a form finisher to store form data into a JobData table
 
 A content element is available to display synchronised data sets on a web page.
 
@@ -35,12 +35,12 @@ Release management
 
 This extension uses `semantic versioning`_ which basically means for you, that
 
-* Bugfix updates (e.g. 1.0.0 => 1.0.1) just includes small bug fixes or security
-  relevant stuff without breaking changes.
-* Minor updates (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks
-  without breaking changes.
-* Major updates (e.g. 1.0.0 => 2.0.0) includes breaking changes which can be
-  refactorings, features or bug fixes.
+*  Bugfix updates (e.g. 1.0.0 => 1.0.1) just includes small bug fixes or
+   security relevant stuff without breaking changes.
+*  Minor updates (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks
+   without breaking changes.
+*  Major updates (e.g. 1.0.0 => 2.0.0) includes breaking changes which can be
+   refactorings, features or bug fixes.
 
 The changes between the different versions can be found in the
 :ref:`changelog <changelog>`.

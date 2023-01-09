@@ -16,8 +16,6 @@ Target group: **Developers**
 Modify data sets on synchronisation
 ===================================
 
-.. versionadded:: 1.0.0
-
 The records that are synchronised with the table types
 :ref:`module-create-table-link-simple` or :ref:`module-create-table-link-custom`
 can be adapted to the needs of the website or rejected during synchronisation.
@@ -37,42 +35,44 @@ and a static string is added to each "position" column value.
 
 #. Create the event listener
 
-   ::
+   .. code-block:: php
+      :caption: EXT:my_extension/Classes/EventListener/AdjustJobsDataset.php
 
       <?php
-         declare(strict_types=1);
+      declare(strict_types=1);
 
-         namespace YourVendor\YourExtension\EventListener;
+      namespace MyVendor\MyExtension\EventListener;
 
-         use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
+      use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 
-         final class AdjustJobsDataset
+      final class AdjustJobsDataset
+      {
+         public function __invoke(ModifyDatasetOnSynchronisationEvent $event): void
          {
-            public function __invoke(ModifyDatasetOnSynchronisationEvent $event): void
-            {
-               // Only the table with the handle "jobs" should be considered
-               if ($event->getTable()->handle !== 'jobs') {
-                  return;
-               }
-
-               $dataset = $event->getDataset();
-               if ($dataset['jrid'] === 3) {
-                  // For some reason we don't like jrid = 3, so we reject it
-                  // and it doesn't get synchronised
-                  $event->setRejected();
-               }
-
-               $dataset['POSITION'] .= ' (approved by me™)';
-               $event->setDataset($dataset);
+            // Only the table with the handle "jobs" should be considered
+            if ($event->getTable()->handle !== 'jobs') {
+               return;
             }
-         }
 
-#. Register your event listener in :file:`Configuration/Services.yaml`
+            $dataset = $event->getDataset();
+            if ($dataset['jrid'] === 3) {
+               // For some reason we don't like jrid = 3, so we reject it
+               // and it doesn't get synchronised
+               $event->setRejected();
+            }
+
+            $dataset['POSITION'] .= ' (approved by me™)';
+            $event->setDataset($dataset);
+         }
+      }
+
+#. Register your event listener
 
    .. code-block:: yaml
+      :caption: EXT:my_extension/Configuration/Services.yaml
 
       services:
-         YourVendor\YourExtension\EventListener\AdjustJobsDataset:
+         MyVendor\MyExtension\EventListener\AdjustJobsDataset:
             tags:
                - name: event.listener
                  identifier: 'adjustJobsDataset'
@@ -117,24 +117,40 @@ dataset   JSON-encoded data set with the synchronised JobData table row
 Get the data sets of a table link programmatically
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There is a repository and an entity class available which you can use in a
+A repository and an entity class are available which can be used in a
 TYPO3 context:
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/MyClass.php
 
    <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\MyExtension;
+
+   use Brotkrueml\JobRouterData\Domain\Entity\Dataset;
    use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
-   use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-   $datasetRepository = GeneralUtility::makeInstance(DatasetRepository::class);
-   $datasets = $datasetRepository->findByTableUid(1);
+   final class MyClass
+   {
+      public function __construct(
+         private readonly DatasetRepository $datasetRepository,
+      ) {
+      }
 
-   foreach ($datasets as $dataset) {
-      // Show the jrid
-      var_dump($dataset->jrid);
+      public function doSomething(): void
+      {
+         /** @var Dataset[] $datasets */
+         $datasets = $this->datasetRepository->findByTableUid(1);
 
-      // Get the content of the column "TRAINING"
-      var_dump($dataset->dataset('TRAINING'));
+         foreach ($datasets as $dataset) {
+            // Show the jrid
+            var_dump($dataset->jrid);
+
+            // Get the content of the column "TRAINING"
+            var_dump($dataset->dataset('TRAINING'));
+         }
+      }
    }
 
 
@@ -143,7 +159,7 @@ TYPO3 context:
 Custom table
 ------------
 
-Synchronising a JobData table into an :ref:`custom table
+Synchronising a JobData table into a :ref:`custom table
 <module-create-table-link-custom>` has some advantages and disadvantages
 compared to the simple synchronisation type described above:
 
@@ -159,9 +175,10 @@ But let's start:
 #. Create a new extension or use an existing one. Consult the TYPO3 manual how
    to do this.
 
-#. Add or append the table definition to the file :file:`ext_tables.php`:
+#. Add or append the table definition to the file :file:`ext_tables.sql`:
 
    .. code-block:: sql
+      :caption: EXT:my_extension/ext_tables.sql
 
       CREATE TABLE tx_acmejobs_domain_model_jobs (
          jrid int(11) unsigned DEFAULT '0' NOT NULL,
@@ -180,55 +197,80 @@ But let's start:
    for the uid.
 
    Add the columns to be synchronised from the JobData table (in the example
-   `position` and `active`. The column type should be the same as in the JobData
+   `position` and `active`. The column type must be the named as in the JobData
    table.
 
-#. Go to the :guilabel:`Admin Tools` > :guilabel:`Maintenance` module, click on
+#. Go to the :guilabel:`Admin Tools > Maintenance` module, click on
    the :guilabel:`Analyse database` button and create the table.
 
 #. Add a table link in the :ref:`backend module <module-create-table-link-custom>`.
 
-This is the minimal setup to synchronise a JobData table into an custom TYPO3
+This is the minimal setup to synchronise a JobData table into a custom TYPO3
 table. How you will use the table depends on your use case.
 
 
 Other usage
 -----------
 
-Links to JobData tables are also centralised in the Data module, in contrast to
-the definition in PHP code.
+Links to JobData tables are also centralised in the :guilabel:`JobRouter > Data`
+module, in contrast to the definition in PHP code.
 
 The table link type :ref:`Other usage <module-create-table-link-other>` can be
-used to facilitate the access a JobData table. Links to JobData tables are
+used to facilitate the access to a JobData table. Links to JobData tables are
 also centralised in the :guilabel:`Data` module, in contrast to the definition
 in PHP code.
 
 Here is an example to get the table link and initialise the JobRouter Client:
 
-::
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/MyClass.php
 
    <?php
+   declare(strict_types = 1);
+
+   namespace MyVendor\MyExtension;
+
    use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
+   use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
+   use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
+   use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
+   use Brotkrueml\JobRouterData\Domain\Entity\Table;
    use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-   use TYPO3\CMS\Core\Utility\GeneralUtility;
+   use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 
-   $tableRepository = GeneralUtility::makeInstance(TableRepository::class);
-   $table = $tableRepository->findOneByHandle('contacts');
+   public function MyClass
+   {
+      public function __construct(
+         private readonly ConnectionRepository $connectionRepository,
+         private readonly TableRepository $tableRepository,
+      ) {
+      }
 
-   $connection = $table->getConnection();
-   if ($connection) {
-      // Create a JobRouter Client RestClient object
-      $client = (new RestClientFactory())->create($connection);
-      $response = $restClient->request(
-         'GET',
-         \sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
-      );
+      public function doSomething(): void
+      {
+         try {
+            /** @var Table $table */
+            $table = $this->tableRepository->findOneByHandle('contacts');
 
-      // Do something with the response ...
+            /** @var Connection $connection */
+            $connection = $this->connectionRepository->findByUid($table->connectionUid);
+
+            // Create a JobRouter Client RestClient object
+            $client = (new RestClientFactory())->create($connection);
+            $response = $restClient->request(
+               'GET',
+               sprintf('application/jobdata/tables/%s/datasets', $table->getTableGuid())
+            );
+
+            // Do something with the response ...
+         } catch (TableNotFoundException|ConnectionNotFoundException) {
+         }
+      }
    }
 
-Have a look into the :doc:`JobRouter Client <jobrouter-client:introduction>` documentation
-how to use it. The library eases the access to the JobRouter® REST API.
+Have a look into the :doc:`JobRouter Client <jobrouter-client:introduction>`
+documentation how to use it. The library eases the access to the JobRouter® REST
+API.
 
 
 .. _developer-transfer-data-sets:
@@ -262,29 +304,27 @@ If you want to transfer data sets programmatically to a JobRouter® installation
 you can use the :php:`Preparer` class within TYPO3, e.g. in an Extbase
 controller:
 
-::
+.. code-block:: php
+   :caption: EXT:my_extension/Classes/Controller/MyController.php
 
    <?php
    declare(strict_types=1);
 
-   namespace Vendor\Extension\Controller;
+   namespace MyVendor\MyExtension\Controller;
 
    use Brotkrueml\JobRouterData\Exception\PrepareException;
    use Brotkrueml\JobRouterData\Transfer\Preparer;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+   use Psr\Http\Message\ResponseInterface;
 
    final class MyController extends ActionController
    {
-      private Preparer $preparer;
-
-      // It's important to use dependency injection to inject all necessary
-      // dependencies into the preparer
-      public function __construct(Preparer $preparer)
-      {
-         $this->preparer = $preparer;
+      public function __construct(
+         private readonly Preparer $preparer,
+      ) {
       }
 
-      public function myAction()
+      public function myAction(): ResponseInterface
       {
          // ... some other code
 
@@ -298,9 +338,11 @@ controller:
                '{"your": "data", "to": "transfer"}'
             );
          } catch (PrepareException $e) {
-            // In some rare cases an exception can be thrown
+            // In some rare cases an exception may be thrown
             var_dump($e->getMessage());
          }
+
+         // ... some other code
       }
 
 The :ref:`transmit command <transmit-command>` must be activated
@@ -308,7 +350,6 @@ with a cron job to periodically transmit the data sets to the JobRouter®
 installation(s).
 
 .. important::
-
    It is not advised to insert the data sets directly into the transfer table,
    as the table schema can be changed in future versions. Use the API described
    above.
@@ -317,8 +358,9 @@ installation(s).
 Using the JobDataRepository
 ===========================
 
-The :php:`JobDataRepository` provides methods to access the JobData REST API
-in TYPO3, e.g. in a command or a controller.
+The :php:`\Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository`
+provides methods to access the JobData REST API in TYPO3, e.g. in a command or a
+controller.
 
 The following methods are available:
 
@@ -348,13 +390,14 @@ Example
 -------
 
 .. code-block:: php
+   :caption: EXT:my_extension/Classes/Command/MyCommand.php
 
    <?php
    declare(strict_types=1);
 
-   namespace YourVendor\YourExtension\Command;
+   namespace MyVendor\MyExtension\Command;
 
-   final class YourCommand extends Command
+   final class MyCommand extends Command
    {
       public function __construct(
          private readonly JobDataRepository $jobDataRepository,
@@ -378,15 +421,13 @@ Example
 Customising the formatting of a table column in the content element
 ===================================================================
 
-.. versionadded:: 1.0.0
-
 The extension comes with four formatters that are used when rendering the
 column content in the :ref:`content element <editor-content-element>`:
 
-- DateFormatter
-- DateTimeFormatter
-- DecimalFormatter
-- IntegerFormatter
+*  DateFormatter
+*  DateTimeFormatter
+*  DecimalFormatter
+*  IntegerFormatter
 
 These are implemented as :ref:`PSR-14 event listeners <t3coreapi:EventDispatcher>`
 and are located in the :file:`Classes/EventListener` folder of this extension.
@@ -395,42 +436,42 @@ event with the following methods:
 
 .. option:: getTable()
 
-The table entity.
+   The table entity.
 
-Return value
-   The entity class of a table
-   (:php:`Brotkrueml\JobRouterData\Domain\Entity\Table`).
+   Return value
+      The entity class of a table
+      (:php:`Brotkrueml\JobRouterData\Domain\Entity\Table`).
 
 .. option:: getColumn()
 
-The column entity.
+   The column entity.
 
-Return value
-   The entity class of a column
-   (:php:`Brotkrueml\JobRouterData\Domain\Entity\Column`).
+   Return value
+      The entity class of a column
+      (:php:`Brotkrueml\JobRouterData\Domain\Entity\Column`).
 
 .. option:: getContent()
 
-The content of a table cell.
+   The content of a table cell.
 
-Return value
-   The value of the content (types: float, int, string).
+   Return value
+      The value of the content (types: float, int, string).
 
 .. option:: setContent($content)
 
-Set a content for a table cell.
+   Set a content for a table cell.
 
-Parameter
-   :php:`float|int|string $content`
+   Parameter
+      :php:`float|int|string $content`
       The formatted content of a table cell.
 
 .. option:: getLocale()
 
-The locale of the website page.
+   The locale of the website page.
 
-Return value
-   The locale (for example, "de_DE.utf8" or "en_US") is retrieved from the
-   configured site language field `locale`.
+   Return value
+      The locale (for example, "de_DE.utf8" or "en_US") is retrieved from the
+      configured site language field `locale`.
 
 
 Custom formatters
