@@ -5,7 +5,6 @@
 		<pid>0</pid>
         <crdate>1603481421</crdate>
 		<tstamp>1603481421</tstamp>
-        <cruser_id>1</cruser_id>
         <type>1</type>
         <handle>handle_simple_sync</handle>
         <name>Name for simple sync</name>
@@ -18,7 +17,6 @@
         <pid>0</pid>
         <crdate>1603481421</crdate>
         <tstamp>1603481421</tstamp>
-        <cruser_id>1</cruser_id>
         <table_uid>1</table_uid>
         <name>text_max_length</name>
         <label>Text field with maximum length</label>
@@ -30,7 +28,6 @@
         <pid>0</pid>
         <crdate>1603481421</crdate>
         <tstamp>1603481421</tstamp>
-        <cruser_id>1</cruser_id>
         <table_uid>1</table_uid>
         <name>text_undef_length</name>
         <label>Text field with undefined maximum length</label>
@@ -41,7 +38,6 @@
         <pid>0</pid>
         <crdate>1603481421</crdate>
         <tstamp>1603481421</tstamp>
-        <cruser_id>1</cruser_id>
         <table_uid>1</table_uid>
         <name>number_field</name>
         <label>Number field</label>
@@ -52,7 +48,6 @@
         <pid>0</pid>
         <crdate>1603481421</crdate>
         <tstamp>1603481421</tstamp>
-        <cruser_id>1</cruser_id>
         <table_uid>1</table_uid>
         <name>field_without_label</name>
         <label/>
