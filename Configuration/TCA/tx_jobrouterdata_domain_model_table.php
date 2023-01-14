@@ -171,9 +171,8 @@ return [
         'last_sync_date' => [
             'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.last_sync_date',
             'config' => [
-                'type' => 'input',
-                'renderType' => 'inputDateTime',
-                'eval' => 'datetime',
+                'type' => 'datetime',
+                'format' => 'datetime',
                 'readOnly' => true,
             ],
         ],

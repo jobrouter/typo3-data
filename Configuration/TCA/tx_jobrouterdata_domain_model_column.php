@@ -95,9 +95,8 @@ return [
             'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
             'displayCond' => 'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Decimal->value,
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 3,
-                'eval' => 'int,trim',
                 'range' => [
                     'lower' => 1,
                     'upper' => 10,
@@ -118,13 +117,12 @@ return [
                 ],
             ],
             'config' => [
-                'type' => 'input',
+                'type' => 'number',
                 'size' => 5,
                 'max' => 5,
                 'range' => [
                     'lower' => 0,
                 ],
-                'eval' => 'int',
                 'default' => 0,
             ],
         ],
