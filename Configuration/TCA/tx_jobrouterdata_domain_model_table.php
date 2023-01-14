@@ -14,7 +14,6 @@ return [
         'descriptionColumn' => 'description',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'type' => 'type',
         'delete' => 'deleted',
         'enablecolumns' => [

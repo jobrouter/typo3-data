@@ -14,7 +14,6 @@ return [
         'label_userFunc' => Brotkrueml\JobRouterData\UserFunctions\TCA\Column::class . '->getLabel',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
-        'cruser_id' => 'cruser_id',
         'delete' => 'deleted',
         'sortby' => 'sorting',
         'rootLevel' => 1,
