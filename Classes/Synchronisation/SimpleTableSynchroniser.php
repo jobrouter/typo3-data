@@ -147,7 +147,6 @@ final class SimpleTableSynchroniser
         }
 
         $data = [
-            'pid' => 0,
             'table_uid' => $table->uid,
             'jrid' => $dataset['jrid'],
             'dataset' => \json_encode($datasetToStore, \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE | \JSON_THROW_ON_ERROR),
@@ -158,7 +157,6 @@ final class SimpleTableSynchroniser
             self::DATASET_TABLE_NAME,
             $data,
             [
-                'pid' => \PDO::PARAM_INT,
                 'table_uid' => \PDO::PARAM_INT,
                 'jrid' => \PDO::PARAM_INT,
                 'dataset' => \PDO::PARAM_STR,

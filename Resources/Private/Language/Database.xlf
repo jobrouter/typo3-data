@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2021-12-12T10:41:08Z" product-name="jobrouter_data">
+	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2023-01-14T09:59:48Z" product-name="jobrouter_data">
 		<body>
 			<trans-unit id="palette.last_synchronisation" resname="palette.last_synchronisation">
 				<source><![CDATA[Last Synchronisation]]></source>
@@ -52,15 +52,6 @@
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_column.type" resname="tx_jobrouterdata_domain_model_column.type">
 				<source><![CDATA[Type]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_dataset" resname="tx_jobrouterdata_domain_model_dataset">
-				<source><![CDATA[JobData Dataset]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_dataset.jrid" resname="tx_jobrouterdata_domain_model_dataset.jrid">
-				<source><![CDATA[Record ID]]></source>
-			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_dataset.dataset" resname="tx_jobrouterdata_domain_model_dataset.dataset">
-				<source><![CDATA[Dataset]]></source>
 			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table" resname="tx_jobrouterdata_domain_model_table">
 				<source><![CDATA[JobData Table Link]]></source>
