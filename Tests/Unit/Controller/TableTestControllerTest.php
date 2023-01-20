@@ -114,8 +114,8 @@ final class TableTestControllerTest extends TestCase
             ->willReturn((new TableBuilder())->build(42, connection: 21));
 
         $this->connectionRepositoryStub
-            ->method('findByUidWithHidden')
-            ->with(21)
+            ->method('findByUid')
+            ->with(21, true)
             ->willThrowException(new ConnectionNotFoundException('some error'));
 
         $actual = $this->subject->__invoke($this->requestStub);
@@ -144,8 +144,8 @@ final class TableTestControllerTest extends TestCase
             ->willReturn((new TableBuilder())->build(42, connection: 21));
 
         $this->connectionRepositoryStub
-            ->method('findByUidWithHidden')
-            ->with(21)
+            ->method('findByUid')
+            ->with(21, true)
             ->willReturn((new ConnectionBuilder())->build(21));
 
         $actual = $this->subject->__invoke($this->requestStub);
@@ -175,8 +175,8 @@ final class TableTestControllerTest extends TestCase
 
         $connection = (new ConnectionBuilder())->build(21);
         $this->connectionRepositoryStub
-            ->method('findByUidWithHidden')
-            ->with(21)
+            ->method('findByUid')
+            ->with(21, true)
             ->willReturn($connection);
 
         $this->clientStub

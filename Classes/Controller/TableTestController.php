@@ -52,7 +52,7 @@ final class TableTestController
             }
 
             try {
-                $connection = $this->connectionRepository->findByUidWithHidden($table->connectionUid);
+                $connection = $this->connectionRepository->findByUid($table->connectionUid, true);
             } catch (ConnectionNotFoundException) {
                 return $this->buildResponse(\sprintf('Connection with ID "%s" not found!', $table->connectionUid));
             }

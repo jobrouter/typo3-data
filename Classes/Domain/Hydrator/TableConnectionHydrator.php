@@ -32,7 +32,7 @@ final class TableConnectionHydrator
     {
         if (! isset($this->connectionsCache[$table->connectionUid])) {
             try {
-                $this->connectionsCache[$table->connectionUid] = $this->connectionRepository->findByUidWithHidden($table->connectionUid);
+                $this->connectionsCache[$table->connectionUid] = $this->connectionRepository->findByUid($table->connectionUid, true);
             } catch (ConnectionNotFoundException) {
                 $this->connectionsCache[$table->connectionUid] = null;
             }
