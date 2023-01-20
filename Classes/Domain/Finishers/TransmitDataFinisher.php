@@ -136,7 +136,6 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             $tableFields[$column->name] = $column;
         }
 
-        // @phpstan-ignore-next-line Use another value object over array with string-keys and objects, array<string, ValueObject>
         return $tableFields;
     }
 
