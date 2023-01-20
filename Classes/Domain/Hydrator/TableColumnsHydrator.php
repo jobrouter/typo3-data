@@ -14,6 +14,9 @@ namespace Brotkrueml\JobRouterData\Domain\Hydrator;
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
 
+/**
+ * @internal
+ */
 final class TableColumnsHydrator
 {
     public function __construct(

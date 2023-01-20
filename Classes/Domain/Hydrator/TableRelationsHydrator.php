@@ -13,6 +13,9 @@ namespace Brotkrueml\JobRouterData\Domain\Hydrator;
 
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 
+/**
+ * @internal
+ */
 final class TableRelationsHydrator
 {
     public function __construct(

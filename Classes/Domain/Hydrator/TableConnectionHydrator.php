@@ -16,6 +16,9 @@ use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
 use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 
+/**
+ * @internal
+ */
 final class TableConnectionHydrator
 {
     /**
