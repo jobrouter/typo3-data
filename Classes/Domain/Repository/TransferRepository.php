@@ -15,6 +15,9 @@ use Brotkrueml\JobRouterData\Domain\Entity\Transfer;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
+/**
+ * @internal
+ */
 class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_transfer';
