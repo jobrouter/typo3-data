@@ -142,13 +142,6 @@ return [
                 ],
             ],
         ],
-        'datasets_sync_hash' => [
-            // Not to be shown, relevant for model
-            'label' => 'Data sets sync hash',
-            'config' => [
-                'type' => 'input',
-            ],
-        ],
         'last_sync_date' => [
             'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.last_sync_date',
             'config' => [
