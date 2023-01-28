@@ -11,14 +11,10 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Domain\Entity;
 
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
 use Brotkrueml\JobRouterData\Enumerations\TableType;
 
 final class Table
 {
-    /**
-     * @param Column[]|null $columns
-     */
     private function __construct(
         public readonly int $uid,
         public readonly int $connectionUid,
@@ -30,8 +26,6 @@ final class Table
         public readonly string $datasetsSyncHash,
         public readonly ?\DateTimeImmutable $lastSyncDate,
         public readonly string $lastSyncError,
-        public readonly ?Connection $connection = null,
-        public readonly ?array $columns = null,
     ) {
     }
 
@@ -53,45 +47,6 @@ final class Table
             $data['datasets_sync_hash'],
             $lastSyncDate > 0 ? (new \DateTimeImmutable())->setTimestamp($lastSyncDate) : null,
             (string)$data['last_sync_error'],
-        );
-    }
-
-    public function withConnection(Connection $connection): self
-    {
-        return new self(
-            $this->uid,
-            $this->connectionUid,
-            $this->type,
-            $this->handle,
-            $this->name,
-            $this->tableGuid,
-            $this->customTable,
-            $this->datasetsSyncHash,
-            $this->lastSyncDate,
-            $this->lastSyncError,
-            $connection,
-            $this->columns,
-        );
-    }
-
-    /**
-     * @param Column[] $columns
-     */
-    public function withColumns(array $columns): self
-    {
-        return new self(
-            $this->uid,
-            $this->connectionUid,
-            $this->type,
-            $this->handle,
-            $this->name,
-            $this->tableGuid,
-            $this->customTable,
-            $this->datasetsSyncHash,
-            $this->lastSyncDate,
-            $this->lastSyncError,
-            $this->connection,
-            $columns,
         );
     }
 }

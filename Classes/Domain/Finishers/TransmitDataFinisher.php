@@ -14,9 +14,9 @@ namespace Brotkrueml\JobRouterData\Domain\Finishers;
 use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
 use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
 use Brotkrueml\JobRouterBase\Enumeration\FieldType;
+use Brotkrueml\JobRouterData\Domain\Demand\TableDemand;
+use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
 use Brotkrueml\JobRouterData\Domain\Entity\Column;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Domain\Hydrator\TableColumnsHydrator;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\InvalidFieldTypeException;
 use Brotkrueml\JobRouterData\Exception\MissingColumnException;
@@ -30,24 +30,21 @@ use Brotkrueml\JobRouterData\Transfer\Preparer;
  */
 final class TransmitDataFinisher extends AbstractTransferFinisher
 {
-    /**
-     * @noinspection PhpMissingParentConstructorInspection
-     */
     public function __construct(
         private readonly Preparer $preparer,
-        private readonly TableColumnsHydrator $tableColumnsHydrator,
+        private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
     ) {
     }
 
     protected function process(): void
     {
-        $table = $this->getTable();
-        $data = $this->prepareData($table);
-        $this->preparer->store($table->uid, $this->correlationId, \json_encode($data, \JSON_THROW_ON_ERROR));
+        $tableDemand = $this->getTable();
+        $data = $this->prepareData($tableDemand);
+        $this->preparer->store($tableDemand->uid, $this->correlationId, \json_encode($data, \JSON_THROW_ON_ERROR));
     }
 
-    private function getTable(): Table
+    private function getTable(): TableDemand
     {
         $handle = $this->parseOption('handle');
         if (! \is_string($handle) || $handle === '') {
@@ -60,7 +57,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
         }
 
         try {
-            $table = $this->tableColumnsHydrator->hydrate($this->tableRepository->findByHandle($handle));
+            $table = $this->tableDemandFactory->create($this->tableRepository->findByHandle($handle));
         } catch (TableNotFoundException) {
             throw new TableNotAvailableException(
                 \sprintf(
@@ -78,7 +75,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
     /**
      * @return mixed[]
      */
-    private function prepareData(Table $table): array
+    private function prepareData(TableDemand $tableDemand): array
     {
         if (! isset($this->options['columns'])) {
             return [];
@@ -91,7 +88,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             $this->finisherContext->getFormValues(),
         );
 
-        $definedTableColumns = $this->getTableColumns($table);
+        $definedTableColumns = $this->getTableColumns($tableDemand);
         $data = [];
         foreach ($this->options['columns'] as $column => $value) {
             if (! \array_key_exists($column, $definedTableColumns)) {
@@ -100,7 +97,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
                         'Column "%s" is assigned in form with identifier "%s" but not defined in table link "%s"',
                         $column,
                         $this->getFormIdentifier(),
-                        $table->name,
+                        $tableDemand->name,
                     ),
                     1601736690,
                 );
@@ -126,9 +123,8 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
     /**
      * @return array<string, Column>
      */
-    private function getTableColumns(Table $table): array
+    private function getTableColumns(TableDemand $table): array
     {
-        /** @var Column[] $columns */
         $columns = $table->columns;
 
         $tableFields = [];

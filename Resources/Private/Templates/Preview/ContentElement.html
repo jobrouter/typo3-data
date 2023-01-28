@@ -3,17 +3,17 @@
 <span class="exampleContent">
     <strong><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:ce.title"/></strong>
     <br>
-    <f:if condition="{table.name}">
-        <strong class="jobrouter-data-ce-info">{table.name -> f:format.case(mode: 'upper')}</strong>
+    <f:if condition="{tableDemand.name}">
+        <strong class="jobrouter-data-ce-info">{tableDemand.name -> f:format.case(mode: 'upper')}</strong>
         <br>
         <br>
     </f:if>
 
-    <f:if condition="{table}">
+    <f:if condition="{tableDemand}">
         <f:then>
             <f:if condition="{rows}">
                 <f:then>
-                    <f:render section="DatasetExcerpt" arguments="{table: table, rows: rows}"/>
+                    <f:render section="DatasetExcerpt" arguments="{tableDemand: tableDemand, rows: rows}"/>
                 </f:then>
                 <f:else>
                     <div class="alert alert-info">
@@ -36,7 +36,7 @@
         <table class="jobrouter-data-table">
             <thead>
                 <tr>
-                    <f:for each="{table.columns}" as="column">
+                    <f:for each="{tableDemand.columns}" as="column">
                         <th scope="col">
                             <f:if condition="{column.label}">
                                 <f:then><f:translate key="{column.label}" default="{column.label}"/></f:then>
@@ -50,7 +50,7 @@
                 <f:for each="{rows}" as="row" iteration="i">
                     <f:if condition="{i.index} < {MAX_ROWS}">
                         <tr>
-                            <f:for each="{table.columns}" as="column">
+                            <f:for each="{tableDemand.columns}" as="column">
                                 <td>{row.{column.name} -> f:format.stripTags()}</td>
                             </f:for>
                         </tr>
@@ -60,7 +60,7 @@
                 <f:if condition="{totalRows} > {MAX_ROWS}">
                     <f:variable name="remainingRows" value="{totalRows - MAX_ROWS}"/>
                     <tr>
-                        <td colspan="{table.columns -> f:count()}">
+                        <td colspan="{tableDemand.columns -> f:count()}">
                             <f:if condition="{remainingRows} == 1">
                                 <f:then>
                                     <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:plus_one_more_row"/>

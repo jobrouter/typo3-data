@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Preview;
 
 use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
+use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Brotkrueml\JobRouterData\Extension;
@@ -26,6 +27,7 @@ final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
     public function __construct(
         private readonly DatasetConverter $datasetConverter,
         private readonly SiteFinder $siteFinder,
+        private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
     ) {
     }
@@ -47,7 +49,7 @@ final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
             $locale = $site->getLanguageById($record['sys_language_uid'])->getLocale();
 
             $view->assignMultiple([
-                'table' => $table,
+                'tableDemand' => $this->tableDemandFactory->create($table),
                 'rows' => $this->datasetConverter->convertFromJsonToArray($table, $locale),
             ]);
         } catch (TableNotFoundException) {

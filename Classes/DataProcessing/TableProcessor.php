@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\DataProcessing;
 
 use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
-use Brotkrueml\JobRouterData\Domain\Hydrator\TableColumnsHydrator;
+use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Brotkrueml\JobRouterData\Extension;
@@ -31,7 +31,7 @@ final class TableProcessor implements DataProcessorInterface
     public function __construct(
         private readonly DatasetConverter $datasetConverter,
         private readonly FlexFormService $flexFormService,
-        private readonly TableColumnsHydrator $tableColumnsHydrator,
+        private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
     ) {
     }
@@ -64,10 +64,10 @@ final class TableProcessor implements DataProcessorInterface
     {
         try {
             $table = $this->tableRepository->findByUid($tableUid);
-            $table = $this->tableColumnsHydrator->hydrate($table);
+            $tableDemand = $this->tableDemandFactory->create($table);
 
             $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale();
-            $this->processedData['table'] = $table;
+            $this->processedData['table'] = $tableDemand;
             $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
             $this->addCacheTag($tableUid);
         } catch (TableNotFoundException) {

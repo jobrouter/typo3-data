@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Controller;
 
-use Brotkrueml\JobRouterData\Domain\Hydrator\TableRelationsHydrator;
+use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Enumerations\TableType;
 use Brotkrueml\JobRouterData\Extension;
@@ -39,7 +39,7 @@ final class TableListController
         private readonly IconFactory $iconFactory,
         private readonly ModuleTemplateFactory $moduleTemplateFactory,
         private readonly PageRenderer $pageRenderer,
-        private readonly TableRelationsHydrator $tableRelationsHydrator,
+        private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
         private readonly UriBuilder $uriBuilder,
     ) {
@@ -111,10 +111,10 @@ final class TableListController
         $otherTables = $this->tableRepository->findAllByTypeWithHidden(TableType::OtherUsage);
 
         $this->view->assignMultiple([
-            'simpleTables' => $this->tableRelationsHydrator->hydrateMultiple($simpleTables),
-            'customTables' => $this->tableRelationsHydrator->hydrateMultiple($customTables),
-            'formFinisherTables' => $this->tableRelationsHydrator->hydrateMultiple($formFinisherTables),
-            'otherTables' => $this->tableRelationsHydrator->hydrateMultiple($otherTables),
+            'simpleTables' => $this->tableDemandFactory->createMultiple($simpleTables),
+            'customTables' => $this->tableDemandFactory->createMultiple($customTables),
+            'formFinisherTables' => $this->tableDemandFactory->createMultiple($formFinisherTables),
+            'otherTables' => $this->tableDemandFactory->createMultiple($otherTables),
         ]);
     }
 
