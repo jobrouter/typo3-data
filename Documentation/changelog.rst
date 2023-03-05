@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.2...HEAD>`_
 --------------------------------------------------------------------------------------------
 
+Added
+^^^^^
+
+
+* Compatibility with TYPO3 v12
+
 Changed
 ^^^^^^^
 
@@ -22,6 +28,7 @@ Changed
 * Models are no longer Extbase-based and are moved to the Domain/Entity namespace
 * Repositories are no longer Extbase-based
 * JobDataRepository is now injectable, method signatures have changed
+* ModifyColumnContentEvent->getLocale() might return a different locale in TYPO3 v12
 
 Fixed
 ^^^^^

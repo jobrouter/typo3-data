@@ -30,3 +30,10 @@ Version 2 of this extension introduced some breaking changes, notably:
 
 -  The :php:`JobDataRepository` is now injectable via constructor. All method
    signatures have changed and now require the table handle as first argument.
+
+-  The :php:`getLocale()` method of the PSR-14 event
+   :ref:`ModifyColumnContentEvent <customise-column-formatting>` returns always
+   a `IETF RFC 5646`_ compatible locale string in TYPO3 v12.
+
+
+.. _IETF RFC 5646: https://www.rfc-editor.org/rfc/rfc5646.html

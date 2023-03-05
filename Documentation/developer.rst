@@ -472,9 +472,15 @@ event with the following methods:
    The locale of the website page.
 
    Return value
-      The locale (for example, "de_DE.utf8" or "en_US") is retrieved from the
+      The locale (for example, "de-DE" or "en-US") is retrieved from the
       configured site language field `locale`.
 
+      .. note::
+         Using TYPO3 v11, the locale might be something like "de_DE.utf8" or
+         "en_US". With the introduction of the :php:`Locale` class in TYPO3 v12
+         the locale follows the `IETF RFC 5646 language tag standard`_.
+
+.. _IETF RFC 5646 language tag standard: https://www.rfc-editor.org/rfc/rfc5646.html
 
 Custom formatters
 -----------------
