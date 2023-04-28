@@ -40,18 +40,12 @@ final class ModifyColumnContentEvent implements StoppableEventInterface
         return $this->column;
     }
 
-    /**
-     * @return float|int|string|null
-     */
-    public function getContent()
+    public function getContent(): float|int|string|null
     {
         return $this->content;
     }
 
-    /**
-     * @param float|int|string|null $content
-     */
-    public function setContent($content): void
+    public function setContent(float|int|string|null $content): void
     {
         $this->content = $content;
         $this->contentFormatted = true;
