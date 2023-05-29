@@ -17,7 +17,6 @@
     bootstrap="FunctionalTestsBootstrap.php"
     cacheResult="false"
     colors="true"
-    convertDeprecationsToExceptions="true"
     beStrictAboutTestsThatDoNotTestAnything="false"
     failOnWarning="true"
     failOnRisky="true"
