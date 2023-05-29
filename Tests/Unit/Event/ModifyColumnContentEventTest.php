@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\ColumnBuilder;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class ModifyColumnContentEventTest extends TestCase
@@ -29,9 +30,7 @@ final class ModifyColumnContentEventTest extends TestCase
         $this->column = (new ColumnBuilder())->build(1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTable(): void
     {
         $subject = new ModifyColumnContentEvent($this->table, $this->column, '', '');
@@ -39,9 +38,7 @@ final class ModifyColumnContentEventTest extends TestCase
         self::assertSame($this->table, $subject->getTable());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getColumn(): void
     {
         $subject = new ModifyColumnContentEvent($this->table, $this->column, '', '');
@@ -49,9 +46,7 @@ final class ModifyColumnContentEventTest extends TestCase
         self::assertSame($this->column, $subject->getColumn());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getContent(): void
     {
         $subject = new ModifyColumnContentEvent($this->table, $this->column, 'some content', '');
@@ -59,9 +54,7 @@ final class ModifyColumnContentEventTest extends TestCase
         self::assertSame('some content', $subject->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setContent(): void
     {
         $subject = new ModifyColumnContentEvent($this->table, $this->column, 'some content', '');
@@ -70,9 +63,7 @@ final class ModifyColumnContentEventTest extends TestCase
         self::assertSame('another content', $subject->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLocale(): void
     {
         $subject = new ModifyColumnContentEvent($this->table, $this->column, '', 'de');
@@ -80,9 +71,7 @@ final class ModifyColumnContentEventTest extends TestCase
         self::assertSame('de', $subject->getLocale());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isPropagationStopped(): void
     {
         $subject = new ModifyColumnContentEvent($this->table, $this->column, '', '');

@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository;
 
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class TransferRepositoryTest extends FunctionalTestCase
@@ -33,9 +34,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         $this->subject = new TransferRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findNotTransmitted(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
@@ -47,9 +46,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(6, $actual[1]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findErroneousTransfers(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
@@ -60,9 +57,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual[0]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function add(): void
     {
         $date = new \DateTimeImmutable();
@@ -84,9 +79,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame('some data', $rows[0]['data']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function updateTransmitData(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
@@ -111,9 +104,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame('some message', $row['transmit_message']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countGroupByTransmitSuccessWithValuesForBoth(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
@@ -127,9 +118,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(4, $actual[1]['count']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countGroupByTransmitSuccessWithNoEntriesAvailable(): void
     {
         $actual = $this->subject->countGroupByTransmitSuccess();
@@ -137,9 +126,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertCount(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countTransmitFailedWithAvailableFailedTransfers(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
@@ -149,9 +136,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(1, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countTransmitFailedWithNoAvailableFailedTransfers(): void
     {
         $actual = $this->subject->countTransmitFailed();
@@ -159,9 +144,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteOldSuccessfulTransfers(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
@@ -184,9 +167,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertNotContains(3, $availableUids);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findFirstCreationDateWithAvailableTransfers(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_transfer.csv');
@@ -196,9 +177,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
         self::assertSame(1600000000, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findFirstCreationDateWithNoAvailableTransfers(): void
     {
         $actual = $this->subject->findFirstCreationDate();

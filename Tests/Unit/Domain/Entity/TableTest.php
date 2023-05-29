@@ -13,13 +13,12 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Entity;
 
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Enumerations\TableType;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class TableTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArray(): void
     {
         $actual = Table::fromArray([

@@ -20,6 +20,7 @@ use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\ConnectionBuilder;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
@@ -54,9 +55,7 @@ final class TableTestControllerTest extends TestCase
         $this->requestStub = $this->createStub(ServerRequestInterface::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function invokeReturnsResponseWithErrorWhenRequestHasInvalidBody(): void
     {
         $this->requestStub
@@ -72,9 +71,7 @@ final class TableTestControllerTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function invokeReturnsResponseWithErrorWhenTableIdentifierCannotBeFoundInRepository(): void
     {
         $this->tableRepositoryStub
@@ -97,9 +94,7 @@ final class TableTestControllerTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function invokeReturnsResponseWithErrorWhenConnectionIsNotAvailable(): void
     {
         $this->requestStub
@@ -127,9 +122,7 @@ final class TableTestControllerTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function invokeReturnSuccessfulResponse(): void
     {
         $this->requestStub
@@ -157,9 +150,7 @@ final class TableTestControllerTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function invokeReturnsResponseWithErrorWhenExceptionIsThrown(): void
     {
         $this->requestStub

@@ -19,6 +19,7 @@ use Brotkrueml\JobRouterData\Domain\Entity\Column;
 use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
 use Brotkrueml\JobRouterData\Enumerations\TableType;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 
@@ -36,9 +37,7 @@ final class TableDemandFactoryTest extends TestCase
         $this->subject = new TableDemandFactory($this->columnRepositoryStub, $this->connectionRepositoryStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createWithAvailableConnectionAndWithoutDisabled(): void
     {
         $table = $this->getTable();
@@ -67,9 +66,7 @@ final class TableDemandFactoryTest extends TestCase
         self::assertSame('some error', $actual->lastSyncError);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createWithAvailableConnectionAndWithDisabled(): void
     {
         $table = $this->getTable();
@@ -89,9 +86,7 @@ final class TableDemandFactoryTest extends TestCase
         self::assertSame(1, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createWithUnavailableConnection(): void
     {
         $table = $this->getTable();
@@ -110,9 +105,7 @@ final class TableDemandFactoryTest extends TestCase
         self::assertNull($actual->connection);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createWithColumns(): void
     {
         $table = $this->getTable();
@@ -142,9 +135,7 @@ final class TableDemandFactoryTest extends TestCase
         self::assertSame(3, $actual->columns[0]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createMultiple(): void
     {
         $table1 = $this->getTable();

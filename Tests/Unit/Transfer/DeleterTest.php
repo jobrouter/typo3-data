@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\DeleteException;
 use Brotkrueml\JobRouterData\Transfer\Deleter;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
@@ -21,7 +22,6 @@ use Psr\Log\NullLogger;
 final class DeleterTest extends TestCase
 {
     private Deleter $subject;
-
     private TransferRepository&Stub $transferRepositoryStub;
 
     protected function setUp(): void
@@ -30,9 +30,7 @@ final class DeleterTest extends TestCase
         $this->subject = new Deleter(new NullLogger(), $this->transferRepositoryStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function runReturnsTheAffectedRows(): void
     {
         $this->transferRepositoryStub
@@ -43,9 +41,7 @@ final class DeleterTest extends TestCase
         self::assertSame(42, $this->subject->run(30));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function runThrowsAnExceptionWhenQueryFails(): void
     {
         $this->expectException(DeleteException::class);

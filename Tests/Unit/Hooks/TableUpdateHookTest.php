@@ -13,6 +13,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Hooks;
 
 use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
 use Brotkrueml\JobRouterData\Hooks\TableUpdateHook;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -28,9 +29,7 @@ final class TableUpdateHookTest extends TestCase
         $this->subject = new TableUpdateHook($this->datasetRepository);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function tableIsDeletedRemovesDatasets(): void
     {
         $this->datasetRepository
@@ -45,9 +44,7 @@ final class TableUpdateHookTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function otherTableIsProcessedDoesNothing(): void
     {
         $this->datasetRepository
@@ -61,9 +58,7 @@ final class TableUpdateHookTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function otherActionThanDeleteDoesNothing(): void
     {
         $this->datasetRepository

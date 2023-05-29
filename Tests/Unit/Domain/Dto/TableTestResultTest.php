@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Dto;
 
 use Brotkrueml\JobRouterData\Domain\Dto\TableTestResult;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class TableTestResultTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function toJsonReturnsCorrectJsonWhenNoErrorMessageIsGiven(): void
     {
         $subject = new TableTestResult('');
@@ -26,9 +25,7 @@ final class TableTestResultTest extends TestCase
         self::assertJsonStringEqualsJsonString('{"check": "ok"}', $subject->toJson());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toJsonReturnsCorrectJsonWhenErrorMessageIsGiven(): void
     {
         $subject = new TableTestResult('some error message');

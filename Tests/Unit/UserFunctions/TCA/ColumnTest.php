@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\UserFunctions\TCA;
 
 use Brotkrueml\JobRouterData\UserFunctions\TCA\Column;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Localization\LanguageService;
 
@@ -41,10 +43,10 @@ final class ColumnTest extends TestCase
     }
 
     /**
-     * @test
-     * @dataProvider dataProviderForGetLabel
      * @param array<string, string|int> $parameters
      */
+    #[Test]
+    #[DataProvider('dataProviderForGetLabel')]
     public function getLabel(array $parameters, string $expected): void
     {
         $this->subject->getLabel($parameters);
@@ -52,7 +54,7 @@ final class ColumnTest extends TestCase
         self::assertSame($expected, $parameters['title']);
     }
 
-    public function dataProviderForGetLabel(): iterable
+    public static function dataProviderForGetLabel(): iterable
     {
         yield 'Name field is used when label field is empty' => [
             'parameters' => [

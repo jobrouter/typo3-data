@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 use Brotkrueml\JobRouterData\Command\TransmitCommand;
 use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
@@ -23,24 +24,12 @@ use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
 use TYPO3\CMS\Core\Registry;
 
-class TransmitCommandTest extends TestCase
+final class TransmitCommandTest extends TestCase
 {
     private CommandTester $commandTester;
-
-    /**
-     * @var LockingStrategyInterface&MockObject
-     */
-    private MockObject $lockerMock;
-
-    /**
-     * @var Transmitter&MockObject
-     */
-    private MockObject $transmitterMock;
-
-    /**
-     * @var MockObject&Registry
-     */
-    private MockObject $registryMock;
+    private LockingStrategyInterface&MockObject $lockerMock;
+    private Transmitter&MockObject $transmitterMock;
+    private Registry&MockObject $registryMock;
 
     protected function setUp(): void
     {
@@ -57,9 +46,7 @@ class TransmitCommandTest extends TestCase
         $this->commandTester = new CommandTester($command);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function okIsDisplayedWithNoTransfersAvailable(): void
     {
         $this->lockerMock
@@ -96,9 +83,7 @@ class TransmitCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function okIsDisplayedWithTransfersAvailableAndNoErrors(): void
     {
         $this->lockerMock
@@ -135,9 +120,7 @@ class TransmitCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function warningIsDisplayedWithErrorsOccured(): void
     {
         $this->lockerMock
@@ -174,9 +157,7 @@ class TransmitCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function warningIsDisplayedWhenLockCannotBeAcquired(): void
     {
         $this->lockerMock

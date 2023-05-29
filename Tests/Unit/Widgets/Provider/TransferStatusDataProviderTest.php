@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Widgets\Provider;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Extension;
 use Brotkrueml\JobRouterData\Widgets\Provider\TransferStatusDataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Registry;
@@ -32,9 +33,7 @@ final class TransferStatusDataProviderTest extends TestCase
         $this->subject = new TransferStatusDataProvider($this->registryStub, $this->transferRepositoryStub);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsNoCountsWhenNoTransfersAreAvailable(): void
     {
         $this->transferRepositoryStub
@@ -51,9 +50,7 @@ final class TransferStatusDataProviderTest extends TestCase
         self::assertSame(0, $actual->getFailedCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsSuccessfulCountsWhenOnlySuccessfulTransfersAreAvailable(): void
     {
         $this->transferRepositoryStub
@@ -75,9 +72,7 @@ final class TransferStatusDataProviderTest extends TestCase
         self::assertSame(0, $actual->getFailedCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsPendingCountsWhenOnlyPendingTransfersAreAvailable(): void
     {
         $this->transferRepositoryStub
@@ -102,9 +97,7 @@ final class TransferStatusDataProviderTest extends TestCase
         self::assertSame(0, $actual->getFailedCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsFailedCountsWhenOnlyFailedTransfersAreAvailable(): void
     {
         $this->transferRepositoryStub
@@ -129,9 +122,7 @@ final class TransferStatusDataProviderTest extends TestCase
         self::assertSame(4, $actual->getFailedCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsCorrectCountsWhenAllStatusesAreAvailable(): void
     {
         $this->transferRepositoryStub
@@ -160,9 +151,7 @@ final class TransferStatusDataProviderTest extends TestCase
         self::assertSame(12, $actual->getFailedCount());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsNullForLastRunWhenNoRegistryEntryAvailable(): void
     {
         $this->transferRepositoryStub
@@ -177,9 +166,7 @@ final class TransferStatusDataProviderTest extends TestCase
         self::assertNull($actual->getLastRun());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getStatusReturnsDateTimeForLastRunWhenRegistryEntryAvailable(): void
     {
         $this->transferRepositoryStub

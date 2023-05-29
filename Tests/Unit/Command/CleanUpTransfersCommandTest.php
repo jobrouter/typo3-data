@@ -14,19 +14,16 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 use Brotkrueml\JobRouterData\Command\CleanUpTransfersCommand;
 use Brotkrueml\JobRouterData\Exception\DeleteException;
 use Brotkrueml\JobRouterData\Transfer\Deleter;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class CleanUpTransfersCommandTest extends TestCase
+final class CleanUpTransfersCommandTest extends TestCase
 {
     private CommandTester $commandTester;
-
-    /**
-     * @var Deleter&MockObject
-     */
-    private MockObject $deleterMock;
+    private Deleter&MockObject $deleterMock;
 
     protected function setUp(): void
     {
@@ -35,9 +32,7 @@ class CleanUpTransfersCommandTest extends TestCase
         $this->commandTester = new CommandTester(new CleanUpTransfersCommand($this->deleterMock));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function okIsDisplayedWithNoTransfersForDeletionPresent(): void
     {
         $this->deleterMock
@@ -54,9 +49,7 @@ class CleanUpTransfersCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function okIsDisplayedWithOneTransferDeleted(): void
     {
         $this->deleterMock
@@ -73,9 +66,7 @@ class CleanUpTransfersCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function okIsDisplayedWithMoreThanOneTransferDeleted(): void
     {
         $this->deleterMock
@@ -92,9 +83,7 @@ class CleanUpTransfersCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function ageOfDaysIsRecognisedCorrectly(): void
     {
         $this->deleterMock
@@ -113,9 +102,7 @@ class CleanUpTransfersCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function errorIsDisplayedWhenAgeInDaysIsNotNumeric(): void
     {
         $this->deleterMock
@@ -133,9 +120,7 @@ class CleanUpTransfersCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function errorIsDisplayedWhenAgeInDaysIsANegativeNumber(): void
     {
         $this->deleterMock
@@ -153,9 +138,7 @@ class CleanUpTransfersCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function errorIsDisplayedWhenDeletionFails(): void
     {
         $this->deleterMock

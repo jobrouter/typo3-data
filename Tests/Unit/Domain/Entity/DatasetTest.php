@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Entity;
 
 use Brotkrueml\JobRouterData\Domain\Entity\Dataset;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class DatasetTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function fromArray(): void
     {
         $actual = Dataset::fromArray([

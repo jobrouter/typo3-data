@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository;
 
 use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class DatasetRepositoryTest extends FunctionalTestCase
@@ -33,9 +34,7 @@ final class DatasetRepositoryTest extends FunctionalTestCase
         $this->subject = new DatasetRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByTableUid(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_dataset.csv');
@@ -48,9 +47,7 @@ final class DatasetRepositoryTest extends FunctionalTestCase
         self::assertSame(4, $actual[2]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteByTableUid(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_dataset.csv');

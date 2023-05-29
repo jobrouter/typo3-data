@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Dto;
 
 use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class CountResultTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function constructSetsPropertiesCorrectly(): void
     {
         $subject = new CountResult(42, 12);

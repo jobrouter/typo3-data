@@ -15,6 +15,7 @@ use Brotkrueml\JobRouterData\Domain\Entity\Table;
 use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
 use Brotkrueml\JobRouterData\Exception\ModifyDatasetException;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class ModifyDatasetOnSynchronisationEventTest extends TestCase
@@ -39,33 +40,25 @@ final class ModifyDatasetOnSynchronisationEventTest extends TestCase
         $this->subject = new ModifyDatasetOnSynchronisationEvent($this->table, $this->dataset);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getTable(): void
     {
         self::assertSame($this->table, $this->subject->getTable());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDataset(): void
     {
         self::assertSame($this->dataset, $this->subject->getDataset());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isRejectedIsFalseAfterInstantiationOfEvent(): void
     {
         self::assertFalse($this->subject->isRejected());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isRejectedIsTrueAfterSetRejectedIsCalled(): void
     {
         $this->subject->setRejected();
@@ -73,9 +66,7 @@ final class ModifyDatasetOnSynchronisationEventTest extends TestCase
         self::assertTrue($this->subject->isRejected());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAndSetDataset(): void
     {
         $dataset = [
@@ -88,9 +79,7 @@ final class ModifyDatasetOnSynchronisationEventTest extends TestCase
         self::assertSame($dataset, $this->subject->getDataset());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDatasetThrowsExceptionWhenDatasetKeysAreRemoved(): void
     {
         $this->expectException(ModifyDatasetException::class);
@@ -104,9 +93,7 @@ final class ModifyDatasetOnSynchronisationEventTest extends TestCase
         $this->subject->setDataset($dataset);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDatasetThrowsExceptionWhenJridIsChangedFromDataset(): void
     {
         $this->expectException(ModifyDatasetException::class);

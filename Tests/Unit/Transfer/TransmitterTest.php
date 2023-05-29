@@ -15,15 +15,16 @@ use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Transfer\Transmitter;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 
 final class TransmitterTest extends TestCase
 {
-    private Stub&JobDataRepository $jobDataRepositoryStub;
-    private Stub&TransferRepository $transferRepositoryStub;
-    private Stub&TableRepository $tableRepositoryStub;
+    private JobDataRepository&Stub $jobDataRepositoryStub;
+    private TransferRepository&Stub $transferRepositoryStub;
+    private TableRepository&Stub $tableRepositoryStub;
     private Transmitter $subject;
 
     protected function setUp(): void
@@ -40,9 +41,7 @@ final class TransmitterTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function transmitWithNoTransfersAvailableReturns0TotalsAndErrors(): void
     {
         $this->transferRepositoryStub

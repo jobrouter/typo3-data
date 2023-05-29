@@ -13,7 +13,7 @@ namespace Brotkrueml\JobRouterData\Tests\Acceptance\Backend;
 
 use Brotkrueml\JobRouterData\Tests\Acceptance\Support\BackendTester;
 
-class DataModuleCest
+final class DataModuleCest
 {
     private const DATA_MODULE_SELECTOR = '#jobrouter_data';
 

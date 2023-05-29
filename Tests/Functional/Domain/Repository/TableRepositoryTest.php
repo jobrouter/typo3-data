@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository;
 use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
 use Brotkrueml\JobRouterData\Enumerations\TableType;
 use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class TableRepositoryTest extends FunctionalTestCase
@@ -35,9 +36,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         $this->subject = new TableRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAll(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -52,9 +51,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame(5, $actual[4]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllByTypeWithHidden(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -67,9 +64,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame(6, $actual[2]->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidReturnsTableCorrectly(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -79,9 +74,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame(3, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidThrowsExceptionWhenTableIsDisabled(): void
     {
         $this->expectException(TableNotFoundException::class);
@@ -91,9 +84,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         $this->subject->findByUid(6);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidThrowsExceptionWhenTableIsDeleted(): void
     {
         $this->expectException(TableNotFoundException::class);
@@ -103,9 +94,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         $this->subject->findByUid(7);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithHiddenReturnsTableCorrectly(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -115,9 +104,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame(3, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithHiddenReturnsDisabledTableCorrectly(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -127,9 +114,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame(6, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByUidWithHiddenThrowsExceptionWhenTableIsDeleted(): void
     {
         $this->expectException(TableNotFoundException::class);
@@ -139,9 +124,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         $this->subject->findByUidWithHidden(7);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByHandleReturnsTableCorrectly(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -151,9 +134,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame(2, $actual->uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByHandleThrowsExceptionWhenTableIsDisabled(): void
     {
         $this->expectException(TableNotFoundException::class);
@@ -163,9 +144,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         $this->subject->findByHandle('handle_6');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByHandleThrowsExceptionWhenTableIsDeleted(): void
     {
         $this->expectException(TableNotFoundException::class);
@@ -175,9 +154,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         $this->subject->findByHandle('handle_7');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAssignedCustomTablesReturnsEmptyArrayWhenNoTablesAreAvailable(): void
     {
         $actual = $this->subject->findAssignedCustomTables();
@@ -185,9 +162,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame([], $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAssignedCustomTablesWithAvailableCustomTables(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -199,9 +174,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertContains('tx_anothertable', $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function updateSynchronisationStatusForNonExistingTable(): void
     {
         $actual = $this->subject->updateSynchronisationStatus(9999, \time(), '', '');
@@ -209,9 +182,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function updateSynchronisationStatusForExistingTable(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');
@@ -236,9 +207,7 @@ final class TableRepositoryTest extends FunctionalTestCase
         self::assertSame('somehash', $row['datasets_sync_hash']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function updateSynchronisationStatusHashIsUntouchedIfPassedAsEmptyString(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_table.csv');

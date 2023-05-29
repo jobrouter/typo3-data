@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
 use Brotkrueml\JobRouterData\Command\SyncCommand;
 use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
 use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
@@ -23,24 +24,12 @@ use TYPO3\CMS\Core\Locking\LockFactory;
 use TYPO3\CMS\Core\Locking\LockingStrategyInterface;
 use TYPO3\CMS\Core\Registry;
 
-class SyncCommandTest extends TestCase
+final class SyncCommandTest extends TestCase
 {
     private CommandTester $commandTester;
-
-    /**
-     * @var MockObject&LockingStrategyInterface
-     */
-    private MockObject $lockerMock;
-
-    /**
-     * @var MockObject&SynchronisationRunner
-     */
-    private MockObject $synchronisationRunnerMock;
-
-    /**
-     * @var MockObject&Registry
-     */
-    private MockObject $registryMock;
+    private LockingStrategyInterface&MockObject $lockerMock;
+    private SynchronisationRunner&MockObject $synchronisationRunnerMock;
+    private Registry&MockObject $registryMock;
 
     protected function setUp(): void
     {
@@ -57,9 +46,7 @@ class SyncCommandTest extends TestCase
         $this->commandTester = new CommandTester($command);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function okIsDisplayedWhenAllSynchronisationsAreSuccessful(): void
     {
         $this->lockerMock
@@ -93,9 +80,7 @@ class SyncCommandTest extends TestCase
         self::assertStringContainsString('2 table(s) processed', $this->commandTester->getDisplay());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function okIsDisplayedWhenSynchronisationForOneTableIsSuccessful(): void
     {
         $this->lockerMock
@@ -134,9 +119,7 @@ class SyncCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function warningIsDisplayedWhenExceptionFromTableSynchroniser(): void
     {
         $this->lockerMock
@@ -172,9 +155,7 @@ class SyncCommandTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function warningIsDisplayedWhenLockCannotBeAcquired(): void
     {
         $this->lockerMock

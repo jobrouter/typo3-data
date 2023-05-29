@@ -16,6 +16,7 @@ use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 use Brotkrueml\JobRouterData\EventListener\DateFormatter;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\ColumnBuilder;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class DateFormatterTest extends TestCase
@@ -27,9 +28,7 @@ final class DateFormatterTest extends TestCase
         $this->subject = new DateFormatter();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function contentIsFormattedIfColumnTypeIsDate(): void
     {
         $table = (new TableBuilder())->build(1);
@@ -42,9 +41,7 @@ final class DateFormatterTest extends TestCase
         self::assertSame('29 Nov 2021', $event->getContent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function contentIsNotChangedIfColumnTypeIsNotDate(): void
     {
         $table = (new TableBuilder())->build(1);

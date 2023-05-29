@@ -14,6 +14,7 @@ namespace Brotkrueml\JobRouterData\Tests\Functional\Transfer;
 use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
 use Brotkrueml\JobRouterData\Exception\PrepareException;
 use Brotkrueml\JobRouterData\Transfer\Preparer;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -28,9 +29,7 @@ final class PreparerTest extends FunctionalTestCase
         'typo3conf/ext/jobrouter_data',
     ];
 
-    /**
-     * @test
-     */
+    #[Test]
     public function storePersistsRecordCorrectly(): void
     {
         $subject = new Preparer(new NullLogger(), $this->getContainer()->get(TransferRepository::class));
@@ -51,9 +50,7 @@ final class PreparerTest extends FunctionalTestCase
         self::assertSame('some data', $transfers[0]['data']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function storeThrowsExceptionOnError(): void
     {
         $this->expectException(PrepareException::class);

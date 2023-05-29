@@ -16,6 +16,8 @@ use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
 use Brotkrueml\JobRouterData\EventListener\IntegerFormatter;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\ColumnBuilder;
 use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class IntegerFormatterTest extends TestCase
@@ -27,10 +29,8 @@ final class IntegerFormatterTest extends TestCase
         $this->subject = new IntegerFormatter();
     }
 
-    /**
-     * @test
-     * @dataProvider dataProviderForInvoke
-     */
+    #[Test]
+    #[DataProvider('dataProviderForInvoke')]
     public function invoke(FieldType $type, int|null|string $content, string $locale, string|null|int $expected): void
     {
         $table = (new TableBuilder())->build(1);
@@ -45,7 +45,7 @@ final class IntegerFormatterTest extends TestCase
     /**
      * @return \Iterator<array<string, float|int|string|null>
      */
-    public function dataProviderForInvoke(): iterable
+    public static function dataProviderForInvoke(): iterable
     {
         yield 'Column type is integer, content is formatted' => [
             'type' => FieldType::Integer,

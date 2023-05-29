@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Functional\Table;
 
 use Brotkrueml\JobRouterData\Table\TableProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class TableProviderTest extends FunctionalTestCase
@@ -33,9 +34,7 @@ final class TableProviderTest extends FunctionalTestCase
         $this->subject = new TableProvider($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCustomTablesWithNoCustomTablesAvailable(): void
     {
         $actual = $this->subject->getCustomTables();

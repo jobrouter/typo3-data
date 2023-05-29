@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository;
 
 use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 final class ColumnRepositoryTest extends FunctionalTestCase
@@ -33,9 +34,7 @@ final class ColumnRepositoryTest extends FunctionalTestCase
         $this->subject = new ColumnRepository($this->getConnectionPool());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByTableUidReturnsEmptyArrayIfNoRecordsAreFound(): void
     {
         $actual = $this->subject->findByTableUid(9999);
@@ -44,9 +43,7 @@ final class ColumnRepositoryTest extends FunctionalTestCase
         self::assertCount(0, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByTableUidReturnsAvailableColumns(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/tx_jobrouterdata_domain_model_column.csv');
