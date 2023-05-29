@@ -82,6 +82,6 @@ final class TableProcessor implements DataProcessorInterface
         $cacheTags = [
             \sprintf(Extension::CACHE_TAG_TABLE_TEMPLATE, $tableUid),
         ];
-        $this->cObj->getRequest()->getAttribute('frontend.controller')->addCacheTags($cacheTags);
+        $this->cObj->getRequest()->getAttribute('frontend.controller')?->addCacheTags($cacheTags);
     }
 }

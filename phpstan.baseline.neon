@@ -36,11 +36,6 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^There is no request attribute \"frontend\\.controller\" configured so we can't figure out the exact type to return when calling Psr\\\\Http\\\\Message\\\\ServerRequestInterface\\:\\:getAttribute$#"
-			count: 1
-			path: Classes/DataProcessing/TableProcessor.php
-
-		-
 			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
