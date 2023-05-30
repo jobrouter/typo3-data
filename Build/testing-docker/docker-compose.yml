@@ -49,7 +49,7 @@ services:
     build:
       context: ${DOCKER_PHP_IMAGE}
       dockerfile: Dockerfile
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: ${HOST_UID}
     links:
       - mariadb10
@@ -95,7 +95,7 @@ services:
     build:
       context: ${DOCKER_PHP_IMAGE}
       dockerfile: Dockerfile
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: ${HOST_UID}
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -116,7 +116,7 @@ services:
     build:
       context: ${DOCKER_PHP_IMAGE}
       dockerfile: Dockerfile
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: ${HOST_UID}
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -137,7 +137,7 @@ services:
     build:
       context: ${DOCKER_PHP_IMAGE}
       dockerfile: Dockerfile
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: ${HOST_UID}
     links:
       - mariadb10
@@ -179,7 +179,7 @@ services:
     build:
       context: ${DOCKER_PHP_IMAGE}
       dockerfile: Dockerfile
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: ${HOST_UID}
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
@@ -199,7 +199,7 @@ services:
     build:
       context: ${DOCKER_PHP_IMAGE}
       dockerfile: Dockerfile
-    image: typo3/core-testing-${DOCKER_PHP_IMAGE}:latest
+    image: ${IMAGE_PREFIX}core-testing-${DOCKER_PHP_IMAGE}:latest
     user: ${HOST_UID}
     volumes:
       - ${ROOT_DIR}:${ROOT_DIR}
