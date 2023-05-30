@@ -12,10 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\JobRouterData\Tests\Acceptance\Backend;
 
 use Brotkrueml\JobRouterData\Tests\Acceptance\Support\BackendTester;
+use TYPO3\CMS\Core\Information\Typo3Version;
 
 final class DataModuleCest
 {
-    private const DATA_MODULE_SELECTOR = '#jobrouter_data';
+    private const DATA_MODULE_SELECTOR = 'jobrouter_data';
 
     public function _before(BackendTester $I): void
     {
@@ -29,7 +30,7 @@ final class DataModuleCest
 
     public function onVeryFirstCallModuleShowsHintThatNoTableLinksAreFound(BackendTester $I): void
     {
-        $I->click(self::DATA_MODULE_SELECTOR);
+        $I->click($this->moduleIdentifier());
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
 
@@ -38,7 +39,7 @@ final class DataModuleCest
 
     public function onFirstCallModuleClickOnCreateNewTableLinkShowsCreateForm(BackendTester $I): void
     {
-        $I->click(self::DATA_MODULE_SELECTOR);
+        $I->click($this->moduleIdentifier());
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
 
@@ -50,7 +51,7 @@ final class DataModuleCest
     {
         $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
 
-        $I->click(self::DATA_MODULE_SELECTOR);
+        $I->click($this->moduleIdentifier());
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
         $I->canSee('Simple synchronisation', 'h2');
@@ -71,7 +72,7 @@ final class DataModuleCest
     {
         $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
 
-        $I->click(self::DATA_MODULE_SELECTOR);
+        $I->click($this->moduleIdentifier());
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
         $I->canSee('Simple synchronisation', 'h2');
@@ -79,6 +80,14 @@ final class DataModuleCest
         $I->canSeeElement('#jobrouter-data-table-list');
         $I->click('#jobrouter-data-list-edit-1');
         $I->waitForText('Edit JobData Table Link "Name for simple sync" on root level');
+    }
+
+    private function moduleIdentifier(): string
+    {
+        if ((new Typo3Version())->getMajorVersion() < 12) {
+            return '#' . self::DATA_MODULE_SELECTOR;
+        }
+        return \sprintf('[data-moduleroute-identifier="%s"]', self::DATA_MODULE_SELECTOR);
     }
 
     // Test is not used as testing framework version 6.14 uses non-composer mode for extensions.

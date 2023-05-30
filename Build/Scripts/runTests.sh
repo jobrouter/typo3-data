@@ -26,6 +26,7 @@ setUpDockerComposeDotEnv() {
     echo "PHP_XDEBUG_ON=${PHP_XDEBUG_ON}" >> .env
     echo "PHP_XDEBUG_PORT=${PHP_XDEBUG_PORT}" >> .env
     echo "DOCKER_PHP_IMAGE=${DOCKER_PHP_IMAGE}" >> .env
+    echo "DOCKER_SELENIUM_IMAGE=${DOCKER_SELENIUM_IMAGE}" >> .env
     echo "TYPO3=${TYPO3}" >> .env
     echo "PHP_VERSION=${PHP_VERSION}" >> .env
     echo "EXTRA_TEST_OPTIONS=${EXTRA_TEST_OPTIONS}" >> .env
@@ -53,13 +54,14 @@ Options:
             - lint: PHP linting
             - unit (default): PHP unit tests
 
-    -t <11>
+    -t <11|12>
         Only with -s composerInstall|acceptance
         TYPO3 core major version the extension is embedded in for testing.
 
     -p <8.1|8.2>
         Specifies the PHP minor version to be used
             - 8.1 (default): use PHP 8.1
+            - 8.2: use PHP 8.2
 
     -e "<phpunit or codeception options>"
         Only with -s acceptance|functional|unit
@@ -123,6 +125,17 @@ EXTRA_TEST_OPTIONS=""
 SCRIPT_VERBOSE=0
 TYPO3="11"
 
+# Detect arm64 and use a seleniarm image.
+# In a perfect world selenium would have a arm64 integrated, but that is not on the horizon.
+# So for the time being we have to use seleniarm image.
+# DISABLED - TO NEW AND INTRODUCES ISSUES: DOCKER_SELENIUM_IMAGE="selenium/standalone-chrome:101.0"
+DOCKER_SELENIUM_IMAGE="selenium/standalone-chrome:4.0.0-20211102"
+ARCH=$(uname -m)
+if [ $ARCH = "arm64" ]; then
+    DOCKER_SELENIUM_IMAGE="seleniarm/standalone-chromium:4.1.2-20220227"
+    echo "Architecture" $ARCH "requires" $DOCKER_SELENIUM_IMAGE "to run acceptance tests."
+fi
+
 # Option parsing
 # Reset in case getopts has been used previously in the shell
 OPTIND=1
@@ -136,9 +149,15 @@ while getopts ":s:p:e:t:xy:huv" OPT; do
             ;;
         p)
             PHP_VERSION=${OPTARG}
+            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2)$ ]]; then
+                INVALID_OPTIONS+=("p ${OPTARG}")
+            fi
             ;;
         t)
             TYPO3=${OPTARG}
+            if ! [[ ${TYPO3} =~ ^(11|12)$ ]]; then
+                INVALID_OPTIONS+=("t ${OPTARG}")
+            fi
             ;;
         e)
             EXTRA_TEST_OPTIONS=${OPTARG}
