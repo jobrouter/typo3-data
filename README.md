@@ -15,10 +15,11 @@ What this extension does:
 
 ## Versions and support
 
-| Latest release | TYPO3       | PHP   | Updates will contain             |
-|----------------|-------------|-------|----------------------------------|
-| 2.x            | 11.5 / 12.4 | ≥ 8.1 | Features, bug and security fixes |
-| 1.x            | 10.4 / 11.5 | ≥ 7.4 | Security fixes                   |
+| Latest release | TYPO3       | PHP   | Updates will contain                           |
+|----------------|-------------|-------|------------------------------------------------|
+| 3.x            | 11.5 / 12.4 | ≥ 8.1 | Features, bug and security fixes               |
+| 2.x            | 11.5 / 12.4 | ≥ 8.1 | Security fixes                                 |
+| 1.x            | 10.4 / 11.5 | ≥ 7.4 | Security fixes, end of live expected: Oct 2024 |
 
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/data/) |
 [Translation](https://crowdin.com/project/typo3-extension-jobrouterdata) |
