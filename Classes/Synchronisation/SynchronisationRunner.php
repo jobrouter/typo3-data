@@ -9,14 +9,14 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Synchronisation;
+namespace JobRouter\AddOn\Typo3Data\Synchronisation;
 
-use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Enumerations\TableType;
-use Brotkrueml\JobRouterData\Exception\SynchronisationException;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use JobRouter\AddOn\Typo3Data\Domain\Dto\CountResult;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
+use JobRouter\AddOn\Typo3Data\Exception\SynchronisationException;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use Psr\Log\LoggerInterface;
 
 /**

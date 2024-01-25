@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Domain\Demand;
+namespace JobRouter\AddOn\Typo3Data\Domain\Demand;
 
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
-use Brotkrueml\JobRouterData\Enumerations\TableType;
+use JobRouter\AddOn\Typo3Connector\Domain\Entity\Connection;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
 
 /**
  * @internal

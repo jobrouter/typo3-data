@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\Transfer;
+namespace JobRouter\AddOn\Typo3Data\Tests\Unit\Transfer;
 
-use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterData\Exception\DeleteException;
-use Brotkrueml\JobRouterData\Transfer\Deleter;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Data\Exception\DeleteException;
+use JobRouter\AddOn\Typo3Data\Transfer\Deleter;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;

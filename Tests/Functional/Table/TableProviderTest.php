@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Functional\Table;
+namespace JobRouter\AddOn\Typo3Data\Tests\Functional\Table;
 
-use Brotkrueml\JobRouterData\Table\TableProvider;
+use JobRouter\AddOn\Typo3Data\Table\TableProvider;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 

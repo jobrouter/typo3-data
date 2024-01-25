@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Controller;
+namespace JobRouter\AddOn\Typo3Data\Controller;
 
-use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Enumerations\TableType;
-use Brotkrueml\JobRouterData\Extension;
+use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
+use JobRouter\AddOn\Typo3Data\Extension;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Routing\UriBuilder;

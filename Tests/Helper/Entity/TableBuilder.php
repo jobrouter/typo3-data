@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Helper\Entity;
+namespace JobRouter\AddOn\Typo3Data\Tests\Helper\Entity;
 
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Enumerations\TableType;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
 
 final class TableBuilder
 {

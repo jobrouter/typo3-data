@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\EventListener;
+namespace JobRouter\AddOn\Typo3Data\EventListener;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent;
 
 final class DateFormatter
 {

@@ -9,21 +9,21 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Domain\Finishers;
+namespace JobRouter\AddOn\Typo3Data\Domain\Finishers;
 
-use Brotkrueml\JobRouterBase\Domain\Finishers\AbstractTransferFinisher;
-use Brotkrueml\JobRouterBase\Domain\Preparers\FormFieldValuesPreparer;
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterData\Domain\Demand\TableDemand;
-use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Exception\InvalidFieldTypeException;
-use Brotkrueml\JobRouterData\Exception\MissingColumnException;
-use Brotkrueml\JobRouterData\Exception\MissingFinisherOptionException;
-use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
-use Brotkrueml\JobRouterData\Transfer\Preparer;
+use JobRouter\AddOn\Typo3Base\Domain\Finishers\AbstractTransferFinisher;
+use JobRouter\AddOn\Typo3Base\Domain\Preparers\FormFieldValuesPreparer;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemand;
+use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Exception\InvalidFieldTypeException;
+use JobRouter\AddOn\Typo3Data\Exception\MissingColumnException;
+use JobRouter\AddOn\Typo3Data\Exception\MissingFinisherOptionException;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotAvailableException;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
+use JobRouter\AddOn\Typo3Data\Transfer\Preparer;
 
 /**
  * @internal

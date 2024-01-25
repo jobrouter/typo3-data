@@ -11,6 +11,13 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v2.0.0...HEAD>`_
 --------------------------------------------------------------------------------------------
 
+Changed
+^^^^^^^
+
+
+* Require JobRouter REST Client in version 3
+* Namespace from ``Brotkrueml\JobRouterData`` to ``JobRouter\Addon\Typo3Data``
+
 `2.0.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.2...v2.0.0>`_ - 2023-05-31
 ------------------------------------------------------------------------------------------------------
 

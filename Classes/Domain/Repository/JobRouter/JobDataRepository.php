@@ -9,20 +9,20 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Domain\Repository\JobRouter;
+namespace JobRouter\AddOn\Typo3Data\Domain\Repository\JobRouter;
 
-use Brotkrueml\JobRouterClient\Client\ClientInterface;
-use Brotkrueml\JobRouterClient\Exception\ExceptionInterface;
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Exception\ConnectionNotAvailableException;
-use Brotkrueml\JobRouterData\Exception\DatasetNotAvailableException;
-use Brotkrueml\JobRouterData\Exception\DatasetsNotAvailableException;
-use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use JobRouter\AddOn\RestClient\Client\ClientInterface;
+use JobRouter\AddOn\RestClient\Exception\ExceptionInterface;
+use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
+use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
+use JobRouter\AddOn\Typo3Connector\RestClient\RestClientFactoryInterface;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Exception\ConnectionNotAvailableException;
+use JobRouter\AddOn\Typo3Data\Exception\DatasetNotAvailableException;
+use JobRouter\AddOn\Typo3Data\Exception\DatasetsNotAvailableException;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotAvailableException;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 
 class JobDataRepository
 {

@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Domain\Demand;
+namespace JobRouter\AddOn\Typo3Data\Domain\Demand;
 
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
+use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
+use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\ColumnRepository;
 
 /**
  * @internal

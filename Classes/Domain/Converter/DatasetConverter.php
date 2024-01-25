@@ -9,13 +9,13 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Domain\Converter;
+namespace JobRouter\AddOn\Typo3Data\Domain\Converter;
 
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
-use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
-use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\ColumnRepository;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\DatasetRepository;
+use JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
 
 /**

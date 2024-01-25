@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Command;
+namespace JobRouter\AddOn\Typo3Data\Command;
 
-use Brotkrueml\JobRouterData\Transfer\Transmitter;
+use JobRouter\AddOn\Typo3Data\Transfer\Transmitter;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

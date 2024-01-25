@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Event;
+namespace JobRouter\AddOn\Typo3Data\Event;
 
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Exception\ModifyDatasetException;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Exception\ModifyDatasetException;
 
 final class ModifyDatasetOnSynchronisationEvent
 {

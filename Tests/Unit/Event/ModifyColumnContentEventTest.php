@@ -9,13 +9,13 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\Event;
+namespace JobRouter\AddOn\Typo3Data\Tests\Unit\Event;
 
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent;
-use Brotkrueml\JobRouterData\Tests\Helper\Entity\ColumnBuilder;
-use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent;
+use JobRouter\AddOn\Typo3Data\Tests\Helper\Entity\ColumnBuilder;
+use JobRouter\AddOn\Typo3Data\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

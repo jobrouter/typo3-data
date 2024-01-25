@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Event;
+namespace JobRouter\AddOn\Typo3Data\Event;
 
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
 use Psr\EventDispatcher\StoppableEventInterface;
 
 final class ModifyColumnContentEvent implements StoppableEventInterface

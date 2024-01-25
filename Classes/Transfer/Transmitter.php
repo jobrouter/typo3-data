@@ -9,16 +9,16 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Transfer;
+namespace JobRouter\AddOn\Typo3Data\Transfer;
 
-use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Domain\Entity\Transfer;
-use Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterData\Exception\TableNotAvailableException;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use JobRouter\AddOn\Typo3Data\Domain\Dto\CountResult;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Transfer;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\JobRouter\JobDataRepository;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotAvailableException;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use Psr\Log\LoggerInterface;
 
 /**

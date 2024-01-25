@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository;
+namespace JobRouter\AddOn\Typo3Data\Tests\Functional\Domain\Repository;
 
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Enumerations\TableType;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 

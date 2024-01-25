@@ -9,14 +9,14 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Controller;
+namespace JobRouter\AddOn\Typo3Data\Controller;
 
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
-use Brotkrueml\JobRouterData\Domain\Dto\TableTestResult;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
+use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
+use JobRouter\AddOn\Typo3Connector\RestClient\RestClientFactoryInterface;
+use JobRouter\AddOn\Typo3Data\Domain\Dto\TableTestResult;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

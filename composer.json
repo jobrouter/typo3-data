@@ -65,12 +65,12 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Brotkrueml\\JobRouterData\\": "Classes"
+			"JobRouter\\AddOn\\Typo3Data\\": "Classes"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Brotkrueml\\JobRouterData\\Tests\\": "Tests"
+			"JobRouter\\AddOn\\Typo3Data\\Tests\\": "Tests"
 		}
 	},
 	"config": {

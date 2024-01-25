@@ -9,13 +9,13 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Preview;
+namespace JobRouter\AddOn\Typo3Data\Preview;
 
-use Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter;
-use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
-use Brotkrueml\JobRouterData\Extension;
+use JobRouter\AddOn\Typo3Data\Domain\Converter\DatasetConverter;
+use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
+use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Site\SiteFinder;

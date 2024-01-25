@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Hooks;
+namespace JobRouter\AddOn\Typo3Data\Hooks;
 
-use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\DatasetRepository;
 
 /**
  * @internal

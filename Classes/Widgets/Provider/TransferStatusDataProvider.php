@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Widgets\Provider;
+namespace JobRouter\AddOn\Typo3Data\Widgets\Provider;
 
-use Brotkrueml\JobRouterBase\Domain\Dto\TransferStatus;
-use Brotkrueml\JobRouterBase\Widgets\Provider\TransferStatusDataProviderInterface;
-use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterData\Extension;
+use JobRouter\AddOn\Typo3Base\Domain\Dto\TransferStatus;
+use JobRouter\AddOn\Typo3Base\Widgets\Provider\TransferStatusDataProviderInterface;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Core\Registry;
 
 /**

@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\Command;
+namespace JobRouter\AddOn\Typo3Data\Tests\Unit\Command;
 
-use Brotkrueml\JobRouterData\Command\SyncCommand;
-use Brotkrueml\JobRouterData\Domain\Dto\CountResult;
-use Brotkrueml\JobRouterData\Synchronisation\SynchronisationRunner;
+use JobRouter\AddOn\Typo3Data\Command\SyncCommand;
+use JobRouter\AddOn\Typo3Data\Domain\Dto\CountResult;
+use JobRouter\AddOn\Typo3Data\Synchronisation\SynchronisationRunner;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

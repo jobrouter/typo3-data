@@ -1,4 +1,4 @@
-namespace: Brotkrueml\JobRouterData\Tests\Acceptance\Support
+namespace: JobRouter\AddOn\Typo3Data\Tests\Acceptance\Support
 paths:
   tests: Acceptance
   data: .

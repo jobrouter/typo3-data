@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\UserFunctions\FormEngine;
+namespace JobRouter\AddOn\Typo3Data\UserFunctions\FormEngine;
 
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Table\TableProvider;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Table\TableProvider;
 
 /**
  * @internal

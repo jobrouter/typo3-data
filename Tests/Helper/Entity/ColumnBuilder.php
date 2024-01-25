@@ -9,10 +9,10 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Helper\Entity;
+namespace JobRouter\AddOn\Typo3Data\Tests\Helper\Entity;
 
-use Brotkrueml\JobRouterBase\Enumeration\FieldType;
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
 
 final class ColumnBuilder
 {

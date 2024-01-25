@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Widgets\Provider;
+namespace JobRouter\AddOn\Typo3Data\Widgets\Provider;
 
-use Brotkrueml\JobRouterBase\Domain\Dto\TransferReportItem;
-use Brotkrueml\JobRouterData\Domain\Entity\Transfer;
-use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Base\Domain\Dto\TransferReportItem;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Transfer;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository;
 use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 
 /**

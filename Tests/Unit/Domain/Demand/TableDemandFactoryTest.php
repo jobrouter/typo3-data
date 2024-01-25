@@ -9,16 +9,16 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\Domain\Demand;
+namespace JobRouter\AddOn\Typo3Data\Tests\Unit\Domain\Demand;
 
-use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
-use Brotkrueml\JobRouterData\Domain\Demand\TableDemandFactory;
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
-use Brotkrueml\JobRouterData\Domain\Entity\Table;
-use Brotkrueml\JobRouterData\Domain\Repository\ColumnRepository;
-use Brotkrueml\JobRouterData\Enumerations\TableType;
+use JobRouter\AddOn\Typo3Connector\Domain\Entity\Connection;
+use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
+use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
+use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\ColumnRepository;
+use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;

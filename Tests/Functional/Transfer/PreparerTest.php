@@ -9,11 +9,11 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Functional\Transfer;
+namespace JobRouter\AddOn\Typo3Data\Tests\Functional\Transfer;
 
-use Brotkrueml\JobRouterData\Domain\Repository\TransferRepository;
-use Brotkrueml\JobRouterData\Exception\PrepareException;
-use Brotkrueml\JobRouterData\Transfer\Preparer;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository;
+use JobRouter\AddOn\Typo3Data\Exception\PrepareException;
+use JobRouter\AddOn\Typo3Data\Transfer\Preparer;
 use PHPUnit\Framework\Attributes\Test;
 use Psr\Log\NullLogger;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;

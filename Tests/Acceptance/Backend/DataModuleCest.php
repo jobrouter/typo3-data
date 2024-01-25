@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Acceptance\Backend;
+namespace JobRouter\AddOn\Typo3Data\Tests\Acceptance\Backend;
 
-use Brotkrueml\JobRouterData\Tests\Acceptance\Support\BackendTester;
+use JobRouter\AddOn\Typo3Data\Tests\Acceptance\Support\BackendTester;
 use TYPO3\CMS\Core\Information\Typo3Version;
 
 final class DataModuleCest

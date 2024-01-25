@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\UserFunctions\TCA;
+namespace JobRouter\AddOn\Typo3Data\Tests\Unit\UserFunctions\TCA;
 
-use Brotkrueml\JobRouterData\UserFunctions\TCA\Column;
+use JobRouter\AddOn\Typo3Data\UserFunctions\TCA\Column;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;

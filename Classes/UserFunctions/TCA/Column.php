@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\UserFunctions\TCA;
+namespace JobRouter\AddOn\Typo3Data\UserFunctions\TCA;
 
 use TYPO3\CMS\Core\Localization\LanguageService;
 

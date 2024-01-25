@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Exception;
+namespace JobRouter\AddOn\Typo3Data\Exception;
 
 final class TableNotFoundException extends \RuntimeException
 {

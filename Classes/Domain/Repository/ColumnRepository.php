@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Domain\Repository;
+namespace JobRouter\AddOn\Typo3Data\Domain\Repository;
 
-use Brotkrueml\JobRouterData\Domain\Entity\Column;
+use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 class ColumnRepository

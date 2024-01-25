@@ -9,17 +9,17 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Unit\Controller;
+namespace JobRouter\AddOn\Typo3Data\Tests\Unit\Controller;
 
-use Brotkrueml\JobRouterClient\Client\ClientInterface;
-use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
-use Brotkrueml\JobRouterConnector\RestClient\RestClientFactoryInterface;
-use Brotkrueml\JobRouterData\Controller\TableTestController;
-use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
-use Brotkrueml\JobRouterData\Tests\Helper\Entity\ConnectionBuilder;
-use Brotkrueml\JobRouterData\Tests\Helper\Entity\TableBuilder;
+use JobRouter\AddOn\RestClient\Client\ClientInterface;
+use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
+use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
+use JobRouter\AddOn\Typo3Connector\RestClient\RestClientFactoryInterface;
+use JobRouter\AddOn\Typo3Data\Controller\TableTestController;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
+use JobRouter\AddOn\Typo3Data\Tests\Helper\Entity\ConnectionBuilder;
+use JobRouter\AddOn\Typo3Data\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\MockObject\Stub;

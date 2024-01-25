@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Acceptance\Support\Extension;
+namespace JobRouter\AddOn\Typo3Data\Tests\Acceptance\Support\Extension;
 
-use Brotkrueml\JobRouterData\Extension;
+use JobRouter\AddOn\Typo3Data\Extension;
 use Psr\Http\Client\ClientInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\RequestFactory;

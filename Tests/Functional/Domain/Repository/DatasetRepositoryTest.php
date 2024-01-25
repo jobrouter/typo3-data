@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Tests\Functional\Domain\Repository;
+namespace JobRouter\AddOn\Typo3Data\Tests\Functional\Domain\Repository;
 
-use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
+use JobRouter\AddOn\Typo3Data\Domain\Repository\DatasetRepository;
 use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 

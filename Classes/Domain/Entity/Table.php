@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\Domain\Entity;
+namespace JobRouter\AddOn\Typo3Data\Domain\Entity;
 
-use Brotkrueml\JobRouterData\Enumerations\TableType;
+use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
 
 final class Table
 {

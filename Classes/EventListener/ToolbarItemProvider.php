@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData\EventListener;
+namespace JobRouter\AddOn\Typo3Data\EventListener;
 
-use Brotkrueml\JobRouterData\Extension;
+use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
 use TYPO3\CMS\Backend\Toolbar\Enumeration\InformationStatus;
 use TYPO3\CMS\Core\Localization\LanguageService;
