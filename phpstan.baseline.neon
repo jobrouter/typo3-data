@@ -31,22 +31,22 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^Property Brotkrueml\\\\JobRouterData\\\\DataProcessing\\\\TableProcessor\\:\\:\\$processedData type has no value type specified in iterable type array\\.$#"
+			message: "#^Property JobRouter\\\\AddOn\\\\Typo3Data\\\\DataProcessing\\\\TableProcessor\\:\\:\\$processedData type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
+			message: "#^Method JobRouter\\\\AddOn\\\\Typo3Data\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
+			message: "#^Method JobRouter\\\\AddOn\\\\Typo3Data\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
 
 		-
-			message: "#^Method Brotkrueml\\\\JobRouterData\\\\Synchronisation\\\\SimpleTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
+			message: "#^Method JobRouter\\\\AddOn\\\\Typo3Data\\\\Synchronisation\\\\SimpleTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$datasets with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/SimpleTableSynchroniser.php
 
