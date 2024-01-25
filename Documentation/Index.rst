@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 ====================
 TYPO3 JobRouter Data
@@ -8,7 +8,7 @@ TYPO3 JobRouter Data
    `jobrouter_data`_
 
 :Package name:
-   `brotkrueml/typo3-jobrouter-data`_
+   `jobrouter/typo3-data`_
 
 :Version:
    |release|
@@ -17,7 +17,7 @@ TYPO3 JobRouter Data
    en
 
 :Author:
-   `Chris Müller`_
+   Chris Müller, JobRouter AG
 
 :License:
    This document is published under the `Creative Commons BY 4.0`_ license.
@@ -37,21 +37,19 @@ Connect JobRouter® JobData tables with TYPO3
    :maxdepth: 2
    :numbered: 1
 
-   introduction
-   installation
-   configuration
-   commands
-   module
-   form-finisher
-   dashboard
-   editor
-   developer
-   upgrade
-   changelog
-   copyright
+   Introduction/Index
+   Installation/Index
+   Configuration/Index
+   Commands/Index
+   Module/Index
+   FormFinisher/Index
+   Dashboard/Index
+   Editor/Index
+   Developer/Index
+   Upgrade/Index
+   Changelog/Index
 
 
-.. _brotkrueml/typo3-jobrouter-data: https://packagist.org/packages/brotkrueml/typo3-jobrouter-data
-.. _Chris Müller: https://github.com/brotkrueml
+.. _jobrouter/typo3-data: https://packagist.org/packages/jobrouter/typo3-data
 .. _Creative Commons BY 4.0: https://creativecommons.org/licenses/by/4.0/
 .. _jobrouter_data: https://extensions.typo3.org/extension/jobrouter_data

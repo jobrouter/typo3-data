@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _editor:
 
@@ -24,7 +24,7 @@ want to insert. To add the content element, select the :guilabel:`Special
 elements` tab in the :guilabel:`Create new content element` wizard and click on
 the :guilabel:`JobData Table` element:
 
-.. figure:: _images/content-element-wizard.png
+.. figure:: /Images/content-element-wizard.png
    :alt: Content element wizard
 
    Content element wizard
@@ -32,21 +32,21 @@ the :guilabel:`JobData Table` element:
 In the following form, click on the :guilabel:`Table` tab and select the
 desired table link:
 
-.. figure:: _images/content-element-configuration.png
+.. figure:: /Images/content-element-configuration.png
    :alt: Content element configuration
 
    Content element configuration
 
 After saving the element, a preview section is displayed:
 
-.. figure:: _images/content-element-preview.png
+.. figure:: /Images/content-element-preview.png
    :alt: Preview of the content element
 
    Preview of the content element
 
 Switch to the web page to see the content of the table displayed:
 
-.. figure:: _images/content-element-frontend.png
+.. figure:: /Images/content-element-frontend.png
    :alt: Content of the table on the web page
 
    Content of the table on the web page

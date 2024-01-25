@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _installation:
 

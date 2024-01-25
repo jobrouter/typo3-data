@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _introduction:
 
@@ -23,8 +23,8 @@ TYPO3 JobRouter Data is a TYPO3 extension that
 
 A content element is available to display synchronised data sets on a web page.
 
-This extension uses the :doc:`JobRouter Client <jobrouter-client:introduction>`
-library and has the :doc:`TYPO3 JobRouter Connector <typo3-jobrouter-connector:introduction>`
+This extension uses the `JobRouter REST Client`_ library and has the
+:doc:`TYPO3 JobRouter Connector <typo3-jobrouter-connector:introduction>`
 extension as a requirement to define connections to JobRouter® installations.
 
 
@@ -47,5 +47,6 @@ The changes between the different versions can be found in the
 
 
 .. _JobRouter®: https://www.jobrouter.com/
+.. _JobRouter REST Client: https://github.com/jobrouter/php-rest-client
 .. _semantic versioning: https://semver.org/
 .. _TYPO3 JobRouter Data: https://github.com/brotkrueml/typo3-jobrouter-data

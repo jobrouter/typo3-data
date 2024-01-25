@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _developer:
 
@@ -270,9 +270,8 @@ Here is an example to get the table link and initialise the JobRouter Client:
       }
    }
 
-Have a look into the :doc:`JobRouter Client <jobrouter-client:introduction>`
-documentation how to use it. The library eases the access to the JobRouter® REST
-API.
+Have a look into the `JobRouter REST Client documentation`_ how to use it. The
+library eases the access to the JobRouter® REST API.
 
 
 .. _developer-transfer-data-sets:
@@ -288,7 +287,7 @@ Data sets are transferred asynchronously, since a JobRouter® installation may b
 unavailable or in maintenance mode and to avoid long page loads. Let's take a
 look at the flow:
 
-.. figure:: _images/transfer-flow.png
+.. figure:: /Images/transfer-flow.png
    :alt: Transferring data sets
 
    Transferring data sets
@@ -494,3 +493,6 @@ listeners.
    with the :php:`setContent()` method of the event the propagation of other
    events is stopped. So be sure to add your custom event listener before
    existing ones.
+
+
+.. _JobRouter REST Client documentation: https://github.com/jobrouter/php-rest-client/blob/main/docs/index.md

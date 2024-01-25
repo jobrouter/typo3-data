@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _module:
 
@@ -18,7 +18,7 @@ The links to JobData tables in JobRouter® installations are managed in the modu
 On your first visit after installing the extension you will see the following
 screen:
 
-.. figure:: _images/no-table-links-found.png
+.. figure:: /Images/no-table-links-found.png
    :alt: Initial Data module screen
 
    Initial Data module screen
@@ -45,7 +45,7 @@ Types
 
 Each table link has one of the following types:
 
-.. figure:: _images/table-link-types.png
+.. figure:: /Images/table-link-types.png
    :alt: Table link types
 
    Table link types
@@ -68,7 +68,7 @@ available :ref:`synchronisation command <sync-command>`.
    data sets, especially when using the content element. The reason is that
    extracting and sorting data sets is done in PHP and not by the database.
 
-.. figure:: _images/create-table-link-simple-synchronisation.png
+.. figure:: /Images/create-table-link-simple-synchronisation.png
    :alt: Create a table link of type Simple synchronisation
 
    Create a table link of type "Simple synchronisation"
@@ -77,24 +77,24 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.rst.txt
-.. include:: table-link-columns/handle.rst.txt
-.. include:: table-link-columns/name.rst.txt
-.. include:: table-link-columns/jobdata-table-guid.rst.txt
-.. include:: table-link-columns/columns-simple.rst.txt
+.. include:: /_TableLinkColumns/connection.rst.txt
+.. include:: /_TableLinkColumns/handle.rst.txt
+.. include:: /_TableLinkColumns/name.rst.txt
+.. include:: /_TableLinkColumns/jobdata-table-guid.rst.txt
+.. include:: /_TableLinkColumns/columns-simple.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.rst.txt
+.. include:: /_TableLinkColumns/enabled.rst.txt
 
 Status
 ''''''
-.. include:: table-link-columns/last-sync-date.rst.txt
-.. include:: table-link-columns/last-sync-error.rst.txt
+.. include:: /_TableLinkColumns/last-sync-date.rst.txt
+.. include:: /_TableLinkColumns/last-sync-error.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.rst.txt
+.. include:: /_TableLinkColumns/description.rst.txt
 
 
 .. _module-create-table-link-custom:
@@ -108,7 +108,7 @@ data yourself, e.g. with filtering by some columns or with joins to other data.
 The synchronisation is carried out with the available :ref:`synchronisation
 command <sync-command>`.
 
-.. figure:: _images/create-table-link-custom-table.png
+.. figure:: /Images/create-table-link-custom-table.png
    :alt: Create a table link of type Synchronisation in custom table
 
    Create a table link of type "Synchronisation in custom table"
@@ -117,24 +117,24 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.rst.txt
-.. include:: table-link-columns/handle.rst.txt
-.. include:: table-link-columns/name.rst.txt
-.. include:: table-link-columns/jobdata-table-guid.rst.txt
-.. include:: table-link-columns/custom-table.rst.txt
+.. include:: /_TableLinkColumns/connection.rst.txt
+.. include:: /_TableLinkColumns/handle.rst.txt
+.. include:: /_TableLinkColumns/name.rst.txt
+.. include:: /_TableLinkColumns/jobdata-table-guid.rst.txt
+.. include:: /_TableLinkColumns/custom-table.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.rst.txt
+.. include:: /_TableLinkColumns/enabled.rst.txt
 
 Status
 ''''''
-.. include:: table-link-columns/last-sync-date.rst.txt
-.. include:: table-link-columns/last-sync-error.rst.txt
+.. include:: /_TableLinkColumns/last-sync-date.rst.txt
+.. include:: /_TableLinkColumns/last-sync-error.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.rst.txt
+.. include:: /_TableLinkColumns/description.rst.txt
 
 
 .. _module-create-table-link-form-finisher:
@@ -146,7 +146,7 @@ The fields from a form are stored into a JobData table. An intermediate transfer
 table is used, so you have to activate the :ref:`transmit command
 <transmit-command>`.
 
-.. figure:: _images/create-table-link-form-finisher.png
+.. figure:: /Images/create-table-link-form-finisher.png
    :alt: Create a table link of type Form finisher
 
    Create a table link of type "Form finisher"
@@ -155,24 +155,24 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.rst.txt
-.. include:: table-link-columns/handle.rst.txt
-.. include:: table-link-columns/name.rst.txt
-.. include:: table-link-columns/jobdata-table-guid.rst.txt
-.. include:: table-link-columns/columns.rst.txt
+.. include:: /_TableLinkColumns/connection.rst.txt
+.. include:: /_TableLinkColumns/handle.rst.txt
+.. include:: /_TableLinkColumns/name.rst.txt
+.. include:: /_TableLinkColumns/jobdata-table-guid.rst.txt
+.. include:: /_TableLinkColumns/columns.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.rst.txt
+.. include:: /_TableLinkColumns/enabled.rst.txt
 
 Status
 ''''''
-.. include:: table-link-columns/last-sync-date.rst.txt
-.. include:: table-link-columns/last-sync-error.rst.txt
+.. include:: /_TableLinkColumns/last-sync-date.rst.txt
+.. include:: /_TableLinkColumns/last-sync-error.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.rst.txt
+.. include:: /_TableLinkColumns/description.rst.txt
 
 
 .. _module-create-table-link-other:
@@ -185,7 +185,7 @@ synchronisation. This type can be used for the TYPO3 JobRouter Form extension to
 push the field values of a submitted form into a JobData table. Also you can
 synchronise data sets yourself and enrich the data with additional information.
 
-.. figure:: _images/create-table-link-other-usage.png
+.. figure:: /Images/create-table-link-other-usage.png
    :alt: Create a table link of type Other usage
 
    Create a table link of type "Other usage"
@@ -194,18 +194,18 @@ The following fields are available:
 
 General
 '''''''
-.. include:: table-link-columns/connection.rst.txt
-.. include:: table-link-columns/handle.rst.txt
-.. include:: table-link-columns/name.rst.txt
-.. include:: table-link-columns/jobdata-table-guid.rst.txt
+.. include:: /_TableLinkColumns/connection.rst.txt
+.. include:: /_TableLinkColumns/handle.rst.txt
+.. include:: /_TableLinkColumns/name.rst.txt
+.. include:: /_TableLinkColumns/jobdata-table-guid.rst.txt
 
 Access
 ''''''
-.. include:: table-link-columns/enabled.rst.txt
+.. include:: /_TableLinkColumns/enabled.rst.txt
 
 Notes
 '''''
-.. include:: table-link-columns/description.rst.txt
+.. include:: /_TableLinkColumns/description.rst.txt
 
 
 .. _module-table-links-overview:
@@ -216,7 +216,7 @@ Table links overview
 After you have created one or more table links, you will see an overview of the
 table links when you open the module:
 
-.. figure:: _images/table-links-overview.png
+.. figure:: /Images/table-links-overview.png
    :alt: Overview of available table links
 
    Overview of available table links
@@ -226,7 +226,7 @@ in the name.
 
 There are three buttons available for each table link:
 
-.. image:: _images/table-link-buttons.png
+.. image:: /Images/table-link-buttons.png
 
 - You can edit a table link with the pencil. Alternatively click on the name of
   the table to open the edit form.

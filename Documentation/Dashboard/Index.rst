@@ -1,4 +1,4 @@
-.. include:: _includes.rst.txt
+.. include:: /Includes.rst.txt
 
 .. _dashboard-widgets:
 
@@ -12,11 +12,11 @@ Target group: **Editors, Integrators, Administrators**
    :depth: 1
    :local:
 
-With the :ref:`Dashboard <t3dashboard:introduction>` system extension
+With the :ref:`Dashboard <ext_dashboard:introduction>` system extension
 installed, some widgets can be used for statistics. You can find them in the
 :guilabel:`Add widget` wizard on the :guilabel:`JobRouter` tab:
 
-.. figure:: _images/dashboard-add-widget.png
+.. figure:: /Images/dashboard-add-widget.png
    :alt: Add JobRouter widgets
    :class: with-border
 
@@ -34,7 +34,7 @@ JobData transmission status
 
 The status of the JobData transmissions can be shown with this widget:
 
-.. figure:: _images/dashboard-widget-jobdata-transmission-status.png
+.. figure:: /Images/dashboard-widget-jobdata-transmission-status.png
    :alt: JobData Transmission Status widget
    :class: with-border
 
@@ -46,7 +46,7 @@ JobData transmission errors
 
 If errors occur when transmitting a JobData data set, they can be displayed with this widget:
 
-.. figure:: _images/dashboard-widget-jobdata-transmission-report.png
+.. figure:: /Images/dashboard-widget-jobdata-transmission-report.png
    :alt: JobData Transmission Errors widget
    :class: with-border
 
