@@ -31,6 +31,7 @@ final class DataModuleCest
     public function onVeryFirstCallModuleShowsHintThatNoTableLinksAreFound(BackendTester $I): void
     {
         $I->click($this->moduleIdentifier());
+        $I->wait(2);
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
 
@@ -40,6 +41,7 @@ final class DataModuleCest
     public function onFirstCallModuleClickOnCreateNewTableLinkShowsCreateForm(BackendTester $I): void
     {
         $I->click($this->moduleIdentifier());
+        $I->wait(2);
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
 
@@ -52,6 +54,7 @@ final class DataModuleCest
         $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
 
         $I->click($this->moduleIdentifier());
+        $I->wait(2);
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
         $I->canSee('Simple synchronisation', 'h2');
@@ -73,6 +76,7 @@ final class DataModuleCest
         $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
 
         $I->click($this->moduleIdentifier());
+        $I->wait(2);
         $I->switchToContentFrame();
         $I->canSee('JobData Table Links', 'h1');
         $I->canSee('Simple synchronisation', 'h2');
