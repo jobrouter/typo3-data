@@ -59,10 +59,11 @@ Options:
         Only with -s composerInstall|acceptance
         TYPO3 core major version the extension is embedded in for testing.
 
-    -p <8.1|8.2>
+    -p <8.1|8.2|8.3>
         Specifies the PHP minor version to be used
             - 8.1 (default): use PHP 8.1
             - 8.2: use PHP 8.2
+            - 8.3: use PHP 8.3
 
     -e "<phpunit or codeception options>"
         Only with -s acceptance|functional|unit
@@ -151,7 +152,7 @@ while getopts ":s:p:e:t:xy:huv" OPT; do
             ;;
         p)
             PHP_VERSION=${OPTARG}
-            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2)$ ]]; then
+            if ! [[ ${PHP_VERSION} =~ ^(8.1|8.2|8.3)$ ]]; then
                 INVALID_OPTIONS+=("p ${OPTARG}")
             fi
             ;;

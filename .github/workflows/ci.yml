@@ -28,6 +28,10 @@ jobs:
             typo3-versions: '11'
           - php-versions: '8.2'
             typo3-versions: '12'
+          - php-versions: '8.3'
+            typo3-versions: '11'
+          - php-versions: '8.3'
+            typo3-versions: '12'
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -59,7 +63,7 @@ jobs:
           make unit-tests
       - name: Run functional tests
         run: |
-          ./Build/Scripts/runTests.sh -s functional -p ${{ matrix.php-versions }} -t ${{ matrix.typo3-versions }}
+          ./Build/Scripts/runTests.sh -s functional -p ${{ matrix.php-versions }}
   acceptance-tests:
     name: Acceptance tests
     runs-on: ubuntu-latest
@@ -69,7 +73,7 @@ jobs:
         include:
           - php-versions: '8.1'
             typo3-versions: '11'
-          - php-versions: '8.2'
+          - php-versions: '8.3'
             typo3-versions: '12'
     steps:
       - name: Check out repository
