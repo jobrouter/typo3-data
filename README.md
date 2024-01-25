@@ -1,7 +1,6 @@
 # Connect JobRouter® JobData tables with TYPO3
 
-[![CI Status](https://github.com/brotkrueml/typo3-jobrouter-data/workflows/CI/badge.svg?branch=main)](https://github.com/brotkrueml/typo3-jobrouter-data/actions?query=workflow%3ACI)
-[![Documentation Status](https://readthedocs.org/projects/typo3-jobrouter-data/badge/?version=latest)](https://typo3-jobrouter.readthedocs.io/projects/data/)
+[![CI Status](https://github.com/jobrouter/typo3-data/workflows/CI/badge.svg?branch=main)](https://github.com/jobrouter/typo3-data/actions?query=workflow%3ACI)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-jobrouterdata/localized.svg)](https://crowdin.com/project/typo3-extension-jobrouterdata)
 [![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-jobrouter-data.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-jobrouter-data)
 
@@ -23,6 +22,6 @@ What this extension does:
 
 [Documentation](https://typo3-jobrouter.readthedocs.io/projects/data/) |
 [Translation](https://crowdin.com/project/typo3-extension-jobrouterdata) |
-[Changelog](https://github.com/brotkrueml/typo3-jobrouter-data/blob/main/CHANGELOG.md) |
+[Changelog](https://github.com/jobrouter/typo3-data/blob/main/CHANGELOG.md) |
 [Extension in TER](https://extensions.typo3.org/extension/jobrouter_data/) |
 [Extension on JobRouter Marketplace](https://marketplace.jobrouter.com/en/product/typo3-jobrouter-data/)
