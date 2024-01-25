@@ -22,7 +22,6 @@
     colors="true"
     failOnRisky="true"
     failOnWarning="true"
-    testdox="true"
 >
     <testsuites>
         <testsuite name="Core tests">

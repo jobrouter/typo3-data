@@ -6,7 +6,6 @@
     cacheDirectory=".phpunit.cache"
     cacheResult="false"
     executionOrder="random"
-    testdox="true"
 >
     <testsuites>
         <testsuite name="Unit tests">
