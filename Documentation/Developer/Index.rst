@@ -232,10 +232,10 @@ Here is an example to get the table link and initialise the JobRouter Client:
 
    namespace MyVendor\MyExtension;
 
-   use Brotkrueml\JobRouterConnector\RestClient\RestClientFactory;
-   use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
-   use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
-   use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
+   use JobRouter\AddOn\Typo3Connector\RestClient\RestClientFactory;
+   use JobRouter\AddOn\Typo3Connector\Domain\Entity\Connection;
+   use JobRouter\AddOn\Typo3Connector\Domain\Repository\ConnectionRepository;
+   use JobRouter\AddOn\Typo3Connector\Exception\ConnectionNotFoundException;
    use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
    use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
    use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
@@ -245,8 +245,7 @@ Here is an example to get the table link and initialise the JobRouter Client:
       public function __construct(
          private readonly ConnectionRepository $connectionRepository,
          private readonly TableRepository $tableRepository,
-      ) {
-      }
+      ) {}
 
       public function doSomething(): void
       {

@@ -56,7 +56,7 @@ site package extension:
 
 .. code-block:: php
 
-   $GLOBALS['TYPO3_CONF_VARS']['LOG']['Brotkrueml']['JobRouterData']['writerConfiguration'][\Psr\Log\Level::WARNING] = [
+   $GLOBALS['TYPO3_CONF_VARS']['LOG']['JobRouter']['Typo3Data']['writerConfiguration'][\Psr\Log\Level::WARNING] = [
       \TYPO3\CMS\Core\Log\Writer\FileWriter::class => [
          'logFileInfix' => 'jobrouter_data'
       ]

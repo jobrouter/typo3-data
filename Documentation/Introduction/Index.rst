@@ -49,4 +49,4 @@ The changes between the different versions can be found in the
 .. _JobRouter®: https://www.jobrouter.com/
 .. _JobRouter REST Client: https://github.com/jobrouter/php-rest-client
 .. _semantic versioning: https://semver.org/
-.. _TYPO3 JobRouter Data: https://github.com/brotkrueml/typo3-jobrouter-data
+.. _TYPO3 JobRouter Data: https://github.com/jobrouter/typo3-data
