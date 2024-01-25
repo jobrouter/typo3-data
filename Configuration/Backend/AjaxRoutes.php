@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-use Brotkrueml\JobRouterData\Controller\TableTestController;
+use JobRouter\AddOn\Typo3Data\Controller\TableTestController;
 
 return [
     'jobrouter_data_table_test' => [

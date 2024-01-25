@@ -43,7 +43,7 @@ and a static string is added to each "position" column value.
 
       namespace MyVendor\MyExtension\EventListener;
 
-      use Brotkrueml\JobRouterData\Event\ModifyDatasetOnSynchronisationEvent;
+      use JobRouter\AddOn\Typo3Data\Event\ModifyDatasetOnSynchronisationEvent;
 
       final class AdjustJobsDataset
       {
@@ -126,8 +126,8 @@ TYPO3 context:
 
    namespace MyVendor\MyExtension;
 
-   use Brotkrueml\JobRouterData\Domain\Entity\Dataset;
-   use Brotkrueml\JobRouterData\Domain\Repository\DatasetRepository;
+   use JobRouter\AddOn\Typo3Data\Domain\Entity\Dataset;
+   use JobRouter\AddOn\Typo3Data\Domain\Repository\DatasetRepository;
 
    final class MyClass
    {
@@ -236,9 +236,9 @@ Here is an example to get the table link and initialise the JobRouter Client:
    use Brotkrueml\JobRouterConnector\Domain\Entity\Connection;
    use Brotkrueml\JobRouterConnector\Domain\Repository\ConnectionRepository;
    use Brotkrueml\JobRouterConnector\Exception\ConnectionNotFoundException;
-   use Brotkrueml\JobRouterData\Domain\Entity\Table;
-   use Brotkrueml\JobRouterData\Domain\Repository\TableRepository;
-   use Brotkrueml\JobRouterData\Exception\TableNotFoundException;
+   use JobRouter\AddOn\Typo3Data\Domain\Entity\Table;
+   use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
+   use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 
    public function MyClass
    {
@@ -314,8 +314,8 @@ controller:
 
    namespace MyVendor\MyExtension\Controller;
 
-   use Brotkrueml\JobRouterData\Exception\PrepareException;
-   use Brotkrueml\JobRouterData\Transfer\Preparer;
+   use JobRouter\AddOn\Typo3Data\Exception\PrepareException;
+   use JobRouter\AddOn\Typo3Data\Transfer\Preparer;
    use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
    use Psr\Http\Message\ResponseInterface;
 
@@ -360,7 +360,7 @@ installation(s).
 Using the JobDataRepository
 ===========================
 
-The :php:`\Brotkrueml\JobRouterData\Domain\Repository\JobRouter\JobDataRepository`
+The :php:`\JobRouter\AddOn\Typo3Data\Domain\Repository\JobRouter\JobDataRepository`
 provides methods to access the JobData REST API in TYPO3, e.g. in a command or a
 controller.
 
@@ -433,7 +433,7 @@ column content in the :ref:`content element <editor-content-element>`:
 
 These are implemented as :ref:`PSR-14 event listeners <t3coreapi:EventDispatcher>`
 and are located in the :file:`Classes/EventListener` folder of this extension.
-They receive a :php:`Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent`
+They receive a :php:`JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent`
 event with the following methods:
 
 .. option:: getTable()
@@ -442,7 +442,7 @@ event with the following methods:
 
    Return value
       The entity class of a table
-      (:php:`Brotkrueml\JobRouterData\Domain\Entity\Table`).
+      (:php:`JobRouter\AddOn\Typo3Data\Domain\Entity\Table`).
 
 .. option:: getColumn()
 
@@ -450,7 +450,7 @@ event with the following methods:
 
    Return value
       The entity class of a column
-      (:php:`Brotkrueml\JobRouterData\Domain\Entity\Column`).
+      (:php:`JobRouter\AddOn\Typo3Data\Domain\Entity\Column`).
 
 .. option:: getContent()
 

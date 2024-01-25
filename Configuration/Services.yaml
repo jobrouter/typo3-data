@@ -4,86 +4,82 @@ services:
     autoconfigure: true
     public: false
 
-  Brotkrueml\JobRouterData\:
+  JobRouter\AddOn\Typo3Data\:
     resource: '../Classes/*'
     exclude: '../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php,Hooks,UserFunctions}'
 
-  Brotkrueml\JobRouterData\Command\CleanUpTransfersCommand:
+  JobRouter\AddOn\Typo3Data\Command\CleanUpTransfersCommand:
     tags:
       - name: 'console.command'
         command: 'jobrouter:data:cleanuptransfers'
         description: 'Delete old entries in the transfer table'
         schedulable: true
 
-  Brotkrueml\JobRouterData\Command\SyncCommand:
+  JobRouter\AddOn\Typo3Data\Command\SyncCommand:
     tags:
       - name: 'console.command'
         command: 'jobrouter:data:sync'
         description: 'Synchronise JobData data sets from JobRouter installations'
         schedulable: true
 
-  Brotkrueml\JobRouterData\Command\TransmitCommand:
+  JobRouter\AddOn\Typo3Data\Command\TransmitCommand:
     tags:
       - name: 'console.command'
         command: 'jobrouter:data:transmit'
         description: 'Transmit data sets to JobData tables'
         schedulable: true
 
-  Brotkrueml\JobRouterData\Controller\TableListController:
+  JobRouter\AddOn\Typo3Data\Controller\TableListController:
     tags: [ 'backend.controller' ]
 
-  Brotkrueml\JobRouterData\Controller\TableTestController:
+  JobRouter\AddOn\Typo3Data\Controller\TableTestController:
     tags: [ 'backend.controller' ]
 
-  Brotkrueml\JobRouterData\DataProcessing\TableProcessor:
+  JobRouter\AddOn\Typo3Data\DataProcessing\TableProcessor:
     public: true
 
-  Brotkrueml\JobRouterData\Domain\Converter\DatasetConverter:
+  JobRouter\AddOn\Typo3Data\Domain\Converter\DatasetConverter:
     public: true
 
   # Set public for functional tests
-  Brotkrueml\JobRouterData\Domain\Repository\TransferRepository:
+  JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository:
     public: true
 
-  Brotkrueml\JobRouterData\EventListener\ToolbarItemProvider:
+  JobRouter\AddOn\Typo3Data\EventListener\ToolbarItemProvider:
     tags:
       - name: event.listener
         identifier: 'jobrouter-data/toolbar-item-provider'
         event: TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent
 
-  Brotkrueml\JobRouterData\EventListener\IntegerFormatter:
+  JobRouter\AddOn\Typo3Data\EventListener\IntegerFormatter:
     tags:
       - name: event.listener
         identifier: 'jobrouter-data/integer-formatter'
-        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
 
-  Brotkrueml\JobRouterData\EventListener\DecimalFormatter:
+  JobRouter\AddOn\Typo3Data\EventListener\DecimalFormatter:
     tags:
       - name: event.listener
         identifier: 'jobrouter-data/decimal-formatter'
-        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
 
-  Brotkrueml\JobRouterData\EventListener\DateFormatter:
+  JobRouter\AddOn\Typo3Data\EventListener\DateFormatter:
     tags:
       - name: event.listener
         identifier: 'jobrouter-data/date-formatter'
-        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
 
-  Brotkrueml\JobRouterData\EventListener\DateTimeFormatter:
+  JobRouter\AddOn\Typo3Data\EventListener\DateTimeFormatter:
     tags:
       - name: event.listener
         identifier: 'jobrouter-data/datetime-formatter'
-        event: Brotkrueml\JobRouterData\Event\ModifyColumnContentEvent
 
-  Brotkrueml\JobRouterData\Hooks\TableUpdateHook:
+  JobRouter\AddOn\Typo3Data\Hooks\TableUpdateHook:
     public: true
 
-  Brotkrueml\JobRouterData\Preview\ContentElementPreviewRenderer:
+  JobRouter\AddOn\Typo3Data\Preview\ContentElementPreviewRenderer:
     public: true
 
-  Brotkrueml\JobRouterData\Synchronisation\SimpleTableSynchroniser:
+  JobRouter\AddOn\Typo3Data\Synchronisation\SimpleTableSynchroniser:
     arguments:
       $cache: '@cache.pages'
 
-  Brotkrueml\JobRouterData\UserFunctions\FormEngine\CustomTables:
+  JobRouter\AddOn\Typo3Data\UserFunctions\FormEngine\CustomTables:
     public: true

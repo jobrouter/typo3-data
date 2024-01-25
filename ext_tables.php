@@ -1,8 +1,8 @@
 <?php
 
-use Brotkrueml\JobRouterData\Controller\TableListController;
-use Brotkrueml\JobRouterData\Extension;
-use Brotkrueml\JobRouterData\Hooks\TableUpdateHook;
+use JobRouter\Addon\Typo3Data\Controller\TableListController;
+use JobRouter\Addon\Typo3Data\Extension;
+use JobRouter\Addon\Typo3Data\Hooks\TableUpdateHook;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 

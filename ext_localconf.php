@@ -1,9 +1,10 @@
 <?php
 
+use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') || die();
 
 ExtensionManagementUtility::addTypoScriptSetup(
-    '@import "EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Configuration/TypoScript/"'
+    '@import "EXT:' . Extension::KEY . '/Configuration/TypoScript/"'
 );

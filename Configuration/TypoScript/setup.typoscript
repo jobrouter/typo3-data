@@ -37,6 +37,6 @@ tt_content.tx_jobrouterdata_table {
   }
 
   dataProcessing {
-    10 = Brotkrueml\JobRouterData\DataProcessing\TableProcessor
+    10 = JobRouter\AddOn\Typo3Data\DataProcessing\TableProcessor
   }
 }

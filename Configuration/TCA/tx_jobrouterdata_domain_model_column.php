@@ -9,16 +9,16 @@
 
 return [
     'ctrl' => [
-        'title' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column',
+        'title' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column',
         'label' => 'name',
-        'label_userFunc' => Brotkrueml\JobRouterData\UserFunctions\TCA\Column::class . '->getLabel',
+        'label_userFunc' => JobRouter\AddOn\Typo3Data\UserFunctions\TCA\Column::class . '->getLabel',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
         'delete' => 'deleted',
         'sortby' => 'sorting',
         'rootLevel' => 1,
         'searchFields' => 'name,label',
-        'iconfile' => 'EXT:' . Brotkrueml\JobRouterData\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
+        'iconfile' => 'EXT:' . JobRouter\AddOn\Typo3Data\Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
         'hideTable' => true,
     ],
     'columns' => [
@@ -42,7 +42,7 @@ return [
         ],
 
         'name' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.name',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.name',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -52,7 +52,7 @@ return [
             ],
         ],
         'label' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.label',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.label',
             'config' => [
                 'type' => 'input',
                 'size' => 30,
@@ -61,39 +61,39 @@ return [
             ],
         ],
         'type' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.type',
             'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Text->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Text->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Integer->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Integer->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Integer->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Decimal->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Decimal->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Decimal->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Decimal->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::Date->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Date->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Date->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . Brotkrueml\JobRouterBase\Enumeration\FieldType::DateTime->value,
-                        Brotkrueml\JobRouterBase\Enumeration\FieldType::DateTime->value,
+                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::DateTime->value,
+                        JobRouter\AddOn\Typo3Base\Enumeration\FieldType::DateTime->value,
                     ],
                 ],
                 'required' => true,
             ],
         ],
         'decimal_places' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
-            'displayCond' => 'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Decimal->value,
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.decimal_places',
+            'displayCond' => 'FIELD:type:=:' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Decimal->value,
             'config' => [
                 'type' => 'number',
                 'size' => 3,
@@ -109,11 +109,11 @@ return [
             ],
         ],
         'field_size' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.field_size',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.field_size',
             'displayCond' => [
                 'OR' => [
                     'REC:NEW:true',
-                    'FIELD:type:=:' . Brotkrueml\JobRouterBase\Enumeration\FieldType::Text->value,
+                    'FIELD:type:=:' . JobRouter\AddOn\Typo3Base\Enumeration\FieldType::Text->value,
                 ],
             ],
             'config' => [
@@ -127,7 +127,7 @@ return [
             ],
         ],
         'alignment' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -137,22 +137,22 @@ return [
                         '',
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.left',
+                        JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.left',
                         'left',
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.center',
+                        JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.center',
                         'center',
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.right',
+                        JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.right',
                         'right',
                     ],
                 ],
             ],
         ],
         'sorting_priority' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_priority',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_priority',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -177,7 +177,7 @@ return [
             ],
         ],
         'sorting_order' => [
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -187,11 +187,11 @@ return [
                         '',
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.asc',
+                        JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.asc',
                         'asc',
                     ],
                     [
-                        Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.desc',
+                        JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.desc',
                         'desc',
                     ],
                 ],
@@ -216,7 +216,7 @@ return [
         ],
         'rendering' => [
             // Palette is used in columnOverrides of tx_jobrouterdata_domain_model_column for simple table type
-            'label' => Brotkrueml\JobRouterData\Extension::LANGUAGE_PATH_DATABASE . ':palette.rendering_ce',
+            'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_DATABASE . ':palette.rendering_ce',
             'showitem' => 'alignment, sorting_priority, sorting_order',
         ],
     ],

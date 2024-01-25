@@ -29,7 +29,7 @@ TYPO3:
                           templateName: 'Inspector-RemoveElementEditor'
           finishersDefinition:
             JobRouterTransmitData:
-              implementationClassName: 'Brotkrueml\JobRouterData\Domain\Finishers\TransmitDataFinisher'
+              implementationClassName: 'JobRouter\AddOn\Typo3Data\Domain\Finishers\TransmitDataFinisher'
               formEditor:
                 iconIdentifier: 'form-finisher'
                 label: 'formEditor.elements.Form.finisher.JobRouterTransmitData.editor.header.label'

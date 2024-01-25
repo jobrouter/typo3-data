@@ -9,12 +9,12 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\JobRouterData;
+namespace JobRouter\AddOn\Typo3Data;
 
-use Brotkrueml\JobRouterBase\Widgets\TransferReportWidget;
-use Brotkrueml\JobRouterBase\Widgets\TransferStatusWidget;
-use Brotkrueml\JobRouterData\Widgets\Provider\TransferReportDataProvider;
-use Brotkrueml\JobRouterData\Widgets\Provider\TransferStatusDataProvider;
+use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
+use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
+use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferReportDataProvider;
+use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferStatusDataProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
@@ -28,7 +28,7 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
     $services = $configurator->services();
 
     $services
-        ->set('dashboard.widget.brotkrueml.jobrouter_data.statusOfDataTransmissions')
+        ->set('dashboard.widget.jobrouter.typo3_data.statusOfDataTransmissions')
         ->class(TransferStatusWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
@@ -48,7 +48,7 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
         ]);
 
     $services
-        ->set('dashboard.widget.brotkrueml.jobrouter_data.transferReport')
+        ->set('dashboard.widget.jobrouter.typo3_data.transferReport')
         ->class(TransferReportWidget::class)
         ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
