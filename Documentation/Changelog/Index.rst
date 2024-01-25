@@ -8,8 +8,8 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_\ ,
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
-`Unreleased <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v2.0.0...HEAD>`_
---------------------------------------------------------------------------------------------
+`Unreleased <https://github.com/jobrouter/typo3-data/compare/v2.0.0...HEAD>`_
+---------------------------------------------------------------------------------
 
 Changed
 ^^^^^^^
@@ -18,8 +18,8 @@ Changed
 * Require JobRouter REST Client in version 3
 * Namespace from ``Brotkrueml\JobRouterData`` to ``JobRouter\Addon\Typo3Data``
 
-`2.0.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.2...v2.0.0>`_ - 2023-05-31
-------------------------------------------------------------------------------------------------------
+`2.0.0 <https://github.com/jobrouter/typo3-data/compare/v1.1.2...v2.0.0>`_ - 2023-05-31
+-------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -53,8 +53,8 @@ Removed
 * Compatibility with TYPO3 v10 (#14)
 * Compatibility with PHP 7.4 and 8.0
 
-`1.1.2 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.1...v1.1.2>`_ - 2022-12-23
-------------------------------------------------------------------------------------------------------
+`1.1.2 <https://github.com/jobrouter/typo3-data/compare/v1.1.1...v1.1.2>`_ - 2022-12-23
+-------------------------------------------------------------------------------------------
 
 Fixed
 ^^^^^
@@ -62,8 +62,8 @@ Fixed
 
 * Avoid injecting the query builder
 
-`1.1.1 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.1.0...v1.1.1>`_ - 2022-09-24
-------------------------------------------------------------------------------------------------------
+`1.1.1 <https://github.com/jobrouter/typo3-data/compare/v1.1.0...v1.1.1>`_ - 2022-09-24
+-------------------------------------------------------------------------------------------
 
 Fixed
 ^^^^^
@@ -71,8 +71,8 @@ Fixed
 
 * Exception in frontend using JobData Table plugin in TYPO3 v10 (#22)
 
-`1.1.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.0.1...v1.1.0>`_ - 2022-06-02
-------------------------------------------------------------------------------------------------------
+`1.1.0 <https://github.com/jobrouter/typo3-data/compare/v1.0.1...v1.1.0>`_ - 2022-06-02
+-------------------------------------------------------------------------------------------
 
 Removed
 ^^^^^^^
@@ -80,8 +80,8 @@ Removed
 
 * Compatibility with PHP 7.3
 
-`1.0.1 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v1.0.0...v1.0.1>`_ - 2022-05-19
-------------------------------------------------------------------------------------------------------
+`1.0.1 <https://github.com/jobrouter/typo3-data/compare/v1.0.0...v1.0.1>`_ - 2022-05-19
+-------------------------------------------------------------------------------------------
 
 Fixed
 ^^^^^
@@ -89,8 +89,8 @@ Fixed
 
 * Handle multibyte characters correctly when cutting string to given length for transmission
 
-`1.0.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.14.0...v1.0.0>`_ - 2022-01-18
--------------------------------------------------------------------------------------------------------
+`1.0.0 <https://github.com/jobrouter/typo3-data/compare/v0.14.0...v1.0.0>`_ - 2022-01-18
+--------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -121,8 +121,8 @@ Removed
 
 * Configuration of log writers in the extension configuration
 
-`0.14.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.13.0...v0.14.0>`_ - 2021-11-21
----------------------------------------------------------------------------------------------------------
+`0.14.0 <https://github.com/jobrouter/typo3-data/compare/v0.13.0...v0.14.0>`_ - 2021-11-21
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -156,8 +156,8 @@ Removed
 
 * Compatibility with PHP 7.2
 
-`0.13.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.3...v0.13.0>`_ - 2021-03-14
----------------------------------------------------------------------------------------------------------
+`0.13.0 <https://github.com/jobrouter/typo3-data/compare/v0.12.3...v0.13.0>`_ - 2021-03-14
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -178,8 +178,8 @@ Fixed
 
 * Set crdate in transfer table correctly
 
-`0.12.3 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.2...v0.12.3>`_ - 2021-03-07
----------------------------------------------------------------------------------------------------------
+`0.12.3 <https://github.com/jobrouter/typo3-data/compare/v0.12.2...v0.12.3>`_ - 2021-03-07
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -187,8 +187,8 @@ Added
 
 * Dashboard widget "JobData Transmission Errors"
 
-`0.12.2 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.1...v0.12.2>`_ - 2021-03-02
----------------------------------------------------------------------------------------------------------
+`0.12.2 <https://github.com/jobrouter/typo3-data/compare/v0.12.1...v0.12.2>`_ - 2021-03-02
+----------------------------------------------------------------------------------------------
 
 Changed
 ^^^^^^^
@@ -196,8 +196,8 @@ Changed
 
 * TYPO3 form extension is no longer a requirement
 
-`0.12.1 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.12.0...v0.12.1>`_ - 2021-02-12
----------------------------------------------------------------------------------------------------------
+`0.12.1 <https://github.com/jobrouter/typo3-data/compare/v0.12.0...v0.12.1>`_ - 2021-02-12
+----------------------------------------------------------------------------------------------
 
 Changed
 ^^^^^^^
@@ -206,8 +206,8 @@ Changed
 * Raise minimum required version to TYPO3 10.4.11
 * Throw DatasetNotAvailableException in JobDataRepository when querying a non-existing jrid
 
-`0.12.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.11.0...v0.12.0>`_ - 2020-10-19
----------------------------------------------------------------------------------------------------------
+`0.12.0 <https://github.com/jobrouter/typo3-data/compare/v0.11.0...v0.12.0>`_ - 2020-10-19
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -236,8 +236,8 @@ Removed
 
 * Report
 
-`0.11.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.10.0...v0.11.0>`_ - 2020-09-01
----------------------------------------------------------------------------------------------------------
+`0.11.0 <https://github.com/jobrouter/typo3-data/compare/v0.10.0...v0.11.0>`_ - 2020-09-01
+----------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -258,8 +258,8 @@ Removed
 
 * RestClientFactory is not available anymore, use from connector extension instead
 
-`0.10.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.9.0...v0.10.0>`_ - 2020-06-06
---------------------------------------------------------------------------------------------------------
+`0.10.0 <https://github.com/jobrouter/typo3-data/compare/v0.9.0...v0.10.0>`_ - 2020-06-06
+---------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -282,8 +282,8 @@ Removed
 
 * Support for TYPO3 v9 LTS
 
-`0.9.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.8.0...v0.9.0>`_ - 2020-02-24
-------------------------------------------------------------------------------------------------------
+`0.9.0 <https://github.com/jobrouter/typo3-data/compare/v0.8.0...v0.9.0>`_ - 2020-02-24
+-------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -298,8 +298,8 @@ Updated
 
 * TYPO3 JobRouter Connector to version 0.9
 
-`0.8.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.7.0...v0.8.0>`_ - 2020-02-17
-------------------------------------------------------------------------------------------------------
+`0.8.0 <https://github.com/jobrouter/typo3-data/compare/v0.7.0...v0.8.0>`_ - 2020-02-17
+-------------------------------------------------------------------------------------------
 
 Fixed
 ^^^^^
@@ -307,8 +307,8 @@ Fixed
 
 * Only one command (sync, transmit) can run at a time
 
-`0.7.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.6.0...v0.7.0>`_ - 2020-02-09
-------------------------------------------------------------------------------------------------------
+`0.7.0 <https://github.com/jobrouter/typo3-data/compare/v0.6.0...v0.7.0>`_ - 2020-02-09
+-------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -323,8 +323,8 @@ Changed
 * Remove plugin in favour of content element
 * Use log table from TYPO3 JobRouter Connector
 
-`0.6.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.5.0...v0.6.0>`_ - 2020-01-27
-------------------------------------------------------------------------------------------------------
+`0.6.0 <https://github.com/jobrouter/typo3-data/compare/v0.5.0...v0.6.0>`_ - 2020-01-27
+-------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -358,8 +358,8 @@ Fixed
 
 * Sync other tables when one table throws error on synchronisation
 
-`0.5.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.4.0...v0.5.0>`_ - 2020-01-11
-------------------------------------------------------------------------------------------------------
+`0.5.0 <https://github.com/jobrouter/typo3-data/compare/v0.4.0...v0.5.0>`_ - 2020-01-11
+-------------------------------------------------------------------------------------------
 
 Updated
 ^^^^^^^
@@ -367,8 +367,8 @@ Updated
 
 * TYPO3 JobRouter Connector to version 0.6
 
-`0.4.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.3.1...v0.4.0>`_ - 2020-01-02
-------------------------------------------------------------------------------------------------------
+`0.4.0 <https://github.com/jobrouter/typo3-data/compare/v0.3.1...v0.4.0>`_ - 2020-01-02
+-------------------------------------------------------------------------------------------
 
 Updated
 ^^^^^^^
@@ -383,8 +383,8 @@ Fixed
 * Delete datasets from simple synchronisation when table is deleted (#6)
 * Clear cache of a page with plugin after synchronisation (#7)
 
-`0.3.1 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.3.0...v0.3.1>`_ - 2019-11-24
-------------------------------------------------------------------------------------------------------
+`0.3.1 <https://github.com/jobrouter/typo3-data/compare/v0.3.0...v0.3.1>`_ - 2019-11-24
+-------------------------------------------------------------------------------------------
 
 Updated
 ^^^^^^^
@@ -392,8 +392,8 @@ Updated
 
 * TYPO3 JobRouter Connector to version 0.4
 
-`0.3.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.2.0...v0.3.0>`_ - 2019-11-24
-------------------------------------------------------------------------------------------------------
+`0.3.0 <https://github.com/jobrouter/typo3-data/compare/v0.2.0...v0.3.0>`_ - 2019-11-24
+-------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -408,8 +408,8 @@ Changed
 
 * Dataset model
 
-`0.2.0 <https://github.com/brotkrueml/typo3-jobrouter-data/compare/v0.1.0...v0.2.0>`_ - 2019-10-26
-------------------------------------------------------------------------------------------------------
+`0.2.0 <https://github.com/jobrouter/typo3-data/compare/v0.1.0...v0.2.0>`_ - 2019-10-26
+-------------------------------------------------------------------------------------------
 
 Changed
 ^^^^^^^
@@ -417,7 +417,7 @@ Changed
 
 * Adjust package name
 
-`0.1.0 <https://github.com/brotkrueml/typo3-jobrouter-data/releases/tag/v0.1.0>`_ - 2019-10-25
---------------------------------------------------------------------------------------------------
+`0.1.0 <https://github.com/jobrouter/typo3-data/releases/tag/v0.1.0>`_ - 2019-10-25
+---------------------------------------------------------------------------------------
 
 Initial pre-release
