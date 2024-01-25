@@ -22,10 +22,6 @@ return static function (RectorConfig $config): void {
         SetList::EARLY_RETURN,
         SetList::TYPE_DECLARATION,
         PHPUnitLevelSetList::UP_TO_PHPUNIT_100,
-        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
-        PHPUnitSetList::PHPUNIT_EXCEPTION,
-        PHPUnitSetList::PHPUNIT_SPECIFIC_METHOD,
-        PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER
     ]);
 
     $config->autoloadPaths([
@@ -36,14 +32,8 @@ return static function (RectorConfig $config): void {
         __DIR__ . '/Configuration',
         __DIR__ . '/Tests',
     ]);
-    $config->ruleWithConfiguration(StringClassNameToClassConstantRector::class, [
-        ''
-    ]);
     $config->skip([
         __DIR__ . '/Tests/Acceptance/*',
         AddLiteralSeparatorToNumberRector::class,
-        AddReturnTypeDeclarationFromYieldsRector::class => [
-            __DIR__ . '/Tests/*',
-        ],
     ]);
 };
