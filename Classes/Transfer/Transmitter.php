@@ -34,8 +34,7 @@ class Transmitter
         private readonly LoggerInterface $logger,
         private readonly TransferRepository $transferRepository,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     public function run(): CountResult
     {

@@ -23,8 +23,7 @@ final class Column
         public readonly string $alignment,
         public readonly int $sortingPriority,
         public readonly string $sortingOrder,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $data

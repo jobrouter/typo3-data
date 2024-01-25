@@ -23,8 +23,7 @@ class Deleter
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly TransferRepository $transferRepository,
-    ) {
-    }
+    ) {}
 
     public function run(int $ageInDays): \Doctrine\DBAL\Result|int
     {

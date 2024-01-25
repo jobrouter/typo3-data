@@ -21,8 +21,7 @@ class TableProvider
 {
     public function __construct(
         private readonly ConnectionPool $connectionPool,
-    ) {
-    }
+    ) {}
 
     /**
      * @return string[]

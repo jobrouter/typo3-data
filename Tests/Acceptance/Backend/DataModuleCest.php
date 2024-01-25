@@ -93,20 +93,20 @@ final class DataModuleCest
     // Test is not used as testing framework version 6.14 uses non-composer mode for extensions.
     // Now "wrong" path for the key file is used in test
     // See: https://github.com/TYPO3/testing-framework/commit/1e91755df7037d5157bb62c57626596f44103237
-//    public function whenSimpleSynchronisationTableIsAvailableAClickOnTheCheckButtonShowsSuccessfulNotification(BackendTester $I): void
-//    {
-//        $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
-//        $I->createMockServerExpectationForConnection();
-//        $I->createMockServerExpectationForGetJobDataDataSets('8BD9BABA-7E2A-9C98-DA8B-41CDE4BD3412');
-//
-//        $I->click(self::DATA_MODULE_SELECTOR);
-//        $I->switchToContentFrame();
-//        $I->canSee('JobData Table Links', 'h1');
-//        $I->canSee('Simple synchronisation', 'h2');
-//
-//        $I->canSeeElement('#jobrouter-data-table-list');
-//        $I->click('#jobrouter-data-list-check-1');
-//        $I->switchToMainFrame();
-//        $I->waitForText('JobData table accessed successfully');
-//    }
+    //    public function whenSimpleSynchronisationTableIsAvailableAClickOnTheCheckButtonShowsSuccessfulNotification(BackendTester $I): void
+    //    {
+    //        $I->importXmlDatabaseFixture('tableLinkDefinitionWithSimpleSynchronisation.xml');
+    //        $I->createMockServerExpectationForConnection();
+    //        $I->createMockServerExpectationForGetJobDataDataSets('8BD9BABA-7E2A-9C98-DA8B-41CDE4BD3412');
+    //
+    //        $I->click(self::DATA_MODULE_SELECTOR);
+    //        $I->switchToContentFrame();
+    //        $I->canSee('JobData Table Links', 'h1');
+    //        $I->canSee('Simple synchronisation', 'h2');
+    //
+    //        $I->canSeeElement('#jobrouter-data-table-list');
+    //        $I->click('#jobrouter-data-list-check-1');
+    //        $I->switchToMainFrame();
+    //        $I->waitForText('JobData table accessed successfully');
+    //    }
 }

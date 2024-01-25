@@ -70,7 +70,7 @@ final class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                    static fn($subject): bool => $subject['exitCode'] === Command::SUCCESS,
                 ),
             );
 
@@ -107,7 +107,7 @@ final class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::SUCCESS,
+                    static fn($subject): bool => $subject['exitCode'] === Command::SUCCESS,
                 ),
             );
 
@@ -144,7 +144,7 @@ final class TransmitCommandTest extends TestCase
                 'tx_jobrouter_data',
                 'transmitCommand.lastRun',
                 self::callback(
-                    static fn ($subject): bool => $subject['exitCode'] === Command::FAILURE,
+                    static fn($subject): bool => $subject['exitCode'] === Command::FAILURE,
                 ),
             );
 

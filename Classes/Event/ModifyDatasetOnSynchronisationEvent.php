@@ -24,8 +24,7 @@ final class ModifyDatasetOnSynchronisationEvent
     public function __construct(
         private readonly Table $table,
         private array $dataset,
-    ) {
-    }
+    ) {}
 
     public function getTable(): Table
     {

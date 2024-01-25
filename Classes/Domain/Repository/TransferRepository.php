@@ -24,8 +24,7 @@ class TransferRepository
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
-    ) {
-    }
+    ) {}
 
     /**
      * @return Transfer[]

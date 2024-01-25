@@ -27,8 +27,7 @@ final class ModifyColumnContentEvent implements StoppableEventInterface
         private readonly Column $column,
         private $content,
         private readonly string $locale,
-    ) {
-    }
+    ) {}
 
     public function getTable(): Table
     {

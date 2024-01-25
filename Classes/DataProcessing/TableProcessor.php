@@ -34,8 +34,7 @@ final class TableProcessor implements DataProcessorInterface
         private readonly FlexFormService $flexFormService,
         private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $contentObjectConfiguration

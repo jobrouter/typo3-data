@@ -35,6 +35,5 @@ final class TableDemand
         public readonly ?\DateTimeImmutable $lastSyncDate,
         public readonly string $lastSyncError,
         public readonly array $columns,
-    ) {
-    }
+    ) {}
 }

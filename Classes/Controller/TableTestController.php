@@ -33,8 +33,7 @@ final class TableTestController
         private readonly RestClientFactoryInterface $restClientFactory,
         private readonly ResponseFactoryInterface $responseFactory,
         private readonly StreamFactoryInterface $streamFactory,
-    ) {
-    }
+    ) {}
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface
     {

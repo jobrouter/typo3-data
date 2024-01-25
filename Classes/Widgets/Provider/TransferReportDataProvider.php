@@ -23,8 +23,7 @@ final class TransferReportDataProvider implements ListDataProviderInterface
 {
     public function __construct(
         private readonly TransferRepository $transferRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @return TransferReportItem[]

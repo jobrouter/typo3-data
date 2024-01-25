@@ -35,8 +35,7 @@ final class SimpleTableSynchroniser
         private readonly EventDispatcherInterface $eventDispatcher,
         private readonly LoggerInterface $logger,
         private readonly SynchronisationService $synchronisationService,
-    ) {
-    }
+    ) {}
 
     public function synchroniseTable(Table $table, bool $force): bool
     {

@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Exception;
 
-final class TableNotAvailableException extends \RuntimeException
-{
-}
+final class TableNotAvailableException extends \RuntimeException {}

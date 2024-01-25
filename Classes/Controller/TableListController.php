@@ -42,8 +42,7 @@ final class TableListController
         private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
         private readonly UriBuilder $uriBuilder,
-    ) {
-    }
+    ) {}
 
     public function handleRequest(ServerRequestInterface $request): ResponseInterface
     {

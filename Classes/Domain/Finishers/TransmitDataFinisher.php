@@ -34,8 +34,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
         private readonly Preparer $preparer,
         private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     protected function process(): void
     {

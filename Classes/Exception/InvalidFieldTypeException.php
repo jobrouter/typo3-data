@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Exception;
 
-final class InvalidFieldTypeException extends \RuntimeException
-{
-}
+final class InvalidFieldTypeException extends \RuntimeException {}

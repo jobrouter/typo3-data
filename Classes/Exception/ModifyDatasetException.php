@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Exception;
 
-final class ModifyDatasetException extends \LogicException
-{
-}
+final class ModifyDatasetException extends \LogicException {}

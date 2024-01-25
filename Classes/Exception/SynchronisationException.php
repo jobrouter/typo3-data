@@ -11,6 +11,4 @@ declare(strict_types=1);
 
 namespace Brotkrueml\JobRouterData\Exception;
 
-final class SynchronisationException extends \RuntimeException
-{
-}
+final class SynchronisationException extends \RuntimeException {}

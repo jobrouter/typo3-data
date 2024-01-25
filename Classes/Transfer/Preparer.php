@@ -23,8 +23,7 @@ final class Preparer
     public function __construct(
         private readonly LoggerInterface $logger,
         private readonly TransferRepository $transferRepository,
-    ) {
-    }
+    ) {}
 
     public function store(int $tableUid, string $correlationId, string $data): void
     {

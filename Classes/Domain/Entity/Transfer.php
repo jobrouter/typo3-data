@@ -22,8 +22,7 @@ final class Transfer
         public readonly bool $transmitSuccess,
         public readonly ?\DateTimeImmutable $transmitDate,
         public readonly string $transmitMessage,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $data

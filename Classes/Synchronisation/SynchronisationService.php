@@ -23,8 +23,7 @@ class SynchronisationService
     public function __construct(
         private readonly JobDataRepository $jobDataRepository,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @return list<array<string, string|int|float|bool|null>>

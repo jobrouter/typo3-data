@@ -45,8 +45,7 @@ class JobDataRepository
         private readonly ConnectionRepository $connectionRepository,
         private readonly RestClientFactoryInterface $restClientFactory,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     protected function getClient(string $tableHandle): ClientInterface
     {

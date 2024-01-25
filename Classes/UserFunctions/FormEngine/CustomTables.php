@@ -22,8 +22,7 @@ final class CustomTables
     public function __construct(
         private readonly TableProvider $tableProvider,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $config

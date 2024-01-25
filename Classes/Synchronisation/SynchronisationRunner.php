@@ -32,8 +32,7 @@ class SynchronisationRunner
         private readonly LoggerInterface $logger,
         private readonly SimpleTableSynchroniser $simpleTableSynchroniser,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     public function run(string $tableHandle, bool $force): CountResult
     {

@@ -20,8 +20,7 @@ final class TableUpdateHook
 {
     public function __construct(
         private readonly DatasetRepository $datasetRepository,
-    ) {
-    }
+    ) {}
 
     public function processCmdmap_postProcess(string $command, string $table, string|int $recordId): void
     {

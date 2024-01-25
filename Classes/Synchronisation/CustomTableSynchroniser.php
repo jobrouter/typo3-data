@@ -30,8 +30,7 @@ final class CustomTableSynchroniser
         private readonly LoggerInterface $logger,
         private readonly SynchronisationService $synchronisationService,
         private readonly TableProvider $tableProvider,
-    ) {
-    }
+    ) {}
 
     public function synchroniseTable(Table $table, bool $force): bool
     {

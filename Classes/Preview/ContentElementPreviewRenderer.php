@@ -29,8 +29,7 @@ final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
         private readonly SiteFinder $siteFinder,
         private readonly TableDemandFactory $tableDemandFactory,
         private readonly TableRepository $tableRepository,
-    ) {
-    }
+    ) {}
 
     public function renderPageModulePreviewContent(GridColumnItem $item): string
     {

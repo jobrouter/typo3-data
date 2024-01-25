@@ -26,8 +26,7 @@ final class Table
         public readonly string $datasetsSyncHash,
         public readonly ?\DateTimeImmutable $lastSyncDate,
         public readonly string $lastSyncError,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array<string, mixed> $data

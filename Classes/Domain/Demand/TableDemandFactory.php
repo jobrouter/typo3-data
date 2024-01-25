@@ -24,8 +24,7 @@ final class TableDemandFactory
     public function __construct(
         private readonly ColumnRepository $columnRepository,
         private readonly ConnectionRepository $connectionRepository,
-    ) {
-    }
+    ) {}
 
     public function create(Table $table, bool $withDisabled = false): TableDemand
     {
