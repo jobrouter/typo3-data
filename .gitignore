@@ -1,7 +1,6 @@
 .Build
 .idea
-.scannerwork
 Build/testing-docker/.env
 composer.lock
-Documentation/_build/
+Documentation-GENERATED-temp
 Tests/Acceptance/Support/_generated/
