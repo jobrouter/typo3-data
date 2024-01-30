@@ -2,7 +2,7 @@
 
 [![CI Status](https://github.com/jobrouter/typo3-data/workflows/CI/badge.svg?branch=main)](https://github.com/jobrouter/typo3-data/actions?query=workflow%3ACI)
 [![Crowdin](https://badges.crowdin.net/typo3-extension-jobrouterdata/localized.svg)](https://crowdin.com/project/typo3-extension-jobrouterdata)
-[![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-jobrouter-data.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-jobrouter-data)
+[![Latest Stable Version](https://img.shields.io/packagist/v/jobrouter/typo3-data.svg?label=stable)](https://packagist.org/packages/jobrouter/typo3-data)
 
 [JobRouter®](https://www.jobrouter.com/) is a scalable digitalisation
 platform which links processes, data and documents.
