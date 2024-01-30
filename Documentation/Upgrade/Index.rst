@@ -27,6 +27,8 @@ to
 The easiest way to update your code to the new namespace is to use
 search/replace in your project.
 
+The package name (used in :file:`composer.json`) has changed from
+`brotkrueml/jobrouter-typo3-data` to `jobrouter/typo3-data`.
 
 From version 1.x to version 2
 =============================
