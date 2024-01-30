@@ -27,6 +27,10 @@ This extension uses the `JobRouter REST Client`_ library and has the
 :doc:`TYPO3 JobRouter Connector <typo3-jobrouter-connector:introduction>`
 extension as a requirement to define connections to JobRouter® installations.
 
+.. note::
+   If you find a bug or want to propose a feature, please use the
+   `issue tracker on GitHub`_.
+
 
 .. _release-management:
 
@@ -46,6 +50,7 @@ The changes between the different versions can be found in the
 :ref:`changelog <changelog>`.
 
 
+.. _issue tracker on GitHub: https://github.com/jobrouter/typo3-data/issues
 .. _JobRouter®: https://www.jobrouter.com/
 .. _JobRouter REST Client: https://github.com/jobrouter/php-rest-client
 .. _semantic versioning: https://semver.org/
