@@ -22,7 +22,7 @@ to
 
 .. code-block:: text
 
-   \JobRouter\Addon\Typo3Data
+   \JobRouter\AddOn\Typo3Data
 
 The easiest way to update your code to the new namespace is to use
 search/replace in your project.

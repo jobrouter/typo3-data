@@ -16,7 +16,7 @@ Changed
 
 
 * Require JobRouter REST Client in version 3
-* Namespace from ``Brotkrueml\JobRouterData`` to ``JobRouter\Addon\Typo3Data``
+* Namespace from ``Brotkrueml\JobRouterData`` to ``JobRouter\AddOn\Typo3Data``
 
 `2.0.0 <https://github.com/jobrouter/typo3-data/compare/v1.1.2...v2.0.0>`_ - 2023-05-31
 -------------------------------------------------------------------------------------------
