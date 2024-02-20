@@ -7,38 +7,42 @@
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use JobRouter\AddOn\Typo3Data\Extension;
+use JobRouter\AddOn\Typo3Data\Preview\ContentElementPreviewRenderer;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
 defined('TYPO3') || die();
 
 (static function ($contentType = 'tx_jobrouterdata_table'): void {
-    TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPlugin(
+    ExtensionManagementUtility::addPlugin(
         [
-            JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title',
+            Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title',
             $contentType,
-            'EXT:' . JobRouter\AddOn\Typo3Data\Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
+            'EXT:' . Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
         ],
         'CType',
-        JobRouter\AddOn\Typo3Data\Extension::KEY,
+        Extension::KEY,
     );
 
     $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$contentType] = 'pi_flexform';
-    TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    ExtensionManagementUtility::addPiFlexFormValue(
         '*',
-        'FILE:EXT:' . JobRouter\AddOn\Typo3Data\Extension::KEY . '/Configuration/FlexForms/Table.xml',
+        'FILE:EXT:' . Extension::KEY . '/Configuration/FlexForms/Table.xml',
         $contentType,
     );
 
     $GLOBALS['TCA']['tt_content']['types'][$contentType] = [
         'columnsOverrides' => [
             'pi_flexform' => [
-                'label' => JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table',
+                'label' => Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table',
             ],
         ],
-        'previewRenderer' => JobRouter\AddOn\Typo3Data\Preview\ContentElementPreviewRenderer::class,
+        'previewRenderer' => ContentElementPreviewRenderer::class,
         'showitem' => '
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;general,
                 --palette--;;headers,
-            --div--;' . JobRouter\AddOn\Typo3Data\Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table,
+            --div--;' . Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table,
                 pi_flexform,
             --div--;LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:tabs.appearance,
                 --palette--;;frames,

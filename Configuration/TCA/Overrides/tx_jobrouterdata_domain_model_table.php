@@ -7,9 +7,11 @@
  * LICENSE.txt file that was distributed with this source code.
  */
 
+use TYPO3\CMS\Core\Information\Typo3Version;
+
 defined('TYPO3') || die();
 
-if ((new TYPO3\CMS\Core\Information\Typo3Version())->getMajorVersion() === 11) {
+if ((new Typo3Version())->getMajorVersion() === 11) {
     $GLOBALS['TCA']['tx_jobrouterdata_domain_model_table']['columns']['last_sync_date']['config'] = array_merge(
         $GLOBALS['TCA']['tx_jobrouterdata_domain_model_table']['columns']['last_sync_date']['config'],
         [

@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace JobRouter\AddOn\Typo3Data\Transfer;
 
+use Doctrine\DBAL\Result;
 use JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository;
 use JobRouter\AddOn\Typo3Data\Exception\DeleteException;
 use Psr\Log\LoggerInterface;
@@ -25,7 +26,7 @@ class Deleter
         private readonly TransferRepository $transferRepository,
     ) {}
 
-    public function run(int $ageInDays): \Doctrine\DBAL\Result|int
+    public function run(int $ageInDays): Result|int
     {
         $this->logger->info('Starting clean up of old transfers');
 
