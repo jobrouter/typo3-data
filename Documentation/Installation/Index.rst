@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _installation:
 
 ============
@@ -50,7 +48,9 @@ Installation via composer
 =========================
 
 The recommended way to install this extension is by using Composer. In your
-Composer-based TYPO3 project root, just type::
+Composer-based TYPO3 project root, just type:
+
+.. code-block:: shell
 
    composer req jobrouter/typo3-data
 

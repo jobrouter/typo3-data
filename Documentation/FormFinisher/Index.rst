@@ -1,5 +1,3 @@
-.. include:: /Includes.rst.txt
-
 .. _form-finisher:
 
 =============
@@ -103,5 +101,5 @@ Variables
 ---------
 
 You can use variables as column values. For more information have a look into
-the available :ref:`variable resolvers <typo3-jobrouter-base:variable-resolvers>`. You can also
-write your :ref:`own variable resolvers <typo3-jobrouter-base:developer-variable-resolvers>`.
+the available :ref:`variable resolvers <ext_jobrouter_base:variable-resolvers>`. You can also
+write your :ref:`own variable resolvers <ext_jobrouter_base:developer-variable-resolvers>`.

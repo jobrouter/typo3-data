@@ -1,7 +1,3 @@
-.. include:: /Includes.rst.txt
-
-.. highlight:: typoscript
-
 .. _configuration:
 
 =============
@@ -17,7 +13,9 @@ Content element
 ===============
 
 It is possible to adjust the CSS classes of the :ref:`content element
-<editor-content-element>` table via TypoScript::
+<editor-content-element>` table via TypoScript:
+
+.. code-block:: typoscript
 
    tt_content.tx_jobrouterdata_table {
       settings {
