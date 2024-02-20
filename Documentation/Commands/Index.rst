@@ -20,18 +20,21 @@ Synchronise tables
 ==================
 
 To synchronise the tables from JobRouter installations in TYPO3 a command is
-available. Run the following command in the project directory for a Composer
-installation:
+available. Run the following command in the project directory:
 
-.. code-block:: shell
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:data:sync
+   .. group-tab:: Composer-based installation
 
-In a non-Composer installation execute:
+      .. code-block:: shell
 
-.. code-block:: shell
+         vendor/bin/typo3 jobrouter:data:sync
 
-   php public/typo3/sysext/core/bin/typo3 jobrouter:data:sync
+   .. group-tab:: Legacy installation
+
+      .. code-block:: shell
+
+         public/typo3/sysext/core/bin/typo3 jobrouter:data:sync
 
 Hopefully you will receive a successful response:
 
@@ -46,18 +49,38 @@ Hopefully you will receive a successful response:
 
 You can also synchronise just one table:
 
-.. code-block:: shell
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:data:sync jobs
+   .. group-tab:: Composer-based installation
+
+      .. code-block:: shell
+
+         vendor/bin/typo3 jobrouter:data:sync jobs
+
+   .. group-tab:: Legacy installation
+
+      .. code-block:: shell
+
+         public/typo3/sysext/core/bin/typo3 jobrouter:data:sync jobs
 
 Where `jobs` is the handle of the table.
 
 It is also possible to force the synchronisation of one or all tables. By
 default, only changed datasets are synchronised. Use the force option:
 
-.. code-block:: shell
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:data:sync --force
+   .. group-tab:: Composer-based installation
+
+      .. code-block:: shell
+
+         vendor/bin/typo3 jobrouter:data:sync --force
+
+   .. group-tab:: Legacy installation
+
+      .. code-block:: shell
+
+         public/typo3/sysext/core/bin/typo3 jobrouter:data:sync --force
 
 If an error occurs, the command issues a warning:
 
@@ -90,17 +113,21 @@ Transmit data sets
 
 If you use the :ref:`transfer table <developer-transfer-data-sets>` to transmit
 JobData data sets to a JobRouter® installation must also use the transmit
-command from the project directory for a composer installation:
+command from the project directory:
 
-.. code-block:: shell
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:data:transmit
+   .. group-tab:: Composer-based installation
 
-In a non-composer installation execute:
+      .. code-block:: shell
 
-.. code-block:: shell
+         vendor/bin/typo3 jobrouter:data:transmit
 
-   php public/typo3/sysext/core/bin/typo3 jobrouter:data:transmit
+   .. group-tab:: Legacy installation
+
+      .. code-block:: shell
+
+         public/typo3/sysext/core/bin/typo3 jobrouter:data:transmit
 
 In general you should receive a successful answer:
 
@@ -141,15 +168,19 @@ After successfully transmitting data sets from the transfer table, these
 transfers are marked as successful. They may contain sensitive data and should
 be deleted regularly. A command is available for this task:
 
-.. code-block:: shell
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:data:cleanuptransfers
+   .. group-tab:: Composer-based installation
 
-In a non-Composer installation execute:
+      .. code-block:: shell
 
-.. code-block:: shell
+         vendor/bin/typo3 jobrouter:data:cleanuptransfers
 
-   php public/typo3/sysext/core/bin/typo3 jobrouter:data:cleanuptransfers
+   .. group-tab:: Legacy installation
+
+      .. code-block:: shell
+
+         public/typo3/sysext/core/bin/typo3 jobrouter:data:cleanuptransfers
 
 In general you should receive a successful answer:
 
@@ -160,9 +191,19 @@ In general you should receive a successful answer:
 By default, successful transfer records that are older than 30 days are deleted.
 You can adjust this value by adding an argument to the command:
 
-.. code-block:: shell
+.. tabs::
 
-   vendor/bin/typo3 jobrouter:data:cleanuptransfers 7
+   .. group-tab:: Composer-based installation
+
+      .. code-block:: shell
+
+         vendor/bin/typo3 jobrouter:data:cleanuptransfers 7
+
+   .. group-tab:: Legacy installation
+
+      .. code-block:: shell
+
+         public/typo3/sysext/core/bin/typo3 jobrouter:data:cleanuptransfers 7
 
 Now successful transfer records that are older than seven days are deleted. If
 you use `0` as argument, all successful transfers are deleted.
