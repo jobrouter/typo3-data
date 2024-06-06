@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.1] - 2024-06-06
+
 ### Fixed
 - Closing edit view in backend shows empty page
 - Disabled table links are not marked in backend list view
@@ -246,7 +248,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial pre-release
 
-[Unreleased]: https://github.com/jobrouter/typo3-data/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/jobrouter/typo3-data/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/jobrouter/typo3-data/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/jobrouter/typo3-data/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/jobrouter/typo3-data/compare/v1.1.2...v2.0.0
 [1.1.2]: https://github.com/jobrouter/typo3-data/compare/v1.1.1...v1.1.2
