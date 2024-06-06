@@ -154,7 +154,15 @@
 
 <f:section name="defaultColumns">
     <td id="jobrouter-data-list-name-{table.uid}">
-        <be:link.editRecord class="jobrouter-data-link" table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">{table.name}</be:link.editRecord>
+        <be:link.editRecord
+            class="jobrouter-data-link"
+            table="tx_jobrouterdata_domain_model_table"
+            uid="{table.uid}"
+            title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}"
+            returnUrl="{f:be.uri(route: 'jobrouter_data')}"
+        >
+            {table.name}
+        </be:link.editRecord>
         <f:if condition="{table.disabled}">
             ({f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:status.disabled')})
         </f:if>
@@ -175,7 +183,14 @@
 <f:section name="buttonsColumn">
     <td>
         <div class="btn-group">
-            <be:link.editRecord id="jobrouter-data-list-edit-{table.uid}" class="btn btn-default" table="tx_jobrouterdata_domain_model_table" uid="{table.uid}" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}">
+            <be:link.editRecord
+                id="jobrouter-data-list-edit-{table.uid}"
+                class="btn btn-default"
+                table="tx_jobrouterdata_domain_model_table"
+                uid="{table.uid}"
+                title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}"
+                returnUrl="{f:be.uri(route: 'jobrouter_data')}"
+            >
                 <core:icon identifier="actions-open"/>
             </be:link.editRecord>
             <a id="jobrouter-data-list-check-{table.uid}" class="btn btn-default jobrouter-data-table-check" data-table-uid="{table.uid}" data-table-name="{table.name}" href="#" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.check_table')}">

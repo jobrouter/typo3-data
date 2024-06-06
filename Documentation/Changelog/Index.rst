@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/jobrouter/typo3-data/compare/v3.0.0...HEAD>`_
 ---------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Closing edit view in backend shows empty page
+
 `3.0.0 <https://github.com/jobrouter/typo3-data/compare/v2.0.0...v3.0.0>`_ - 2024-02-21
 -------------------------------------------------------------------------------------------
 
