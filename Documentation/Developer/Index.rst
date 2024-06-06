@@ -221,7 +221,7 @@ used to facilitate the access to a JobData table. Links to JobData tables are
 also centralised in the :guilabel:`Data` module, in contrast to the definition
 in PHP code.
 
-Here is an example to get the table link and initialise the JobRouter Client:
+Here is an example to get the table link and initialise the JobRouter REST Client:
 
 .. code-block:: php
    :caption: EXT:my_extension/Classes/MyClass.php
