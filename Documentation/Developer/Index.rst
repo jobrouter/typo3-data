@@ -163,7 +163,8 @@ compared to the simple synchronisation type described above:
    SQL queries, because all JobData columns are stored in separate columns in
    the TYPO3 table.
 -  Joining data: You can join the table with other tables in your domain.
--  Easy usage: e.g. in TCA select boxes against the simple synchronisation.
+-  Easy usage: for example, in TCA select boxes against the simple
+   synchronisation.
 -  More Work: You have to implement the logic yourself.
 
 But let's start:
@@ -299,7 +300,7 @@ Preparing the data sets
 -----------------------
 
 If you want to transfer data sets programmatically to a JobRouter® installation,
-you can use the :php:`Preparer` class within TYPO3, e.g. in an Extbase
+you can use the :php:`Preparer` class within TYPO3, for example, in an Extbase
 controller:
 
 .. code-block:: php
@@ -357,8 +358,8 @@ Using the JobDataRepository
 ===========================
 
 The :php:`\JobRouter\AddOn\Typo3Data\Domain\Repository\JobRouter\JobDataRepository`
-provides methods to access the JobData REST API in TYPO3, e.g. in a command or a
-controller.
+provides methods to access the JobData REST API in TYPO3, for example, in a
+command or a controller.
 
 The following methods are available:
 

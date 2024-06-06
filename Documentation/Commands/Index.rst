@@ -7,8 +7,8 @@ Commands
 Target group: **Administrators**
 
 Surely you want to execute the commands regularly. Simply set up cron jobs that
-will execute the commands regularly, e.g. once an hour or once a day, depending
-on your needs.
+will execute the commands regularly, for example, once an hour or once a day,
+depending on your needs.
 
 .. contents::
    :depth: 1

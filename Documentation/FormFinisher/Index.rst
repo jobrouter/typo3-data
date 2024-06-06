@@ -54,8 +54,9 @@ The `handle` is required as it connects the fields to the appropriate
 You can map the form fields to the JobData columns. As you can see in the
 example above, you define the JobData column as the key (e.g `email_address`)
 and then map it with the value to be stored. This can be the form field
-identifier which is enclosed in curly brackets (e.g. `{email}`), a static value,
-a combination of a static value with a form field or even multiple form fields.
+identifier which is enclosed in curly brackets (for example, `{email}`), a
+static value, a combination of a static value with a form field or even multiple
+form fields.
 
 .. note::
    Only columns that are configured in the :ref:`table link

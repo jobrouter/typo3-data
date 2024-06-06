@@ -55,11 +55,11 @@ Simple synchronisation
 ~~~~~~~~~~~~~~~~~~~~~~
 
 The data sets of the JobData table are synchronised in a table provided by this
-extension. This is the recommended type if you only want to display data,
-e.g. with the :ref:`content element <editor-content-element>`. Have a look at
-the developer corner to see the :ref:`schema <developer-simple-sync-table>` of
-the table and how to use it in your code. The synchronisation is done with the
-available :ref:`synchronisation command <sync-command>`.
+extension. This is the recommended type if you only want to display data, for
+example, with the :ref:`content element <editor-content-element>`. Have a look
+at the developer corner to see the :ref:`schema <developer-simple-sync-table>`
+of the table and how to use it in your code. The synchronisation is done with
+the available :ref:`synchronisation command <sync-command>`.
 
 .. note::
    The simple synchronisation should only be used for an overseeable number of
@@ -102,9 +102,9 @@ Synchronisation in custom table
 
 You have to define a table yourself in an extension with the needed columns
 from the JobData table. This is the recommended way when you want to display the
-data yourself, e.g. with filtering by some columns or with joins to other data.
-The synchronisation is carried out with the available :ref:`synchronisation
-command <sync-command>`.
+data yourself, for example, with filtering by some columns or with joins to
+other data. The synchronisation is carried out with the available
+:ref:`synchronisation command <sync-command>`.
 
 .. figure:: /Images/create-table-link-custom-table.png
    :alt: Create a table link of type Synchronisation in custom table
