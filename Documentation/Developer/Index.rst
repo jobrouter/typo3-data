@@ -363,24 +363,29 @@ command or a controller.
 
 The following methods are available:
 
-.. option:: add(string $tableHandle, array $dataset): array
+.. confval:: add(string $tableHandle, array $dataset): array
+   :name: jobdatarepository-add
 
    Adds a dataset to a JobData table and returns the stored dataset.
 
-.. option:: remove(string $tableHandle, int ...$jrid): void
+.. confval:: remove(string $tableHandle, int ...$jrid): void
+   :name: jobdatarepository-remove
 
    Removes one or more datasets from a JobData table.
 
-.. option:: update(string $tableHandle, int $jrid, array $dataset): array
+.. confval:: update(string $tableHandle, int $jrid, array $dataset): array
+   :name: jobdatarepository-update
 
    Updates the dataset with the given jrid for a JobData table and returns the
    stored dataset.
 
-.. option:: findAll(string $tableHandle): array
+.. confval:: findAll(string $tableHandle): array
+   :name: jobdatarepository-findall
 
    Returns all datasets of the JobData table;
 
-.. option:: findByJrId(string $tableHandle, int $jrid): array
+.. confval:: findByJrId(string $tableHandle, int $jrid): array
+   :name: jobdatarepository-findbyjrid
 
    Returns the dataset for the given jrid of a JobData table.
 
@@ -433,7 +438,8 @@ and are located in the :file:`Classes/EventListener` folder of this extension.
 They receive a :php:`JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent`
 event with the following methods:
 
-.. option:: getTable()
+.. confval:: getTable()
+   :name: modifycolumncontentevent-gettable
 
    The table entity.
 
@@ -441,7 +447,8 @@ event with the following methods:
       The entity class of a table
       (:php:`JobRouter\AddOn\Typo3Data\Domain\Entity\Table`).
 
-.. option:: getColumn()
+.. confval:: getColumn()
+   :name: modifycolumncontentevent-getcolumn
 
    The column entity.
 
@@ -449,14 +456,16 @@ event with the following methods:
       The entity class of a column
       (:php:`JobRouter\AddOn\Typo3Data\Domain\Entity\Column`).
 
-.. option:: getContent()
+.. confval:: getContent()
+   :name: modifycolumncontentevent-getcontent
 
    The content of a table cell.
 
    Return value
       The value of the content (types: float, int, string).
 
-.. option:: setContent($content)
+.. confval:: setContent($content)
+   :name: modifycolumncontentevent-setcontent
 
    Set a content for a table cell.
 
@@ -464,7 +473,8 @@ event with the following methods:
       :php:`float|int|string $content`
       The formatted content of a table cell.
 
-.. option:: getLocale()
+.. confval:: getLocale()
+   :name: modifycolumncontentevent-getlocale
 
    The locale of the website page.
 
