@@ -6,6 +6,7 @@
 /.gitattributes export-ignore
 /.github/ export-ignore
 /.gitignore export-ignore
+/.noai export-ignore
 /.phpstorm.meta.php export-ignore
 /.readthedocs.yml export-ignore
 /CHANGELOG.md export-ignore
