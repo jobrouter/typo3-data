@@ -10,7 +10,8 @@ parameters:
     level: 8
     paths:
         - Classes
-    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - identifier: missingType.generics
     cognitive_complexity:
         class: 20
         function: 10
