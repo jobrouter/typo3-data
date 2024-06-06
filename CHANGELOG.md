@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2024-02-21
+
 ### Changed
 - Require JobRouter REST Client in version 3
 - Namespace from `Brotkrueml\JobRouterData` to `JobRouter\AddOn\Typo3Data`
