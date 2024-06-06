@@ -29,6 +29,7 @@ final class TableBuilder
             'datasets_sync_hash' => '',
             'last_sync_date' => 0,
             'last_sync_error' => '',
+            'disabled' => '0',
         ]);
     }
 }

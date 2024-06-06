@@ -47,6 +47,7 @@ final class TableDemandFactory
             $table->lastSyncDate,
             $table->lastSyncError,
             $columns,
+            $table->disabled,
         );
     }
 

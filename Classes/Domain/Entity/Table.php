@@ -26,6 +26,7 @@ final class Table
         public readonly string $datasetsSyncHash,
         public readonly ?\DateTimeImmutable $lastSyncDate,
         public readonly string $lastSyncError,
+        public readonly bool $disabled,
     ) {}
 
     /**
@@ -46,6 +47,7 @@ final class Table
             $data['datasets_sync_hash'],
             $lastSyncDate > 0 ? (new \DateTimeImmutable())->setTimestamp($lastSyncDate) : null,
             (string)$data['last_sync_error'],
+            (bool)$data['disabled'],
         );
     }
 }

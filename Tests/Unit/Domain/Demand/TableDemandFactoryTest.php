@@ -64,6 +64,7 @@ final class TableDemandFactoryTest extends TestCase
         self::assertSame('some_hash', $actual->datasetsSyncHash);
         self::assertNull($actual->lastSyncDate);
         self::assertSame('some error', $actual->lastSyncError);
+        self::assertFalse($actual->disabled);
     }
 
     #[Test]
@@ -169,6 +170,7 @@ final class TableDemandFactoryTest extends TestCase
             'datasets_sync_hash' => 'some_hash',
             'last_sync_date' => null,
             'last_sync_error' => 'some error',
+            'disabled' => '0',
         ]);
     }
 

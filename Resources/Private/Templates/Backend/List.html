@@ -160,9 +160,7 @@
             uid="{table.uid}"
             title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.edit_table')}"
             returnUrl="{f:be.uri(route: 'jobrouter_data')}"
-        >
-            {table.name}
-        </be:link.editRecord>
+        >{table.name}</be:link.editRecord>
         <f:if condition="{table.disabled}">
             ({f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:status.disabled')})
         </f:if>

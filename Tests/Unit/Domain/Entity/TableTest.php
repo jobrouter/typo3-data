@@ -32,6 +32,7 @@ final class TableTest extends TestCase
             'datasets_sync_hash' => 'some sync hash',
             'last_sync_date' => '1234567890',
             'last_sync_error' => 'some sync error',
+            'disabled' => '1',
         ]);
 
         self::assertSame(42, $actual->uid);
@@ -44,5 +45,6 @@ final class TableTest extends TestCase
         self::assertSame('some sync hash', $actual->datasetsSyncHash);
         self::assertSame(1234567890, $actual->lastSyncDate->getTimestamp());
         self::assertSame('some sync error', $actual->lastSyncError);
+        self::assertTrue($actual->disabled);
     }
 }

@@ -16,6 +16,7 @@ Fixed
 
 
 * Closing edit view in backend shows empty page
+* Disabled table links are not marked in backend list view
 
 `3.0.0 <https://github.com/jobrouter/typo3-data/compare/v2.0.0...v3.0.0>`_ - 2024-02-21
 -------------------------------------------------------------------------------------------
