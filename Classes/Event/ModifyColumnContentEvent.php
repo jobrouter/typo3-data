@@ -19,13 +19,10 @@ final class ModifyColumnContentEvent implements StoppableEventInterface
 {
     private bool $contentFormatted = false;
 
-    /**
-     * @param float|int|string|null $content
-     */
     public function __construct(
         private readonly Table $table,
         private readonly Column $column,
-        private $content,
+        private float|int|string|null $content,
         private readonly string $locale,
     ) {}
 
