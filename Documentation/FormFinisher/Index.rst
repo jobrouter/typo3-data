@@ -52,7 +52,7 @@ The `handle` is required as it connects the fields to the appropriate
 :ref:`table link <module-create-table-link>`.
 
 You can map the form fields to the JobData columns. As you can see in the
-example above, you define the JobData column as the key (e.g `email_address`)
+example above, you define the JobData column as the key (for example, `email_address`)
 and then map it with the value to be stored. This can be the form field
 identifier which is enclosed in curly brackets (for example, `{email}`), a
 static value, a combination of a static value with a form field or even multiple
