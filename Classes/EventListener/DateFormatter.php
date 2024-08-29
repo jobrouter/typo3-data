@@ -14,6 +14,9 @@ namespace JobRouter\AddOn\Typo3Data\EventListener;
 use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 use JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent;
 
+/**
+ * @internal
+ */
 final class DateFormatter
 {
     public function __invoke(ModifyColumnContentEvent $event): void
