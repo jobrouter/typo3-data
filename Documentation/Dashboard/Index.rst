@@ -10,7 +10,7 @@ Target group: **Editors, Integrators, Administrators**
    :depth: 1
    :local:
 
-With the :ref:`Dashboard <ext_dashboard:introduction>` system extension
+With the :ref:`Dashboard <typo3/cms-dashboard:introduction>` system extension
 installed, some widgets can be used for statistics. You can find them in the
 :guilabel:`Add widget` wizard on the :guilabel:`JobRouter` tab:
 

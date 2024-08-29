@@ -19,10 +19,6 @@
         project-repository="https://github.com/jobrouter/typo3-data"
         typo3-core-preferred="stable"
     />
-    <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/12.4/en-us/"/>
-    <inventory id="t3start" url="https://docs.typo3.org/m/typo3/tutorial-getting-started/12.4/en-us/"/>
-
-    <inventory id="ext_dashboard" url="https://docs.typo3.org/c/typo3/cms-dashboard/12.4/en-us/"/>
     <inventory id="ext_jobrouter_base" url="https://docs.typo3.org/p/jobrouter/typo3-base/main/en-us/"/>
     <inventory id="ext_jobrouter_connector" url="https://docs.typo3.org/p/jobrouter/typo3-connector/main/en-us/"/>
 </guides>
