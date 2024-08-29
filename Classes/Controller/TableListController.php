@@ -52,7 +52,9 @@ final class TableListController
             \str_replace('LLL:', '', Extension::LANGUAGE_PATH_BACKEND_MODULE),
         );
         $this->pageRenderer->addCssFile('EXT:' . Extension::KEY . '/Resources/Public/Css/styles.css');
-        $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/JobrouterData/TableTest');
+        $this->pageRenderer->loadJavaScriptModule(
+            '@jobrouter/data/connection-check.js',
+        );
 
         $this->initializeView();
         $this->configureDocHeader($request->getAttribute('normalizedParams')?->getRequestUri() ?? '');
