@@ -48,7 +48,7 @@
 		"typo3/cms-dashboard": "^11.5.4 || ^12.4",
 		"typo3/cms-fluid-styled-content": "^11.5.4 || ^12.4",
 		"typo3/cms-form": "^11.5.4 || ^12.4",
-		"typo3/testing-framework": "^7.0"
+		"typo3/testing-framework": "^7.0 || ^8.2"
 	},
 	"suggest": {
 		"ext-intl": "Format dates and numbers in JobData content element columns",
