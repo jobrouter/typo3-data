@@ -30,7 +30,6 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
     $services
         ->set('dashboard.widget.jobrouter.typo3_data.statusOfDataTransmissions')
         ->class(TransferStatusWidget::class)
-        ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferStatusDataProvider::class))
         ->arg(
             '$options',
@@ -50,7 +49,6 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
     $services
         ->set('dashboard.widget.jobrouter.typo3_data.transferReport')
         ->class(TransferReportWidget::class)
-        ->arg('$view', new Reference('dashboard.views.widget'))
         ->arg('$dataProvider', new Reference(TransferReportDataProvider::class))
         ->arg(
             '$options',
