@@ -91,7 +91,7 @@ class Transmitter
                 \json_decode($transfer->data, true, flags: \JSON_THROW_ON_ERROR),
             );
 
-        return (int)($result[0]['jrid'] ?? 0);
+        return (int) ($result[0]['jrid'] ?? 0);
     }
 
     private function getTable(int $tableUid): Table

@@ -40,14 +40,14 @@ final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
         $record = $item->getRecord();
 
         $flexForm = GeneralUtility::xml2array($record['pi_flexform']);
-        $tableId = (int)$this->getValueFromFlexform($flexForm, 'table');
+        $tableId = (int) $this->getValueFromFlexform($flexForm, 'table');
 
         try {
             $table = $this->tableRepository->findByUid($tableId);
             $site = $this->siteFinder->getSiteByPageId($record['pid']);
             // locale is casted to a string as in v12 the locale is an object with a __toString() method (in v11 it is a string)
             // @todo Remove the cast when compatibility with TYPO3 v11 is dropped
-            $locale = (string)$site->getLanguageById($record['sys_language_uid'])->getLocale();
+            $locale = (string) $site->getLanguageById($record['sys_language_uid'])->getLocale();
 
             $view->assignMultiple([
                 'tableDemand' => $this->tableDemandFactory->create($table),

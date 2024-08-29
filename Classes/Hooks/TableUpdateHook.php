@@ -31,6 +31,6 @@ final class TableUpdateHook
             return;
         }
 
-        $this->datasetRepository->deleteByTableUid((int)$recordId);
+        $this->datasetRepository->deleteByTableUid((int) $recordId);
     }
 }

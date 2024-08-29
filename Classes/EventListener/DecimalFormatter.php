@@ -29,7 +29,7 @@ final class DecimalFormatter
         }
 
         if (\is_string($content) && \is_numeric($content)) {
-            $content = (float)$content;
+            $content = (float) $content;
         }
 
         if (\is_string($content)) {

@@ -42,7 +42,7 @@ final class TableTestController
             return $this->buildResponse('Request has no valid body!');
         }
 
-        $tableId = (int)$body['tableId'];
+        $tableId = (int) $body['tableId'];
         try {
             try {
                 $table = $this->tableRepository->findByUidWithHidden($tableId);

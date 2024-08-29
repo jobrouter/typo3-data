@@ -22,7 +22,7 @@ final class Column
      */
     public function getLabel(array &$parameters): void
     {
-        $label = (string)($parameters['row']['label'] ?? '');
+        $label = (string) ($parameters['row']['label'] ?? '');
         if (\str_starts_with($label, 'LLL:')) {
             $label = $this->getLanguageService()->sL($label);
         }

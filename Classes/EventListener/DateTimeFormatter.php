@@ -23,7 +23,7 @@ final class DateTimeFormatter
         }
 
         $formatter = new \IntlDateFormatter($event->getLocale(), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT);
-        $formattedDateTime = $formatter->format(new \DateTimeImmutable((string)$event->getContent()));
+        $formattedDateTime = $formatter->format(new \DateTimeImmutable((string) $event->getContent()));
         if ($formattedDateTime !== false) {
             $event->setContent($formattedDateTime);
         }

@@ -75,13 +75,13 @@ final class TableListController
         $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
 
         $newButton = $buttonBar->makeLinkButton()
-            ->setHref((string)$this->uriBuilder->buildUriFromRoute(
+            ->setHref((string) $this->uriBuilder->buildUriFromRoute(
                 'record_edit',
                 [
                     'edit' => [
                         'tx_jobrouterdata_domain_model_table' => ['new'],
                     ],
-                    'returnUrl' => (string)$this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
+                    'returnUrl' => (string) $this->uriBuilder->buildUriFromRoute(Extension::MODULE_NAME),
                 ],
             ))
             ->setTitle($this->getLanguageService()->sL(Extension::LANGUAGE_PATH_BACKEND_MODULE . ':action.add_table'))

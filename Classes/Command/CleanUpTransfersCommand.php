@@ -103,7 +103,7 @@ final class CleanUpTransfersCommand extends Command
             );
         }
 
-        $ageInDays = (int)$ageInDays;
+        $ageInDays = (int) $ageInDays;
         if ($ageInDays < 0) {
             throw new \InvalidArgumentException(
                 \sprintf(

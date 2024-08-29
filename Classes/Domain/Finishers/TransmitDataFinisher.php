@@ -107,7 +107,7 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
                 $value,
             );
 
-            $value = $this->resolveFormFields($formValues, (string)$value);
+            $value = $this->resolveFormFields($formValues, (string) $value);
 
             $data[$column] = $this->considerTypeForFieldValue(
                 $value,
@@ -137,9 +137,9 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
     private function considerTypeForFieldValue(mixed $value, FieldType $type, int $fieldSize): string|int|float
     {
         return match ($type) {
-            FieldType::Text => $this->cutStringValueToLength((string)$value, $fieldSize),
-            FieldType::Integer => $value === '' ? '' : (int)$value,
-            FieldType::Decimal => $value === '' ? '' : (float)$value,
+            FieldType::Text => $this->cutStringValueToLength((string) $value, $fieldSize),
+            FieldType::Integer => $value === '' ? '' : (int) $value,
+            FieldType::Decimal => $value === '' ? '' : (float) $value,
             FieldType::Date,
             FieldType::DateTime => throw new InvalidFieldTypeException(
                 \sprintf('The field type "%d" is not implemented in the form finisher', $type->name),

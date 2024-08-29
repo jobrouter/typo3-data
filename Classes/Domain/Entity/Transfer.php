@@ -29,17 +29,17 @@ final class Transfer
      */
     public static function fromArray(array $data): self
     {
-        $transmitDate = (int)$data['transmit_date'];
+        $transmitDate = (int) $data['transmit_date'];
 
         return new self(
-            (int)$data['uid'],
-            (int)$data['crdate'],
-            (int)$data['table_uid'],
+            (int) $data['uid'],
+            (int) $data['crdate'],
+            (int) $data['table_uid'],
             $data['correlation_id'],
-            (string)$data['data'],
-            (bool)($data['transmit_success'] ?? false),
+            (string) $data['data'],
+            (bool) ($data['transmit_success'] ?? false),
             $transmitDate > 0 ? (new \DateTimeImmutable())->setTimestamp($transmitDate) : null,
-            (string)$data['transmit_message'],
+            (string) $data['transmit_message'],
         );
     }
 }

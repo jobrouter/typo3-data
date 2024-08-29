@@ -161,7 +161,7 @@ final class TransferRepositoryTest extends FunctionalTestCase
             )
             ->fetchAllAssociative();
 
-        $availableUids = \array_map(static fn(array $row): int => (int)$row['uid'], $rows);
+        $availableUids = \array_map(static fn(array $row): int => (int) $row['uid'], $rows);
 
         self::assertNotContains(1, $availableUids);
         self::assertNotContains(3, $availableUids);

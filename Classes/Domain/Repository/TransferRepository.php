@@ -102,7 +102,7 @@ class TransferRepository
             ->update(
                 self::TABLE_NAME,
                 [
-                    'transmit_success' => (int)$success,
+                    'transmit_success' => (int) $success,
                     'transmit_date' => $date->getTimestamp(),
                     'transmit_message' => $message,
                 ],

@@ -34,11 +34,11 @@ final class Table
      */
     public static function fromArray(array $data): self
     {
-        $lastSyncDate = (int)$data['last_sync_date'];
+        $lastSyncDate = (int) $data['last_sync_date'];
 
         return new self(
-            (int)$data['uid'],
-            (int)$data['connection'],
+            (int) $data['uid'],
+            (int) $data['connection'],
             TableType::from($data['type']),
             $data['handle'],
             $data['name'],
@@ -46,8 +46,8 @@ final class Table
             $data['custom_table'],
             $data['datasets_sync_hash'],
             $lastSyncDate > 0 ? (new \DateTimeImmutable())->setTimestamp($lastSyncDate) : null,
-            (string)$data['last_sync_error'],
-            (bool)$data['disabled'],
+            (string) $data['last_sync_error'],
+            (bool) $data['disabled'],
         );
     }
 }

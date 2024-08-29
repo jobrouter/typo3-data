@@ -33,10 +33,10 @@ final class Dataset
     public static function fromArray(array $data): self
     {
         return new self(
-            (int)$data['uid'],
-            (int)$data['table_uid'],
-            (int)$data['jrid'],
-            (string)$data['dataset'],
+            (int) $data['uid'],
+            (int) $data['table_uid'],
+            (int) $data['jrid'],
+            (string) $data['dataset'],
         );
     }
 }

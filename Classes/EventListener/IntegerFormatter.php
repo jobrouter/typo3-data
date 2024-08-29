@@ -28,7 +28,7 @@ final class IntegerFormatter
         }
 
         if (\is_string($content) && \is_numeric($content)) {
-            $content = (int)$content;
+            $content = (int) $content;
         }
 
         if (\is_string($content)) {

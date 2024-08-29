@@ -173,7 +173,7 @@ return [
         ],
     ],
     'types' => [
-        (string)TableType::Simple->value => [
+        (string) TableType::Simple->value => [
             'columnsOverrides' => [
                 'columns' => [
                     'config' => [
@@ -202,7 +202,7 @@ return [
                 description,
             ',
         ],
-        (string)TableType::CustomTable->value => [
+        (string) TableType::CustomTable->value => [
             'showitem' => '
                 type, connection, name, handle, table_guid, custom_table,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
@@ -213,7 +213,7 @@ return [
                 description,
             ',
         ],
-        (string)TableType::FormFinisher->value => [
+        (string) TableType::FormFinisher->value => [
             'showitem' => '
                 type, connection, name, handle, table_guid, columns,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
@@ -222,7 +222,7 @@ return [
                 description,
             ',
         ],
-        (string)TableType::OtherUsage->value => [
+        (string) TableType::OtherUsage->value => [
             'showitem' => '
                 type, connection, name, handle, table_guid,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,

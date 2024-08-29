@@ -31,14 +31,14 @@ final class Column
     public static function fromArray(array $data): self
     {
         return new self(
-            (int)$data['uid'],
+            (int) $data['uid'],
             $data['name'],
             $data['label'],
-            (int)$data['type'],
-            (int)$data['decimal_places'],
-            (int)$data['field_size'],
+            (int) $data['type'],
+            (int) $data['decimal_places'],
+            (int) $data['field_size'],
             $data['alignment'],
-            (int)$data['sorting_priority'],
+            (int) $data['sorting_priority'],
             $data['sorting_order'],
         );
     }
