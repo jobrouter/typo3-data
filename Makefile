@@ -1,10 +1,6 @@
 .PHONY: qa
 qa: cs unit-tests phpstan rector-dry yaml-lint
 
-.PHONY: acceptance-tests
-acceptance-tests: vendor
-	./Build/Scripts/runTests.sh -s acceptance
-
 # See: https://github.com/crossnox/m2r2
 .PHONY: changelog
 changelog:

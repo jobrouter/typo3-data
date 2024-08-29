@@ -3,4 +3,3 @@
 Build/testing-docker/.env
 composer.lock
 Documentation-GENERATED-temp
-Tests/Acceptance/Support/_generated/
