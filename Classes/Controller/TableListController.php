@@ -17,6 +17,7 @@ use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
 use JobRouter\AddOn\Typo3Data\Extension;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Backend\Attribute\AsController;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
@@ -30,6 +31,7 @@ use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
+#[AsController]
 final class TableListController
 {
     private ModuleTemplate $moduleTemplate;

@@ -29,12 +29,6 @@ services:
         description: 'Transmit data sets to JobData tables'
         schedulable: true
 
-  JobRouter\AddOn\Typo3Data\Controller\TableListController:
-    tags: [ 'backend.controller' ]
-
-  JobRouter\AddOn\Typo3Data\Controller\TableTestController:
-    tags: [ 'backend.controller' ]
-
   JobRouter\AddOn\Typo3Data\DataProcessing\TableProcessor:
     public: true
 

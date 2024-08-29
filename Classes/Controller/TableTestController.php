@@ -21,10 +21,12 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
+use TYPO3\CMS\Backend\Attribute\AsController;
 
 /**
  * @internal
  */
+#[AsController]
 final class TableTestController
 {
     public function __construct(
