@@ -20,6 +20,7 @@ use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
@@ -117,7 +118,7 @@ final class SimpleTableSynchroniser
                 'table_uid' => $table->uid,
             ],
             [
-                'table_uid' => \PDO::PARAM_INT,
+                'table_uid' => Connection::PARAM_INT,
             ],
         );
 
@@ -158,9 +159,9 @@ final class SimpleTableSynchroniser
             self::DATASET_TABLE_NAME,
             $data,
             [
-                'table_uid' => \PDO::PARAM_INT,
-                'jrid' => \PDO::PARAM_INT,
-                'dataset' => \PDO::PARAM_STR,
+                'table_uid' => Connection::PARAM_INT,
+                'jrid' => Connection::PARAM_INT,
+                'dataset' => Connection::PARAM_STR,
             ],
         );
 
