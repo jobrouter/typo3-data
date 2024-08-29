@@ -10,7 +10,7 @@ $EM_CONF[$_EXTKEY] = [
     'constraints' => [
         'depends' => [
             'php' => '8.1.0-0.0.0',
-            'typo3' => '11.5.4-12.4.99',
+            'typo3' => '12.4.0-12.4.99',
             'jobrouter_base' => '3.0.0-3.99.99',
             'jobrouter_connector' => '3.0.0-3.99.99',
         ],

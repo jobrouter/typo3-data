@@ -27,11 +27,10 @@
 		"jobrouter/rest-client": "^3.0",
 		"jobrouter/typo3-base": "^3.0",
 		"jobrouter/typo3-connector": "^3.0",
-		"symfony/polyfill-intl-icu": "^1.15",
-		"typo3/cms-backend": "^11.5.4 || ^12.4",
-		"typo3/cms-core": "^11.5.4 || ^12.4",
-		"typo3/cms-fluid": "^11.5.4 || ^12.4",
-		"typo3/cms-frontend": "^11.5.4 || ^12.4"
+		"typo3/cms-backend": "^12.4",
+		"typo3/cms-core": "^12.4",
+		"typo3/cms-fluid": "^12.4",
+		"typo3/cms-frontend": "^12.4"
 	},
 	"require-dev": {
 		"brotkrueml/coding-standards": "~6.0.0",
@@ -42,16 +41,15 @@
 		"phpunit/phpunit": "^10.5",
 		"rector/rector": "1.2.4",
 		"saschaegerer/phpstan-typo3": "^1.10",
-		"symfony/yaml": "^5.4 || ^6.4 || ^7.0",
+		"symfony/yaml": "^6.4 || ^7.0",
 		"symplify/phpstan-rules": "^13.0",
 		"tomasvotruba/cognitive-complexity": "^0.2.3",
-		"typo3/cms-dashboard": "^11.5.4 || ^12.4",
-		"typo3/cms-fluid-styled-content": "^11.5.4 || ^12.4",
-		"typo3/cms-form": "^11.5.4 || ^12.4",
-		"typo3/testing-framework": "^7.0 || ^8.2"
+		"typo3/cms-dashboard": "^12.4",
+		"typo3/cms-fluid-styled-content": "^12.4",
+		"typo3/cms-form": "^12.4",
+		"typo3/testing-framework": "^8.2"
 	},
 	"suggest": {
-		"ext-intl": "Format dates and numbers in JobData content element columns",
 		"typo3/cms-dashboard": "Use dashboard widgets for information about JobData transmissions",
 		"typo3/cms-fluid-styled-content": "Necessary when using the table content element",
 		"typo3/cms-form": "Use form finisher with TYPO3 form framework"
