@@ -3,11 +3,13 @@ name: CI
 on:
   push:
     paths:
+      - 'Build/**'
       - 'composer.json'
       - '.github/workflows/ci.yml'
       - '**.php'
   pull_request:
     paths:
+      - 'Build/**'
       - 'composer.json'
       - '.github/workflows/ci.yml'
       - '**.php'
