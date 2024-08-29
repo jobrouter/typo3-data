@@ -13,11 +13,11 @@
                     <renderType>selectSingle</renderType>
                     <items>
                         <numIndex index="0">
-                            <numIndex index="0"/>
-                            <numIndex index="1"/>
+                            <numIndex index="label"/>
+                            <numIndex index="value"/>
                         </numIndex>
                     </items>
-                    <eval>required</eval>
+                    <required>1</required>
                     <foreign_table>tx_jobrouterdata_domain_model_table</foreign_table>
                     <foreign_table_where>AND tx_jobrouterdata_domain_model_table.type=1 ORDER BY name</foreign_table_where>
                 </config>
