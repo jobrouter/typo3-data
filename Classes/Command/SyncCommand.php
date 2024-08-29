@@ -13,6 +13,7 @@ namespace JobRouter\AddOn\Typo3Data\Command;
 
 use JobRouter\AddOn\Typo3Data\Extension;
 use JobRouter\AddOn\Typo3Data\Synchronisation\SynchronisationRunner;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,6 +28,10 @@ use TYPO3\CMS\Core\Registry;
 /**
  * @internal
  */
+#[AsCommand(
+    name: 'jobrouter:data:sync',
+    description: 'Synchronise JobData data sets from JobRouter installations',
+)]
 final class SyncCommand extends Command
 {
     private const ARGUMENT_TABLE = 'table';

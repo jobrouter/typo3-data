@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace JobRouter\AddOn\Typo3Data\Command;
 
 use JobRouter\AddOn\Typo3Data\Transfer\Transmitter;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,6 +25,10 @@ use TYPO3\CMS\Core\Registry;
 /**
  * @internal
  */
+#[AsCommand(
+    name: 'jobrouter:data:transmit',
+    description: 'Transmit data sets to JobData tables',
+)]
 final class TransmitCommand extends Command
 {
     private ?int $startTime = null;

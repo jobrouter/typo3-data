@@ -13,6 +13,7 @@ namespace JobRouter\AddOn\Typo3Data\Command;
 
 use JobRouter\AddOn\Typo3Data\Exception\DeleteException;
 use JobRouter\AddOn\Typo3Data\Transfer\Deleter;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -22,6 +23,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 /**
  * @internal
  */
+#[AsCommand(
+    name: 'jobrouter:data:cleanuptransfers',
+    description: 'Delete old entries in the transfer table',
+)]
 final class CleanUpTransfersCommand extends Command
 {
     private const ARGUMENT_AGE_IN_DAYS = 'ageInDays';

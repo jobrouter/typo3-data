@@ -8,27 +8,6 @@ services:
     resource: '../Classes/*'
     exclude: '../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php,Hooks,UserFunctions}'
 
-  JobRouter\AddOn\Typo3Data\Command\CleanUpTransfersCommand:
-    tags:
-      - name: 'console.command'
-        command: 'jobrouter:data:cleanuptransfers'
-        description: 'Delete old entries in the transfer table'
-        schedulable: true
-
-  JobRouter\AddOn\Typo3Data\Command\SyncCommand:
-    tags:
-      - name: 'console.command'
-        command: 'jobrouter:data:sync'
-        description: 'Synchronise JobData data sets from JobRouter installations'
-        schedulable: true
-
-  JobRouter\AddOn\Typo3Data\Command\TransmitCommand:
-    tags:
-      - name: 'console.command'
-        command: 'jobrouter:data:transmit'
-        description: 'Transmit data sets to JobData tables'
-        schedulable: true
-
   JobRouter\AddOn\Typo3Data\DataProcessing\TableProcessor:
     public: true
 
