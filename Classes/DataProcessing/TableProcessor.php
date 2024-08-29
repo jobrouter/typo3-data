@@ -16,6 +16,7 @@ use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
 use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
 use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use JobRouter\AddOn\Typo3Data\Extension;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Service\FlexFormService;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
@@ -23,6 +24,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 /**
  * @internal
  */
+#[Autoconfigure(public: true)]
 final class TableProcessor implements DataProcessorInterface
 {
     private ContentObjectRenderer $cObj;

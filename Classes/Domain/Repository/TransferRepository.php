@@ -12,12 +12,15 @@ declare(strict_types=1);
 namespace JobRouter\AddOn\Typo3Data\Domain\Repository;
 
 use JobRouter\AddOn\Typo3Data\Domain\Entity\Transfer;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
  * @internal
+ * Set public for functional tests
  */
+#[Autoconfigure(public: true)]
 class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_transfer';

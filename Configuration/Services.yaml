@@ -8,16 +8,6 @@ services:
     resource: '../Classes/*'
     exclude: '../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php,Hooks,UserFunctions}'
 
-  JobRouter\AddOn\Typo3Data\DataProcessing\TableProcessor:
-    public: true
-
-  JobRouter\AddOn\Typo3Data\Domain\Converter\DatasetConverter:
-    public: true
-
-  # Set public for functional tests
-  JobRouter\AddOn\Typo3Data\Domain\Repository\TransferRepository:
-    public: true
-
   JobRouter\AddOn\Typo3Data\EventListener\ToolbarItemProvider:
     tags:
       - name: event.listener
@@ -43,16 +33,3 @@ services:
     tags:
       - name: event.listener
         identifier: 'jobrouter-data/datetime-formatter'
-
-  JobRouter\AddOn\Typo3Data\Hooks\TableUpdateHook:
-    public: true
-
-  JobRouter\AddOn\Typo3Data\Preview\ContentElementPreviewRenderer:
-    public: true
-
-  JobRouter\AddOn\Typo3Data\Synchronisation\SimpleTableSynchroniser:
-    arguments:
-      $cache: '@cache.pages'
-
-  JobRouter\AddOn\Typo3Data\UserFunctions\FormEngine\CustomTables:
-    public: true

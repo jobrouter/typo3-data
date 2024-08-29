@@ -16,12 +16,14 @@ use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
 use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
 use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use JobRouter\AddOn\Typo3Data\Extension;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
 use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
+#[Autoconfigure(public: true)]
 final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
 {
     public function __construct(

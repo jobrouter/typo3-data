@@ -13,10 +13,12 @@ namespace JobRouter\AddOn\Typo3Data\UserFunctions\FormEngine;
 
 use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
 use JobRouter\AddOn\Typo3Data\Table\TableProvider;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
 /**
  * @internal
  */
+#[Autoconfigure(public: true)]
 final class CustomTables
 {
     public function __construct(

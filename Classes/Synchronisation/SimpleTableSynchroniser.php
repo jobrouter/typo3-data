@@ -18,6 +18,7 @@ use JobRouter\AddOn\Typo3Data\Exception\SynchronisationException;
 use JobRouter\AddOn\Typo3Data\Extension;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
@@ -29,6 +30,7 @@ final class SimpleTableSynchroniser
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
     public function __construct(
+        #[Autowire(service: 'cache.pages')]
         private readonly FrontendInterface $cache,
         private readonly ColumnRepository $columnRepository,
         private readonly ConnectionPool $connectionPool,

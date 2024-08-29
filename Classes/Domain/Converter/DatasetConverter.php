@@ -17,10 +17,12 @@ use JobRouter\AddOn\Typo3Data\Domain\Repository\ColumnRepository;
 use JobRouter\AddOn\Typo3Data\Domain\Repository\DatasetRepository;
 use JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 
 /**
  * @internal
  */
+#[Autoconfigure(public: true)]
 final class DatasetConverter
 {
     private const UNFORMATTED_FIELD_NAME_PREFIX = '_original_';
