@@ -36,6 +36,11 @@ parameters:
 			path: Classes/DataProcessing/TableProcessor.php
 
 		-
+			message: "#^Parameter \\#1 \\$flexForm of method JobRouter\\\\AddOn\\\\Typo3Data\\\\Preview\\\\ContentElementPreviewRenderer\\:\\:getValueFromFlexform\\(\\) expects array\\<string, array\\<string, mixed\\>\\>, array\\|string given\\.$#"
+			count: 1
+			path: Classes/Preview/ContentElementPreviewRenderer.php
+
+		-
 			message: "#^Method JobRouter\\\\AddOn\\\\Typo3Data\\\\Synchronisation\\\\CustomTableSynchroniser\\:\\:storeDatasets\\(\\) has parameter \\$customTableColumns with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: Classes/Synchronisation/CustomTableSynchroniser.php
