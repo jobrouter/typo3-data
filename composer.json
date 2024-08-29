@@ -53,9 +53,6 @@
 		"typo3/cms-form": "^11.5.4 || ^12.4",
 		"typo3/testing-framework": "^7.0"
 	},
-	"conflict": {
-		"donatj/mock-webserver": "2.6.1"
-	},
 	"suggest": {
 		"ext-intl": "Format dates and numbers in JobData content element columns",
 		"typo3/cms-dashboard": "Use dashboard widgets for information about JobData transmissions",
