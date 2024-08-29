@@ -5,34 +5,38 @@
     data-namespace-typo3-fluid="true"
 >
 
-<h1><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:heading_text"/></h1>
+<f:layout name="Module"/>
 
-<f:if condition="{simpleTables -> f:count()} || {customTables -> f:count()} || {formFinisherTables -> f:count()} || {otherTables -> f:count()}">
-    <f:then>
-        <div id="jobrouter-data-table-list">
-            <f:if condition="{simpleTables -> f:count()}">
-                <f:render section="simpleTables" arguments="{_all}"/>
-            </f:if>
-            <f:if condition="{customTables -> f:count()}">
-                <f:render arguments="{_all}" section="customTables"/>
-            </f:if>
-            <f:if condition="{formFinisherTables -> f:count()}">
-                <f:render section="formFinisherTables" arguments="{_all}"/>
-            </f:if>
-            <f:if condition="{otherTables -> f:count()}">
-                <f:render section="otherTables" arguments="{_all}"/>
-            </f:if>
-        </div>
-    </f:then>
-    <f:else>
-        <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:tables_not_found.title')}">
-            <p><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:tables_not_found.message"/></p>
-            <be:link.newRecord class="btn btn-primary" table="tx_jobrouterdata_domain_model_table" returnUrl="{f:be.uri(route: 'jobrouter_data')}">
-                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:table_create"/>
-            </be:link.newRecord>
-        </f:be.infobox>
-    </f:else>
-</f:if>
+<f:section name="Content">
+    <h1><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:heading_text"/></h1>
+
+    <f:if condition="{simpleTables -> f:count()} || {customTables -> f:count()} || {formFinisherTables -> f:count()} || {otherTables -> f:count()}">
+        <f:then>
+            <div id="jobrouter-data-table-list">
+                <f:if condition="{simpleTables -> f:count()}">
+                    <f:render section="simpleTables" arguments="{_all}"/>
+                </f:if>
+                <f:if condition="{customTables -> f:count()}">
+                    <f:render arguments="{_all}" section="customTables"/>
+                </f:if>
+                <f:if condition="{formFinisherTables -> f:count()}">
+                    <f:render section="formFinisherTables" arguments="{_all}"/>
+                </f:if>
+                <f:if condition="{otherTables -> f:count()}">
+                    <f:render section="otherTables" arguments="{_all}"/>
+                </f:if>
+            </div>
+        </f:then>
+        <f:else>
+            <f:be.infobox state="-1" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:tables_not_found.title')}">
+                <p><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:tables_not_found.message"/></p>
+                <be:link.newRecord class="btn btn-primary" table="tx_jobrouterdata_domain_model_table" returnUrl="{f:be.uri(route: 'jobrouter_data')}">
+                    <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:table_create"/>
+                </be:link.newRecord>
+            </f:be.infobox>
+        </f:else>
+    </f:if>
+</f:section>
 
 <f:section name="simpleTables">
     <h2><f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/Database.xlf:tx_jobrouterdata_domain_model_table.type.simple_synchronisation"/></h2>

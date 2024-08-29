@@ -23,20 +23,14 @@ use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\Template\ModuleTemplate;
 use TYPO3\CMS\Backend\Template\ModuleTemplateFactory;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Http\HtmlResponse;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Page\PageRenderer;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 #[AsController]
 final class TableListController
 {
-    private ModuleTemplate $moduleTemplate;
-    private StandaloneView $view;
-
     public function __construct(
         private readonly IconFactory $iconFactory,
         private readonly ModuleTemplateFactory $moduleTemplateFactory,
@@ -48,7 +42,7 @@ final class TableListController
 
     public function handleRequest(ServerRequestInterface $request): ResponseInterface
     {
-        $this->moduleTemplate = $this->moduleTemplateFactory->create($request);
+        $view = $this->moduleTemplateFactory->create($request);
 
         $this->pageRenderer->addInlineLanguageLabelFile(
             \str_replace('LLL:', '', Extension::LANGUAGE_PATH_BACKEND_MODULE),
@@ -58,25 +52,15 @@ final class TableListController
             '@jobrouter/data/connection-check.js',
         );
 
-        $this->initializeView();
-        $this->configureDocHeader($request->getAttribute('normalizedParams')?->getRequestUri() ?? '');
-        $this->listAction();
+        $this->configureDocHeader($view, $request->getAttribute('normalizedParams')?->getRequestUri() ?? '');
+        $this->listAction($view);
 
-        $this->moduleTemplate->setContent($this->view->render());
-
-        return new HtmlResponse($this->moduleTemplate->renderContent());
+        return $view->renderResponse('Backend/List');
     }
 
-    private function initializeView(): void
+    private function configureDocHeader(ModuleTemplate $view, string $requestUri): void
     {
-        $this->view = GeneralUtility::makeInstance(StandaloneView::class);
-        $this->view->setTemplate('List');
-        $this->view->setTemplateRootPaths(['EXT:' . Extension::KEY . '/Resources/Private/Templates/Backend']);
-    }
-
-    private function configureDocHeader(string $requestUri): void
-    {
-        $buttonBar = $this->moduleTemplate->getDocHeaderComponent()->getButtonBar();
+        $buttonBar = $view->getDocHeaderComponent()->getButtonBar();
 
         $newButton = $buttonBar->makeLinkButton()
             ->setHref((string) $this->uriBuilder->buildUriFromRoute(
@@ -107,14 +91,14 @@ final class TableListController
         }
     }
 
-    private function listAction(): void
+    private function listAction(ModuleTemplate $view): void
     {
         $simpleTables = $this->tableRepository->findAllByTypeWithHidden(TableType::Simple);
         $customTables = $this->tableRepository->findAllByTypeWithHidden(TableType::CustomTable);
         $formFinisherTables = $this->tableRepository->findAllByTypeWithHidden(TableType::FormFinisher);
         $otherTables = $this->tableRepository->findAllByTypeWithHidden(TableType::OtherUsage);
 
-        $this->view->assignMultiple([
+        $view->assignMultiple([
             'simpleTables' => $this->tableDemandFactory->createMultiple($simpleTables),
             'customTables' => $this->tableDemandFactory->createMultiple($customTables),
             'formFinisherTables' => $this->tableDemandFactory->createMultiple($formFinisherTables),
