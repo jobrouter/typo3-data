@@ -12,11 +12,13 @@ declare(strict_types=1);
 namespace JobRouter\AddOn\Typo3Data\Tests\Unit\UserFunctions\TCA;
 
 use JobRouter\AddOn\Typo3Data\UserFunctions\TCA\Column;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Localization\LanguageService;
 
+#[CoversClass(Column::class)]
 final class ColumnTest extends TestCase
 {
     private Column $subject;
@@ -92,6 +94,15 @@ final class ColumnTest extends TestCase
                 ],
             ],
             'expected' => 'Some label (Translated type)',
+        ];
+
+        yield 'Without label and name given' => [
+            'parameters' => [
+                'row' => [
+                    'type' => 42,
+                ],
+            ],
+            'expected' => 'Unknown (Translated type)',
         ];
     }
 }
