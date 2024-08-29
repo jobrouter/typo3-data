@@ -72,24 +72,24 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Text->value,
-                        FieldType::Text->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Text->value,
+                        'value' => FieldType::Text->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Integer->value,
-                        FieldType::Integer->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Integer->value,
+                        'value' => FieldType::Integer->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Decimal->value,
-                        FieldType::Decimal->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Decimal->value,
+                        'value' => FieldType::Decimal->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Date->value,
-                        FieldType::Date->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::Date->value,
+                        'value' => FieldType::Date->value,
                     ],
                     [
-                        'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::DateTime->value,
-                        FieldType::DateTime->value,
+                        'label' => 'LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.' . FieldType::DateTime->value,
+                        'value' => FieldType::DateTime->value,
                     ],
                 ],
                 'required' => true,
@@ -137,20 +137,20 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '',
-                        '',
+                        'label' => '',
+                        'value' => '',
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.left',
-                        'left',
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.left',
+                        'value' => 'left',
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.center',
-                        'center',
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.center',
+                        'value' => 'center',
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.right',
-                        'right',
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.alignment.right',
+                        'value' => 'right',
                     ],
                 ],
             ],
@@ -162,20 +162,20 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '',
-                        0,
+                        'label' => '',
+                        'value' => 0,
                     ],
                     [
-                        '1',
-                        1,
+                        'label' => '1',
+                        'value' => 1,
                     ],
                     [
-                        '2',
-                        2,
+                        'label' => '2',
+                        'value' => 2,
                     ],
                     [
-                        '3',
-                        3,
+                        'label' => '3',
+                        'value' => 3,
                     ],
                 ],
             ],
@@ -187,16 +187,16 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '',
-                        '',
+                        'label' => '',
+                        'value' => '',
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.asc',
-                        'asc',
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.asc',
+                        'value' => 'asc',
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.desc',
-                        'desc',
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_column.sorting_order.desc',
+                        'value' => 'desc',
                     ],
                 ],
             ],

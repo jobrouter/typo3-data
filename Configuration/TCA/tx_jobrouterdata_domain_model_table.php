@@ -36,8 +36,8 @@ return [
                 'renderType' => 'checkboxToggle',
                 'items' => [
                     [
-                        0 => '',
-                        1 => '',
+                        'label' => '',
+                        'value' => '',
                         'invertStateDisplay' => true,
                     ],
                 ],
@@ -51,20 +51,20 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.simple_synchronisation',
-                        TableType::Simple->value,
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.simple_synchronisation',
+                        'value' => TableType::Simple->value,
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table',
-                        TableType::CustomTable->value,
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table',
+                        'value' => TableType::CustomTable->value,
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.form_finisher',
-                        TableType::FormFinisher->value,
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.form_finisher',
+                        'value' => TableType::FormFinisher->value,
                     ],
                     [
-                        Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.other_usage',
-                        TableType::OtherUsage->value,
+                        'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.other_usage',
+                        'value' => TableType::OtherUsage->value,
                     ],
                 ],
             ],
@@ -117,8 +117,8 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
-                        '',
-                        '',
+                        'label' => '',
+                        'value' => '',
                     ],
                 ],
                 'itemsProcFunc' => CustomTables::class . '->getTables',
