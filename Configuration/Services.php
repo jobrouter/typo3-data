@@ -18,6 +18,7 @@ use JobRouter\AddOn\Typo3Data\EventListener\DateTimeFormatter;
 use JobRouter\AddOn\Typo3Data\EventListener\DecimalFormatter;
 use JobRouter\AddOn\Typo3Data\EventListener\IntegerFormatter;
 use JobRouter\AddOn\Typo3Data\EventListener\ToolbarItemProvider;
+use JobRouter\AddOn\Typo3Data\Hooks\TableUpdateHook;
 use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferReportDataProvider;
 use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferStatusDataProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -36,6 +37,10 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
     $services
         ->load('JobRouter\AddOn\Typo3Data\\', '../Classes/*')
         ->exclude('../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php,Hooks,UserFunctions}');
+
+    // Setting public with Autoconfigure attribute does not work!
+    $services(TableUpdateHook::class)
+        ->public();
 
     $services
         ->set(ToolbarItemProvider::class)
