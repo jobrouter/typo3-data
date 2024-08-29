@@ -11,8 +11,8 @@ $EM_CONF[$_EXTKEY] = [
         'depends' => [
             'php' => '8.1.0-0.0.0',
             'typo3' => '12.4.0-12.4.99',
-            'jobrouter_base' => '3.0.0-3.99.99',
-            'jobrouter_connector' => '3.0.0-3.99.99',
+            'jobrouter_base' => '4.0.0-4.99.99',
+            'jobrouter_connector' => '4.0.0-4.99.99',
         ],
         'conflicts' => [],
         'suggests' => [

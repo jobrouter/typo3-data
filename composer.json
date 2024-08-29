@@ -24,9 +24,9 @@
 	"require": {
 		"php": ">=8.1",
 		"ext-pdo": "*",
-		"jobrouter/rest-client": "^3.0",
-		"jobrouter/typo3-base": "^3.0",
-		"jobrouter/typo3-connector": "^3.0",
+		"jobrouter/rest-client": "^3.1@dev",
+		"jobrouter/typo3-base": "^4.0@dev",
+		"jobrouter/typo3-connector": "^4.0@dev",
 		"typo3/cms-backend": "^12.4",
 		"typo3/cms-core": "^12.4",
 		"typo3/cms-fluid": "^12.4",
