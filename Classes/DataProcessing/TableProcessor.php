@@ -65,9 +65,7 @@ final class TableProcessor implements DataProcessorInterface
             $table = $this->tableRepository->findByUid($tableUid);
             $tableDemand = $this->tableDemandFactory->create($table);
 
-            // locale is casted to a string as in v12 the locale is an object with a __toString() method (in v11 it is a string)
-            // @todo Remove the cast when compatibility with TYPO3 v11 is dropped
-            $locale = (string) $this->cObj->getRequest()->getAttribute('language')->getLocale();
+            $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale()->getName();
             $this->processedData['table'] = $tableDemand;
             $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
             $this->addCacheTag($tableUid);
