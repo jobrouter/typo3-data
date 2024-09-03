@@ -57,7 +57,7 @@ final class TableTestController
             }
 
             $this->restClientFactory->create($connection)->request(
-                'HEAD',
+                'GET',
                 \sprintf('application/jobdata/tables/%s/datasets', $table->tableGuid),
             );
             return $this->buildResponse();
