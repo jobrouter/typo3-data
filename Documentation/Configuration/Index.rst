@@ -4,8 +4,35 @@
 Configuration
 =============
 
-Target group: **Administrators**
+Target group: **Developers, Integrators**
 
+.. contents::
+   :local:
+
+.. _include-typoscript-sets:
+
+Include TypoScript sets
+=======================
+
+The extension ships some TypoScript code which needs to be included.
+
+#. Switch to the root page of your site.
+
+#. Switch to the :guilabel:`Site Management > TypoScript` and edit
+   :guilabel:`Edit TypoScript Record` in the upper menu bar.
+
+#. Press the link :guilabel:`Edit the whole template record` and switch to the
+   tab :guilabel:`Advanced Options`.
+
+#. Select :guilabel:`JobRouter Data` from the
+   available items at the field :guilabel:`Include TypoScript sets:`
+
+.. figure:: /Images/include-typoscript-sets.png
+   :alt: Include static TypoScript
+
+   Include static TypoScript
+
+Or import the TypoScript setup file in your site package.
 
 .. _configuration-content-element:
 

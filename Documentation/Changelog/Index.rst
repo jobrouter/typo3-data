@@ -17,6 +17,12 @@ Added
 
 * Compatibility with TYPO3 v13
 
+Changed
+^^^^^^^
+
+
+* TypoScript must now be included/imported
+
 Removed
 ^^^^^^^
 

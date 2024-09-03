@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Compatibility with TYPO3 v13
 
+### Changed
+- TypoScript must now be included/imported
+
 ### Removed
 - Compatibility with TYPO3 v11
 

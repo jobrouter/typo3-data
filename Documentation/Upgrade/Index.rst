@@ -6,6 +6,12 @@ Upgrade
 
 Target group: **Developers**
 
+From version 3.0 to 4.0
+=======================
+
+Previously, the TypoScript configuration was included automatically. With version
+4.0 you have to include/import it manually.
+See :ref:`include-typoscript-sets`.
 
 From version 2.0 to 3.0
 =======================
