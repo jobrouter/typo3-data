@@ -172,7 +172,7 @@ final class TableTestControllerTest extends TestCase
 
         $this->clientStub
             ->method('request')
-            ->with('HEAD', 'application/jobdata/tables/sometableguid/datasets')
+            ->with('GET', 'application/jobdata/tables/sometableguid/datasets')
             ->willThrowException(new \Exception('some exception message'));
         $this->restClientFactoryMock
             ->method('create')
