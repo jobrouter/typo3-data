@@ -1,1 +1,4 @@
-@import "EXT:jobrouter_data/Configuration/TSconfig/Page/NewContentElementWizard.tsconfig"
+# @todo Drop file when compatibility with TYPO3 v12 is removed
+[typo3.branch == "12.4"]
+  @import "EXT:jobrouter_data/Configuration/TSconfig/Page/NewContentElementWizard.tsconfig"
+[END]

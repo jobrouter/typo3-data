@@ -13,12 +13,14 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') || die();
 
-(static function ($contentType = 'tx_jobrouterdata_table'): void {
+(static function ($contentType = 'tx_jobrouterdata_table', $icon = 'jobrouter-data-ce-table'): void {
     ExtensionManagementUtility::addPlugin(
         [
-            Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title',
-            $contentType,
-            'EXT:' . Extension::KEY . '/Resources/Public/Icons/ce-table.svg',
+            'label' => Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title',
+            'description' => Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.description',
+            'group' => 'special',
+            'value' => $contentType,
+            'icon' => $icon,
         ],
         'CType',
         Extension::KEY,
@@ -56,5 +58,5 @@ defined('TYPO3') || die();
         ',
     ];
 
-    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentType] = 'jobrouter-data-ce-table';
+    $GLOBALS['TCA']['tt_content']['ctrl']['typeicon_classes'][$contentType] = $icon;
 })();
