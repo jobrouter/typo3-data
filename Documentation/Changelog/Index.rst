@@ -23,6 +23,15 @@ Removed
 
 * Compatibility with TYPO3 v11
 
+[3.0.2] - 2024-09-03
+--------------------
+
+Fixed
+^^^^^
+
+
+* Long runtime when checking table connection in backend module
+
 `3.0.1 <https://github.com/jobrouter/typo3-data/compare/v3.0.0...v3.0.1>`_ - 2024-06-06
 -------------------------------------------------------------------------------------------
 
