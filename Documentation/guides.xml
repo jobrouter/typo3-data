@@ -19,6 +19,7 @@
         project-repository="https://github.com/jobrouter/typo3-data"
         typo3-core-preferred="stable"
     />
+    <inventory id="t3coreapi_main" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
     <inventory id="ext_jobrouter_base" url="https://docs.typo3.org/p/jobrouter/typo3-base/main/en-us/"/>
     <inventory id="ext_jobrouter_connector" url="https://docs.typo3.org/p/jobrouter/typo3-connector/main/en-us/"/>
 </guides>

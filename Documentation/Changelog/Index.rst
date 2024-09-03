@@ -16,6 +16,7 @@ Added
 
 
 * Compatibility with TYPO3 v13
+* Add site set for TYPO3 v13
 
 Changed
 ^^^^^^^

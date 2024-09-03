@@ -13,6 +13,8 @@ Previously, the TypoScript configuration was included automatically. With versio
 4.0 you have to include/import it manually.
 See :ref:`include-typoscript-sets`.
 
+Or use :ref:`site sets <site-sets>` instead.
+
 From version 2.0 to 3.0
 =======================
 
