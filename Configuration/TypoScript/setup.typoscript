@@ -1,21 +1,3 @@
-module.tx_jobrouterdata {
-  view {
-    templateRootPaths {
-      0 = EXT:jobrouter_data/Resources/Private/Templates/Backend/
-    }
-
-    partialRootPaths {
-      0 = EXT:jobrouter_data/Resources/Private/Partials/Backend/
-    }
-
-    layoutRootPaths {
-      0 = EXT:jobrouter_data/Resources/Private/Layouts/
-    }
-  }
-
-  persistence.storagePid = 0
-}
-
 tt_content.tx_jobrouterdata_table =< lib.contentElement
 tt_content.tx_jobrouterdata_table {
   templateName = JobDataTable
