@@ -100,7 +100,7 @@ error is also logged.
 The last run of the command is shown in the system information toolbar
 (:guilabel:`Last Data Sync.`):
 
-.. figure:: /Images/system-information-sync.png
+.. figure:: /Images/system-information.png
    :alt: System information with last run of the sync command
 
    System information with last run of the sync command
@@ -153,7 +153,7 @@ also logged.
 The last run of the command is shown in the system information toolbar
 (:guilabel:`Last Data Transmiss.`):
 
-.. figure:: /Images/system-information-transmit.png
+.. figure:: /Images/system-information.png
    :alt: System information with last run of the transmit command
 
    System information with last run of the transmit command

@@ -16,7 +16,6 @@ installed, some widgets can be used for statistics. You can find them in the
 
 .. figure:: /Images/dashboard-add-widget.png
    :alt: Add JobRouter widgets
-   :class: with-border
 
    Add JobRouter widgets
 
@@ -34,7 +33,6 @@ The status of the JobData transmissions can be shown with this widget:
 
 .. figure:: /Images/dashboard-widget-jobdata-transmission-status.png
    :alt: JobData Transmission Status widget
-   :class: with-border
 
    JobData Transmission Status widget
 
@@ -46,6 +44,5 @@ If errors occur when transmitting a JobData data set, they can be displayed with
 
 .. figure:: /Images/dashboard-widget-jobdata-transmission-report.png
    :alt: JobData Transmission Errors widget
-   :class: with-border
 
    JobData Transmission Errors widget
