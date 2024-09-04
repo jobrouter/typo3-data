@@ -41,8 +41,8 @@ final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
 
         $record = $item->getRecord();
 
-        $flexForm = GeneralUtility::xml2array($record['pi_flexform']);
-        $tableId = (int) $this->getValueFromFlexform($flexForm, 'table');
+        $flexForm = GeneralUtility::xml2array($record['pi_flexform'] ?? '');
+        $tableId = \is_array($flexForm) ? ((int) $this->getValueFromFlexform($flexForm, 'table')) : 0;
 
         try {
             $table = $this->tableRepository->findByUid($tableId);
