@@ -8,8 +8,11 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_\ ,
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
-`Unreleased <https://github.com/jobrouter/typo3-data/compare/v3.0.1...HEAD>`_
+`Unreleased <https://github.com/jobrouter/typo3-data/compare/v4.0.0...HEAD>`_
 ---------------------------------------------------------------------------------
+
+`4.0.0 <https://github.com/jobrouter/typo3-data/compare/v3.0.2...v4.0.0>`_ - 2024-10-01
+-------------------------------------------------------------------------------------------
 
 Added
 ^^^^^
@@ -30,8 +33,8 @@ Removed
 
 * Compatibility with TYPO3 v11
 
-[3.0.2] - 2024-09-03
---------------------
+`3.0.2 <https://github.com/jobrouter/typo3-data/compare/v3.0.1...v3.0.2>`_ - 2024-09-03
+-------------------------------------------------------------------------------------------
 
 Fixed
 ^^^^^
