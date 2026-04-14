@@ -13,10 +13,8 @@ namespace JobRouter\AddOn\Typo3Data\EventListener;
 
 use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
-use TYPO3\CMS\Backend\Toolbar\Enumeration\InformationStatus as DeprecatedInformationStatus;
 use TYPO3\CMS\Backend\Toolbar\InformationStatus;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Registry;
 
@@ -97,22 +95,19 @@ final class ToolbarItemProvider
         return ($this->lastRunInformation['start'] ?? 0) < \time() - 86400;
     }
 
-    private function getSeverity(): string|InformationStatus
+    private function getSeverity(): InformationStatus
     {
-        // @todo Remove switch when compatibility with TYPO3 v12 is dropped
-        $isVersion12 = (new Typo3Version())->getMajorVersion() === 12;
-
         if ($this->lastRunInformation === []) {
-            return $isVersion12 ? DeprecatedInformationStatus::STATUS_WARNING : InformationStatus::WARNING;
+            return InformationStatus::WARNING;
         }
         if ($this->isWarning()) {
-            return $isVersion12 ? DeprecatedInformationStatus::STATUS_WARNING : InformationStatus::WARNING;
+            return InformationStatus::WARNING;
         }
         if ($this->isOverdue()) {
-            return $isVersion12 ? DeprecatedInformationStatus::STATUS_WARNING : InformationStatus::WARNING;
+            return InformationStatus::WARNING;
         }
 
-        return $isVersion12 ? DeprecatedInformationStatus::STATUS_OK : InformationStatus::OK;
+        return InformationStatus::OK;
     }
 
     private function getLanguageService(): LanguageService
