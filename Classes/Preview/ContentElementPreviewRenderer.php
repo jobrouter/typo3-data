@@ -16,31 +16,43 @@ use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
 use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
 use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use JobRouter\AddOn\Typo3Data\Extension;
-use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use TYPO3\CMS\Backend\Preview\StandardContentPreviewRenderer;
-use TYPO3\CMS\Backend\View\BackendLayout\Grid\GridColumnItem;
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 
-#[Autoconfigure(public: true)]
-final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
+#[AsEventListener(
+    identifier: 'jobrouter-data/content-element-preview-renderer/',
+)]
+final readonly class ContentElementPreviewRenderer
 {
     public function __construct(
-        private readonly DatasetConverter $datasetConverter,
-        private readonly SiteFinder $siteFinder,
-        private readonly TableDemandFactory $tableDemandFactory,
-        private readonly TableRepository $tableRepository,
+        private DatasetConverter $datasetConverter,
+        private SiteFinder $siteFinder,
+        private TableDemandFactory $tableDemandFactory,
+        private TableRepository $tableRepository,
+        private ViewFactoryInterface $viewFactory,
     ) {}
 
-    public function renderPageModulePreviewContent(GridColumnItem $item): string
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
-        /** @var StandaloneView $view */
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename('EXT:' . Extension::KEY . '/Resources/Private/Templates/Preview/ContentElement.html');
+        if ($event->getTable() !== 'tt_content') {
+            return;
+        }
 
-        $record = $item->getRecord();
+        if ($event->getRecordType() !== 'tx_jobrouterdata_table') {
+            return;
+        }
 
+        $viewFactoryData = new ViewFactoryData(
+            templateRootPaths: ['EXT:' . Extension::KEY . '/Resources/Private/Templates/Preview/'],
+            request: $event->getPageLayoutContext()->getCurrentRequest(),
+        );
+        $view = $this->viewFactory->create($viewFactoryData);
+
+        $record = $event->getRecord();
         $flexForm = GeneralUtility::xml2array($record['pi_flexform'] ?? '');
         $tableId = \is_array($flexForm) ? ((int) $this->getValueFromFlexform($flexForm, 'table')) : 0;
 
@@ -50,13 +62,14 @@ final class ContentElementPreviewRenderer extends StandardContentPreviewRenderer
             $locale = $site->getLanguageById($record['sys_language_uid'])->getLocale()->getName();
 
             $view->assignMultiple([
+                'record' => $record,
                 'tableDemand' => $this->tableDemandFactory->create($table),
                 'rows' => $this->datasetConverter->convertFromJsonToArray($table, $locale),
             ]);
         } catch (TableNotFoundException) {
         }
 
-        return $this->linkEditContent($view->render(), $item->getRecord());
+        $event->setPreviewContent($view->render('ContentElement'));
     }
 
     /**

@@ -8,7 +8,6 @@
  */
 
 use JobRouter\AddOn\Typo3Data\Extension;
-use JobRouter\AddOn\Typo3Data\Preview\ContentElementPreviewRenderer;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') || die();
@@ -38,7 +37,6 @@ defined('TYPO3') || die();
                 'label' => Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':table',
             ],
         ],
-        'previewRenderer' => ContentElementPreviewRenderer::class,
         'showitem' => '
             --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
                 --palette--;;general,
