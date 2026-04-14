@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/jobrouter/typo3-data/compare/v4.0.0...HEAD>`_
 ---------------------------------------------------------------------------------
 
+Removed
+^^^^^^^
+
+
+* Compatibility with TYPO3 v12 (#26)
+
 `4.0.0 <https://github.com/jobrouter/typo3-data/compare/v3.0.2...v4.0.0>`_ - 2024-10-01
 -------------------------------------------------------------------------------------------
 
