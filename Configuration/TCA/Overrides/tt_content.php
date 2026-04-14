@@ -26,7 +26,6 @@ defined('TYPO3') || die();
         Extension::KEY,
     );
 
-    $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$contentType] = 'pi_flexform';
     ExtensionManagementUtility::addPiFlexFormValue(
         '*',
         'FILE:EXT:' . Extension::KEY . '/Configuration/FlexForms/Table.xml',
