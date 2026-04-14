@@ -13,7 +13,6 @@ namespace JobRouter\AddOn\Typo3Data;
 
 use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
 use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
-use JobRouter\AddOn\Typo3Data\Hooks\TableUpdateHook;
 use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferReportDataProvider;
 use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferStatusDataProvider;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -37,10 +36,6 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
             __DIR__ . '/Classes/Exception/',
             __DIR__ . '/UserFunctions/',
         ]);
-
-    // Setting public with Autoconfigure attribute does not work!
-    $services(TableUpdateHook::class)
-        ->public();
 
     if ($containerBuilder->hasDefinition(Dashboard::class)) {
         $services
