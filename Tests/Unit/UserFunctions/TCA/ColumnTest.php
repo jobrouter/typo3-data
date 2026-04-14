@@ -30,7 +30,7 @@ final class ColumnTest extends TestCase
             ['LLL:EXT:jobrouter_base/Resources/Private/Language/General.xlf:fieldType.42', 'Translated type'],
         ];
 
-        $languageServiceStub = $this->createStub(LanguageService::class);
+        $languageServiceStub = self::createStub(LanguageService::class);
         $languageServiceStub
             ->method('sL')
             ->willReturnMap($languageMap);

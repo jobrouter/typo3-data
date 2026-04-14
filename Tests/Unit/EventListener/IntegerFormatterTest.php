@@ -31,7 +31,7 @@ final class IntegerFormatterTest extends TestCase
 
     #[Test]
     #[DataProvider('dataProviderForInvoke')]
-    public function invoke(FieldType $type, int|null|string $content, string $locale, string|null|int $expected): void
+    public function invoke(FieldType $type, int|string|null $content, string $locale, string|int|null $expected): void
     {
         $table = (new TableBuilder())->build(1);
         $column = (new ColumnBuilder())->build(1, $type);

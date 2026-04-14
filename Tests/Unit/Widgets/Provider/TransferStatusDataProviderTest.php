@@ -27,8 +27,8 @@ final class TransferStatusDataProviderTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->registryStub = $this->createStub(Registry::class);
-        $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
+        $this->registryStub = self::createStub(Registry::class);
+        $this->transferRepositoryStub = self::createStub(TransferRepository::class);
 
         $this->subject = new TransferStatusDataProvider($this->registryStub, $this->transferRepositoryStub);
     }

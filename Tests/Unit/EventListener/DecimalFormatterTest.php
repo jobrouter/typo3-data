@@ -31,7 +31,7 @@ final class DecimalFormatterTest extends TestCase
 
     #[Test]
     #[DataProvider('dataProviderForInvoke')]
-    public function invoke(FieldType $type, int $decimalPlaces, float|null|string|int $content, string $locale, string|null|int $expected): void
+    public function invoke(FieldType $type, int $decimalPlaces, float|string|int|null $content, string $locale, string|int|null $expected): void
     {
         $table = (new TableBuilder())->build(1);
         $column = (new ColumnBuilder())->build(1, $type, $decimalPlaces);

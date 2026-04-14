@@ -56,7 +56,7 @@ final class PreparerTest extends FunctionalTestCase
         $this->expectException(PrepareException::class);
         $this->expectExceptionCode(1579789397);
 
-        $transferRepositoryStub = $this->createStub(TransferRepository::class);
+        $transferRepositoryStub = self::createStub(TransferRepository::class);
         $transferRepositoryStub
             ->method('add')
             ->willThrowException(new \Exception());

@@ -34,7 +34,7 @@ final class SyncCommandTest extends TestCase
     protected function setUp(): void
     {
         $this->lockerMock = $this->createMock(LockingStrategyInterface::class);
-        $lockFactoryStub = $this->createStub(LockFactory::class);
+        $lockFactoryStub = self::createStub(LockFactory::class);
         $lockFactoryStub
             ->method('createLocker')
             ->willReturn($this->lockerMock);

@@ -39,9 +39,9 @@ final class TableTestControllerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->connectionRepositoryStub = $this->createStub(ConnectionRepository::class);
-        $this->tableRepositoryStub = $this->createStub(TableRepository::class);
-        $this->clientStub = $this->createStub(ClientInterface::class);
+        $this->connectionRepositoryStub = self::createStub(ConnectionRepository::class);
+        $this->tableRepositoryStub = self::createStub(TableRepository::class);
+        $this->clientStub = self::createStub(ClientInterface::class);
         $this->restClientFactoryMock = $this->createMock(RestClientFactoryInterface::class);
 
         $this->subject = new TableTestController(
@@ -52,7 +52,7 @@ final class TableTestControllerTest extends TestCase
             new StreamFactory(),
         );
 
-        $this->requestStub = $this->createStub(ServerRequestInterface::class);
+        $this->requestStub = self::createStub(ServerRequestInterface::class);
     }
 
     #[Test]

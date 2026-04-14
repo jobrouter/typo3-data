@@ -31,8 +31,8 @@ final class TableDemandFactoryTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->columnRepositoryStub = $this->createStub(ColumnRepository::class);
-        $this->connectionRepositoryStub = $this->createStub(ConnectionRepository::class);
+        $this->columnRepositoryStub = self::createStub(ColumnRepository::class);
+        $this->connectionRepositoryStub = self::createStub(ConnectionRepository::class);
 
         $this->subject = new TableDemandFactory($this->columnRepositoryStub, $this->connectionRepositoryStub);
     }

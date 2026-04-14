@@ -26,7 +26,7 @@ final class DeleterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
+        $this->transferRepositoryStub = self::createStub(TransferRepository::class);
         $this->subject = new Deleter(new NullLogger(), $this->transferRepositoryStub);
     }
 

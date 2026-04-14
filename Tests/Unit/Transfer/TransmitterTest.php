@@ -29,9 +29,9 @@ final class TransmitterTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->jobDataRepositoryStub = $this->createStub(JobDataRepository::class);
-        $this->transferRepositoryStub = $this->createStub(TransferRepository::class);
-        $this->tableRepositoryStub = $this->createStub(TableRepository::class);
+        $this->jobDataRepositoryStub = self::createStub(JobDataRepository::class);
+        $this->transferRepositoryStub = self::createStub(TransferRepository::class);
+        $this->tableRepositoryStub = self::createStub(TableRepository::class);
 
         $this->subject = new Transmitter(
             $this->jobDataRepositoryStub,
