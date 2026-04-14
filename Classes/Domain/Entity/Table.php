@@ -13,20 +13,20 @@ namespace JobRouter\AddOn\Typo3Data\Domain\Entity;
 
 use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
 
-final class Table
+final readonly class Table
 {
     private function __construct(
-        public readonly int $uid,
-        public readonly int $connectionUid,
-        public readonly TableType $type,
-        public readonly string $handle,
-        public readonly string $name,
-        public readonly string $tableGuid,
-        public readonly string $customTable,
-        public readonly string $datasetsSyncHash,
-        public readonly ?\DateTimeImmutable $lastSyncDate,
-        public readonly string $lastSyncError,
-        public readonly bool $disabled,
+        public int $uid,
+        public int $connectionUid,
+        public TableType $type,
+        public string $handle,
+        public string $name,
+        public string $tableGuid,
+        public string $customTable,
+        public string $datasetsSyncHash,
+        public ?\DateTimeImmutable $lastSyncDate,
+        public string $lastSyncError,
+        public bool $disabled,
     ) {}
 
     /**

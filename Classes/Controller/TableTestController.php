@@ -27,14 +27,14 @@ use TYPO3\CMS\Backend\Attribute\AsController;
  * @internal
  */
 #[AsController]
-final class TableTestController
+final readonly class TableTestController
 {
     public function __construct(
-        private readonly ConnectionRepository $connectionRepository,
-        private readonly TableRepository $tableRepository,
-        private readonly RestClientFactoryInterface $restClientFactory,
-        private readonly ResponseFactoryInterface $responseFactory,
-        private readonly StreamFactoryInterface $streamFactory,
+        private ConnectionRepository $connectionRepository,
+        private TableRepository $tableRepository,
+        private RestClientFactoryInterface $restClientFactory,
+        private ResponseFactoryInterface $responseFactory,
+        private StreamFactoryInterface $streamFactory,
     ) {}
 
     public function __invoke(ServerRequestInterface $request): ResponseInterface

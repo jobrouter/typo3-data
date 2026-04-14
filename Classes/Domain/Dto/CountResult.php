@@ -14,10 +14,10 @@ namespace JobRouter\AddOn\Typo3Data\Domain\Dto;
 /**
  * @internal
  */
-final class CountResult
+final readonly class CountResult
 {
     public function __construct(
-        public readonly int $total,
-        public readonly int $errors,
+        public int $total,
+        public int $errors,
     ) {}
 }

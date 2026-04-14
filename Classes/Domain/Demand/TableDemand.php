@@ -18,23 +18,23 @@ use JobRouter\AddOn\Typo3Data\Enumerations\TableType;
 /**
  * @internal
  */
-final class TableDemand
+final readonly class TableDemand
 {
     /**
      * @param Column[] $columns
      */
     public function __construct(
-        public readonly int $uid,
-        public readonly ?Connection $connection,
-        public readonly TableType $type,
-        public readonly string $handle,
-        public readonly string $name,
-        public readonly string $tableGuid,
-        public readonly string $customTable,
-        public readonly string $datasetsSyncHash,
-        public readonly ?\DateTimeImmutable $lastSyncDate,
-        public readonly string $lastSyncError,
-        public readonly array $columns,
-        public readonly bool $disabled,
+        public int $uid,
+        public ?Connection $connection,
+        public TableType $type,
+        public string $handle,
+        public string $name,
+        public string $tableGuid,
+        public string $customTable,
+        public string $datasetsSyncHash,
+        public ?\DateTimeImmutable $lastSyncDate,
+        public string $lastSyncError,
+        public array $columns,
+        public bool $disabled,
     ) {}
 }

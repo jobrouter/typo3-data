@@ -31,16 +31,16 @@ use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 
 #[AsController]
-final class TableListController
+final readonly class TableListController
 {
     public function __construct(
-        private readonly IconFactory $iconFactory,
-        private readonly LanguageServiceFactory $languageServiceFactory,
-        private readonly ModuleTemplateFactory $moduleTemplateFactory,
-        private readonly PageRenderer $pageRenderer,
-        private readonly TableDemandFactory $tableDemandFactory,
-        private readonly TableRepository $tableRepository,
-        private readonly UriBuilder $uriBuilder,
+        private IconFactory $iconFactory,
+        private LanguageServiceFactory $languageServiceFactory,
+        private ModuleTemplateFactory $moduleTemplateFactory,
+        private PageRenderer $pageRenderer,
+        private TableDemandFactory $tableDemandFactory,
+        private TableRepository $tableRepository,
+        private UriBuilder $uriBuilder,
     ) {}
 
     public function handleRequest(ServerRequestInterface $request): ResponseInterface

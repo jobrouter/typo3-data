@@ -14,10 +14,10 @@ namespace JobRouter\AddOn\Typo3Data\Domain\Dto;
 /**
  * @internal
  */
-final class TableTestResult
+final readonly class TableTestResult
 {
     public function __construct(
-        private readonly string $errorMessage,
+        private string $errorMessage,
     ) {}
 
     public function toJson(): string

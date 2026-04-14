@@ -26,18 +26,18 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 /**
  * @internal
  */
-final class SimpleTableSynchroniser
+final readonly class SimpleTableSynchroniser
 {
     private const DATASET_TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
     public function __construct(
         #[Autowire(service: 'cache.pages')]
-        private readonly FrontendInterface $cache,
-        private readonly ColumnRepository $columnRepository,
-        private readonly ConnectionPool $connectionPool,
-        private readonly EventDispatcherInterface $eventDispatcher,
-        private readonly LoggerInterface $logger,
-        private readonly SynchronisationService $synchronisationService,
+        private FrontendInterface $cache,
+        private ColumnRepository $columnRepository,
+        private ConnectionPool $connectionPool,
+        private EventDispatcherInterface $eventDispatcher,
+        private LoggerInterface $logger,
+        private SynchronisationService $synchronisationService,
     ) {}
 
     public function synchroniseTable(Table $table, bool $force): bool

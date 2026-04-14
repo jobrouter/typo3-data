@@ -19,11 +19,11 @@ use JobRouter\AddOn\Typo3Data\Domain\Repository\ColumnRepository;
 /**
  * @internal
  */
-final class TableDemandFactory
+final readonly class TableDemandFactory
 {
     public function __construct(
-        private readonly ColumnRepository $columnRepository,
-        private readonly ConnectionRepository $connectionRepository,
+        private ColumnRepository $columnRepository,
+        private ConnectionRepository $connectionRepository,
     ) {}
 
     public function create(Table $table, bool $withDisabled = false): TableDemand

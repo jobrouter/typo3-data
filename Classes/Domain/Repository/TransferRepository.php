@@ -21,12 +21,12 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
  * Set public for functional tests
  */
 #[Autoconfigure(public: true)]
-class TransferRepository
+readonly class TransferRepository
 {
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_transfer';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
     ) {}
 
     /**

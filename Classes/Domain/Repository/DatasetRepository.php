@@ -15,12 +15,12 @@ use JobRouter\AddOn\Typo3Data\Domain\Entity\Dataset;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
-class DatasetRepository
+readonly class DatasetRepository
 {
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_dataset';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
     ) {}
 
     /**

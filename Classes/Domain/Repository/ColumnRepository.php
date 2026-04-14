@@ -14,12 +14,12 @@ namespace JobRouter\AddOn\Typo3Data\Domain\Repository;
 use JobRouter\AddOn\Typo3Data\Domain\Entity\Column;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
-class ColumnRepository
+readonly class ColumnRepository
 {
     private const TABLE_NAME = 'tx_jobrouterdata_domain_model_column';
 
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
+        private ConnectionPool $connectionPool,
     ) {}
 
     /**

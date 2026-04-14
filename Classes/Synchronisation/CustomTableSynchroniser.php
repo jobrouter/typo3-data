@@ -22,14 +22,14 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 /**
  * @internal
  */
-final class CustomTableSynchroniser
+final readonly class CustomTableSynchroniser
 {
     public function __construct(
-        private readonly ConnectionPool $connectionPool,
-        private readonly EventDispatcherInterface $eventDispatcher,
-        private readonly LoggerInterface $logger,
-        private readonly SynchronisationService $synchronisationService,
-        private readonly TableProvider $tableProvider,
+        private ConnectionPool $connectionPool,
+        private EventDispatcherInterface $eventDispatcher,
+        private LoggerInterface $logger,
+        private SynchronisationService $synchronisationService,
+        private TableProvider $tableProvider,
     ) {}
 
     public function synchroniseTable(Table $table, bool $force): bool

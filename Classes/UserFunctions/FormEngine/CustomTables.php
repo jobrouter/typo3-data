@@ -19,11 +19,11 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
  * @internal
  */
 #[Autoconfigure(public: true)]
-final class CustomTables
+final readonly class CustomTables
 {
     public function __construct(
-        private readonly TableProvider $tableProvider,
-        private readonly TableRepository $tableRepository,
+        private TableProvider $tableProvider,
+        private TableRepository $tableRepository,
     ) {}
 
     /**

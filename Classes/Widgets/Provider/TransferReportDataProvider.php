@@ -19,10 +19,10 @@ use TYPO3\CMS\Dashboard\Widgets\ListDataProviderInterface;
 /**
  * @internal
  */
-final class TransferReportDataProvider implements ListDataProviderInterface
+final readonly class TransferReportDataProvider implements ListDataProviderInterface
 {
     public function __construct(
-        private readonly TransferRepository $transferRepository,
+        private TransferRepository $transferRepository,
     ) {}
 
     /**

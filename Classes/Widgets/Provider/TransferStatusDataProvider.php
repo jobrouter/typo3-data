@@ -20,13 +20,13 @@ use TYPO3\CMS\Core\Registry;
 /**
  * @internal
  */
-final class TransferStatusDataProvider implements TransferStatusDataProviderInterface
+final readonly class TransferStatusDataProvider implements TransferStatusDataProviderInterface
 {
-    private readonly TransferStatus $status;
+    private TransferStatus $status;
 
     public function __construct(
-        private readonly Registry $registry,
-        private readonly TransferRepository $transferRepository,
+        private Registry $registry,
+        private TransferRepository $transferRepository,
     ) {
         $this->status = new TransferStatus();
     }

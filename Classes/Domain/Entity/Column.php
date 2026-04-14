@@ -11,18 +11,18 @@ declare(strict_types=1);
 
 namespace JobRouter\AddOn\Typo3Data\Domain\Entity;
 
-final class Column
+final readonly class Column
 {
     public function __construct(
-        public readonly int $uid,
-        public readonly string $name,
-        public readonly string $label,
-        public readonly int $type,
-        public readonly int $decimalPlaces,
-        public readonly int $fieldSize,
-        public readonly string $alignment,
-        public readonly int $sortingPriority,
-        public readonly string $sortingOrder,
+        public int $uid,
+        public string $name,
+        public string $label,
+        public int $type,
+        public int $decimalPlaces,
+        public int $fieldSize,
+        public string $alignment,
+        public int $sortingPriority,
+        public string $sortingOrder,
     ) {}
 
     /**

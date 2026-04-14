@@ -22,7 +22,7 @@
 		"docs": "https://typo3-jobrouter.readthedocs.io/projects/data/"
 	},
 	"require": {
-		"php": ">=8.1",
+		"php": ">=8.2",
 		"ext-intl": "*",
 		"jobrouter/typo3-base": "^4.0",
 		"jobrouter/typo3-connector": "^4.0",
@@ -37,7 +37,7 @@
 		"ergebnis/composer-normalize": "~2.50.0",
 		"phpstan/extension-installer": "^1.4",
 		"phpstan/phpstan": "2.1.47",
-		"phpunit/phpunit": "^10.5 || ^11.5",
+		"phpunit/phpunit": "^11.5",
 		"rector/rector": "2.4.1",
 		"symfony/yaml": "^7.4",
 		"symplify/phpstan-rules": "^14.9",

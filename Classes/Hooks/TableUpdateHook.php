@@ -16,10 +16,10 @@ use JobRouter\AddOn\Typo3Data\Domain\Repository\DatasetRepository;
 /**
  * @internal
  */
-final class TableUpdateHook
+final readonly class TableUpdateHook
 {
     public function __construct(
-        private readonly DatasetRepository $datasetRepository,
+        private DatasetRepository $datasetRepository,
     ) {}
 
     public function processCmdmap_postProcess(string $command, string $table, string|int $recordId): void

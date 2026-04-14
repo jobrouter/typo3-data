@@ -23,14 +23,14 @@ use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
  * @internal
  */
 #[Autoconfigure(public: true)]
-final class DatasetConverter
+final readonly class DatasetConverter
 {
     private const UNFORMATTED_FIELD_NAME_PREFIX = '_original_';
 
     public function __construct(
-        private readonly ColumnRepository $columnRepository,
-        private readonly DatasetRepository $datasetRepository,
-        private readonly EventDispatcherInterface $eventDispatcher,
+        private ColumnRepository $columnRepository,
+        private DatasetRepository $datasetRepository,
+        private EventDispatcherInterface $eventDispatcher,
     ) {}
 
     /**

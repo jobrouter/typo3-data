@@ -11,17 +11,17 @@ declare(strict_types=1);
 
 namespace JobRouter\AddOn\Typo3Data\Domain\Entity;
 
-final class Transfer
+final readonly class Transfer
 {
     public function __construct(
-        public readonly int $uid,
-        public readonly int $crdate,
-        public readonly int $tableUid,
-        public readonly string $correlationId,
-        public readonly string $data,
-        public readonly bool $transmitSuccess,
-        public readonly ?\DateTimeImmutable $transmitDate,
-        public readonly string $transmitMessage,
+        public int $uid,
+        public int $crdate,
+        public int $tableUid,
+        public string $correlationId,
+        public string $data,
+        public bool $transmitSuccess,
+        public ?\DateTimeImmutable $transmitDate,
+        public string $transmitMessage,
     ) {}
 
     /**

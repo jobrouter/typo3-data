@@ -11,17 +11,17 @@ declare(strict_types=1);
 
 namespace JobRouter\AddOn\Typo3Data\Domain\Entity;
 
-final class Dataset
+final readonly class Dataset
 {
     /**
      * @var array<string, mixed>
      */
-    public readonly array $dataset;
+    public array $dataset;
 
     private function __construct(
-        public readonly int $uid,
-        public readonly int $tableUid,
-        public readonly int $jrid,
+        public int $uid,
+        public int $tableUid,
+        public int $jrid,
         string $dataset,
     ) {
         $this->dataset = \json_decode($dataset, true, flags: \JSON_THROW_ON_ERROR);

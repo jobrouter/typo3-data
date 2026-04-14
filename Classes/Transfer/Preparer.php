@@ -18,11 +18,11 @@ use Psr\Log\LoggerInterface;
 /**
  * @api
  */
-final class Preparer
+final readonly class Preparer
 {
     public function __construct(
-        private readonly LoggerInterface $logger,
-        private readonly TransferRepository $transferRepository,
+        private LoggerInterface $logger,
+        private TransferRepository $transferRepository,
     ) {}
 
     public function store(int $tableUid, string $correlationId, string $data): void
