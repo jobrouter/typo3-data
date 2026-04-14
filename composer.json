@@ -24,8 +24,8 @@
 	"require": {
 		"php": ">=8.2",
 		"ext-intl": "*",
-		"jobrouter/typo3-base": "^4.0",
-		"jobrouter/typo3-connector": "^4.0",
+		"jobrouter/typo3-base": "^5.0@dev",
+		"jobrouter/typo3-connector": "^5.0@dev",
 		"typo3/cms-backend": "^13.4",
 		"typo3/cms-core": "^13.4",
 		"typo3/cms-fluid": "^13.4",
