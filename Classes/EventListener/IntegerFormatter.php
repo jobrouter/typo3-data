@@ -13,11 +13,15 @@ namespace JobRouter\AddOn\Typo3Data\EventListener;
 
 use JobRouter\AddOn\Typo3Base\Enumeration\FieldType;
 use JobRouter\AddOn\Typo3Data\Event\ModifyColumnContentEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 
 /**
  * @internal
  */
-final class IntegerFormatter
+#[AsEventListener(
+    identifier: 'jobrouter-data/integer-formatter',
+)]
+final readonly class IntegerFormatter
 {
     public function __invoke(ModifyColumnContentEvent $event): void
     {

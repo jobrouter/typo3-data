@@ -15,6 +15,7 @@ use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Backend\Backend\Event\SystemInformationToolbarCollectorEvent;
 use TYPO3\CMS\Backend\Toolbar\Enumeration\InformationStatus as DeprecatedInformationStatus;
 use TYPO3\CMS\Backend\Toolbar\InformationStatus;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Registry;
@@ -22,6 +23,9 @@ use TYPO3\CMS\Core\Registry;
 /**
  * @internal
  */
+#[AsEventListener(
+    identifier: 'jobrouter-data/toolbar-item-provider',
+)]
 final class ToolbarItemProvider
 {
     /**

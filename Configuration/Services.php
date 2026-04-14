@@ -13,11 +13,6 @@ namespace JobRouter\AddOn\Typo3Data;
 
 use JobRouter\AddOn\Typo3Base\Widgets\TransferReportWidget;
 use JobRouter\AddOn\Typo3Base\Widgets\TransferStatusWidget;
-use JobRouter\AddOn\Typo3Data\EventListener\DateFormatter;
-use JobRouter\AddOn\Typo3Data\EventListener\DateTimeFormatter;
-use JobRouter\AddOn\Typo3Data\EventListener\DecimalFormatter;
-use JobRouter\AddOn\Typo3Data\EventListener\IntegerFormatter;
-use JobRouter\AddOn\Typo3Data\EventListener\ToolbarItemProvider;
 use JobRouter\AddOn\Typo3Data\Hooks\TableUpdateHook;
 use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferReportDataProvider;
 use JobRouter\AddOn\Typo3Data\Widgets\Provider\TransferStatusDataProvider;
@@ -31,61 +26,21 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
     $services
         ->defaults()
         ->autowire()
-        ->autoconfigure()
-        ->private();
+        ->autoconfigure();
 
     $services
         ->load('JobRouter\AddOn\Typo3Data\\', '../Classes/*')
-        ->exclude('../Classes/{Domain/Dto,Domain/Entity,Exception,Extension.php,Hooks,UserFunctions}');
+        ->exclude([
+            __DIR__ . '/Classes/Extension.php',
+            __DIR__ . '/Classes/Domain/Dto/',
+            __DIR__ . '/Classes/Domain/Entity/',
+            __DIR__ . '/Classes/Exception/',
+            __DIR__ . '/UserFunctions/',
+        ]);
 
     // Setting public with Autoconfigure attribute does not work!
     $services(TableUpdateHook::class)
         ->public();
-
-    $services
-        ->set(ToolbarItemProvider::class)
-        ->tag(
-            'event.listener',
-            [
-                'identifier' => 'jobrouter-data/toolbar-item-provider',
-            ],
-        );
-
-    $services
-        ->set(IntegerFormatter::class)
-        ->tag(
-            'event.listener',
-            [
-                'identifier' => 'jobrouter-data/integer-formatter',
-            ],
-        );
-
-    $services
-        ->set(DecimalFormatter::class)
-        ->tag(
-            'event.listener',
-            [
-                'identifier' => 'jobrouter-data/decimal-formatter',
-            ],
-        );
-
-    $services
-        ->set(DateFormatter::class)
-        ->tag(
-            'event.listener',
-            [
-                'identifier' => 'jobrouter-data/date-formatter',
-            ],
-        );
-
-    $services
-        ->set(DateTimeFormatter::class)
-        ->tag(
-            'event.listener',
-            [
-                'identifier' => 'jobrouter-data/datetime-formatter',
-            ],
-        );
 
     if ($containerBuilder->hasDefinition(Dashboard::class)) {
         $services
