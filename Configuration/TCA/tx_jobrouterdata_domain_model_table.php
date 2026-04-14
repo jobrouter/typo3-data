@@ -195,7 +195,10 @@ return [
                 ],
             ],
             'showitem' => '
-                type, connection, name, handle, table_guid, columns,
+                type,
+                connection,
+                --palette--;;tableProperties,
+                columns,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 disabled,
                 --div--;' . Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
@@ -206,7 +209,10 @@ return [
         ],
         (string) TableType::CustomTable->value => [
             'showitem' => '
-                type, connection, name, handle, table_guid, custom_table,
+                type,
+                connection,
+                --palette--;;tableProperties,
+                custom_table,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 disabled,
                 --div--;' . Extension::LANGUAGE_PATH_DATABASE . ':tab.status,
@@ -217,7 +223,10 @@ return [
         ],
         (string) TableType::FormFinisher->value => [
             'showitem' => '
-                type, connection, name, handle, table_guid, columns,
+                type,
+                connection,
+                --palette--;;tableProperties,
+                columns,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 disabled,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
@@ -226,7 +235,9 @@ return [
         ],
         (string) TableType::OtherUsage->value => [
             'showitem' => '
-                type, connection, name, handle, table_guid,
+                type,
+                connection,
+                --palette--;;tableProperties,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
                 disabled,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:notes,
@@ -238,6 +249,9 @@ return [
         'synchronisationStatus' => [
             'label' => Extension::LANGUAGE_PATH_DATABASE . ':palette.last_synchronisation',
             'showitem' => 'last_sync_date, --linebreak--, last_sync_error',
+        ],
+        'tableProperties' => [
+            'showitem' => 'name, handle, table_guid',
         ],
     ],
 ];
