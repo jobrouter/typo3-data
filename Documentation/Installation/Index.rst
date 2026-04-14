@@ -16,7 +16,7 @@ Target group: **Administrators**
 Requirements
 ============
 
-The extension in version |release| is available for TYPO3 v13 LTS.
+The extension in version |release| is available for TYPO3 v13 LTS and TYPO3 v14.
 
 To use the :ref:`dashboard widgets <dashboard-widgets>`, install and activate
 the Dashboard system extension. To use the :ref:`form finisher <form-finisher>`
@@ -31,7 +31,7 @@ Version matrix
 ============== ========== ===========
 JobRouter Data PHP        TYPO3
 ============== ========== ===========
-5.0            8.2 - 8.5  13.4
+5.0            8.2 - 8.5  13.4 / 14.x
 -------------- ---------- -----------
 4.0            8.1 - 8.4  12.4 / 13.4
 -------------- ---------- -----------

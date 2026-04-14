@@ -18,6 +18,7 @@ use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
+use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\View\ViewFactoryData;
@@ -52,7 +53,12 @@ final readonly class ContentElementPreviewRenderer
         );
         $view = $this->viewFactory->create($viewFactoryData);
 
+        // @todo Migrate to RecordInterface completely when compatibility with TYPO3 v13 is removed
         $record = $event->getRecord();
+        // @phpstan-ignore-next-line Instanceof between TYPO3\CMS\Core\Domain\RecordInterface and TYPO3\CMS\Core\Domain\RecordInterface will always evaluate to true.
+        if ($record instanceof RecordInterface) {
+            $record = $record->toArray();
+        }
         $flexForm = GeneralUtility::xml2array($record['pi_flexform'] ?? '');
         $tableId = \is_array($flexForm) ? ((int) $this->getValueFromFlexform($flexForm, 'table')) : 0;
 
