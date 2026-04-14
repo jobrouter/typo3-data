@@ -67,9 +67,8 @@ The extension offers some configuration which is explained in the
 Installation in Extension Manager
 =================================
 
-You can also install the extension from the `TYPO3 Extension Repository (TER)`_.
-See :ref:`t3start:extensions_legacy_management` for a manual how to
-install an extension.
+In a classic installation, you can also install the extension from the
+`TYPO3 Extension Repository (TER)`_.
 
 
 .. _TYPO3 Extension Repository (TER): https://extensions.typo3.org/extension/jobrouter_data/
