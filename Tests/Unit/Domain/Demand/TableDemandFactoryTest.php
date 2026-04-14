@@ -45,12 +45,14 @@ final class TableDemandFactoryTest extends TestCase
 
         $this->connectionRepositoryStub
             ->method('findByUid')
-            ->with(2)
-            ->willReturn($connection);
+            ->willReturnMap([
+                [2, $connection],
+            ]);
         $this->columnRepositoryStub
             ->method('findByTableUid')
-            ->with(1)
-            ->willReturn([]);
+            ->willReturnMap([
+                [1, []],
+            ]);
 
         $actual = $this->subject->create($table);
 
@@ -75,12 +77,14 @@ final class TableDemandFactoryTest extends TestCase
 
         $this->connectionRepositoryStub
             ->method('findByUid')
-            ->with(2, true)
-            ->willReturn($connection);
+            ->willReturnMap([
+                [2, true, $connection],
+            ]);
         $this->columnRepositoryStub
             ->method('findByTableUid')
-            ->with(1)
-            ->willReturn([]);
+            ->willReturnMap([
+                [1, []],
+            ]);
 
         $actual = $this->subject->create($table, true);
 
@@ -94,12 +98,12 @@ final class TableDemandFactoryTest extends TestCase
 
         $this->connectionRepositoryStub
             ->method('findByUid')
-            ->with(2)
             ->willThrowException(new ConnectionNotFoundException());
         $this->columnRepositoryStub
             ->method('findByTableUid')
-            ->with(1)
-            ->willReturn([]);
+            ->willReturnMap([
+                [1, []],
+            ]);
 
         $actual = $this->subject->create($table);
 
@@ -113,22 +117,24 @@ final class TableDemandFactoryTest extends TestCase
 
         $this->connectionRepositoryStub
             ->method('findByUid')
-            ->with(2)
-            ->willReturn($this->getConnection());
+            ->willReturnMap([
+                [2, $this->getConnection()],
+            ]);
         $this->columnRepositoryStub
             ->method('findByTableUid')
-            ->with(1)
-            ->willReturn([Column::fromArray([
-                'uid' => 3,
-                'name' => '',
-                'label' => '',
-                'type' => 1,
-                'decimal_places' => 0,
-                'field_size' => 0,
-                'alignment' => '',
-                'sorting_priority' => 1,
-                'sorting_order' => '',
-            ])]);
+            ->willReturnMap([
+                [1, [Column::fromArray([
+                    'uid' => 3,
+                    'name' => '',
+                    'label' => '',
+                    'type' => 1,
+                    'decimal_places' => 0,
+                    'field_size' => 0,
+                    'alignment' => '',
+                    'sorting_priority' => 1,
+                    'sorting_order' => '',
+                ])]],
+            ]);
 
         $actual = $this->subject->create($table);
 
@@ -144,8 +150,9 @@ final class TableDemandFactoryTest extends TestCase
 
         $this->connectionRepositoryStub
             ->method('findByUid')
-            ->with(2)
-            ->willReturn($this->getConnection());
+            ->willReturnMap([
+                [2, $this->getConnection()],
+            ]);
         $this->columnRepositoryStub
             ->method('findByTableUid')
             ->willReturn([]);

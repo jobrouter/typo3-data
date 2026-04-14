@@ -132,6 +132,7 @@ final class SyncCommandTest extends TestCase
             ->method('release');
 
         $this->synchronisationRunnerMock
+            ->expects(self::once())
             ->method('run')
             ->willReturn(new CountResult(3, 1));
 

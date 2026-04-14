@@ -175,11 +175,12 @@ final class TransferStatusDataProviderTest extends TestCase
 
         $this->registryStub
             ->method('get')
-            ->with(Extension::REGISTRY_NAMESPACE, 'transmitCommand.lastRun')
-            ->willReturn([
-                'start' => 1_601_889_643,
-                'end' => 1_601_889_645,
-                'exitCode' => 0,
+            ->willReturnMap([
+                [Extension::REGISTRY_NAMESPACE, 'transmitCommand.lastRun', [
+                    'start' => 1_601_889_643,
+                    'end' => 1_601_889_645,
+                    'exitCode' => 0,
+                ]],
             ]);
 
         $actual = $this->subject->getStatus();

@@ -37,7 +37,7 @@
 		"ergebnis/composer-normalize": "~2.50.0",
 		"phpstan/extension-installer": "^1.4",
 		"phpstan/phpstan": "2.1.47",
-		"phpunit/phpunit": "^11.5",
+		"phpunit/phpunit": "^11.5 || ^12.5 || ^13.1",
 		"rector/rector": "2.4.1",
 		"symfony/yaml": "^7.4",
 		"symplify/phpstan-rules": "^14.9",
@@ -45,7 +45,7 @@
 		"typo3/cms-dashboard": "^13.4",
 		"typo3/cms-fluid-styled-content": "^13.4",
 		"typo3/cms-form": "^13.4",
-		"typo3/testing-framework": "^8.3"
+		"typo3/testing-framework": "^9.5"
 	},
 	"suggest": {
 		"typo3/cms-dashboard": "Use dashboard widgets for information about JobData transmissions",

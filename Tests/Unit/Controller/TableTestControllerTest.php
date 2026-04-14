@@ -21,8 +21,6 @@ use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use JobRouter\AddOn\Typo3Data\Tests\Helper\Entity\ConnectionBuilder;
 use JobRouter\AddOn\Typo3Data\Tests\Helper\Entity\TableBuilder;
 use PHPUnit\Framework\Attributes\Test;
-use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\ResponseFactory;
@@ -30,39 +28,23 @@ use TYPO3\CMS\Core\Http\StreamFactory;
 
 final class TableTestControllerTest extends TestCase
 {
-    private ConnectionRepository&Stub $connectionRepositoryStub;
-    private TableRepository&Stub $tableRepositoryStub;
-    private ClientInterface&Stub $clientStub;
-    private RestClientFactoryInterface&MockObject $restClientFactoryMock;
-    private TableTestController $subject;
-    private ServerRequestInterface&Stub $requestStub;
-
-    protected function setUp(): void
+    #[Test]
+    public function invokeReturnsResponseWithErrorWhenRequestHasInvalidBody(): void
     {
-        $this->connectionRepositoryStub = self::createStub(ConnectionRepository::class);
-        $this->tableRepositoryStub = self::createStub(TableRepository::class);
-        $this->clientStub = self::createStub(ClientInterface::class);
-        $this->restClientFactoryMock = $this->createMock(RestClientFactoryInterface::class);
+        $requestStub = self::createStub(ServerRequestInterface::class);
+        $requestStub
+            ->method('getParsedBody')
+            ->willReturn(null);
 
-        $this->subject = new TableTestController(
-            $this->connectionRepositoryStub,
-            $this->tableRepositoryStub,
-            $this->restClientFactoryMock,
+        $subject = new TableTestController(
+            self::createStub(ConnectionRepository::class),
+            self::createStub(TableRepository::class),
+            self::createStub(RestClientFactoryInterface::class),
             new ResponseFactory(),
             new StreamFactory(),
         );
 
-        $this->requestStub = self::createStub(ServerRequestInterface::class);
-    }
-
-    #[Test]
-    public function invokeReturnsResponseWithErrorWhenRequestHasInvalidBody(): void
-    {
-        $this->requestStub
-            ->method('getParsedBody')
-            ->willReturn(null);
-
-        $actual = $this->subject->__invoke($this->requestStub);
+        $actual = $subject->__invoke($requestStub);
         $actual->getBody()->rewind();
 
         self::assertJsonStringEqualsJsonString(
@@ -74,18 +56,29 @@ final class TableTestControllerTest extends TestCase
     #[Test]
     public function invokeReturnsResponseWithErrorWhenTableIdentifierCannotBeFoundInRepository(): void
     {
-        $this->tableRepositoryStub
+        $tableRepositoryMock = self::createMock(TableRepository::class);
+        $tableRepositoryMock
+            ->expects(self::once())
             ->method('findByUidWithHidden')
             ->with(42)
             ->willThrowException(new TableNotFoundException('some error'));
 
-        $this->requestStub
+        $subject = new TableTestController(
+            self::createStub(ConnectionRepository::class),
+            $tableRepositoryMock,
+            self::createStub(RestClientFactoryInterface::class),
+            new ResponseFactory(),
+            new StreamFactory(),
+        );
+
+        $requestStub = self::createStub(ServerRequestInterface::class);
+        $requestStub
             ->method('getParsedBody')
             ->willReturn([
                 'tableId' => '42',
             ]);
 
-        $actual = $this->subject->__invoke($this->requestStub);
+        $actual = $subject->__invoke($requestStub);
         $actual->getBody()->rewind();
 
         self::assertJsonStringEqualsJsonString(
@@ -97,23 +90,36 @@ final class TableTestControllerTest extends TestCase
     #[Test]
     public function invokeReturnsResponseWithErrorWhenConnectionIsNotAvailable(): void
     {
-        $this->requestStub
+        $connectionRepositoryMock = self::createMock(ConnectionRepository::class);
+        $connectionRepositoryMock
+            ->expects(self::once())
+            ->method('findByUid')
+            ->with(21, true)
+            ->willThrowException(new ConnectionNotFoundException('some error'));
+
+        $tableRepositoryMock = self::createMock(TableRepository::class);
+        $tableRepositoryMock
+            ->expects(self::once())
+            ->method('findByUidWithHidden')
+            ->with(42)
+            ->willReturn((new TableBuilder())->build(42, connection: 21));
+
+        $subject = new TableTestController(
+            $connectionRepositoryMock,
+            $tableRepositoryMock,
+            self::createStub(RestClientFactoryInterface::class),
+            new ResponseFactory(),
+            new StreamFactory(),
+        );
+
+        $requestStub = self::createStub(ServerRequestInterface::class);
+        $requestStub
             ->method('getParsedBody')
             ->willReturn([
                 'tableId' => '42',
             ]);
 
-        $this->tableRepositoryStub
-            ->method('findByUidWithHidden')
-            ->with(42)
-            ->willReturn((new TableBuilder())->build(42, connection: 21));
-
-        $this->connectionRepositoryStub
-            ->method('findByUid')
-            ->with(21, true)
-            ->willThrowException(new ConnectionNotFoundException('some error'));
-
-        $actual = $this->subject->__invoke($this->requestStub);
+        $actual = $subject->__invoke($requestStub);
         $actual->getBody()->rewind();
 
         self::assertJsonStringEqualsJsonString(
@@ -125,23 +131,36 @@ final class TableTestControllerTest extends TestCase
     #[Test]
     public function invokeReturnSuccessfulResponse(): void
     {
-        $this->requestStub
+        $connectionRepositoryMock = self::createMock(ConnectionRepository::class);
+        $connectionRepositoryMock
+            ->expects(self::once())
+            ->method('findByUid')
+            ->with(21, true)
+            ->willReturn((new ConnectionBuilder())->build(21));
+
+        $tableRepositoryMock = self::createMock(TableRepository::class);
+        $tableRepositoryMock
+            ->expects(self::once())
+            ->method('findByUidWithHidden')
+            ->with(42)
+            ->willReturn((new TableBuilder())->build(42, connection: 21));
+
+        $subject = new TableTestController(
+            $connectionRepositoryMock,
+            $tableRepositoryMock,
+            self::createStub(RestClientFactoryInterface::class),
+            new ResponseFactory(),
+            new StreamFactory(),
+        );
+
+        $requestStub = self::createStub(ServerRequestInterface::class);
+        $requestStub
             ->method('getParsedBody')
             ->willReturn([
                 'tableId' => '42',
             ]);
 
-        $this->tableRepositoryStub
-            ->method('findByUidWithHidden')
-            ->with(42)
-            ->willReturn((new TableBuilder())->build(42, connection: 21));
-
-        $this->connectionRepositoryStub
-            ->method('findByUid')
-            ->with(21, true)
-            ->willReturn((new ConnectionBuilder())->build(21));
-
-        $actual = $this->subject->__invoke($this->requestStub);
+        $actual = $subject->__invoke($requestStub);
         $actual->getBody()->rewind();
 
         self::assertJsonStringEqualsJsonString(
@@ -153,33 +172,50 @@ final class TableTestControllerTest extends TestCase
     #[Test]
     public function invokeReturnsResponseWithErrorWhenExceptionIsThrown(): void
     {
-        $this->requestStub
+        $connection = (new ConnectionBuilder())->build(21);
+        $connectionRepositoryMock = self::createMock(ConnectionRepository::class);
+        $connectionRepositoryMock
+            ->expects(self::once())
+            ->method('findByUid')
+            ->with(21, true)
+            ->willReturn($connection);
+
+        $tableRepositoryMock = self::createMock(TableRepository::class);
+        $tableRepositoryMock
+            ->expects(self::once())
+            ->method('findByUidWithHidden')
+            ->with(42)
+            ->willReturn((new TableBuilder())->build(42, tableGuid: 'sometableguid', connection: 21));
+
+        $clientMock = self::createMock(ClientInterface::class);
+        $clientMock
+            ->expects(self::once())
+            ->method('request')
+            ->with('GET', 'application/jobdata/tables/sometableguid/datasets')
+            ->willThrowException(new \Exception('some exception message'));
+        $restClientFactoryMock = self::createMock(RestClientFactoryInterface::class);
+        $restClientFactoryMock
+            ->expects(self::once())
+            ->method('create')
+            ->with($connection)
+            ->willReturn($clientMock);
+
+        $subject = new TableTestController(
+            $connectionRepositoryMock,
+            $tableRepositoryMock,
+            $restClientFactoryMock,
+            new ResponseFactory(),
+            new StreamFactory(),
+        );
+
+        $requestStub = self::createStub(ServerRequestInterface::class);
+        $requestStub
             ->method('getParsedBody')
             ->willReturn([
                 'tableId' => '42',
             ]);
 
-        $this->tableRepositoryStub
-            ->method('findByUidWithHidden')
-            ->with(42)
-            ->willReturn((new TableBuilder())->build(42, tableGuid: 'sometableguid', connection: 21));
-
-        $connection = (new ConnectionBuilder())->build(21);
-        $this->connectionRepositoryStub
-            ->method('findByUid')
-            ->with(21, true)
-            ->willReturn($connection);
-
-        $this->clientStub
-            ->method('request')
-            ->with('GET', 'application/jobdata/tables/sometableguid/datasets')
-            ->willThrowException(new \Exception('some exception message'));
-        $this->restClientFactoryMock
-            ->method('create')
-            ->with($connection)
-            ->willReturn($this->clientStub);
-
-        $actual = $this->subject->__invoke($this->requestStub);
+        $actual = $subject->__invoke($requestStub);
         $actual->getBody()->rewind();
 
         self::assertJsonStringEqualsJsonString(

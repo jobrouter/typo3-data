@@ -35,7 +35,6 @@ final class DeleterTest extends TestCase
     {
         $this->transferRepositoryStub
             ->method('deleteOldSuccessfulTransfers')
-            ->with(self::anything())
             ->willReturn(42);
 
         self::assertSame(42, $this->subject->run(30));
