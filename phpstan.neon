@@ -1,17 +1,11 @@
 includes:
     - phpstan.baseline.neon
-    - .Build/vendor/symplify/phpstan-rules/config/regex-rules.neon
-
-rules:
-    - Symplify\PHPStanRules\Rules\NoReturnArrayVariableListRule
 
 parameters:
     phpVersion: 80100
     level: 8
     paths:
         - Classes
-    ignoreErrors:
-        - identifier: missingType.generics
     cognitive_complexity:
         class: 20
         function: 10

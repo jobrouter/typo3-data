@@ -13,7 +13,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') || die();
 
-(static function ($contentType = 'tx_jobrouterdata_table', $icon = 'jobrouter-data-ce-table'): void {
+(static function (string $contentType = 'tx_jobrouterdata_table', $icon = 'jobrouter-data-ce-table'): void {
     ExtensionManagementUtility::addPlugin(
         [
             'label' => Extension::LANGUAGE_PATH_CONTENT_ELEMENT . ':ce.title',

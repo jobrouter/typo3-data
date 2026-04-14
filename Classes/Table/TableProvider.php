@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace JobRouter\AddOn\Typo3Data\Table;
 
-use Doctrine\DBAL\Schema\AbstractSchemaManager;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
 /**
@@ -30,7 +29,6 @@ class TableProvider
     {
         $connection = $this->connectionPool->getConnectionByName('Default');
 
-        /** @var AbstractSchemaManager $schemaManager */
         $schemaManager = $connection->createSchemaManager();
 
         $customTables = [];
@@ -58,7 +56,6 @@ class TableProvider
     {
         $connection = $this->connectionPool->getConnectionForTable($customTable);
 
-        /** @var AbstractSchemaManager $schemaManager */
         $schemaManager = $connection->createSchemaManager();
 
         return \array_keys($schemaManager->listTableColumns($customTable));

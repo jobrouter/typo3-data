@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use JobRouter\AddOn\Typo3Data\Hooks\TableUpdateHook;
 
 defined('TYPO3') || die();
