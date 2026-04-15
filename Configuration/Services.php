@@ -34,7 +34,7 @@ return static function (ContainerConfigurator $configurator, ContainerBuilder $c
             __DIR__ . '/Classes/Domain/Dto/',
             __DIR__ . '/Classes/Domain/Entity/',
             __DIR__ . '/Classes/Exception/',
-            __DIR__ . '/UserFunctions/',
+            __DIR__ . '/Classes/UserFunctions/',
         ]);
 
     if ($containerBuilder->hasDefinition(Dashboard::class)) {
