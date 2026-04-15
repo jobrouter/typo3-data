@@ -5,15 +5,15 @@
     lang="en"
 >
 
-<be:link.editRecord uid="{record.uid}" table="tt_content">
-    <f:if condition="{tableDemand.name}">
-        <strong class="jobrouter-data-ce-info">{tableDemand.name -> f:format.case(mode: 'upper')}</strong>
-        <br>
-        <br>
-    </f:if>
+<f:if condition="{tableDemand}">
+    <f:then>
+        <be:link.editRecord uid="{record.uid}" table="tt_content">
+            <f:if condition="{tableDemand.name}">
+                <strong class="jobrouter-data-ce-info">{tableDemand.name -> f:format.case(mode: 'upper')}</strong>
+                <br>
+                <br>
+            </f:if>
 
-    <f:if condition="{tableDemand}">
-        <f:then>
             <f:if condition="{rows}">
                 <f:then>
                     <f:render section="DatasetExcerpt" arguments="{tableDemand: tableDemand, rows: rows}"/>
@@ -24,14 +24,14 @@
                     </div>
                 </f:else>
             </f:if>
-        </f:then>
-        <f:else>
-            <div class="alert alert-danger">
-                <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:error.table_not_available"/>
-            </div>
-        </f:else>
-    </f:if>
-</be:link.editRecord>
+        </be:link.editRecord>
+    </f:then>
+    <f:else>
+        <div class="alert alert-danger">
+            <f:translate key="LLL:EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf:error.table_not_available"/>
+        </div>
+    </f:else>
+</f:if>
 
 <f:section name="DatasetExcerpt">
     <f:be.pageRenderer includeCssFiles="{0: '{f:uri.resource(extensionName: \'jobrouter_data\', path:\'Css/styles.css\')}'}"/>

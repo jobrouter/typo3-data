@@ -6,6 +6,14 @@ Upgrade
 
 Target group: **Developers**
 
+From version 4.0 to 5.0
+=======================
+
+The table setting of the :ref:`content element <editor-content-element>` has
+been moved from FlexForms to a native database field. If you have this content
+element in use, the data is migrated with the upgrade wizard
+`Migrate JobData FlexForm field "table" to native database field`.
+
 From version 3.0 to 4.0
 =======================
 

@@ -17,6 +17,12 @@ Added
 
 * Compatibility with TYPO3 v14
 
+Changed
+^^^^^^^
+
+
+* The table field of the content element was moved from FlexForms to a native database field
+
 Removed
 ^^^^^^^
 

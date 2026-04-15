@@ -14,18 +14,16 @@ namespace JobRouter\AddOn\Typo3Data\Preview;
 use JobRouter\AddOn\Typo3Data\Domain\Converter\DatasetConverter;
 use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
 use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
-use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Domain\RecordInterface;
 use TYPO3\CMS\Core\Site\SiteFinder;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\View\ViewFactoryData;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 
 #[AsEventListener(
-    identifier: 'jobrouter-data/content-element-preview-renderer/',
+    identifier: 'jobrouter-data/content-element-preview-renderer',
 )]
 final readonly class ContentElementPreviewRenderer
 {
@@ -59,8 +57,7 @@ final readonly class ContentElementPreviewRenderer
         if ($record instanceof RecordInterface) {
             $record = $record->toArray();
         }
-        $flexForm = GeneralUtility::xml2array($record['pi_flexform'] ?? '');
-        $tableId = \is_array($flexForm) ? ((int) $this->getValueFromFlexform($flexForm, 'table')) : 0;
+        $tableId = (int) ($record['tx_jobrouterdata_table'] ?? 0);
 
         try {
             $table = $this->tableRepository->findByUid($tableId);
@@ -72,17 +69,9 @@ final readonly class ContentElementPreviewRenderer
                 'tableDemand' => $this->tableDemandFactory->create($table),
                 'rows' => $this->datasetConverter->convertFromJsonToArray($table, $locale),
             ]);
-        } catch (TableNotFoundException) {
+        } catch (\Exception) {
         }
 
         $event->setPreviewContent($view->render('ContentElement'));
-    }
-
-    /**
-     * @param array<string, array<string, mixed>> $flexForm
-     */
-    private function getValueFromFlexform(array $flexForm, string $key, string $sheet = 'sDEF'): ?string
-    {
-        return $flexForm['data'][$sheet]['lDEF'][$key]['vDEF'] ?? null;
     }
 }
