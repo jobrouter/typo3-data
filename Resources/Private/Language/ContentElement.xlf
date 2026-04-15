@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf" date="2020-02-02T11:01:43Z" product-name="jobrouter_data">
+	<file source-language="en" original="EXT:jobrouter_data/Resources/Private/Language/ContentElement.xlf" datatype="plaintext" product-name="jobrouter_data" date="2026-04-15T14:35:49+02:00">
 		<body>
-			<trans-unit id="ce.title" resname="ce.title">
-				<source><![CDATA[JobData Table]]></source>
+			<trans-unit id="ce.description">
+				<source>Show the content of a synchronised JobData table.</source>
 			</trans-unit>
-			<trans-unit id="ce.description" resname="ce.description">
-				<source><![CDATA[Show the content of a synchronised JobData table.]]></source>
+			<trans-unit id="ce.title">
+				<source>JobData Table</source>
 			</trans-unit>
-			<trans-unit id="error.table_has_no_rows" resname="error.table_has_no_rows">
-				<source><![CDATA[The table currently has no rows.]]></source>
+			<trans-unit id="error.table_has_no_rows">
+				<source>The table currently has no rows.</source>
 			</trans-unit>
-			<trans-unit id="error.table_not_available" resname="error.table_not_available">
-				<source><![CDATA[The table is not available! Please check, if the table is enabled and configured in the content element.]]></source>
+			<trans-unit id="error.table_not_available">
+				<source>The table is not available! Please check, if the table is enabled and configured in the content element.</source>
 			</trans-unit>
-			<trans-unit id="plus_one_more_row" resname="plus_one_more_row">
-				<source><![CDATA[plus one more row]]></source>
+			<trans-unit id="plus_more_rows">
+				<source>plus %d more rows</source>
 			</trans-unit>
-			<trans-unit id="plus_more_rows" resname="plus_more_rows">
-				<source><![CDATA[plus %d more rows]]></source>
+			<trans-unit id="plus_one_more_row">
+				<source>plus one more row</source>
 			</trans-unit>
-			<trans-unit id="table" resname="table">
-				<source><![CDATA[Table]]></source>
+			<trans-unit id="table">
+				<source>Table</source>
 			</trans-unit>
 		</body>
 	</file>

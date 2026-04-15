@@ -1,55 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf" date="2020-06-05T17:17:19Z" product-name="jobrouter_data">
+	<file source-language="en" original="EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf" datatype="plaintext" product-name="jobrouter_data" date="2026-04-15T14:35:34+02:00">
 		<body>
-			<trans-unit id="mlang_labels_tablabel" resname="mlang_labels_tablabel">
-				<source><![CDATA[JobRouter Data]]></source>
+			<trans-unit id="action.add_table">
+				<source>Add table link</source>
 			</trans-unit>
-			<trans-unit id="mlang_labels_tabdescr" resname="mlang_labels_tabdescr">
-				<source><![CDATA[Connect JobRouter JobData tables with TYPO3]]></source>
+			<trans-unit id="action.check_table">
+				<source>Check access</source>
 			</trans-unit>
-			<trans-unit id="mlang_tabs_tab" resname="mlang_tabs_tab">
-				<source><![CDATA[Data]]></source>
+			<trans-unit id="action.edit_table">
+				<source>Edit table link</source>
 			</trans-unit>
-
-			<trans-unit id="heading_text" resname="heading_text">
-				<source><![CDATA[JobData Table Links]]></source>
+			<trans-unit id="action.show_table_structure">
+				<source>Show JobData table structure</source>
 			</trans-unit>
-
-			<trans-unit id="tables_not_found.title" resname="tables_not_found.title">
-				<source><![CDATA[No table links found]]></source>
+			<trans-unit id="heading_text">
+				<source>JobData Table Links</source>
 			</trans-unit>
-			<trans-unit id="tables_not_found.message" resname="tables_not_found.message">
-				<source><![CDATA[There are currently no table links defined.]]></source>
+			<trans-unit id="mlang_labels_tabdescr">
+				<source>Connect JobRouter JobData tables with TYPO3</source>
 			</trans-unit>
-			<trans-unit id="table_create" resname="table_create">
-				<source><![CDATA[Create new table link]]></source>
+			<trans-unit id="mlang_labels_tablabel">
+				<source>JobRouter Data</source>
 			</trans-unit>
-			<trans-unit id="table_check_for" resname="table_check_for">
-				<source><![CDATA[Access check for]]></source>
+			<trans-unit id="mlang_tabs_tab">
+				<source>Data</source>
 			</trans-unit>
-			<trans-unit id="table_check_successful" resname="table_check_successful">
-				<source><![CDATA[JobData table accessed successfully]]></source>
+			<trans-unit id="status.disabled">
+				<source>disabled</source>
 			</trans-unit>
-			<trans-unit id="table_check_unknown_error" resname="table_check_unknown_error">
-				<source><![CDATA[Unknown error]]></source>
+			<trans-unit id="table_check_for">
+				<source>Access check for</source>
 			</trans-unit>
-
-			<trans-unit id="action.add_table" resname="action.add_table">
-				<source><![CDATA[Add table link]]></source>
+			<trans-unit id="table_check_successful">
+				<source>JobData table accessed successfully</source>
 			</trans-unit>
-			<trans-unit id="action.check_table" resname="action.check_table">
-				<source><![CDATA[Check access]]></source>
+			<trans-unit id="table_check_unknown_error">
+				<source>Unknown error</source>
 			</trans-unit>
-			<trans-unit id="action.edit_table" resname="action.edit_table">
-				<source><![CDATA[Edit table link]]></source>
+			<trans-unit id="table_create">
+				<source>Create new table link</source>
 			</trans-unit>
-			<trans-unit id="action.show_table_structure" resname="action.show_table_structure">
-				<source><![CDATA[Show JobData table structure]]></source>
+			<trans-unit id="tables_not_found.message">
+				<source>There are currently no table links defined.</source>
 			</trans-unit>
-
-			<trans-unit id="status.disabled" resname="status.disabled">
-				<source><![CDATA[disabled]]></source>
+			<trans-unit id="tables_not_found.title">
+				<source>No table links found</source>
 			</trans-unit>
 		</body>
 	</file>

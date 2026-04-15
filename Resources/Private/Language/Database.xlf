@@ -1,99 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" date="2023-01-22T07:51:37Z" product-name="jobrouter_data">
+	<file source-language="en" original="EXT:jobrouter_data/Resources/Private/Language/Database.xlf" datatype="plaintext" product-name="jobrouter_data" date="2026-04-15T14:36:14+02:00">
 		<body>
-			<trans-unit id="palette.last_synchronisation" resname="palette.last_synchronisation">
-				<source><![CDATA[Last Synchronisation]]></source>
+			<trans-unit id="palette.last_synchronisation">
+				<source>Last Synchronisation</source>
 			</trans-unit>
-			<trans-unit id="palette.rendering_ce" resname="palette.rendering_ce">
-				<source><![CDATA[Rendering in the Content Element]]></source>
+			<trans-unit id="palette.rendering_ce">
+				<source>Rendering in the Content Element</source>
 			</trans-unit>
-			<trans-unit id="tab.status" resname="tab.status">
-				<source><![CDATA[Status]]></source>
+			<trans-unit id="tab.status">
+				<source>Status</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column" resname="tx_jobrouterdata_domain_model_column">
-				<source><![CDATA[JobData Column]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column">
+				<source>JobData Column</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment" resname="tx_jobrouterdata_domain_model_column.alignment">
-				<source><![CDATA[Alignment]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment">
+				<source>Alignment</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.center" resname="tx_jobrouterdata_domain_model_column.alignment.center">
-				<source><![CDATA[center]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.center">
+				<source>center</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.left" resname="tx_jobrouterdata_domain_model_column.alignment.left">
-				<source><![CDATA[left]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.left">
+				<source>left</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.right" resname="tx_jobrouterdata_domain_model_column.alignment.right">
-				<source><![CDATA[right]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.alignment.right">
+				<source>right</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.decimal_places" resname="tx_jobrouterdata_domain_model_column.decimal_places">
-				<source><![CDATA[Decimal places]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.decimal_places">
+				<source>Decimal places</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.field_size" resname="tx_jobrouterdata_domain_model_column.field_size">
-				<source><![CDATA[Field Size]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.field_size">
+				<source>Field Size</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.label" resname="tx_jobrouterdata_domain_model_column.label">
-				<source><![CDATA[Label]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.label">
+				<source>Label</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.name" resname="tx_jobrouterdata_domain_model_column.name">
-				<source><![CDATA[JobData Column Name]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.name">
+				<source>JobData Column Name</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order" resname="tx_jobrouterdata_domain_model_column.sorting_order">
-				<source><![CDATA[Sorting Order]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order">
+				<source>Sorting Order</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order.asc" resname="tx_jobrouterdata_domain_model_column.sorting_order.asc">
-				<source><![CDATA[ascending]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order.asc">
+				<source>ascending</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order.desc" resname="tx_jobrouterdata_domain_model_column.sorting_order.desc">
-				<source><![CDATA[descending]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_order.desc">
+				<source>descending</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_priority" resname="tx_jobrouterdata_domain_model_column.sorting_priority">
-				<source><![CDATA[Sorting Priority]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.sorting_priority">
+				<source>Sorting Priority</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_column.type" resname="tx_jobrouterdata_domain_model_column.type">
-				<source><![CDATA[Type]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_column.type">
+				<source>Type</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table" resname="tx_jobrouterdata_domain_model_table">
-				<source><![CDATA[JobData Table Link]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table">
+				<source>JobData Table Link</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.columns" resname="tx_jobrouterdata_domain_model_table.columns">
-				<source><![CDATA[Columns]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.columns">
+				<source>Columns</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.connection" resname="tx_jobrouterdata_domain_model_table.connection">
-				<source><![CDATA[Connection]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.connection">
+				<source>Connection</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.handle" resname="tx_jobrouterdata_domain_model_table.handle">
-				<source><![CDATA[Handle]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.custom_table">
+				<source>Custom table</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.custom_table" resname="tx_jobrouterdata_domain_model_table.custom_table">
-				<source><![CDATA[Custom table]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.handle">
+				<source>Handle</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.last_sync_date" resname="tx_jobrouterdata_domain_model_table.last_sync_date">
-				<source><![CDATA[Date/Time]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.last_sync_date">
+				<source>Date/Time</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.last_sync_error" resname="tx_jobrouterdata_domain_model_table.last_sync_error">
-				<source><![CDATA[Error (if occurred)]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.last_sync_error">
+				<source>Error (if occurred)</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.name" resname="tx_jobrouterdata_domain_model_table.name">
-				<source><![CDATA[Name]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.name">
+				<source>Name</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.table_guid" resname="tx_jobrouterdata_domain_model_table.table_guid">
-				<source><![CDATA[JobData Table GUID]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.table_guid">
+				<source>JobData Table GUID</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.type" resname="tx_jobrouterdata_domain_model_table.type">
-				<source><![CDATA[Type]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type">
+				<source>Type</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.type.form_finisher" resname="tx_jobrouterdata_domain_model_table.type.form_finisher">
-				<source><![CDATA[Form finisher]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.form_finisher">
+				<source>Form finisher</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.type.other_usage" resname="tx_jobrouterdata_domain_model_table.type.other_usage">
-				<source><![CDATA[Other usage]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.other_usage">
+				<source>Other usage</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.type.simple_synchronisation" resname="tx_jobrouterdata_domain_model_table.type.simple_synchronisation">
-				<source><![CDATA[Simple synchronisation]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.simple_synchronisation">
+				<source>Simple synchronisation</source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table" resname="tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table">
-				<source><![CDATA[Synchronisation in custom table]]></source>
+			<trans-unit id="tx_jobrouterdata_domain_model_table.type.synchronisation_in_custom_table">
+				<source>Synchronisation in custom table</source>
 			</trans-unit>
 		</body>
 	</file>

@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Toolbar.xlf" date="2021-12-20T16:07:52Z" product-name="jobrouter_data">
+	<file source-language="en" original="EXT:jobrouter_data/Resources/Private/Language/Toolbar.xlf" datatype="plaintext" product-name="jobrouter_data" date="2026-04-15T14:36:42+02:00">
 		<body>
-			<trans-unit id="status.overdue" resname="status.overdue">
-				<source><![CDATA[overdue]]></source>
+			<trans-unit id="status.overdue">
+				<source>overdue</source>
 			</trans-unit>
-			<trans-unit id="status.success" resname="status.success">
-				<source><![CDATA[success]]></source>
+			<trans-unit id="status.success">
+				<source>success</source>
 			</trans-unit>
-			<trans-unit id="status.warning" resname="status.warning">
-				<source><![CDATA[warnings]]></source>
+			<trans-unit id="status.warning">
+				<source>warnings</source>
 			</trans-unit>
-			<trans-unit id="syncCommand.lastRunLabel" resname="syncCommand.lastRunLabel">
-				<source><![CDATA[Last Data Sync.]]></source>
+			<trans-unit id="syncCommand.lastRunLabel">
+				<source>Last Data Sync.</source>
 			</trans-unit>
-			<trans-unit id="syncCommand.lastRunMessage" resname="syncCommand.lastRunMessage">
-				<source><![CDATA[%s at %s (%s)]]></source>
+			<trans-unit id="syncCommand.lastRunMessage">
+				<source>%s at %s (%s)</source>
 			</trans-unit>
-			<trans-unit id="toolbar.neverExecuted" resname="toolbar.neverExecuted">
-				<source><![CDATA[Never executed]]></source>
+			<trans-unit id="toolbar.neverExecuted">
+				<source>Never executed</source>
 			</trans-unit>
-			<trans-unit id="transmitCommand.lastRunLabel" resname="transmitCommand.lastRunLabel">
-				<source><![CDATA[Last Data Transmiss.]]></source>
+			<trans-unit id="transmitCommand.lastRunLabel">
+				<source>Last Data Transmiss.</source>
 			</trans-unit>
-			<trans-unit id="transmitCommand.lastRunMessage" resname="transmitCommand.lastRunMessage">
-				<source><![CDATA[%s at %s (%s)]]></source>
+			<trans-unit id="transmitCommand.lastRunMessage">
+				<source>%s at %s (%s)</source>
 			</trans-unit>
 		</body>
 	</file>

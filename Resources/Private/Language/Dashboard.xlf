@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:jobrouter_data/Resources/Private/Language/Dashboard.xlf" date="2021-03-07T16:39:17Z" product-name="jobrouter_data">
+	<file source-language="en" original="EXT:jobrouter_data/Resources/Private/Language/Dashboard.xlf" datatype="plaintext" product-name="jobrouter_data" date="2026-04-15T14:36:03+02:00">
 		<body>
-			<trans-unit id="widgets.transferReport.description" resname="widgets.transferReport.description">
-				<source><![CDATA[Shows failing JobData transmissions.]]></source>
+			<trans-unit id="widgets.statusOfDataTransmissions.description">
+				<source>Shows the status of JobData transmissions from the transfer table.</source>
 			</trans-unit>
-			<trans-unit id="widgets.transferReport.title" resname="widgets.transferReport.title">
-				<source><![CDATA[JobData Transmission Errors]]></source>
+			<trans-unit id="widgets.statusOfDataTransmissions.title">
+				<source>JobData Transmission Status</source>
 			</trans-unit>
-			<trans-unit id="widgets.statusOfDataTransmissions.description" resname="widgets.statusOfDataTransmissions.description">
-				<source><![CDATA[Shows the status of JobData transmissions from the transfer table.]]></source>
+			<trans-unit id="widgets.transferReport.description">
+				<source>Shows failing JobData transmissions.</source>
 			</trans-unit>
-			<trans-unit id="widgets.statusOfDataTransmissions.title" resname="widgets.statusOfDataTransmissions.title">
-				<source><![CDATA[JobData Transmission Status]]></source>
+			<trans-unit id="widgets.transferReport.title">
+				<source>JobData Transmission Errors</source>
 			</trans-unit>
 		</body>
 	</file>
