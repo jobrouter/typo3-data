@@ -61,6 +61,12 @@ parameters:
 			path: Classes/Domain/Repository/JobRouter/JobDataRepository.php
 
 		-
+			message: '#^Cannot call method toArray\(\) on TYPO3\\CMS\\Core\\Domain\\RawRecord\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/Preview/ContentElementPreviewRenderer.php
+
+		-
 			message: '#^Method JobRouter\\AddOn\\Typo3Data\\Synchronisation\\CustomTableSynchroniser\:\:storeDatasets\(\) has parameter \$customTableColumns with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1

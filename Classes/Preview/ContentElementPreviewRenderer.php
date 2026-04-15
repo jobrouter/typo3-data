@@ -55,7 +55,7 @@ final readonly class ContentElementPreviewRenderer
         $record = $event->getRecord();
         // @phpstan-ignore-next-line Instanceof between TYPO3\CMS\Core\Domain\RecordInterface and TYPO3\CMS\Core\Domain\RecordInterface will always evaluate to true.
         if ($record instanceof RecordInterface) {
-            $record = $record->toArray();
+            $record = $record->getRawRecord()->toArray();
         }
         $tableId = (int) ($record['tx_jobrouterdata_table'] ?? 0);
 
