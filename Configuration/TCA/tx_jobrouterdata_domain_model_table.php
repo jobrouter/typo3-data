@@ -30,21 +30,6 @@ return [
         'hideTable' => true,
     ],
     'columns' => [
-        'disabled' => [
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.enabled',
-            'config' => [
-                'type' => 'check',
-                'renderType' => 'checkboxToggle',
-                'items' => [
-                    [
-                        'label' => '',
-                        'value' => '',
-                        'invertStateDisplay' => true,
-                    ],
-                ],
-            ],
-        ],
-
         'type' => [
             'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type',
             'config' => [
@@ -165,15 +150,6 @@ return [
                 'cols' => 30,
                 'rows' => 5,
                 'readOnly' => true,
-            ],
-        ],
-        'description' => [
-            'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.description',
-            'config' => [
-                'type' => 'text',
-                'rows' => 5,
-                'cols' => 30,
-                'searchable' => true,
             ],
         ],
     ],

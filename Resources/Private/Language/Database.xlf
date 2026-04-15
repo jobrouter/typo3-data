@@ -62,9 +62,6 @@
 			<trans-unit id="tx_jobrouterdata_domain_model_table.connection" resname="tx_jobrouterdata_domain_model_table.connection">
 				<source><![CDATA[Connection]]></source>
 			</trans-unit>
-			<trans-unit id="tx_jobrouterdata_domain_model_table.description" resname="tx_jobrouterdata_domain_model_table.description">
-				<source><![CDATA[Description]]></source>
-			</trans-unit>
 			<trans-unit id="tx_jobrouterdata_domain_model_table.handle" resname="tx_jobrouterdata_domain_model_table.handle">
 				<source><![CDATA[Handle]]></source>
 			</trans-unit>
