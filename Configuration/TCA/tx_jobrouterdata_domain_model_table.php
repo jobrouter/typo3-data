@@ -26,7 +26,6 @@ return [
             'disabled' => 'disabled',
         ],
         'rootLevel' => 1,
-        'searchFields' => 'handle,name,table_guid,description',
         'iconfile' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_table.svg',
         'hideTable' => true,
     ],
@@ -90,6 +89,7 @@ return [
                 'max' => 30,
                 'eval' => 'alphanum_x,trim,unique',
                 'required' => 'true',
+                'searchable' => true,
             ],
         ],
         'name' => [
@@ -100,6 +100,7 @@ return [
                 'max' => 255,
                 'eval' => 'trim',
                 'required' => true,
+                'searchable' => true,
             ],
         ],
         'table_guid' => [
@@ -110,6 +111,7 @@ return [
                 'max' => 36,
                 'eval' => 'alphanum_x,trim,upper',
                 'required' => true,
+                'searchable' => true,
             ],
         ],
         'custom_table' => [
@@ -171,6 +173,7 @@ return [
                 'type' => 'text',
                 'rows' => 5,
                 'cols' => 30,
+                'searchable' => true,
             ],
         ],
     ],

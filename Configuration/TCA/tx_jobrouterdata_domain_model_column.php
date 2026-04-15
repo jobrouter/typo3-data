@@ -23,7 +23,6 @@ return [
         'delete' => 'deleted',
         'sortby' => 'sorting',
         'rootLevel' => 1,
-        'searchFields' => 'name,label',
         'iconfile' => 'EXT:' . Extension::KEY . '/Resources/Public/Icons/tx_jobrouterdata_domain_model_column.svg',
         'hideTable' => true,
     ],
@@ -55,6 +54,7 @@ return [
                 'max' => 20,
                 'eval' => 'trim',
                 'required' => true,
+                'searchable' => true,
             ],
         ],
         'label' => [
@@ -64,6 +64,7 @@ return [
                 'size' => 30,
                 'max' => 255,
                 'eval' => 'trim',
+                'searchable' => true,
             ],
         ],
         'type' => [
