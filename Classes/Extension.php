@@ -20,6 +20,8 @@ final class Extension
 
     public const MODULE_NAME = 'jobrouter_data';
 
+    public const CE_TYPE = 'tx_jobrouterdata_table';
+
     private const LANGUAGE_PATH = 'LLL:EXT:' . self::KEY . '/Resources/Private/Language/';
     public const LANGUAGE_PATH_BACKEND_MODULE = self::LANGUAGE_PATH . 'BackendModule.xlf';
     public const LANGUAGE_PATH_CONTENT_ELEMENT = self::LANGUAGE_PATH . 'ContentElement.xlf';

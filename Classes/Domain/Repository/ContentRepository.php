@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace JobRouter\AddOn\Typo3Data\Domain\Repository;
 
 use JobRouter\AddOn\Typo3Data\Domain\Entity\Content;
+use JobRouter\AddOn\Typo3Data\Extension;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 
@@ -33,7 +34,7 @@ final readonly class ContentRepository
             ->select('uid', 'pi_flexform')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('CType', $queryBuilder->createNamedParameter('tx_jobrouterdata_table', Connection::PARAM_STR)),
+                $queryBuilder->expr()->eq('CType', $queryBuilder->createNamedParameter(Extension::CE_TYPE, Connection::PARAM_STR)),
                 $queryBuilder->expr()->neq('pi_flexform', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
             )
             ->executeQuery();
