@@ -174,6 +174,9 @@
     </td>
     <td id="jobrouter-data-list-connection-name-{table.uid}">
         {table.connection.name}
+        <f:if condition="{table.connection.disabled}">
+            ({f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:status.disabled')})
+        </f:if>
     </td>
     <td id="jobrouter-data-list-table-guid-{table.uid}">
         <a class="jobrouter-data-link" href="{manageJobDataTableLink}" target="_blank" rel="noreferrer" title="{f:translate(key: 'LLL:EXT:jobrouter_data/Resources/Private/Language/BackendModule.xlf:action.show_table_structure')}">

@@ -28,6 +28,9 @@ use TYPO3\CMS\Core\Imaging\IconSize;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Page\PageRenderer;
 
+/**
+ * @internal
+ */
 #[AsController]
 final readonly class TableListController
 {
@@ -102,10 +105,10 @@ final readonly class TableListController
         $otherTables = $this->tableRepository->findAllByTypeWithHidden(TableType::OtherUsage);
 
         $view->assignMultiple([
-            'simpleTables' => $this->tableDemandFactory->createMultiple($simpleTables),
-            'customTables' => $this->tableDemandFactory->createMultiple($customTables),
-            'formFinisherTables' => $this->tableDemandFactory->createMultiple($formFinisherTables),
-            'otherTables' => $this->tableDemandFactory->createMultiple($otherTables),
+            'simpleTables' => $this->tableDemandFactory->createMultiple($simpleTables, true),
+            'customTables' => $this->tableDemandFactory->createMultiple($customTables, true),
+            'formFinisherTables' => $this->tableDemandFactory->createMultiple($formFinisherTables, true),
+            'otherTables' => $this->tableDemandFactory->createMultiple($otherTables, true),
         ]);
     }
 

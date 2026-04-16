@@ -23,6 +23,12 @@ Changed
 
 * The table field of the content element was moved from FlexForms to a native database field
 
+Fixed
+^^^^^
+
+
+* Connection not shown in data overview when disabled (#27)
+
 Removed
 ^^^^^^^
 
