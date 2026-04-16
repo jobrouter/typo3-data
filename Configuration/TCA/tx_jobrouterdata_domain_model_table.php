@@ -37,6 +37,10 @@ return [
                 'renderType' => 'selectSingle',
                 'items' => [
                     [
+                        'label' => '',
+                        'value' => '',
+                    ],
+                    [
                         'label' => Extension::LANGUAGE_PATH_DATABASE . ':tx_jobrouterdata_domain_model_table.type.simple_synchronisation',
                         'value' => TableType::Simple->value,
                     ],
@@ -53,6 +57,7 @@ return [
                         'value' => TableType::OtherUsage->value,
                     ],
                 ],
+                'required' => true,
             ],
         ],
         'connection' => [
@@ -60,6 +65,12 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
+                'items' => [
+                    [
+                        'label' => '',
+                        'value' => '',
+                    ],
+                ],
                 'foreign_table' => 'tx_jobrouterconnector_domain_model_connection',
                 'foreign_table_where' => ' ORDER BY tx_jobrouterconnector_domain_model_connection.name',
                 'eval' => 'int',
