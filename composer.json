@@ -81,6 +81,7 @@
 		},
 		"typo3/cms": {
 			"extension-key": "jobrouter_data",
+			"version": "5.0.0-dev",
 			"web-dir": ".Build/Web"
 		}
 	}
