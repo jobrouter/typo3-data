@@ -1,7 +1,8 @@
+# @todo Remove once compatibility with TYPO3 v13 is dropped
 module.tx_form {
   settings {
     yamlConfigurations {
-      1601140510 = EXT:jobrouter_data/Configuration/Yaml/FormSetup.yaml
+      1601140510 = EXT:jobrouter_data/Configuration/Form/Base/Finishers/JobRouterTransmitData.yaml
     }
   }
 }
@@ -9,7 +10,7 @@ module.tx_form {
 plugin.tx_form {
   settings {
     yamlConfigurations {
-      1601140510 = EXT:jobrouter_data/Configuration/Yaml/FormSetup.yaml
+      1601140510 = EXT:jobrouter_data/Configuration/Form/Base/Finishers/JobRouterTransmitData.yaml
     }
   }
 }

@@ -1,0 +1,6 @@
+imports:
+  - { resource: 'EXT:jobrouter_data/Configuration/Form/Base/Finishers/JobRouterTransmitData.yaml' }
+
+name: jobrouter-data/base
+label: "JobRouter Data"
+priority: 1601140510
