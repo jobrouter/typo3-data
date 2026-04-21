@@ -26,10 +26,10 @@
 		"ext-intl": "*",
 		"jobrouter/typo3-base": "^5.0@dev",
 		"jobrouter/typo3-connector": "^5.0@dev",
-		"typo3/cms-backend": "^13.4 || ^14.2",
-		"typo3/cms-core": "^13.4 || ^14.2",
-		"typo3/cms-fluid": "^13.4 || ^14.2",
-		"typo3/cms-frontend": "^13.4 || ^14.2"
+		"typo3/cms-backend": "^13.4 || ^14.3",
+		"typo3/cms-core": "^13.4 || ^14.3",
+		"typo3/cms-fluid": "^13.4 || ^14.3",
+		"typo3/cms-frontend": "^13.4 || ^14.3"
 	},
 	"require-dev": {
 		"brotkrueml/coding-standards": "~6.3.1",
@@ -42,10 +42,10 @@
 		"symfony/yaml": "^7.4",
 		"symplify/phpstan-rules": "^14.9",
 		"tomasvotruba/cognitive-complexity": "^1.1",
-		"typo3/cms-dashboard": "^13.4 || ^14.2",
-		"typo3/cms-fluid-styled-content": "^13.4 || ^14.2",
-		"typo3/cms-form": "^13.4 || ^14.2",
-		"typo3/cms-install": "^13.4 || ^14.2",
+		"typo3/cms-dashboard": "^13.4 || ^14.3",
+		"typo3/cms-fluid-styled-content": "^13.4 || ^14.3",
+		"typo3/cms-form": "^13.4 || ^14.3",
+		"typo3/cms-install": "^13.4 || ^14.3",
 		"typo3/testing-framework": "^9.5"
 	},
 	"suggest": {

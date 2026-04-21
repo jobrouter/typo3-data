@@ -17,8 +17,8 @@ What this extension does:
 
 | Latest release | TYPO3       | PHP   | Updates will contain                                   |
 |----------------|-------------|-------|--------------------------------------------------------|
-| 5.x            | 13.4 / 14.x | ≥ 8.2 | Features, bug and security fixes                       |
-| 4.x            | 12.4 / 13.4 | ≥ 8.1 | Bug and security fixes (end of live expected Apr 2026) |
+| 5.x            | 13.4 / 14.3 | ≥ 8.2 | Features, bug and security fixes                       |
+| 4.x            | 12.4 / 13.4 | ≥ 8.1 | Bug and security fixes (end of life expected Apr 2026) |
 | 3.x            | 11.5 / 12.4 | ≥ 8.1 | End of life (since Dec 2024)                           |
 | 2.x            | 11.5 / 12.4 | ≥ 8.1 | End of life (since Dec 2024)                           |
 | 1.x            | 10.4 / 11.5 | ≥ 7.4 | End of life (since Dec 2024)                           |
