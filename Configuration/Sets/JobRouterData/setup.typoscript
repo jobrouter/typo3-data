@@ -19,6 +19,6 @@ tt_content.tx_jobrouterdata_table {
   }
 
   dataProcessing {
-    10 = JobRouter\AddOn\Typo3Data\DataProcessing\TableProcessor
+    10 = jobrouter-data-table
   }
 }

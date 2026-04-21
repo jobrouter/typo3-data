@@ -16,25 +16,28 @@ use JobRouter\AddOn\Typo3Data\Domain\Demand\TableDemandFactory;
 use JobRouter\AddOn\Typo3Data\Domain\Repository\TableRepository;
 use JobRouter\AddOn\Typo3Data\Exception\TableNotFoundException;
 use JobRouter\AddOn\Typo3Data\Extension;
-use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
-use TYPO3\CMS\Core\Service\FlexFormService;
+use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Component\DependencyInjection\Attribute\AutoconfigureTag;
+use TYPO3\CMS\Core\Cache\CacheDataCollector;
+use TYPO3\CMS\Core\Cache\CacheTag;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
  * @internal
  */
-#[Autoconfigure(public: true)]
-final class TableProcessor implements DataProcessorInterface
+#[AutoconfigureTag(
+    name: 'data.processor',
+    attributes: [
+        'identifier' => 'jobrouter-data-table',
+    ],
+)]
+final readonly class TableProcessor implements DataProcessorInterface
 {
-    private ContentObjectRenderer $cObj;
-    private array $processedData;
-
     public function __construct(
-        private readonly DatasetConverter $datasetConverter,
-        private readonly FlexFormService $flexFormService,
-        private readonly TableDemandFactory $tableDemandFactory,
-        private readonly TableRepository $tableRepository,
+        private DatasetConverter $datasetConverter,
+        private TableDemandFactory $tableDemandFactory,
+        private TableRepository $tableRepository,
     ) {}
 
     /**
@@ -49,37 +52,29 @@ final class TableProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData,
     ): array {
-        $this->cObj = $cObj;
-        $this->processedData = $processedData;
+        $request = $cObj->getRequest();
 
-        $flexForm = $this->flexFormService->convertFlexFormContentToArray($cObj->data['pi_flexform']);
-        $tableUid = (int) ($flexForm['table'] ?? 0);
-        if ($tableUid > 0) {
-            $this->enrichProcessedDataWithTableInformation($tableUid);
-        }
-
-        return $this->processedData;
-    }
-
-    private function enrichProcessedDataWithTableInformation(int $tableUid): void
-    {
         try {
+            $tableUid = (int) ($processedData['data']['tx_jobrouterdata_table'] ?? 0);
             $table = $this->tableRepository->findByUid($tableUid);
             $tableDemand = $this->tableDemandFactory->create($table);
 
-            $locale = $this->cObj->getRequest()->getAttribute('language')->getLocale()->getName();
-            $this->processedData['table'] = $tableDemand;
-            $this->processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
-            $this->addCacheTag($tableUid);
+            $locale = $request->getAttribute('language')->getLocale()->getName();
+            $processedData['table'] = $tableDemand;
+            $processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
+            $this->addCacheTag($tableUid, $request);
         } catch (TableNotFoundException) {
         }
+
+        return $processedData;
     }
 
-    private function addCacheTag(int $tableUid): void
+    private function addCacheTag(int $tableUid, ServerRequestInterface $request): void
     {
-        $cacheTags = [
-            \sprintf(Extension::CACHE_TAG_TABLE_TEMPLATE, $tableUid),
-        ];
-        $this->cObj->getRequest()->getAttribute('frontend.controller')?->addCacheTags($cacheTags);
+        /** @var CacheDataCollector|null $cacheCollector */
+        $cacheCollector = $request->getAttribute('frontend.cache.collector');
+        $cacheCollector?->addCacheTags(
+            new CacheTag(\sprintf(Extension::CACHE_TAG_TABLE_TEMPLATE, $tableUid)),
+        );
     }
 }
