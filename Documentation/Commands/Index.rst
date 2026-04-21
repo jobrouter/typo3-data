@@ -30,7 +30,7 @@ available. Run the following command in the project directory:
 
          vendor/bin/typo3 jobrouter:data:sync
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: shell
 
@@ -57,7 +57,7 @@ You can also synchronise just one table:
 
          vendor/bin/typo3 jobrouter:data:sync jobs
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: shell
 
@@ -76,7 +76,7 @@ default, only changed datasets are synchronised. Use the force option:
 
          vendor/bin/typo3 jobrouter:data:sync --force
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: shell
 
@@ -123,7 +123,7 @@ command from the project directory:
 
          vendor/bin/typo3 jobrouter:data:transmit
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: shell
 
@@ -176,7 +176,7 @@ be deleted regularly. A command is available for this task:
 
          vendor/bin/typo3 jobrouter:data:cleanuptransfers
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: shell
 
@@ -199,7 +199,7 @@ You can adjust this value by adding an argument to the command:
 
          vendor/bin/typo3 jobrouter:data:cleanuptransfers 7
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic installation
 
       .. code-block:: shell
 
