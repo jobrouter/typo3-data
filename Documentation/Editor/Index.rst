@@ -16,7 +16,7 @@ Content of JobData tables that are synchronised with the :ref:`simple type
 <module-create-table-link-simple>` can be easily displayed on the website
 with the content element `JobData Table`.
 
-Go to the :guilabel:`Web` > :guilabel:`Page` module and select the desired page
+Go to the :guilabel:`Content > Layout` module and select the desired page
 in the page tree. Click on :guilabel:`+ Content` in the column and position you
 want to insert. To add the content element, select the :guilabel:`Special
 elements` tab in the :guilabel:`Create new content element` wizard and click on
