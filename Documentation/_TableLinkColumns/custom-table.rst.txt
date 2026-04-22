@@ -3,8 +3,7 @@ Custom table (required)
 
    .. note::
       Only extension tables beginning with *tx_* and a column named *jrid* are
-      displayed in this list. A table can only be used once. Since TYPO3 v14
-      this field is only displayed, if it has at least one entry.
+      displayed in this list. A table can only be used once.
 
    In the developer corner you will find the :ref:`requirements
    <developer-custom-table>` for a custom table.
