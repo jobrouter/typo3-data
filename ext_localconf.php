@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
+use JobRouter\AddOn\Typo3Data\Hooks\TableUpdateHook;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 defined('TYPO3') || die();
+
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processCmdmapClass'][] =
+    TableUpdateHook::class;
 
 // @todo Remove once compatibility with TYPO3 v13 is dropped
 if ((new Typo3Version())->getMajorVersion() < 14) {
