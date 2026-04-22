@@ -84,7 +84,7 @@
 				"providesPackages": {}
 			},
 			"extension-key": "jobrouter_data",
-			"version": "5.0.0-dev",
+			"version": "5.0.0",
 			"web-dir": ".Build/Web"
 		}
 	}
