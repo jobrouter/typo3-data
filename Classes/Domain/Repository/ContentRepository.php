@@ -34,8 +34,10 @@ final readonly class ContentRepository
             ->select('uid', 'pi_flexform')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('CType', $queryBuilder->createNamedParameter(Extension::CE_TYPE, Connection::PARAM_STR)),
-                $queryBuilder->expr()->neq('pi_flexform', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
+                $queryBuilder->expr()
+                    ->eq('CType', $queryBuilder->createNamedParameter(Extension::CE_TYPE, Connection::PARAM_STR)),
+                $queryBuilder->expr()
+                    ->neq('pi_flexform', $queryBuilder->createNamedParameter('', Connection::PARAM_STR)),
             )
             ->executeQuery();
 

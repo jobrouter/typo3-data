@@ -45,11 +45,13 @@ final class TableTestControllerTest extends TestCase
         );
 
         $actual = $subject->__invoke($requestStub);
-        $actual->getBody()->rewind();
+        $actual->getBody()
+            ->rewind();
 
         self::assertJsonStringEqualsJsonString(
             '{"error": "Request has no valid body!"}',
-            $actual->getBody()->getContents(),
+            $actual->getBody()
+                ->getContents(),
         );
     }
 
@@ -79,11 +81,13 @@ final class TableTestControllerTest extends TestCase
             ]);
 
         $actual = $subject->__invoke($requestStub);
-        $actual->getBody()->rewind();
+        $actual->getBody()
+            ->rewind();
 
         self::assertJsonStringEqualsJsonString(
             '{"error": "Table with ID \"42\" not found!"}',
-            $actual->getBody()->getContents(),
+            $actual->getBody()
+                ->getContents(),
         );
     }
 
@@ -120,11 +124,13 @@ final class TableTestControllerTest extends TestCase
             ]);
 
         $actual = $subject->__invoke($requestStub);
-        $actual->getBody()->rewind();
+        $actual->getBody()
+            ->rewind();
 
         self::assertJsonStringEqualsJsonString(
             '{"error": "Connection with ID \"21\" not found!"}',
-            $actual->getBody()->getContents(),
+            $actual->getBody()
+                ->getContents(),
         );
     }
 
@@ -161,11 +167,13 @@ final class TableTestControllerTest extends TestCase
             ]);
 
         $actual = $subject->__invoke($requestStub);
-        $actual->getBody()->rewind();
+        $actual->getBody()
+            ->rewind();
 
         self::assertJsonStringEqualsJsonString(
             '{"check": "ok"}',
-            $actual->getBody()->getContents(),
+            $actual->getBody()
+                ->getContents(),
         );
     }
 
@@ -216,11 +224,13 @@ final class TableTestControllerTest extends TestCase
             ]);
 
         $actual = $subject->__invoke($requestStub);
-        $actual->getBody()->rewind();
+        $actual->getBody()
+            ->rewind();
 
         self::assertJsonStringEqualsJsonString(
             '{"error":"some exception message"}',
-            $actual->getBody()->getContents(),
+            $actual->getBody()
+                ->getContents(),
         );
     }
 }

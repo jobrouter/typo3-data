@@ -27,7 +27,8 @@ final class Column
     {
         $label = (string) ($parameters['row']['label'] ?? '');
         if (\str_starts_with($label, 'LLL:')) {
-            $label = $this->getLanguageService()->sL($label);
+            $label = $this->getLanguageService()
+                ->sL($label);
         }
         if ($label === '') {
             // Since TYPO3 v13 this user function is triggered when changing the type of the column, providing an incomplete row.
@@ -39,7 +40,8 @@ final class Column
         if ($type > 0) {
             $label .= \sprintf(
                 ' (%s)',
-                $this->getLanguageService()->sL(self::L10N_TYPE_PREFIX . $type),
+                $this->getLanguageService()
+                    ->sL(self::L10N_TYPE_PREFIX . $type),
             );
         }
 

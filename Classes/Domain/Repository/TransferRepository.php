@@ -63,8 +63,10 @@ readonly class TransferRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('transmit_success', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
-                $queryBuilder->expr()->neq('transmit_message', $queryBuilder->createNamedParameter('')),
+                $queryBuilder->expr()
+                    ->eq('transmit_success', $queryBuilder->createNamedParameter(0, Connection::PARAM_INT)),
+                $queryBuilder->expr()
+                    ->neq('transmit_message', $queryBuilder->createNamedParameter('')),
             )
             ->orderBy('crdate', 'ASC')
             ->executeQuery();
@@ -142,14 +144,16 @@ readonly class TransferRepository
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
 
         $whereExpressions = [
-            $queryBuilder->expr()->eq(
-                'transmit_success',
-                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
-            ),
-            $queryBuilder->expr()->gt(
-                'transmit_date',
-                $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
-            ),
+            $queryBuilder->expr()
+                ->eq(
+                    'transmit_success',
+                    $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
+                ),
+            $queryBuilder->expr()
+                ->gt(
+                    'transmit_date',
+                    $queryBuilder->createNamedParameter(0, Connection::PARAM_INT),
+                ),
         ];
 
         return $queryBuilder
@@ -167,14 +171,16 @@ readonly class TransferRepository
         return $queryBuilder
             ->delete(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq(
-                    'transmit_success',
-                    $queryBuilder->createNamedParameter(1, Connection::PARAM_INT),
-                ),
-                $queryBuilder->expr()->lt(
-                    'crdate',
-                    $queryBuilder->createNamedParameter($maximumTimestampForDeletion, Connection::PARAM_INT),
-                ),
+                $queryBuilder->expr()
+                    ->eq(
+                        'transmit_success',
+                        $queryBuilder->createNamedParameter(1, Connection::PARAM_INT),
+                    ),
+                $queryBuilder->expr()
+                    ->lt(
+                        'crdate',
+                        $queryBuilder->createNamedParameter($maximumTimestampForDeletion, Connection::PARAM_INT),
+                    ),
             )
             ->executeStatement();
     }

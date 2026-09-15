@@ -59,7 +59,9 @@ final readonly class TableProcessor implements DataProcessorInterface
             $table = $this->tableRepository->findByUid($tableUid);
             $tableDemand = $this->tableDemandFactory->create($table);
 
-            $locale = $request->getAttribute('language')->getLocale()->getName();
+            $locale = $request->getAttribute('language')
+                ->getLocale()
+                ->getName();
             $processedData['table'] = $tableDemand;
             $processedData['rows'] = $this->datasetConverter->convertFromJsonToArray($table, $locale);
             $this->addCacheTag($tableUid, $request);

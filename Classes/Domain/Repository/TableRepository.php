@@ -52,13 +52,15 @@ readonly class TableRepository
     public function findAllByTypeWithHidden(TableType $type): array
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
-        $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+        $queryBuilder->getRestrictions()
+            ->removeByType(HiddenRestriction::class);
 
         $result = $queryBuilder
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('type', $queryBuilder->createNamedParameter($type->value, Connection::PARAM_INT)),
+                $queryBuilder->expr()
+                    ->eq('type', $queryBuilder->createNamedParameter($type->value, Connection::PARAM_INT)),
             )
             ->orderBy('disabled', 'ASC')
             ->addOrderBy('name', 'ASC')
@@ -80,7 +82,8 @@ readonly class TableRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
+                $queryBuilder->expr()
+                    ->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
             )
             ->executeQuery()
             ->fetchAssociative();
@@ -95,13 +98,15 @@ readonly class TableRepository
     public function findByUidWithHidden(int $uid): Table
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable(self::TABLE_NAME);
-        $queryBuilder->getRestrictions()->removeByType(HiddenRestriction::class);
+        $queryBuilder->getRestrictions()
+            ->removeByType(HiddenRestriction::class);
 
         $row = $queryBuilder
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
+                $queryBuilder->expr()
+                    ->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
             )
             ->executeQuery()
             ->fetchAssociative();
@@ -121,7 +126,8 @@ readonly class TableRepository
             ->select('*')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->eq('handle', $queryBuilder->createNamedParameter($handle)),
+                $queryBuilder->expr()
+                    ->eq('handle', $queryBuilder->createNamedParameter($handle)),
             )
             ->executeQuery()
             ->fetchAssociative();
@@ -144,7 +150,8 @@ readonly class TableRepository
             ->select('custom_table')
             ->from(self::TABLE_NAME)
             ->where(
-                $queryBuilder->expr()->neq('custom_table', $queryBuilder->createNamedParameter('')),
+                $queryBuilder->expr()
+                    ->neq('custom_table', $queryBuilder->createNamedParameter('')),
             )
             ->executeQuery()
             ->fetchFirstColumn();

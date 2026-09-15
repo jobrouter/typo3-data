@@ -56,7 +56,8 @@ final class DatasetRepositoryTest extends FunctionalTestCase
 
         self::assertSame(3, $actual);
 
-        $connection = $this->getConnectionPool()->getConnectionForTable('tx_jobrouterdata_domain_model_dataset');
+        $connection = $this->getConnectionPool()
+            ->getConnectionForTable('tx_jobrouterdata_domain_model_dataset');
         $uids = $connection->select(['uid'], 'tx_jobrouterdata_domain_model_dataset')->fetchFirstColumn();
 
         self::assertContains(3, $uids);

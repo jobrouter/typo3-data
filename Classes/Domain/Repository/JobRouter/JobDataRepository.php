@@ -81,13 +81,14 @@ class JobDataRepository
      */
     public function add(string $tableHandle, array $dataset): array
     {
-        $response = $this->getClient($tableHandle)->request(
-            'POST',
-            \sprintf(self::RESOURCE_TEMPLATE_POST, $this->tables[$tableHandle]->tableGuid),
-            [
-                'dataset' => $dataset,
-            ],
-        );
+        $response = $this->getClient($tableHandle)
+            ->request(
+                'POST',
+                \sprintf(self::RESOURCE_TEMPLATE_POST, $this->tables[$tableHandle]->tableGuid),
+                [
+                    'dataset' => $dataset,
+                ],
+            );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }
@@ -101,13 +102,14 @@ class JobDataRepository
             ];
         }
 
-        $this->getClient($tableHandle)->request(
-            'DELETE',
-            \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->tables[$tableHandle]->tableGuid),
-            [
-                'datasets' => $datasets,
-            ],
-        );
+        $this->getClient($tableHandle)
+            ->request(
+                'DELETE',
+                \sprintf(self::RESOURCE_TEMPLATE_DELETE, $this->tables[$tableHandle]->tableGuid),
+                [
+                    'datasets' => $datasets,
+                ],
+            );
     }
 
     /**
@@ -116,13 +118,14 @@ class JobDataRepository
      */
     public function update(string $tableHandle, int $jrid, array $dataset): array
     {
-        $response = $this->getClient($tableHandle)->request(
-            'PUT',
-            \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->tables[$tableHandle]->tableGuid, $jrid),
-            [
-                'dataset' => $dataset,
-            ],
-        );
+        $response = $this->getClient($tableHandle)
+            ->request(
+                'PUT',
+                \sprintf(self::RESOURCE_TEMPLATE_PUT, $this->tables[$tableHandle]->tableGuid, $jrid),
+                [
+                    'dataset' => $dataset,
+                ],
+            );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }
@@ -132,10 +135,11 @@ class JobDataRepository
      */
     public function findAll(string $tableHandle): array
     {
-        $response = $this->getClient($tableHandle)->request(
-            'GET',
-            \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->tables[$tableHandle]->tableGuid),
-        );
+        $response = $this->getClient($tableHandle)
+            ->request(
+                'GET',
+                \sprintf(self::RESOURCE_TEMPLATE_GET_ALL, $this->tables[$tableHandle]->tableGuid),
+            );
 
         return $this->buildDatasetsArrayFromJson($response->getBody()->getContents());
     }
@@ -146,10 +150,11 @@ class JobDataRepository
     public function findByJrid(string $tableHandle, int $jrid): array
     {
         try {
-            $response = $this->getClient($tableHandle)->request(
-                'GET',
-                \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->tables[$tableHandle]->tableGuid, $jrid),
-            );
+            $response = $this->getClient($tableHandle)
+                ->request(
+                    'GET',
+                    \sprintf(self::RESOURCE_TEMPLATE_GET_JRID, $this->tables[$tableHandle]->tableGuid, $jrid),
+                );
         } catch (ExceptionInterface $e) {
             throw new DatasetNotAvailableException(
                 \sprintf('Dataset with jrid "%d" is not available', $jrid),

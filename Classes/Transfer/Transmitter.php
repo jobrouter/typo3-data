@@ -87,7 +87,8 @@ class Transmitter
     {
         $result = $this->jobDataRepository
             ->add(
-                $this->getTable($transfer->tableUid)->handle,
+                $this->getTable($transfer->tableUid)
+                    ->handle,
                 \json_decode($transfer->data, true, flags: \JSON_THROW_ON_ERROR),
             );
 

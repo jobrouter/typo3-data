@@ -54,7 +54,8 @@ final class ContentRepositoryTest extends FunctionalTestCase
 
         $this->subject->updateTableFieldAndResetFlexFormField(1, 41);
 
-        $actual = $this->getConnectionPool()->getConnectionForTable('tt_content')
+        $actual = $this->getConnectionPool()
+            ->getConnectionForTable('tt_content')
             ->select(
                 ['pi_flexform', 'tx_jobrouterdata_table'],
                 'tt_content',

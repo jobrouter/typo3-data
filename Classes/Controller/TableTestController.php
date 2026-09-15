@@ -58,10 +58,11 @@ final readonly class TableTestController
                 return $this->buildResponse(\sprintf('Connection with ID "%s" not found!', $table->connectionUid));
             }
 
-            $this->restClientFactory->create($connection)->request(
-                'GET',
-                \sprintf('application/jobdata/tables/%s/datasets', $table->tableGuid),
-            );
+            $this->restClientFactory->create($connection)
+                ->request(
+                    'GET',
+                    \sprintf('application/jobdata/tables/%s/datasets', $table->tableGuid),
+                );
             return $this->buildResponse();
         } catch (\Throwable $t) {
             return $this->buildResponse($t->getMessage());

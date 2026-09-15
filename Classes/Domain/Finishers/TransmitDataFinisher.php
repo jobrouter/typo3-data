@@ -83,7 +83,9 @@ final class TransmitDataFinisher extends AbstractTransferFinisher
             return [];
         }
         $formValues = (new FormFieldValuesPreparer())->prepareForSubstitution(
-            $this->finisherContext->getFormRuntime()->getFormDefinition()->getElements(),
+            $this->finisherContext->getFormRuntime()
+                ->getFormDefinition()
+                ->getElements(),
             $this->finisherContext->getFormValues(),
         );
 
